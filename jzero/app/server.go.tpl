@@ -38,10 +38,10 @@ func start(ctx *svc.ServiceContext) {
 
 	server.Use(middlewares.WrapResponse)
 
-	// gw add routes
+	// server add your handlers
 	handler.RegisterMyHandlers(server, ctx)
 
-	// gw add api routes
+	// server add api handlers
 	handler.RegisterHandlers(server, ctx)
 
 	group := service.NewServiceGroup()
