@@ -1,6 +1,12 @@
 # templates
 jzero template repo
 
+## default
+
+```shell
+jzero new simpleapp
+```
+
 ## only api
 
 please use branch api
