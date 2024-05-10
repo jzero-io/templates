@@ -14,5 +14,13 @@ jzero new simpleapi --branch api
 please use branch rpc
 
 ```shell
-jzero new simpleapi --branch rpc
+jzero new simplerpc --branch rpc
+```
+
+## only cli
+
+please use branch cli
+
+```shell
+jzero new simplecli --branch cli
 ```
