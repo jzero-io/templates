@@ -43,7 +43,6 @@ func start(ctx *svc.ServiceContext) {
 
 	group := service.NewServiceGroup()
 	group.Add(s)
-	group.Add(gw)
 
 	go func() {
 		fmt.Printf("Starting rpc server at %s...\n", ctx.Config.Zrpc.ListenOn)
