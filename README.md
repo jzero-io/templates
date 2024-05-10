@@ -16,3 +16,9 @@ please use branch rpc
 ```shell
 jzero new simpleapi --branch rpc
 ```
+
+## only cli
+
+```shell
+jzero new simplecli --branch cli
+```
