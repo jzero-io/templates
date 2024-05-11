@@ -57,7 +57,7 @@ func signalHandler(ctx *svc.ServiceContext, serviceGroup *service.ServiceGroup) 
 		s := <-c
 		switch s {
 		case syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT:
-			fmt.Println("Waiting 1 second...\nStopping rpc server and gateway server")
+			fmt.Println("Waiting 1 second...\nStopping rpc server")
 			time.Sleep(time.Second)
 			serviceGroup.Stop()
 			return
