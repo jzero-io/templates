@@ -40,11 +40,12 @@ func start(ctx *svc.ServiceContext) {
 	server.Use(middlewares.WrapResponse)
 	httpx.SetErrorHandler(middlewares.ErrorHandler)
 
-	// server add your handlers
-	handler.RegisterMyHandlers(server, ctx)
-
 	// server add api handlers
 	handler.RegisterHandlers(server, ctx)
+
+	// gw add routes
+    // You can use gw.Server.AddRoutes() to add your own handler
+    // for example: add a func handler.RegisterMyHandlers() in this line on handler dir
 
 	group := service.NewServiceGroup()
 	group.Add(server)
