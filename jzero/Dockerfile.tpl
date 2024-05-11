@@ -1,16 +1,18 @@
-FROM alpine:latest
+FROM --platform=$BUILDPLATFORM golang:1.22 as builder
 
-ENV CGO_ENABLED 0
+ARG TARGETARCH
+ARG LDFLAGS
+
+WORKDIR /usr/local/go/src/app
+COPY ./ ./
 ENV GOPROXY https://goproxy.io,direct
+RUN go mod tidy && CGO_ENABLED=0 GOOS=linux GOARCH=$TARGETARCH go build -a -ldflags="$LDFLAGS" -o /app main.go
 
-RUN apk add tzdata ca-certificates curl bash
-ENV TZ Asia/Shanghai
 
+FROM --platform=$TARGETPLATFORM alpine:latest
 WORKDIR /app
-COPY dist/{{ .APP }}_linux_amd64_v1/{{ .APP }} /app/{{ .APP }}
+COPY --from=builder /app .
 COPY config.{{ .ConfigType }} /app/config.{{ .ConfigType }}
-COPY .protosets /app/.protosets
-
 EXPOSE 8000
-
-ENTRYPOINT ["./{{ .APP }}", "server"]
+ENTRYPOINT ["./app"]
+CMD ["server"]
