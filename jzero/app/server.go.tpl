@@ -11,6 +11,7 @@ import (
     "github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/service"
 	"github.com/zeromicro/go-zero/rest"
+    "github.com/zeromicro/go-zero/rest/httpx"
 
 	"{{ .Module }}/app/internal/config"
 	"{{ .Module }}/app/internal/handler"
@@ -37,6 +38,7 @@ func start(ctx *svc.ServiceContext) {
 	server := rest.MustNewServer(ctx.Config.Rest.RestConf)
 
 	server.Use(middlewares.WrapResponse)
+	httpx.SetErrorHandler(middlewares.ErrorHandler)
 
 	// server add your handlers
 	handler.RegisterMyHandlers(server, ctx)
