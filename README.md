@@ -1,6 +1,7 @@
 # templates
-jzero template repo
 
-## only api
+jzero template repo with only api project
 
-please use branch api
+```shell
+jzero new simpleapi --branch api
+```

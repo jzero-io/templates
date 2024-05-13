@@ -55,10 +55,10 @@ func start(ctx *svc.ServiceContext) {
 		group.Start()
 	}()
 
-	signalHandler(ctx, group)
+	signalHandler(group)
 }
 
-func signalHandler(ctx *svc.ServiceContext, serviceGroup *service.ServiceGroup) {
+func signalHandler(serviceGroup *service.ServiceGroup) {
 	// signal handler
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, syscall.SIGHUP, syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT)
