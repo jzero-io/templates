@@ -5,8 +5,9 @@ import (
 )
 
 func ErrorHandler(err error) (int, any) {
-	if err != nil {
-		return http.StatusInternalServerError, err
+	return http.StatusOK, Body{
+		Data:    nil,
+		Code:    http.StatusInternalServerError,
+		Message: err.Error(),
 	}
-	return 0, nil
 }

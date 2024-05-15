@@ -37,7 +37,7 @@ func start(ctx *svc.ServiceContext) {
 
 	server := rest.MustNewServer(ctx.Config.Rest.RestConf)
 
-	server.Use(middlewares.WrapResponse)
+    httpx.SetOkHandler(middlewares.OkHandler)
 	httpx.SetErrorHandler(middlewares.ErrorHandler)
 
 	// server add api handlers
