@@ -7,8 +7,8 @@ import (
 
 type Body struct {
 	Data    interface{} `json:"data"`
-	Code    int         `json:"statusCode"`
-	Message string      `json:"comments"`
+	Code    int         `json:"code"`
+	Message string      `json:"message"`
 }
 
 func OkHandler(_ context.Context, data any) any {
