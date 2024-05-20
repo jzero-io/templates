@@ -1,1 +1,1 @@
-# keep here
+APP: {{ .APP }}
