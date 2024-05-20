@@ -7,7 +7,6 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-    "github.com/zeromicro/go-zero/tools/goctl/util/pathx"
 )
 
 var cfgFile string
@@ -52,7 +51,7 @@ func initConfig() {
         cobra.CheckErr(err)
 
         var configPath string
-        if pathx.FileExists(filepath.Join(wd, "config.{{ .ConfigType }}")) {
+        if _, err := os.Stat(filepath.Join(wd, "config.{{ .ConfigType }}")); ok {
             configPath = wd
         } else {
             configPath = filepath.Join(home, ".{{ .APP }}")
