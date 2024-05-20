@@ -51,7 +51,7 @@ func initConfig() {
         cobra.CheckErr(err)
 
         var configPath string
-        if _, err := os.Stat(filepath.Join(wd, "config.{{ .ConfigType }}")); ok {
+        if _, err := os.Stat(filepath.Join(wd, "config.{{ .ConfigType }}")); err == nil {
             configPath = wd
         } else {
             configPath = filepath.Join(home, ".{{ .APP }}")
