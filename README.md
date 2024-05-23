@@ -4,7 +4,13 @@ jzero template repo
 ## default
 
 ```shell
-jzero new simpleapp
+jzero new simple
+```
+
+## grpc, gateway
+
+```shell
+jzero new simplegateway --branch gateway
 ```
 
 ## only api
