@@ -8,7 +8,7 @@ import (
 type Config struct {
 	Rest RestConf
 
-	{{ .APP | FirstUpper | ToCamel }}Conf
+	Log  LogConf
 }
 
 type RestConf struct {
@@ -19,8 +19,4 @@ type LogConf struct {
 	logx.LogConf
 	// only Log.Mode is file or volume take effect
 	LogToConsole bool `json:",default=true"`
-}
-
-type {{ .APP | FirstUpper | ToCamel }}Conf struct {
-	Log   LogConf
 }
