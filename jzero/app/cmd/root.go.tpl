@@ -34,7 +34,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is project root dir config.yaml or $HOME/.{{ .APP }}/config.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.{{ .APP }}/config.yaml)")
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -43,22 +43,16 @@ func initConfig() {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
 	} else {
-		// Find home directory.
 		home, err := os.UserHomeDir()
 		cobra.CheckErr(err)
 
         wd, err := os.Getwd()
         cobra.CheckErr(err)
 
-        var configPath string
-        if _, err := os.Stat(filepath.Join(wd, "config.{{ .ConfigType }}")); err == nil {
-            configPath = wd
-        } else {
-            configPath = filepath.Join(home, ".{{ .APP }}")
-        }
+        configPath := filepath.Join(home, ".{{ .APP }}")
 
         viper.AddConfigPath(configPath)
-        viper.SetConfigType("{{ .ConfigType }}")
+        viper.SetConfigType("yaml")
         viper.SetConfigName("config")
 	}
 
@@ -68,7 +62,4 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		_, _ = fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
 		cfgFile = viper.ConfigFileUsed()
-	} else {
-		cobra.CheckErr(err)
-	}
 }
