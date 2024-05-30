@@ -1,14 +1,16 @@
 package cmd
 
 import (
-	"github.com/spf13/cobra"
+    "fmt"
 
+	"github.com/spf13/cobra"
 	"github.com/zeromicro/go-zero/core/conf"
     "github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/service"
 
-	"{{ .Module }}/app/internal/config"
-	"{{ .Module }}/app/internal/svc"
+	"{{ .Module }}/internal/config"
+	"{{ .Module }}/internal/server"
+	"{{ .Module }}/internal/svc"
 )
 
 // serverCmd represents the server command
