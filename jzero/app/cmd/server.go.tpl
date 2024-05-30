@@ -21,7 +21,7 @@ var serverCmd = &cobra.Command{
 	Short: "{{ .APP }} server",
 	Long:  "{{ .APP }} server",
 	Run: func(cmd *cobra.Command, args []string) {
-		app.Start(cfgFile)
+		Start(cfgFile)
 	},
 }
 
