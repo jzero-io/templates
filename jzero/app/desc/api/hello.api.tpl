@@ -1,18 +1,19 @@
 syntax = "v1"
 
-type pathRequest {
-    Name string `path:"name"`
-}
+type GetVersionRequest {}
 
-type response {
-    Message string `json:"message"`
+type GetVersionResponse {
+    version string
+    goVersion string
+    commit string
+    date string
 }
 
 @server(
     prefix: /api/v1
-    group: hello
+    group: version
 )
 service {{ .APP | ToCamel }} {
-    @handler HelloPathHandler
-    get /hello/:name (pathRequest) returns (response)
+    @handler GetVersionHandler
+    get /version (GetVersionRequest) returns (GetVersionResponse)
 }

@@ -20,47 +20,7 @@ import (
 	"{{ .Module }}/app/middlewares"
 )
 
-func Start(cfgFile string) {
-	var c config.Config
-	conf.MustLoad(cfgFile, &c)
-    // set up logger
-    if err := logx.SetUp(c.Log.LogConf); err != nil {
-        logx.Must(err)
-    }
 
-	ctx := svc.NewServiceContext(c)
-	start(ctx)
-}
-
-func start(ctx *svc.ServiceContext) {
-	// print log to console if Log.Mode is file or volume
-	middlewares.PrintLogToConsole(ctx.Config)
-
-	server := rest.MustNewServer(ctx.Config.Rest.RestConf)
-
-    httpx.SetOkHandler(middlewares.OkHandler)
-	httpx.SetErrorHandler(middlewares.ErrorHandler)
-
-	// server add api handlers
-	handler.RegisterHandlers(server, ctx)
-
-	// server add swagger routes. If you do not want it, you can delete this line
-    swaggerv2.RegisterRoutes(server)
-
-	// server add routes
-    // You can use server.AddRoutes() to add your own handler
-    // for example: add a func handler.RegisterMyHandlers() in this line on handler dir
-
-	group := service.NewServiceGroup()
-	group.Add(server)
-
-	go func() {
-		fmt.Printf("Starting rest server at %s:%d...\n", ctx.Config.Rest.Host, ctx.Config.Rest.Port)
-		group.Start()
-	}()
-
-	signalHandler(group)
-}
 
 func signalHandler(serviceGroup *service.ServiceGroup) {
 	// signal handler
