@@ -2,10 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
 
 	"github.com/spf13/cobra"
 	"github.com/zeromicro/go-zero/core/conf"
