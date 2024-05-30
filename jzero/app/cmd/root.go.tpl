@@ -46,9 +46,6 @@ func initConfig() {
 		home, err := os.UserHomeDir()
 		cobra.CheckErr(err)
 
-        wd, err := os.Getwd()
-        cobra.CheckErr(err)
-
         configPath := filepath.Join(home, ".{{ .APP }}")
 
         viper.AddConfigPath(configPath)
