@@ -12,12 +12,8 @@ type Config struct {
 
 type ZrpcConf struct {
 	zrpc.RpcServerConf
-
-	MaxConns int `json:",default=10000"`
 }
 
 type LogConf struct {
 	logx.LogConf
-	// only Log.Mode is file or volume take effect
-	LogToConsole bool `json:",default=true"`
 }
