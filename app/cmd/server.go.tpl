@@ -9,6 +9,7 @@ import (
 	"github.com/zeromicro/go-zero/core/service"
 
 	"{{ .Module }}/internal/config"
+	"{{ .Module }}/internal/middlewares"
 	"{{ .Module }}/internal/server"
 	"{{ .Module }}/internal/svc"
 )
@@ -37,6 +38,7 @@ func Start(cfgFile string) {
 
 func start(ctx *svc.ServiceContext) {
 	s := server.RegisterZrpc(ctx.Config, ctx)
+    s.AddUnaryInterceptors(middlewares.ServerValidationUnaryInterceptor)
 
 	group := service.NewServiceGroup()
 	group.Add(s)
