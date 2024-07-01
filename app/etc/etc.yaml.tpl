@@ -16,3 +16,11 @@ Gateway:
 
 Log:
   encoding: plain
+
+DatabaseType: mysql
+Mysql:
+    Addr: "127.0.0.1"
+    Port: 3306
+    Database: "test"
+    Password: "123456"
+    Username: "root"

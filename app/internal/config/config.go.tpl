@@ -11,7 +11,7 @@ type Config struct {
 	Gateway GatewayConf
 	Log     LogConf
 
-	DataBaseType   string `json:",default=mysql"`
+	DatabaseType   string `json:",default=mysql"`
 	Mysql MysqlConf
 }
 
