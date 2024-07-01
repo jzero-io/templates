@@ -10,6 +10,9 @@ type Config struct {
 	Zrpc    ZrpcConf
 	Gateway GatewayConf
 	Log     LogConf
+
+	DataBaseType   string `json:",default=mysql"`
+	Mysql MysqlConf
 }
 
 type ZrpcConf struct {
@@ -22,4 +25,12 @@ type GatewayConf struct {
 
 type LogConf struct {
 	logx.LogConf
+}
+
+type MysqlConf struct {
+	Username   string `json:",default=root"`
+	Password   string `json:",default=123456"`
+	Addr       string `json:",default=127.0.0.1"`
+	Port       int    `json:",default=3306"`
+	Database   string `json:",default=ntls"`
 }
