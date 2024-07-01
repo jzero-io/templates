@@ -9,7 +9,7 @@ import (
 )
 
 func buildDataSource(c config.Config) string {
-	switch c.DataBaseType {
+	switch c.DatabaseType {
 	case "mysql":
 		return fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 			c.Mysql.Username,
@@ -21,7 +21,7 @@ func buildDataSource(c config.Config) string {
 }
 
 func MustSqlConn(c config.Config) sqlx.SqlConn {
-	sqlConn := sqlx.NewSqlConn(c.DataBaseType, buildDataSource(c))
+	sqlConn := sqlx.NewSqlConn(c.DatabaseType, buildDataSource(c))
 	// verify sql conn
 	_, err := sqlConn.Exec("select 1")
 	if err != nil {
