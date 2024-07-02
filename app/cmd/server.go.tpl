@@ -7,6 +7,7 @@ import (
 	"github.com/zeromicro/go-zero/core/conf"
     "github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/service"
+	"github.com/jzero-io/jzero-contrib/logtoconsole"
 
 	"{{ .Module }}/internal/config"
 	"{{ .Module }}/internal/middlewares"
@@ -31,6 +32,7 @@ func Start(cfgFile string) {
     if err := logx.SetUp(c.Log.LogConf); err != nil {
         logx.Must(err)
     }
+    logtoconsole.Must(c.Log.LogConf)
 
 	ctx := svc.NewServiceContext(c)
 	start(ctx)
