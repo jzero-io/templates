@@ -54,7 +54,7 @@ func start(svcCtx *svc.ServiceContext) {
 	eg := errgroup.Group{}
 	eg.Go(func() error {
 		printBanner(svcCtx.Config)
-		logx.Infof("Starting rpc server at %s:%d...", svcCtx.Config.Zrpc.Host, svcCtx.Config.Zrpc.Port)
+		logx.Infof("Starting rpc server at %s...", svcCtx.Config.Zrpc.ListenOn)
 		group.Start()
 		return nil
 	})
