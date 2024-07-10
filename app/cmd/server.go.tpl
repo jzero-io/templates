@@ -42,7 +42,7 @@ func Start(cfgFile string) {
 }
 
 func start(svcCtx *svc.ServiceContext) {
-	s := server.RegisterZrpc(ctx.Config, svcCtx)
+	s := server.RegisterZrpc(svcCtx.Config, svcCtx)
     s.AddUnaryInterceptors(middlewares.ServerValidationUnaryInterceptor)
 
 	group := service.NewServiceGroup()
