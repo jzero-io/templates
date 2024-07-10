@@ -1,8 +1,7 @@
-APP: {{ .APP }}
-Rest:
-    Name: {{ .APP }}-api
-    Host: 0.0.0.0
-    Port: 8001
+rest:
+    name: {{ .APP }}-api
+    host: 0.0.0.0
+    port: 8001
 
-Log:
+log:
     encoding: plain
