@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 	"github.com/zeromicro/go-zero/core/conf"
     "github.com/zeromicro/go-zero/core/logx"
@@ -65,7 +63,7 @@ func start(svcCtx *svc.ServiceContext) {
     eg := errgroup.Group{}
     eg.Go(func() error {
     	printBanner(svcCtx.Config)
-    	fmt.Printf("Starting rest server at %s:%d...\n", svcCtx.Config.Rest.Host, svcCtx.Config.Rest.Port)
+    	logx.Infof("Starting rest server at %s:%d...", svcCtx.Config.Rest.Host, svcCtx.Config.Rest.Port)
     	group.Start()
     	return nil
     })
