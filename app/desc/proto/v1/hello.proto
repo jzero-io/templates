@@ -18,9 +18,5 @@ message SayHelloResponse {
 }
 
 service hello {
-    rpc SayHello(SayHelloRequest) returns(SayHelloResponse) {
-        option (google.api.http) = {
-            get: "/api/v1/hello"
-        };
-    };
+    rpc SayHello(SayHelloRequest) returns(SayHelloResponse) {};
 }
