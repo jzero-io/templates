@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"github.com/zeromicro/go-zero/core/logx"
 	"net/http"
 )
 
