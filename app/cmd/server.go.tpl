@@ -15,6 +15,7 @@ import (
 	"{{ .Module }}/internal/config"
 	"{{ .Module }}/internal/handler"
 	"{{ .Module }}/internal/svc"
+	"{{ .Module }}/internal/middleware"
 )
 
 // serverCmd represents the server command
@@ -44,6 +45,7 @@ func Start(cfgFile string) {
 
 func start(svcCtx *svc.ServiceContext) {
 	server := rest.MustNewServer(svcCtx.Config.Rest.RestConf)
+	middleware.RegisterMiddlewares(server)
 
 	// server add api handlers
 	handler.RegisterHandlers(server, svcCtx)
