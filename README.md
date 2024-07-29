@@ -1,19 +1,20 @@
 # templates
+
 jzero template repo
 
-## default
+## [api + grpc-gateway](https://github.com/jzero-io/jzero/tree/main/.template)
 
 ```shell
-jzero new simple
+jzero new quickstart
 ```
 
-## grpc, gateway
+## [grpc-gateway](https://github.com/jzero-io/templates/tree/gateway)
 
 ```shell
 jzero new simplegateway --branch gateway
 ```
 
-## only api
+## [api](https://github.com/jzero-io/templates/tree/api)
 
 please use branch api
 
@@ -21,7 +22,7 @@ please use branch api
 jzero new simpleapi --branch api
 ```
 
-## only rpc
+## [rpc](https://github.com/jzero-io/templates/tree/rpc)
 
 please use branch rpc
 
@@ -29,7 +30,7 @@ please use branch rpc
 jzero new simplerpc --branch rpc
 ```
 
-## only cli
+## [cli](https://github.com/jzero-io/templates/tree/cli)
 
 please use branch cli
 
