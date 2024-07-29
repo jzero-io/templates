@@ -19,12 +19,24 @@ jobs:
         with:
           go-version: '1.22.3'
 
-      - name: Test Usage
+      - name: Install Jzero and Grum
         run: |
           go install github.com/jzero-io/jzero@main
           jzero check
+          go install github.com/jaronnie/grum@latest
+
+      - name: Test Usage and upload
+        run: |
+          GITHUB_TOKEN=${{ secrets.ACCESS_TOKEN }} grum clone https://github.com/jzero-io/examples
+          cd examples
+          rm -rf simpleapi
           jzero new simpleapi --branch api
-          cd simpleapi && jzero gen && go mod tidy && go run main.go version
-          jzero gen swagger
+          cd simpleapi
+          jzero gen
           jzero gen sdk
+          jzero gen swagger
+          go mod tidy && go run main.go version
           cd ..
+          git add .
+          git commit -m "chore(simpleapi): update simpleapi"
+          git push -f
