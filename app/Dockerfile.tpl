@@ -23,4 +23,4 @@ COPY --from=builder /dist .
 
 EXPOSE 8001
 
-CMD ["./app", "server"]
+CMD ["./app"]

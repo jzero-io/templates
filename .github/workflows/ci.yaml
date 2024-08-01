@@ -29,14 +29,14 @@ jobs:
         run: |
           GITHUB_TOKEN=${{ secrets.ACCESS_TOKEN }} grum clone https://github.com/jzero-io/examples
           cd examples
-          rm -rf simpleapi
-          jzero new simpleapi --branch api
-          cd simpleapi
+          rm -rf simpleapi-goctl
+          jzero new simpleapi-goctl --branch api-goctl
+          cd simpleapi-goctl
           jzero gen
           jzero gen sdk
           jzero gen swagger
-          go mod tidy && go run main.go version
+          go mod tidy && go build
           cd ..
           git add .
-          git commit -m "chore(simpleapi): update simpleapi"
+          git commit -m "chore(simpleapi-goctl): update simpleapi-goctl"
           git push -f
