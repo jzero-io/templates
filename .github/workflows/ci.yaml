@@ -32,7 +32,7 @@ jobs:
           rm -rf simpleapi-goctl
           jzero new simpleapi-goctl --branch api-goctl
           cd simpleapi-goctl
-          jzero gen
+          jzero gen --debug
           jzero gen sdk
           jzero gen swagger
           go mod tidy && go build
