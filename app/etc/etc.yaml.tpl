@@ -1,7 +1,4 @@
-zrpc:
-    listenOn: 0.0.0.0:8000
-    mode: dev
-    name: {{ .APP }}.rpc
-
-log:
-    encoding: plain
+Name: {{ .APP }}.rpc
+ListenOn: 0.0.0.0:8080
+Log:
+    Encoding: plain

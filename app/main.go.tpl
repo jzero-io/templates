@@ -9,6 +9,7 @@ import (
 	"{{ .Module }}/internal/svc"
 	"{{ .Module }}/internal/server"
 
+    "github.com/zeromicro/go-zero/core/logx"
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/common-nighthawk/go-figure"
 )
@@ -26,7 +27,7 @@ func main() {
 	defer s.Stop()
 
     printBanner(c)
-	fmt.Printf("Starting rpc server at %s...\n", c.Zrpc.ListenOn)
+	logx.Infof("Starting rpc server at %s...", c.ListenOn)
 	s.Start()
 }
 

@@ -1,0 +1,42 @@
+name: jzero-ci
+
+on:
+  push:
+    branches:
+  pull_request:
+
+jobs:
+  golangci:
+    name: ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '1.22.3'
+
+      - name: Install Jzero and Grum
+        run: |
+          go install github.com/jzero-io/jzero@main
+          jzero check
+          go install github.com/jaronnie/grum@latest
+
+      - name: Test Usage and upload
+        run: |
+          GITHUB_TOKEN=${{ secrets.ACCESS_TOKEN }} grum clone https://github.com/jzero-io/examples
+          cd examples
+          rm -rf simplerpc-goctl
+          jzero new simplerpc-goctl --branch rpc-goctl
+          cd simplerpc-goctl
+          jzero gen --debug
+          jzero gen zrpcclient
+          jzero gen swagger
+          go mod tidy && go build && rm simplerpc-goctl
+          cd ..
+          git add .
+          git commit -m "chore(simplerpc-goctl): update simplerpc-goctl"
+          git push -f

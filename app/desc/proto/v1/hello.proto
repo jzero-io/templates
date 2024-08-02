@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package hellopb;
 
-import "google/api/annotations.proto";
 import "validate/validate.proto";
 
 option go_package = "./pb/hellopb";
