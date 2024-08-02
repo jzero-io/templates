@@ -35,7 +35,7 @@ jobs:
           jzero gen --debug
           jzero gen sdk
           jzero gen swagger
-          go mod tidy && go build
+          go mod tidy && go build && rm simpleapi-goctl
           cd ..
           git add .
           git commit -m "chore(simpleapi-goctl): update simpleapi-goctl"
