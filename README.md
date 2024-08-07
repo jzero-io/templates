@@ -1,5 +1,10 @@
 # templates
 
+[![Build Status](https://img.shields.io/github/actions/workflow/status/jzero-io/templates/ci.yaml?branch=api&label=api&logo=github&style=flat-square)](https://github.com/jzero-io/templates/actions?query=workflow%3Ajzero-ci)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/jzero-io/templates/ci.yaml?branch=rpc&label=rpc&logo=github&style=flat-square)](https://github.com/jzero-io/templates/actions?query=workflow%3Ajzero-ci)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/jzero-io/templates/ci.yaml?branch=gateway&label=gateway&logo=github&style=flat-square)](https://github.com/jzero-io/templates/actions?query=workflow%3Ajzero-ci)
+
+
 jzero template repo
 
 ## [api + grpc-gateway](https://github.com/jzero-io/jzero/tree/main/.template)
