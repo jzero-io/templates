@@ -7,13 +7,13 @@
 
 jzero template repo
 
-## [api + grpc-gateway](https://github.com/jzero-io/jzero/tree/main/.template)
+## [default](https://github.com/jzero-io/jzero/tree/main/.template)
 
 ```shell
 jzero new quickstart
 ```
 
-## [grpc-gateway](https://github.com/jzero-io/templates/tree/gateway)
+## [gateway](https://github.com/jzero-io/templates/tree/gateway)
 
 ```shell
 jzero new simplegateway --branch gateway
@@ -21,23 +21,29 @@ jzero new simplegateway --branch gateway
 
 ## [api](https://github.com/jzero-io/templates/tree/api)
 
-please use branch api
-
 ```shell
 jzero new simpleapi --branch api
 ```
 
-## [rpc](https://github.com/jzero-io/templates/tree/rpc)
+## [api-goctl](https://github.com/jzero-io/templates/tree/api-goctl)
 
-please use branch rpc
+```shell
+jzero new simpleapi-goctl --branch api-goctl
+```
+
+## [rpc](https://github.com/jzero-io/templates/tree/rpc)
 
 ```shell
 jzero new simplerpc --branch rpc
 ```
 
-## [cli](https://github.com/jzero-io/templates/tree/cli)
+## [rpc-goctl](https://github.com/jzero-io/templates/tree/rpc-goctl)
 
-please use branch cli
+```shell
+jzero new simplerpc-goctl --branch rpc-goctl
+```
+
+## [cli](https://github.com/jzero-io/templates/tree/cli)
 
 ```shell
 jzero new simplecli --branch cli
