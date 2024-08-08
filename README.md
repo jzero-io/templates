@@ -3,6 +3,9 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/jzero-io/templates/ci.yaml?branch=api&label=api&logo=github&style=flat-square)](https://github.com/jzero-io/templates/actions?query=workflow%3Ajzero-ci)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/jzero-io/templates/ci.yaml?branch=rpc&label=rpc&logo=github&style=flat-square)](https://github.com/jzero-io/templates/actions?query=workflow%3Ajzero-ci)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/jzero-io/templates/ci.yaml?branch=gateway&label=gateway&logo=github&style=flat-square)](https://github.com/jzero-io/templates/actions?query=workflow%3Ajzero-ci)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/jzero-io/templates/ci.yaml?branch=api-goctl&label=api-goctl&logo=github&style=flat-square)](https://github.com/jzero-io/templates/actions?query=workflow%3Ajzero-ci)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/jzero-io/templates/ci.yaml?branch=rpc-goctl&label=rpc-goctl&logo=github&style=flat-square)](https://github.com/jzero-io/templates/actions?query=workflow%3Ajzero-ci)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/jzero-io/templates/ci.yaml?branch=cli&label=cli&logo=github&style=flat-square)](https://github.com/jzero-io/templates/actions?query=workflow%3Ajzero-ci)
 
 
 jzero template repo
