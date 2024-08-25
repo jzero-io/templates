@@ -5,7 +5,7 @@ import (
 )
 
 type Config struct {
-	zrpc.RpcServerCon
+	zrpc.RpcServerConf
 
 	Banner BannerConf
 }
