@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hellopb;
 
-import "third_party/validate/validate.proto";
+import "validate/validate.proto";
 
 option go_package = "./pb/hellopb";
 
