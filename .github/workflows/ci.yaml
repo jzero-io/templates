@@ -32,10 +32,11 @@ jobs:
           rm -rf simplerpc-goctl
           jzero new simplerpc-goctl --branch rpc-goctl
           cd simplerpc-goctl
-          jzero gen --debug
+          jzero gen --home ~/.jzero/templates/rpc-goctl --debug
           jzero gen zrpcclient
           jzero gen swagger
-          go mod tidy && go build && rm simplerpc-goctl
+          go mod tidy
+          go build
           cd ..
           git add .
           git commit -m "chore(simplerpc-goctl): update simplerpc-goctl"
