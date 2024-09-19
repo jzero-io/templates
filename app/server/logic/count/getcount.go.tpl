@@ -4,11 +4,12 @@ import (
 	"context"
 	"{{ .Module }}/server/svc"
 	"{{ .Module }}/server/types"
+	"sync/atomic"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-var Count int
+var Count int64 = 0
 
 type GetCount struct {
 	logx.Logger
@@ -25,9 +26,9 @@ func NewGetCount(ctx context.Context, svcCtx *svc.ServiceContext) *GetCount {
 }
 
 func (l *GetCount) GetCount(req *types.Empty) (resp *types.GetCountResponse, err error) {
-	Count += 1
+	atomic.AddInt64(&Count, 1)
 	resp = &types.GetCountResponse{
-		Count: Count,
+		Count: int(atomic.LoadInt64(&Count)),
 	}
 	return
 }
