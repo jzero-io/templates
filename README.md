@@ -34,6 +34,12 @@ jzero new simpleapi --branch api
 jzero new simpleapi-goctl --branch api-goctl
 ```
 
+## [api-vercel](https://github.com/jzero-io/templates/tree/api-vercel)
+
+```shell
+jzero new simpleapi-vercel --branch api-vercel
+```
+
 ## [rpc](https://github.com/jzero-io/templates/tree/rpc)
 
 ```shell
