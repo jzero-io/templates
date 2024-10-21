@@ -32,7 +32,7 @@ jobs:
           rm -rf simplerpc-goctl
           jzero new simplerpc-goctl --branch rpc-goctl
           cd simplerpc-goctl
-          jzero gen --home ~/.jzero/templates/rpc-goctl --debug
+          jzero gen
           jzero gen zrpcclient
           jzero gen swagger
           go mod tidy

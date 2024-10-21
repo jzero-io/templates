@@ -1,2 +1,2 @@
 gen:
-  branch: rpc-goctl
+  home: ~/.jzero/templates/rpc-goctl
