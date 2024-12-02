@@ -1,63 +1,107 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
-	"os"
-	"path/filepath"
-
+	"github.com/a8m/envsubst"
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+	"gopkg.in/yaml.v3"
+	"os"
+	"{{ .Module }}/config"
+	"{{ .Module }}/pkg/fileopts"
 )
 
-var cfgFile string
+var (
+	configFile string
+	envFile    string
+)
 
-// rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "{{ .APP }}",
-	Short: "{{ .APP }} root",
-	Long:  "{{ .APP }} root.",
-}
-
-// Execute adds all child commands to the root command and sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
-func Execute() {
-	err := rootCmd.Execute()
-	if err != nil {
-		os.Exit(1)
-	}
+	Short: "Short description of {{ .APP }}",
+	Long:  `Long description of {{ .APP }}`,
 }
 
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
+	rootCmd.PersistentFlags().StringVar(&configFile, "config", "etc/etc.yaml", "config file path")
+	rootCmd.PersistentFlags().StringVar(&envFile, "env", "etc/.env.yaml", "env file path")
+	rootCmd.PersistentFlags().String("syntax", "v1", "config file syntax version")
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.{{ .APP }}/config.yaml)")
+	err := viper.BindPFlag("syntax", rootCmd.PersistentFlags().Lookup("syntax"))
+	cobra.CheckErr(err)
 }
 
-// initConfig reads in config file and ENV variables if set.
-func initConfig() {
-	if cfgFile != "" {
-		// Use config file from the flag.
-		viper.SetConfigFile(cfgFile)
-	} else {
-		home, err := os.UserHomeDir()
+func Execute() {
+	if err := rootCmd.Execute(); err != nil {
+		os.Exit(1)
+	}
+}
+
+func initEnv() {
+	envPath := rootCmd.PersistentFlags().Lookup("env").Value.String()
+
+	if !fileopts.FileExists(envPath) {
+		cobra.CheckErr(errors.New("environment file does not exist: " + envPath))
+	}
+
+	if !fileopts.IsYamlFile(envPath) {
+		cobra.CheckErr(errors.New("File is not a YAML file: " + envPath))
+	}
+
+	content, err := os.ReadFile(envPath)
+	cobra.CheckErr(err)
+
+	var envs map[string]interface{}
+	err = yaml.Unmarshal(content, &envs)
+	cobra.CheckErr(err)
+
+	for key, value := range envs {
+		err = os.Setenv(key, fmt.Sprintf("%v", value))
 		cobra.CheckErr(err)
-
-        configPath := filepath.Join(home, ".{{ .APP }}")
-
-        viper.AddConfigPath(configPath)
-        viper.SetConfigType("yaml")
-        viper.SetConfigName("config")
 	}
+}
 
-	viper.AutomaticEnv() // read in environment variables that match
+func initConfig() {
+	initEnv()
 
-	// If a config file is found, read it in.
-	if err := viper.ReadInConfig(); err == nil {
-		_, _ = fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
-		cfgFile = viper.ConfigFileUsed()
+	// read config file using env to fill ${}
+	cfgFile := rootCmd.PersistentFlags().Lookup("config").Value.String()
+	c, err := envsubst.ReadFile(cfgFile)
+
+	var cs map[string]any
+	err = yaml.Unmarshal(c, &cs)
+	cobra.CheckErr(err)
+
+	err = viper.MergeConfigMap(cs)
+	cobra.CheckErr(err)
+
+	// set all command flags to viper
+	traverseBindViperFlags("", rootCmd)
+
+	// set config
+	config.SetConfig()
+}
+
+func traverseBindViperFlags(prefix string, command *cobra.Command) {
+	bindViperFlags(prefix, command)
+	for _, childCommand := range command.Commands() {
+		tp := ""
+		if prefix == "" {
+			tp = childCommand.Name()
+		} else {
+			tp = fmt.Sprintf("%s.%s", prefix, childCommand.Name())
+		}
+		traverseBindViperFlags(tp, childCommand)
 	}
+}
+
+func bindViperFlags(prefix string, command *cobra.Command) {
+	command.Flags().VisitAll(func(f *pflag.Flag) {
+		err := viper.BindPFlag(fmt.Sprintf("%s.%s", prefix, f.Name), f)
+		cobra.CheckErr(err)
+	})
 }
