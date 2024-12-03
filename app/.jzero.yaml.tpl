@@ -1,2 +1,2 @@
 gen:
-  home: ~/.jzero/templates/rpc-goctl
+  home: ~/.jzero/templates/remote/rpc-goctl
