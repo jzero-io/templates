@@ -34,7 +34,7 @@ func SetAPP(app string) {
 	C.App = app
 }
 
-func SetEndPrefix(envPrefix string) {
+func SetEnvPrefix(envPrefix string) {
 	viper.SetEnvPrefix(envPrefix)
 }
 

@@ -4,13 +4,14 @@ import (
 	"errors"
 	"fmt"
 	"github.com/a8m/envsubst"
+	"github.com/jzero-io/jzero-contrib/filex"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"gopkg.in/yaml.v3"
 	"os"
+	"path"
 	"{{ .Module }}/config"
-	"{{ .Module }}/pkg/fileopts"
 )
 
 var (
@@ -27,11 +28,13 @@ var rootCmd = &cobra.Command{
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	rootCmd.PersistentFlags().StringVar(&configFile, "config", "etc/etc.yaml", "config file path")
-	rootCmd.PersistentFlags().StringVar(&envFile, "env", "etc/.env.yaml", "env file path")
+	userHome, err := os.UserHomeDir()
+	cobra.CheckErr(err)
+	rootCmd.PersistentFlags().StringVar(&configFile, "config", path.Join(userHome, ".{{- .APP }}", "etc.yaml"), "config file path")
+	rootCmd.PersistentFlags().StringVar(&envFile, "env", path.Join(userHome, ".{{- .APP }}", ".env.yaml"), "env file path")
 	rootCmd.PersistentFlags().String("syntax", "v1", "config file syntax version")
 
-	err := viper.BindPFlag("syntax", rootCmd.PersistentFlags().Lookup("syntax"))
+	err = viper.BindPFlag("syntax", rootCmd.PersistentFlags().Lookup("syntax"))
 	cobra.CheckErr(err)
 }
 
@@ -44,11 +47,11 @@ func Execute() {
 func initEnv() {
 	envPath := rootCmd.PersistentFlags().Lookup("env").Value.String()
 
-	if !fileopts.FileExists(envPath) {
-		cobra.CheckErr(errors.New("environment file does not exist: " + envPath))
+	if !filex.FileExists(envPath) {
+		return
 	}
 
-	if !fileopts.IsYamlFile(envPath) {
+	if !filex.IsYamlFile(envPath) {
 		cobra.CheckErr(errors.New("File is not a YAML file: " + envPath))
 	}
 
@@ -70,6 +73,11 @@ func initConfig() {
 
 	// read config file using env to fill ${}
 	cfgFile := rootCmd.PersistentFlags().Lookup("config").Value.String()
+
+	if !filex.FileExists(cfgFile) {
+		return
+	}
+
 	c, err := envsubst.ReadFile(cfgFile)
 
 	var cs map[string]any

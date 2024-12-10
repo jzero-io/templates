@@ -1,10 +1,10 @@
 package cmd
 
 import (
+	"github.com/jzero-io/jzero-contrib/filex"
 	"github.com/spf13/cobra"
 	"github.com/spf13/cobra/doc"
 	"path/filepath"
-	"{{ .Module }}/pkg/fileopts"
 )
 
 var gendocsCmd = &cobra.Command{
@@ -13,7 +13,7 @@ var gendocsCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		docsType := cmd.Flags().Lookup("type").Value.String()
 		docsPath := filepath.Join("docs", docsType)
-		err := fileopts.EnsureDirExists(docsPath)
+		err := filex.EnsureDirExists(docsPath)
 		cobra.CheckErr(err)
 		if docsType == "man" {
 			err = doc.GenManTree(rootCmd, &doc.GenManHeader{}, docsPath)
