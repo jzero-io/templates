@@ -6,13 +6,13 @@ import (
 )
 
 const (
-	APP        = "{{ .APP }}"
-	VERSION    = "1.0.0"
-	ENV_PREFIX = "CLI"
+	APP       = "{{ .APP }}"
+	VERSION   = "1.0.0"
+	EnvPrefix = "CLI"
 )
 
 func main() {
-	config.SetEndPrefix(ENV_PREFIX)
+	config.SetEnvPrefix(EnvPrefix)
 	config.SetAPP(APP)
 	cmd.SetVersion(VERSION)
 	cmd.Execute()

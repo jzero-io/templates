@@ -6,6 +6,7 @@ toolchain go1.22.5
 
 require (
 	github.com/a8m/envsubst v1.4.2
+	github.com/jzero-io/jzero-contrib v0.14.1-0.20241210023827-0e16366f95b1
 	github.com/spf13/cobra v1.8.1
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.19.0
