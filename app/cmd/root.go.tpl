@@ -74,18 +74,16 @@ func initConfig() {
 	// read config file using env to fill ${}
 	cfgFile := rootCmd.PersistentFlags().Lookup("config").Value.String()
 
-	if !filex.FileExists(cfgFile) {
-		return
+	if filex.FileExists(cfgFile) {
+		c, err := envsubst.ReadFile(cfgFile)
+
+		var cs map[string]any
+		err = yaml.Unmarshal(c, &cs)
+		cobra.CheckErr(err)
+
+		err = viper.MergeConfigMap(cs)
+		cobra.CheckErr(err)
 	}
-
-	c, err := envsubst.ReadFile(cfgFile)
-
-	var cs map[string]any
-	err = yaml.Unmarshal(c, &cs)
-	cobra.CheckErr(err)
-
-	err = viper.MergeConfigMap(cs)
-	cobra.CheckErr(err)
 
 	// set all command flags to viper
 	traverseBindViperFlags("", rootCmd)
