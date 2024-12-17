@@ -10,7 +10,7 @@ jzero new YOUR_APP_NAME --branch cli
 
 ### How to set environment variables
 
-- Create any variable in `etc/.env.yaml` and use it in `etc/etc.yaml` with `${}`.
+- Create any variable in `$HOME/.{{ APP_NAME }}/.env.yaml` and use it in `$HOME/.{{ APP_NAME }}/etc.yaml` with `${}`.
 
-- Create the following variable `{ENV_PREFIX}_A_B` in `etc/.env.yaml`. This value will be applied in `config.C.a.b`.
+- Create the following variable `{ENV_PREFIX}_A_B` in `$HOME/.{{ APP_NAME }}/.env.yaml`. This value will be applied in `config.C.a.b`.
 
