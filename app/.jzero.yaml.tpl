@@ -1,10 +1,9 @@
-syntax: v1
+{{ if ne .Style "gozero" }}style: {{.Style}}
 
-gen:
-  hooks:
-    before:
-      - gorename go-serverless-vercel/server go-serverless-vercel/internal
-    after:
-      - gorename go-serverless-vercel/internal go-serverless-vercel/server
-
-  regen-api-handler: true
+{{ end }}gen:
+    hooks:
+        before:
+            - gorename {{.Module}}/server {{.Module}}/internal
+        after:
+            - gorename {{.Module}}/internal {{.Module}}/server
+            - jzero format

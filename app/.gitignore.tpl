@@ -17,9 +17,6 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
-# Go workspace file
-go.work
-
 # idea
 .idea
 
@@ -28,9 +25,3 @@ go.work
 
 # logs
 logs
-
-# goreleaser output
-dist
-
-# unix sock
-*.sock

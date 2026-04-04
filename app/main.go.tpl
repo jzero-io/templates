@@ -1,9 +1,14 @@
 package main
 
 import (
-	"{{ .Module }}/cmd"
+	"net/http"
+
+	"{{ .Module }}/vercel"
 )
 
 func main() {
-	cmd.Execute()
+	err := http.ListenAndServe(":8001", http.HandlerFunc(vercel.Index))
+	if err != nil {
+		panic(err)
+	}
 }
