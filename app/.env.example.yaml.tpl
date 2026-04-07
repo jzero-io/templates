@@ -1,3 +1,0 @@
-EXAMPLE_ENV: V1
-
-CLI_HELLO_HELLOFIELD: helloFieldEnv
