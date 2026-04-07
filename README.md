@@ -19,3 +19,9 @@ jzero new simplecli --branch cli
 ```shell
 jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs
 ```
+
+## 自定义其他模板
+
+```shell
+jzero new your_template --remote https://github.com/xx/xx.git --branch your_branch
+```
