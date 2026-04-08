@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>贡献指南 - Jzero 模板市场</title>
-  <meta name="description" content="发现并使用 Jzero 模板来构建你的下一个项目">
+  <meta name="description" content="为 Jzero 模板市场贡献您的模板">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
@@ -98,175 +98,284 @@
 <section class="contribute-page">
   <div class="container">
     <div class="contribute-header">
-      <h1>Contribution Guide</h1>
-      <p class="contribute-subtitle">Contribute your template to the Jzero Template Market</p>
+      <h1>贡献指南</h1>
+      <p class="contribute-subtitle">为 Jzero 模板市场贡献您的模板</p>
     </div>
 
     <div class="contribute-content">
-      <div class="contribute-section">
-        <h2>什么是第三方模板？</h2>
-        <p>第三方模板是由社区开发者创建并维护的项目模板，可以帮助其他开发者快速启动特定类型的项目。</p>
-      </div>
+      <div class="markdown-content">
+        <h1>第三方模板制作指南</h1>
+<p>欢迎为 Jzero 模板市场贡献第三方模板！本指南将帮助您创建和发布自己的模板。</p>
+<h2>什么是第三方模板？</h2>
+<p>第三方模板是由社区开发者创建并维护的项目模板，可以帮助其他开发者快速启动特定类型的项目。</p>
+<h2>模板结构</h2>
+<p>每个第三方模板需要包含以下文件：</p>
+<pre><code class="hljs language-plaintext">your-<span class="hljs-keyword">template</span>/
+├── <span class="hljs-keyword">template</span>.json          <span class="hljs-comment"># 模板配置文件（必需）</span>
+├── <span class="hljs-keyword">template</span>.zh.json       <span class="hljs-comment"># 中文配置文件（可选，用于多语言支持）</span>
+├── <span class="hljs-type">README</span>.md              <span class="hljs-comment"># 模板说明文档（必需）</span>
+└── [<span class="hljs-keyword">template</span> files]       <span class="hljs-comment"># 模板文件和目录</span></code></pre><h2>配置文件说明</h2>
+<h3>template.json</h3>
+<p>模板配置文件是 JSON 格式，包含以下字段：</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-template-id&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Your Template Name&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;A brief description of your template&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Category Name&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;tag1&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;tag2&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;tag3&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new project_name --template your-template-id&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/repo&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://your-demo-url.com&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-string">&quot;Feature 1&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;Feature 2&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;Feature 3&quot;</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre><h3>字段说明</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>必需</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>id</code></td>
+<td>string</td>
+<td>✅</td>
+<td>模板唯一标识符，只能包含小写字母、数字和连字符</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>✅</td>
+<td>模板名称</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>string</td>
+<td>✅</td>
+<td>模板简短描述（建议 50-150 字符）</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>string</td>
+<td>✅</td>
+<td>模板分类（如：Web、API、CLI、工具等）</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>array</td>
+<td>✅</td>
+<td>模板标签数组，用于搜索和分类</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td>string</td>
+<td>✅</td>
+<td>使用模板的命令</td>
+</tr>
+<tr>
+<td><code>repository</code></td>
+<td>string</td>
+<td>❌</td>
+<td>模板源码仓库地址</td>
+</tr>
+<tr>
+<td><code>demo</code></td>
+<td>string</td>
+<td>❌</td>
+<td>在线演示地址</td>
+</tr>
+<tr>
+<td><code>features</code></td>
+<td>array</td>
+<td>❌</td>
+<td>模板特性列表</td>
+</tr>
+</tbody></table>
+<h3>多语言支持</h3>
+<p>如果需要支持中文，创建 <code>template.zh.json</code> 文件：</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-template-id&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;模板中文名称&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;模板的中文描述&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;分类名称&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;标签1&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;标签2&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new project_name --template your-template-id&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/repo&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://your-demo-url.com&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-string">&quot;特性1&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;特性2&quot;</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre><h2>创建模板</h2>
+<h3>1. 创建模板目录</h3>
+<p>在 <code>third_party/</code> 目录下创建您的模板目录：</p>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">mkdir</span> third_party/your-template-id
+<span class="hljs-built_in">cd</span> third_party/your-template-id</code></pre><h3>2. 创建配置文件</h3>
+<p>创建 <code>template.json</code> 文件：</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;my-web-app&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;My Modern Web App&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;A full-stack web application with React and Node.js&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Web&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;react&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;nodejs&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;fullstack&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;typescript&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new myapp --template my-web-app&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/my-web-app-template&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://my-web-app-demo.example.com&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-string">&quot;React 18 with TypeScript&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;Node.js backend with Express&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;PostgreSQL database integration&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;JWT authentication&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;Docker support&quot;</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre><h3>3. 创建 README.md</h3>
+<p>在模板目录下创建详细的 README.md：</p>
+<pre><code class="hljs language-markdown"><span class="hljs-section"># My Modern Web App</span>
 
-      <div class="contribute-section">
-        <h2>模板结构</h2>
-        <p>每个第三方模板需要包含以下文件：</p>
-        <pre class="code-block"><code>your-template/
-├── template.json          # 模板配置文件（必需）
-├── template.zh.json       # 中文配置文件（可选）
-├── README.md              # 模板说明文档（必需）
-└── [template files]       # 模板文件和目录</code></pre>
-      </div>
+一个功能完整的全栈 Web 应用模板。
 
-      <div class="contribute-section">
-        <h2>配置文件说明</h2>
-        <p>模板配置文件是 JSON 格式，包含以下字段：</p>
-        <pre class="code-block"><code>{
-  "id": "your-template-id",
-  "name": "Your Template Name",
-  "description": "A brief description of your template",
-  "category": "Category Name",
-  "tags": ["tag1", "tag2", "tag3"],
-  "command": "jzero new project_name --template your-template-id",
-  "repository": "https://github.com/username/repo",
-  "demo": "https://your-demo-url.com",
-  "features": [
-    "Feature 1",
-    "Feature 2",
-    "Feature 3"
-  ]
-}</code></pre>
+<span class="hljs-section">## 功能特性</span>
 
-        <h3>字段说明</h3>
-        <table class="fields-table">
-          <thead>
-            <tr>
-              <th>字段</th>
-              <th>类型</th>
-              <th>必需</th>
-              <th>说明</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>id</code></td>
-              <td>string</td>
-              <td>✅</td>
-              <td>模板唯一标识符</td>
-            </tr>
-            <tr>
-              <td><code>name</code></td>
-              <td>string</td>
-              <td>✅</td>
-              <td>模板名称</td>
-            </tr>
-            <tr>
-              <td><code>description</code></td>
-              <td>string</td>
-              <td>✅</td>
-              <td>模板简短描述</td>
-            </tr>
-            <tr>
-              <td><code>category</code></td>
-              <td>string</td>
-              <td>✅</td>
-              <td>模板分类</td>
-            </tr>
-            <tr>
-              <td><code>tags</code></td>
-              <td>array</td>
-              <td>✅</td>
-              <td>模板标签数组</td>
-            </tr>
-            <tr>
-              <td><code>command</code></td>
-              <td>string</td>
-              <td>✅</td>
-              <td>使用模板的命令</td>
-            </tr>
-            <tr>
-              <td><code>repository</code></td>
-              <td>string</td>
-              <td>❌</td>
-              <td>模板源码仓库地址</td>
-            </tr>
-            <tr>
-              <td><code>demo</code></td>
-              <td>string</td>
-              <td>❌</td>
-              <td>在线演示地址</td>
-            </tr>
-            <tr>
-              <td><code>features</code></td>
-              <td>array</td>
-              <td>❌</td>
-              <td>模板特性列表</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<span class="hljs-bullet">-</span> React 18 + TypeScript
+<span class="hljs-bullet">-</span> Node.js + Express 后端
+<span class="hljs-bullet">-</span> PostgreSQL 数据库
+<span class="hljs-bullet">-</span> JWT 认证
+<span class="hljs-bullet">-</span> Docker 部署支持
 
-      <div class="contribute-section">
-        <h2>多语言支持</h2>
-        <p>如果需要支持中文，创建 template.zh.json 文件：</p>
-        <pre class="code-block"><code>{
-  "id": "your-template-id",
-  "name": "模板中文名称",
-  "description": "模板的中文描述",
-  "category": "分类名称",
-  "tags": ["标签1", "标签2"],
-  "command": "jzero new project_name --template your-template-id",
-  "repository": "https://github.com/username/repo",
-  "demo": "https://your-demo-url.com",
-  "features": [
-    "特性1",
-    "特性2"
-  ]
-}</code></pre>
-      </div>
+<span class="hljs-section">## 快速开始</span>
 
-      <div class="contribute-section">
-        <h2>最佳实践</h2>
-        <ul class="contribute-list">
-          <li><strong>模板命名</strong>: 使用有意义的名称，推荐格式：用途-技术栈-特性</li>
-          <li><strong>分类选择</strong>: Web、API、CLI、Mobile、Desktop 等</li>
-          <li><strong>标签使用</strong>: 添加 3-8 个相关标签，包含技术栈和项目类型</li>
-          <li><strong>文档编写</strong>: README.md 应包含项目简介、功能特性、快速开始指南</li>
-        </ul>
-      </div>
+\<span class="hljs-code">`\`</span>\`bash
+jzero new myapp --template my-web-app
+cd myapp
+npm install
+npm run dev
+\<span class="hljs-code">`\`</span>\`
 
-      <div class="contribute-section">
-        <h2>提交模板</h2>
-        <ol class="contribute-steps">
-          <li>准备提交：确保包含完整的 template.json 和 README.md</li>
-          <li>Fork 本仓库</li>
-          <li>在 third_party/ 目录下创建您的模板</li>
-          <li>创建 Pull Request</li>
-          <li>等待审核</li>
-        </ol>
-      </div>
+<span class="hljs-section">## 项目结构</span>
 
-      <div class="contribute-section">
-        <h2>获取帮助</h2>
-        <ul class="contribute-links">
-          <li>
-            <a href="https://github.com/jzero-io/templates/discussions" target="_blank" rel="noopener">
-              GitHub Discussions
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/jzero-io/templates/issues" target="_blank" rel="noopener">
-              问题反馈
-            </a>
-          </li>
-        </ul>
+\<span class="hljs-code">`\`</span>\`
+myapp/
+├── frontend/          # React 前端
+├── backend/           # Node.js 后端
+├── database/          # 数据库脚本
+└── docker-compose.yml # Docker 配置
+\<span class="hljs-code">`\`</span>\`
+
+<span class="hljs-section">## 许可证</span>
+
+MIT License</code></pre><h2>最佳实践</h2>
+<h3>1. 模板命名</h3>
+<ul>
+<li>使用有意义的名称，能清晰表达模板用途</li>
+<li>避免使用过于通用的名称（如 <code>app</code>、<code>template</code>）</li>
+<li>推荐格式：<code>&lt;用途&gt;-&lt;技术栈&gt;-&lt;特性&gt;</code> (如 <code>blog-vue3-ts</code>)</li>
+</ul>
+<h3>2. 分类选择</h3>
+<p>常用分类：</p>
+<ul>
+<li><strong>Web</strong>: Web 应用、网站</li>
+<li><strong>API</strong>: API 服务、微服务</li>
+<li><strong>CLI</strong>: 命令行工具</li>
+<li><strong>Mobile</strong>: 移动应用</li>
+<li><strong>Desktop</strong>: 桌面应用</li>
+<li><strong>Library</strong>: 库/框架</li>
+<li><strong>Tools</strong>: 开发工具</li>
+<li><strong>Docs</strong>: 文档站点</li>
+</ul>
+<h3>3. 标签使用</h3>
+<ul>
+<li>添加 3-8 个相关标签</li>
+<li>包含主要技术栈（如 react、vue、nodejs）</li>
+<li>包含框架或库（如 express、fastify）</li>
+<li>包含项目类型（如 fullstack、microservice）</li>
+</ul>
+<h3>4. 文档编写</h3>
+<ul>
+<li>README.md 应包含：<ul>
+<li>项目简介</li>
+<li>功能特性</li>
+<li>快速开始指南</li>
+<li>项目结构说明</li>
+<li>配置说明</li>
+<li>部署指南</li>
+</ul>
+</li>
+</ul>
+<h3>5. 版本管理</h3>
+<ul>
+<li>使用语义化版本号</li>
+<li>维护 CHANGELOG.md</li>
+<li>及时更新依赖</li>
+</ul>
+<h2>提交模板</h2>
+<h3>1. 准备提交</h3>
+<p>确保您的模板包含：</p>
+<ul>
+<li>✅ 完整的 <code>template.json</code> 配置</li>
+<li>✅ 详细的 <code>README.md</code> 文档</li>
+<li>✅ 可运行的模板代码</li>
+<li>✅ 仓库地址（如果有）</li>
+</ul>
+<h3>2. 创建 Pull Request</h3>
+<ol>
+<li>Fork 本仓库</li>
+<li>在 <code>third_party/</code> 目录下创建您的模板</li>
+<li>创建 Pull Request</li>
+<li>等待审核</li>
+</ol>
+<h3>3. 审核标准</h3>
+<ul>
+<li>配置文件格式正确</li>
+<li>文档完整清晰</li>
+<li>代码可以正常运行</li>
+<li>符合社区规范</li>
+</ul>
+<h2>模板维护</h2>
+<p>作为模板作者，您需要：</p>
+<ul>
+<li>及时修复模板中的 bug</li>
+<li>更新依赖到稳定版本</li>
+<li>响应用户的问题和反馈</li>
+<li>保持模板与 Jzero 的兼容性</li>
+</ul>
+<h2>示例模板</h2>
+<p>您可以参考现有的第三方模板作为参考：</p>
+<ul>
+<li><a href="https://github.com/example/template1">示例 1</a></li>
+<li><a href="https://github.com/example/template2">示例 2</a></li>
+</ul>
+<h2>常见问题</h2>
+<h3>Q: 模板可以包含商业内容吗？</h3>
+<p>A: 可以，但需要在 README 中明确说明许可证。</p>
+<h3>Q: 可以提交商业模板吗？</h3>
+<p>A: 可以，但需要在描述中标注为付费模板。</p>
+<h3>Q: 如何更新已提交的模板？</h3>
+<p>A: 创建新的 Pull Request，在标题中注明 &quot;Update: [模板名称]&quot;。</p>
+<h3>Q: 模板被拒绝怎么办？</h3>
+<p>A: 查看审核意见，修改后重新提交。</p>
+<h2>获取帮助</h2>
+<ul>
+<li>📖 <a href="https://jzero.io/docs">Jzero 官方文档</a></li>
+<li>💬 <a href="https://github.com/jzero-io/templates/discussions">GitHub Discussions</a></li>
+<li>🐛 <a href="https://github.com/jzero-io/templates/issues">问题反馈</a></li>
+</ul>
+<h2>许可证</h2>
+<p>提交到 Jzero 模板市场的第三方模板默认采用 MIT 许可证，除非另有说明。</p>
+<hr>
+<p>感谢您为 Jzero 社区做出贡献！🎉</p>
+
       </div>
 
       <div class="contribute-cta">
         <h3>准备好贡献了吗？</h3>
         <p>开始创建您的模板，帮助更多开发者！</p>
         <a href="https://github.com/jzero-io/templates/fork" target="_blank" rel="noopener" class="btn btn-primary">
-          Fork 仓库开始贡献
+          查看制作指南
         </a>
       </div>
     </div>
