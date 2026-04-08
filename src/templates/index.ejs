@@ -34,17 +34,6 @@
           <% }) %>
         </select>
       </div>
-
-      <!-- Tag Filter -->
-      <div class="filter-group">
-        <label><%= i18n.filters?.tags || 'Tags:' %></label>
-        <select id="tagFilter" class="filter-select">
-          <option value=""><%= i18n.filters?.allTags || 'All Tags' %></option>
-          <% tags.forEach(tag => { %>
-            <option value="<%= tag %>"><%= tag %></option>
-          <% }) %>
-        </select>
-      </div>
     </div>
 
     <div class="results-count">
@@ -54,53 +43,69 @@
 </section>
 
 <!-- Templates Grid -->
-<section class="templates">
-  <div class="container">
-    <div class="templates-grid" id="templatesGrid">
-      <% templates.forEach(template => { %>
-        <article class="template-card" data-id="<%= template.id %>">
-          <div class="template-header">
-            <h2 class="template-title">
-              <a href="<%= baseUrl || '' %>/templates/<%= template.id %>/index.html"><%= template.name %></a>
-            </h2>
-            <span class="template-category"><%= template.category %></span>
-          </div>
+<% const types = [
+  { key: 'embedded', name: i18n.types?.embedded || (currentLang === 'zh' ? '内置模板' : 'Built-in') },
+  { key: 'external', name: i18n.types?.external || (currentLang === 'zh' ? '官方外置模板' : 'Official External') },
+  { key: 'third_party', name: i18n.types?.third_party || (currentLang === 'zh' ? '第三方模板' : 'Third-party') }
+]; %>
 
-          <p class="template-description"><%= template.description %></p>
+<% types.forEach(type => { %>
+  <% const typeTemplates = templates.filter(t => t.type === type.key); %>
+  <% if (typeTemplates.length > 0) { %>
+    <section class="templates">
+      <div class="container">
+        <h2 class="type-title"><%= type.name %></h2>
+        <div class="templates-grid" id="templatesGrid-<%= type.key %>">
+          <% typeTemplates.forEach(template => { %>
+            <article class="template-card" data-id="<%= template.id %>">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="<%= baseUrl || '' %>/<%= template.type %>/<%= template.id %>/index.html"><%= template.name %></a>
+                </h2>
+                <span class="template-category"><%= template.category %></span>
+              </div>
 
-          <% if (template.features && template.features.length > 0) { %>
-            <ul class="template-features">
-              <% template.features.slice(0, 3).forEach(feature => { %>
-                <li><%= feature %></li>
-              <% }) %>
-            </ul>
-          <% } %>
+              <p class="template-description"><%= template.description %></p>
 
-          <div class="template-tags">
-            <% template.tags.forEach(tag => { %>
-              <span class="tag"><%= tag %></span>
-            <% }) %>
-          </div>
+              <% if (template.features && template.features.length > 0) { %>
+                <ul class="template-features">
+                  <% template.features.slice(0, 3).forEach(feature => { %>
+                    <li><%= feature %></li>
+                  <% }) %>
+                </ul>
+              <% } %>
 
-          <div class="template-actions">
-            <a href="<%= baseUrl || '' %>/templates/<%= template.id %>/index.html" class="btn btn-primary">
-              <%= i18n.card?.viewDetails || 'View Details' %>
-            </a>
-            <% if (template.demo) { %>
-              <a href="<%= template.demo %>" target="_blank" rel="noopener" class="btn btn-secondary">
-                <%= i18n.card?.liveDemo || 'Live Demo' %>
-              </a>
-            <% } %>
-          </div>
-        </article>
-      <% }) %>
-    </div>
+              <div class="template-tags">
+                <% template.tags.forEach(tag => { %>
+                  <span class="tag"><%= tag %></span>
+                <% }) %>
+              </div>
 
-    <% if (templates.length === 0) { %>
+              <div class="template-actions">
+                <a href="<%= baseUrl || '' %>/<%= template.type %>/<%= template.id %>/index.html" class="btn btn-primary">
+                  <%= i18n.card?.viewDetails || 'View Details' %>
+                </a>
+                <% if (template.demo) { %>
+                  <a href="<%= template.demo %>" target="_blank" rel="noopener" class="btn btn-secondary">
+                    <%= i18n.card?.liveDemo || 'Live Demo' %>
+                  </a>
+                <% } %>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+  <% } %>
+<% }) %>
+
+<% if (templates.length === 0) { %>
+  <section class="templates">
+    <div class="container">
       <div class="no-results">
         <h3><%= i18n.noResults?.title || 'No templates found' %></h3>
         <p><%= i18n.noResults?.description || 'Try adjusting your search or filters' %></p>
       </div>
-    <% } %>
-  </div>
-</section>
+    </div>
+  </section>
+<% } %>

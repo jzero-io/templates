@@ -15,7 +15,14 @@
       "allCategories": "All Categories",
       "tags": "Tags:",
       "allTags": "All Tags",
-      "resultsCount": "templates found"
+      "resultsCount": "templates found",
+      "type": "Type:",
+      "allTypes": "All Types",
+      "types": {
+        "embedded": "Built-in",
+        "external": "Official External",
+        "third_party": "Third-party"
+      }
     },
     "card": {
       "viewDetails": "View Details",
@@ -52,6 +59,11 @@
       "tags": "标签：",
       "allTags": "所有标签",
       "resultsCount": "个模板"
+    },
+    "types": {
+      "embedded": "内置模板",
+      "external": "官方外置模板",
+      "third_party": "第三方模板"
     },
     "card": {
       "viewDetails": "查看详情",

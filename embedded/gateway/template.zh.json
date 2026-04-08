@@ -1,0 +1,16 @@
+{
+  "id": "gateway",
+  "name": "API 网关",
+  "description": "高性能 API 网关，同时支持 gRPC 和 HTTP 协议",
+  "category": "网关",
+  "tags": ["网关", "grpc", "http", "微服务"],
+  "command": "jzero new your_project --frame gateway",
+  "repository": "https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/gateway",
+  "features": [
+    "统一的 gRPC 和 HTTP 接口",
+    "服务发现和路由",
+    "负载均衡",
+    "Swagger 文档",
+    "协议转换"
+  ]
+}

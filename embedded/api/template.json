@@ -1,0 +1,16 @@
+{
+  "id": "api",
+  "name": "API Service",
+  "description": "Build RESTful API services with automatic Swagger documentation",
+  "category": "API",
+  "tags": ["api", "rest", "swagger", "backend"],
+  "command": "jzero new your_project --frame api",
+  "repository": "https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/api",
+  "features": [
+    "Auto-generated Swagger UI at /swagger",
+    "RESTful API structure",
+    "Model validation",
+    "Redis caching support",
+    "Database ORM integration"
+  ]
+}

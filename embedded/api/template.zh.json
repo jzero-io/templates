@@ -1,0 +1,16 @@
+{
+  "id": "api",
+  "name": "API 服务",
+  "description": "构建带有自动 Swagger 文档的 RESTful API 服务",
+  "category": "API",
+  "tags": ["api", "rest", "swagger", "后端"],
+  "command": "jzero new your_project --frame api",
+  "repository": "https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/api",
+  "features": [
+    "自动生成 Swagger UI 文档",
+    "RESTful API 结构",
+    "数据模型验证",
+    "支持 Redis 缓存",
+    "数据库 ORM 集成"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "rpc",
+  "name": "RPC 服务",
+  "description": "使用 gRPC 构建高性能微服务",
+  "category": "RPC",
+  "tags": ["rpc", "grpc", "微服务", "后端"],
+  "command": "jzero new your_project --frame rpc",
+  "repository": "https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/rpc",
+  "features": [
+    "支持 gRPC 协议",
+    "高性能 RPC 调用",
+    "服务网格就绪",
+    "类型安全接口",
+    "二进制序列化"
+  ]
+}

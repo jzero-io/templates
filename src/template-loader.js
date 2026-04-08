@@ -9,6 +9,7 @@ const { glob } = require('glob');
 class TemplateLoader {
   constructor(templatesDir) {
     this.templatesDir = templatesDir;
+    this.categories = ['embedded', 'external', 'third_party'];
   }
 
   /**
@@ -38,9 +39,17 @@ class TemplateLoader {
    * Convention: A template directory must contain template.json
    */
   async discoverTemplateDirs() {
-    const pattern = path.join(this.templatesDir, '*/template.json');
-    const files = await glob(pattern);
-    return files.map(file => path.dirname(file));
+    const templateDirs = [];
+
+    for (const category of this.categories) {
+      const pattern = path.join(process.cwd(), category, '*/template.json');
+      const files = await glob(pattern);
+      for (const file of files) {
+        templateDirs.push(path.dirname(file));
+      }
+    }
+
+    return templateDirs;
   }
 
   /**
@@ -76,6 +85,10 @@ class TemplateLoader {
       guideHtml = this.markdownToHtml(guideContent);
     }
 
+    // Determine template type from directory path
+    const relativePath = path.relative(this.templatesDir, templateDir);
+    const templateType = relativePath.split(path.sep)[0] || 'embedded';
+
     // Extract metadata from config with defaults
     const template = {
       id: config.id || this.slugify(config.name),
@@ -91,6 +104,7 @@ class TemplateLoader {
       repository: config.repository || '',
       guide: guideHtml,
       lang: lang,
+      type: templateType,
       // Convention: Use folder name as ID if not specified
       dir: path.basename(templateDir)
     };

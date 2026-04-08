@@ -11,7 +11,7 @@ const TemplateLoader = require('./template-loader');
 class SiteBuilder {
   constructor(config) {
     this.config = config;
-    this.templateLoader = new TemplateLoader(config.templatesDir);
+    this.templateLoader = new TemplateLoader(process.cwd());
     this.templatesDir = path.join(__dirname, 'templates');
     this.outputDir = config.outputDir;
     this.supportedLangs = config.supportedLangs || ['zh', 'en'];
@@ -152,7 +152,7 @@ class SiteBuilder {
       const templateDir = path.join(
         this.outputDir,
         lang === this.defaultLang ? '' : lang,
-        'templates',
+        template.type,
         template.id
       );
       this.ensureDir(templateDir);
@@ -180,11 +180,12 @@ class SiteBuilder {
         baseUrl: lang === this.defaultLang ? '' : `/${lang}`,
         lang,
         defaultLang: this.defaultLang,
-        templateId: template.id
+        templateId: template.id,
+        templateType: template.type
       });
 
       fs.writeFileSync(path.join(templateDir, 'index.html'), html);
-      console.log(`   ✓ ${lang === this.defaultLang ? '' : lang + '/'}templates/${template.id}/index.html`);
+      console.log(`   ✓ ${lang === this.defaultLang ? '' : lang + '/'}${template.type}/${template.id}/index.html`);
     }
   }
 

@@ -6,6 +6,10 @@
   <title><%= title %> - <%= siteTitle %></title>
   <meta name="description" content="<%= description || siteDescription %>">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/highlight.css">
@@ -60,9 +64,9 @@
                 <% supportedLangs.forEach(l => { %>
                   <% const langName = l === 'zh' ? '中文' : l === 'en' ? 'English' : l.toUpperCase(); %>
                   <% const href = l === defaultLang ? '/' : '/' + l + '/'; %>
-                  <% if (currentPage === 'detail' && typeof templateId !== 'undefined') { %>
+                  <% if (currentPage === 'detail' && typeof templateId !== 'undefined' && typeof templateType !== 'undefined') { %>
                     <a
-                      href="<%= href %>templates/<%= templateId %>/"
+                      href="<%= href %><%= templateType %>/<%= templateId %>/"
                       class="lang-option <%= l === currentLang ? 'active' : '' %>"
                     >
                       <%= langName %>

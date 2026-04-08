@@ -1,0 +1,16 @@
+{
+  "id": "gateway",
+  "name": "API Gateway",
+  "description": "High-performance API gateway supporting both gRPC and HTTP protocols",
+  "category": "Gateway",
+  "tags": ["gateway", "grpc", "http", "microservices"],
+  "command": "jzero new your_project --frame gateway",
+  "repository": "https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/gateway",
+  "features": [
+    "Unified gRPC and HTTP interface",
+    "Service discovery and routing",
+    "Load balancing",
+    "Swagger documentation",
+    "Protocol translation"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "rpc",
+  "name": "RPC Service",
+  "description": "Build high-performance microservices with gRPC",
+  "category": "RPC",
+  "tags": ["rpc", "grpc", "microservices", "backend"],
+  "command": "jzero new your_project --frame rpc",
+  "repository": "https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/rpc",
+  "features": [
+    "gRPC protocol support",
+    "High performance RPC",
+    "Service mesh ready",
+    "Type-safe interfaces",
+    "Binary serialization"
+  ]
+}
