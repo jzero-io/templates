@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - JZero Template Market</title>
+  <meta name="description" content="Discover and use JZero templates for your next project">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/" class="logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="6" fill="currentColor"/>
+            <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
+          </svg>
+          <span>JZero Template Market</span>
+        </a>
+
+        <nav class="nav">
+          <a href="/" class="active">Templates</a>
+          <a href="https://jzero.io" target="_blank" rel="noopener">Docs</a>
+          <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <h1>JZero Template Market</h1>
+    <p class="hero-description">Discover and use JZero templates for your next project</p>
+
+    <!-- Search -->
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search templates..."
+        class="search-input"
+        autocomplete="off"
+      >
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Filters -->
+<section class="filters">
+  <div class="container">
+    <div class="filter-groups">
+      <!-- Category Filter -->
+      <div class="filter-group">
+        <label>Category:</label>
+        <select id="categoryFilter" class="filter-select">
+          <option value="">All Categories</option>
+          
+            <option value="API">API</option>
+          
+            <option value="CLI">CLI</option>
+          
+            <option value="Documentation">Documentation</option>
+          
+        </select>
+      </div>
+
+      <!-- Tag Filter -->
+      <div class="filter-group">
+        <label>Tags:</label>
+        <select id="tagFilter" class="filter-select">
+          <option value="">All Tags</option>
+          
+            <option value="api">api</option>
+          
+            <option value="automation">automation</option>
+          
+            <option value="blog">blog</option>
+          
+            <option value="cli">cli</option>
+          
+            <option value="command-line">command-line</option>
+          
+            <option value="documentation">documentation</option>
+          
+            <option value="markdown">markdown</option>
+          
+            <option value="rest">rest</option>
+          
+            <option value="serverless">serverless</option>
+          
+            <option value="tool">tool</option>
+          
+            <option value="vercel">vercel</option>
+          
+            <option value="vuepress">vuepress</option>
+          
+        </select>
+      </div>
+
+      <!-- Difficulty Filter -->
+      <div class="filter-group">
+        <label>Difficulty:</label>
+        <select id="difficultyFilter" class="filter-select">
+          <option value="">All Levels</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="results-count">
+      <span id="resultsCount">3</span> templates found
+    </div>
+  </div>
+</section>
+
+<!-- Templates Grid -->
+<section class="templates">
+  <div class="container">
+    <div class="templates-grid" id="templatesGrid">
+      
+        <article class="template-card" data-id="vuepress-hope-docs">
+          <div class="template-header">
+            <h2 class="template-title">
+              <a href="/templates/vuepress-hope-docs/index.html">VuePress Hope Docs</a>
+            </h2>
+            <span class="template-category">Documentation</span>
+          </div>
+
+          <p class="template-description">Documentation site template using VuePress Hope theme</p>
+
+          
+            <ul class="template-features">
+              
+                <li>VuePress Hope theme</li>
+              
+                <li>Markdown documentation</li>
+              
+                <li>Blog functionality</li>
+              
+            </ul>
+          
+
+          <div class="template-tags">
+            
+              <span class="tag">documentation</span>
+            
+              <span class="tag">vuepress</span>
+            
+              <span class="tag">markdown</span>
+            
+              <span class="tag">blog</span>
+            
+            <span class="difficulty difficulty-intermediate">
+              intermediate
+            </span>
+          </div>
+
+          <div class="template-actions">
+            <a href="/templates/vuepress-hope-docs/index.html" class="btn btn-primary">
+              View Details
+            </a>
+            
+          </div>
+        </article>
+      
+        <article class="template-card" data-id="cli">
+          <div class="template-header">
+            <h2 class="template-title">
+              <a href="/templates/cli/index.html">Simple CLI Tool</a>
+            </h2>
+            <span class="template-category">CLI</span>
+          </div>
+
+          <p class="template-description">A command-line application template with common CLI patterns</p>
+
+          
+            <ul class="template-features">
+              
+                <li>Command parsing</li>
+              
+                <li>Interactive prompts</li>
+              
+                <li>Configuration management</li>
+              
+            </ul>
+          
+
+          <div class="template-tags">
+            
+              <span class="tag">cli</span>
+            
+              <span class="tag">command-line</span>
+            
+              <span class="tag">tool</span>
+            
+              <span class="tag">automation</span>
+            
+            <span class="difficulty difficulty-beginner">
+              beginner
+            </span>
+          </div>
+
+          <div class="template-actions">
+            <a href="/templates/cli/index.html" class="btn btn-primary">
+              View Details
+            </a>
+            
+          </div>
+        </article>
+      
+        <article class="template-card" data-id="api-vercel">
+          <div class="template-header">
+            <h2 class="template-title">
+              <a href="/templates/api-vercel/index.html">Simple API Vercel</a>
+            </h2>
+            <span class="template-category">API</span>
+          </div>
+
+          <p class="template-description">A simple API template optimized for Vercel deployment</p>
+
+          
+            <ul class="template-features">
+              
+                <li>RESTful API structure</li>
+              
+                <li>Vercel serverless deployment</li>
+              
+                <li>Built-in middleware</li>
+              
+            </ul>
+          
+
+          <div class="template-tags">
+            
+              <span class="tag">api</span>
+            
+              <span class="tag">vercel</span>
+            
+              <span class="tag">serverless</span>
+            
+              <span class="tag">rest</span>
+            
+            <span class="difficulty difficulty-beginner">
+              beginner
+            </span>
+          </div>
+
+          <div class="template-actions">
+            <a href="/templates/api-vercel/index.html" class="btn btn-primary">
+              View Details
+            </a>
+            
+          </div>
+        </article>
+      
+    </div>
+
+    
+  </div>
+</section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 JZero Template Market. Built with JZero.</p>
+      <p class="footer-links">
+        <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://jzero.io" target="_blank" rel="noopener">Documentation</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
