@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contribution Guide - Jzero Template Market</title>
+  <meta name="description" content="Discover and use Jzero templates for your next project">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/en/" class="logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Jzero Template Market</span>
+        </a>
+
+        <nav class="nav">
+          <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener" class="nav-github">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            GitHub
+          </a>
+
+          
+            <div class="lang-switcher">
+              <button
+                class="lang-button"
+                onclick="toggleLangMenu(event)"
+                title="Switch Language"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10z"/>
+                </svg>
+                <span id="currentLangName">English</span>
+                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+
+              <div class="lang-dropdown" id="langDropdown">
+                
+                  
+                  
+                  
+                    <a
+                      href="/"
+                      class="lang-option "
+                    >
+                      中文
+                    </a>
+                  
+                
+                  
+                  
+                  
+                    <a
+                      href="/en/"
+                      class="lang-option active"
+                    >
+                      English
+                    </a>
+                  
+                
+              </div>
+            </div>
+          
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Contribute Page -->
+<section class="contribute-page">
+  <div class="container">
+    <div class="contribute-header">
+      <h1>Contribution Guide</h1>
+      <p class="contribute-subtitle">Contribute your template to the Jzero Template Market</p>
+    </div>
+
+    <div class="contribute-content">
+      <div class="contribute-section">
+        <h2>什么是第三方模板？</h2>
+        <p>第三方模板是由社区开发者创建并维护的项目模板，可以帮助其他开发者快速启动特定类型的项目。</p>
+      </div>
+
+      <div class="contribute-section">
+        <h2>模板结构</h2>
+        <p>每个第三方模板需要包含以下文件：</p>
+        <pre class="code-block"><code>your-template/
+├── template.json          # 模板配置文件（必需）
+├── template.zh.json       # 中文配置文件（可选）
+├── README.md              # 模板说明文档（必需）
+└── [template files]       # 模板文件和目录</code></pre>
+      </div>
+
+      <div class="contribute-section">
+        <h2>配置文件说明</h2>
+        <p>模板配置文件是 JSON 格式，包含以下字段：</p>
+        <pre class="code-block"><code>{
+  "id": "your-template-id",
+  "name": "Your Template Name",
+  "description": "A brief description of your template",
+  "category": "Category Name",
+  "tags": ["tag1", "tag2", "tag3"],
+  "command": "jzero new project_name --template your-template-id",
+  "repository": "https://github.com/username/repo",
+  "demo": "https://your-demo-url.com",
+  "features": [
+    "Feature 1",
+    "Feature 2",
+    "Feature 3"
+  ]
+}</code></pre>
+
+        <h3>字段说明</h3>
+        <table class="fields-table">
+          <thead>
+            <tr>
+              <th>字段</th>
+              <th>类型</th>
+              <th>必需</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>id</code></td>
+              <td>string</td>
+              <td>✅</td>
+              <td>模板唯一标识符</td>
+            </tr>
+            <tr>
+              <td><code>name</code></td>
+              <td>string</td>
+              <td>✅</td>
+              <td>模板名称</td>
+            </tr>
+            <tr>
+              <td><code>description</code></td>
+              <td>string</td>
+              <td>✅</td>
+              <td>模板简短描述</td>
+            </tr>
+            <tr>
+              <td><code>category</code></td>
+              <td>string</td>
+              <td>✅</td>
+              <td>模板分类</td>
+            </tr>
+            <tr>
+              <td><code>tags</code></td>
+              <td>array</td>
+              <td>✅</td>
+              <td>模板标签数组</td>
+            </tr>
+            <tr>
+              <td><code>command</code></td>
+              <td>string</td>
+              <td>✅</td>
+              <td>使用模板的命令</td>
+            </tr>
+            <tr>
+              <td><code>repository</code></td>
+              <td>string</td>
+              <td>❌</td>
+              <td>模板源码仓库地址</td>
+            </tr>
+            <tr>
+              <td><code>demo</code></td>
+              <td>string</td>
+              <td>❌</td>
+              <td>在线演示地址</td>
+            </tr>
+            <tr>
+              <td><code>features</code></td>
+              <td>array</td>
+              <td>❌</td>
+              <td>模板特性列表</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="contribute-section">
+        <h2>多语言支持</h2>
+        <p>如果需要支持中文，创建 template.zh.json 文件：</p>
+        <pre class="code-block"><code>{
+  "id": "your-template-id",
+  "name": "模板中文名称",
+  "description": "模板的中文描述",
+  "category": "分类名称",
+  "tags": ["标签1", "标签2"],
+  "command": "jzero new project_name --template your-template-id",
+  "repository": "https://github.com/username/repo",
+  "demo": "https://your-demo-url.com",
+  "features": [
+    "特性1",
+    "特性2"
+  ]
+}</code></pre>
+      </div>
+
+      <div class="contribute-section">
+        <h2>最佳实践</h2>
+        <ul class="contribute-list">
+          <li><strong>模板命名</strong>: 使用有意义的名称，推荐格式：用途-技术栈-特性</li>
+          <li><strong>分类选择</strong>: Web、API、CLI、Mobile、Desktop 等</li>
+          <li><strong>标签使用</strong>: 添加 3-8 个相关标签，包含技术栈和项目类型</li>
+          <li><strong>文档编写</strong>: README.md 应包含项目简介、功能特性、快速开始指南</li>
+        </ul>
+      </div>
+
+      <div class="contribute-section">
+        <h2>提交模板</h2>
+        <ol class="contribute-steps">
+          <li>准备提交：确保包含完整的 template.json 和 README.md</li>
+          <li>Fork 本仓库</li>
+          <li>在 third_party/ 目录下创建您的模板</li>
+          <li>创建 Pull Request</li>
+          <li>等待审核</li>
+        </ol>
+      </div>
+
+      <div class="contribute-section">
+        <h2>获取帮助</h2>
+        <ul class="contribute-links">
+          <li>
+            <a href="https://github.com/jzero-io/templates/discussions" target="_blank" rel="noopener">
+              GitHub Discussions
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/jzero-io/templates/issues" target="_blank" rel="noopener">
+              问题反馈
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="contribute-cta">
+        <h3>准备好贡献了吗？</h3>
+        <p>开始创建您的模板，帮助更多开发者！</p>
+        <a href="https://github.com/jzero-io/templates/fork" target="_blank" rel="noopener" class="btn btn-primary">
+          Fork 仓库开始贡献
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 jzero-io</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/main.js"></script>
+  <script>
+  function toggleLangMenu(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.classList.toggle('show');
+
+    // Close dropdown when clicking outside
+    setTimeout(() => {
+      document.addEventListener('click', closeLangMenu);
+    }, 10);
+  }
+
+  function closeLangMenu(event) {
+    const dropdown = document.getElementById('langDropdown');
+    const button = document.querySelector('.lang-button');
+    if (!dropdown || !button) return;
+
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      dropdown.classList.remove('show');
+      document.removeEventListener('click', closeLangMenu);
+    }
+  }
+  </script>
+</body>
+</html>

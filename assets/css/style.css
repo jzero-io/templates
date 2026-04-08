@@ -517,6 +517,233 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Contribute Page */
+.contribute-page {
+  padding: 48px 0;
+}
+
+.contribute-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.contribute-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-color);
+}
+
+.contribute-subtitle {
+  font-size: 18px;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contribute-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.contribute-section {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: var(--card-shadow);
+}
+
+.contribute-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-color);
+}
+
+.contribute-section h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: var(--text-color);
+}
+
+.contribute-section p {
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.code-block {
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  overflow-x: auto;
+}
+
+.code-block code {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.fields-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.fields-table th,
+.fields-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fields-table th {
+  font-weight: 600;
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+.fields-table td {
+  color: var(--text-light);
+}
+
+.fields-table code {
+  background: var(--background-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+}
+
+.contribute-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contribute-list li {
+  padding: 12px 0;
+  color: var(--text-light);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.contribute-list li:last-child {
+  border-bottom: none;
+}
+
+.contribute-list strong {
+  color: var(--text-color);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.contribute-steps {
+  list-style: none;
+  counter-reset: step-counter;
+  padding: 0;
+}
+
+.contribute-steps li {
+  counter-increment: step-counter;
+  padding: 16px 0 16px 48px;
+  position: relative;
+  color: var(--text-light);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.contribute-steps li:last-child {
+  border-bottom: none;
+}
+
+.contribute-steps li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 16px;
+  width: 32px;
+  height: 32px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.contribute-links {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.contribute-links li {
+  margin: 0;
+}
+
+.contribute-links a {
+  display: block;
+  padding: 16px;
+  background: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.contribute-links a:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.contribute-cta {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  border-radius: 12px;
+  padding: 48px;
+  text-align: center;
+  color: white;
+  margin-top: 32px;
+}
+
+.contribute-cta h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.contribute-cta p {
+  font-size: 16px;
+  opacity: 0.95;
+  margin-bottom: 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contribute-cta .btn {
+  background: white;
+  color: var(--primary-color);
+}
+
+.contribute-cta .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
 /* No Results */
 .no-results {
   text-align: center;
