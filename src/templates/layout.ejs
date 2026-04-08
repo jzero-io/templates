@@ -63,22 +63,24 @@
               <div class="lang-dropdown" id="langDropdown">
                 <% supportedLangs.forEach(l => { %>
                   <% const langName = l === 'zh' ? '中文' : l === 'en' ? 'English' : l.toUpperCase(); %>
-                  <% const href = l === defaultLang ? '/' : '/' + l + '/'; %>
-                  <% if (currentPage === 'detail' && typeof templateId !== 'undefined' && typeof templateType !== 'undefined') { %>
-                    <a
-                      href="<%= href %><%= templateType %>/<%= templateId %>/"
-                      class="lang-option <%= l === currentLang ? 'active' : '' %>"
-                    >
-                      <%= langName %>
-                    </a>
+                  <% let href = ''; %>
+                  <% if (l === defaultLang) { %>
+                    <% href = '/' + (currentPage === 'home' ? '' : currentPage + '/'); %>
+                    <% if (currentPage === 'detail' && typeof templateId !== 'undefined' && typeof templateType !== 'undefined') { %>
+                      <% href = '/' + templateType + '/' + templateId + '/'; %>
+                    <% } %>
                   <% } else { %>
-                    <a
-                      href="<%= href %>"
-                      class="lang-option <%= l === currentLang ? 'active' : '' %>"
-                    >
-                      <%= langName %>
-                    </a>
+                    <% href = '/' + l + '/' + (currentPage === 'home' ? '' : currentPage + '/'); %>
+                    <% if (currentPage === 'detail' && typeof templateId !== 'undefined' && typeof templateType !== 'undefined') { %>
+                      <% href = '/' + l + '/' + templateType + '/' + templateId + '/'; %>
+                    <% } %>
                   <% } %>
+                  <a
+                    href="<%= href %>"
+                    class="lang-option <%= l === currentLang ? 'active' : '' %>"
+                  >
+                    <%= langName %>
+                  </a>
                 <% }) %>
               </div>
             </div>
