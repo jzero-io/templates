@@ -1,6 +1,6 @@
-# JZero Template Market
+# Jzero Template Market
 
-A static website generator for showcasing JZero templates with a modern, responsive interface.
+A static website generator for showcasing Jzero templates with a modern, responsive interface.
 
 [![Deploy to GitHub Pages](https://github.com/jzero-io/templates/workflows/Build%20and%20Deploy%20to%20gh-pages/badge.svg)](https://github.com/jzero-io/templates/actions)
 
@@ -164,8 +164,8 @@ Edit `builder.config.json` to customize the site:
 
 ```json
 {
-  "title": "JZero Template Market",
-  "description": "Discover and use JZero templates",
+  "title": "Jzero Template Market",
+  "description": "Discover and use Jzero templates",
   "templatesDir": "templates",
   "outputDir": "dist",
   "theme": {

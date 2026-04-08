@@ -1,6 +1,6 @@
 {
   "id": "cli",
-  "name": "Simple CLI Tool",
+  "name": "CLI Tool",
   "description": "A command-line application template with common CLI patterns",
   "category": "CLI",
   "tags": ["cli", "command-line", "tool", "automation"],
@@ -10,8 +10,7 @@
   "features": [
     "Command parsing",
     "Interactive prompts",
-    "Configuration management",
-    "Output formatting"
+    "Configuration management"
   ],
   "screenshot": "",
   "demo": "",

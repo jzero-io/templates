@@ -1,6 +1,6 @@
 # CLI Tool Template
 
-A feature-rich command-line application template that implements common CLI patterns and best practices.
+A command-line application template that implements common CLI patterns and best practices.
 
 ## Features
 

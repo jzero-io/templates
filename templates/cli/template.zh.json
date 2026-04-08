@@ -1,0 +1,19 @@
+{
+  "id": "cli",
+  "name": "命令行工具",
+  "description": "具有常见 CLI 模式的命令行应用程序模板",
+  "category": "CLI",
+  "tags": ["cli", "命令行", "工具", "自动化"],
+  "difficulty": "初级",
+  "command": "jzero new simplecli --branch cli",
+  "branch": "cli",
+  "features": [
+    "命令解析",
+    "交互式提示",
+    "配置管理",
+    "输出格式化"
+  ],
+  "screenshot": "",
+  "demo": "",
+  "repository": "https://github.com/jzero-io/templates/tree/cli"
+}

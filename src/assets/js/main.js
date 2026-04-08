@@ -1,5 +1,5 @@
 /**
- * JZero Template Market - Interactive Features
+ * Jzero Template Market - Interactive Features
  */
 
 // Template data for filtering (injected from templates)
@@ -63,7 +63,6 @@ function extractTemplateData() {
 function initializeFilters() {
   const categoryFilter = document.getElementById('categoryFilter');
   const tagFilter = document.getElementById('tagFilter');
-  const difficultyFilter = document.getElementById('difficultyFilter');
 
   if (categoryFilter) {
     categoryFilter.addEventListener('change', applyFilters);
@@ -71,10 +70,6 @@ function initializeFilters() {
 
   if (tagFilter) {
     tagFilter.addEventListener('change', applyFilters);
-  }
-
-  if (difficultyFilter) {
-    difficultyFilter.addEventListener('change', applyFilters);
   }
 }
 
@@ -92,12 +87,10 @@ function handleSearch(event) {
 function applyFilters(searchQuery = null) {
   const categoryFilter = document.getElementById('categoryFilter');
   const tagFilter = document.getElementById('tagFilter');
-  const difficultyFilter = document.getElementById('difficultyFilter');
   const searchInput = document.getElementById('searchInput');
 
   const category = categoryFilter?.value || '';
   const tag = tagFilter?.value || '';
-  const difficulty = difficultyFilter?.value || '';
   const query = searchQuery?.query || (searchInput?.value?.toLowerCase().trim() || '');
 
   let visibleCount = 0;
@@ -112,11 +105,6 @@ function applyFilters(searchQuery = null) {
 
     // Tag filter
     if (tag && !template.tags.includes(tag)) {
-      isVisible = false;
-    }
-
-    // Difficulty filter
-    if (difficulty && template.difficulty !== difficulty) {
       isVisible = false;
     }
 

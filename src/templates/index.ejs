@@ -9,7 +9,7 @@
       <input
         type="text"
         id="searchInput"
-        placeholder="Search templates..."
+        placeholder="<%= i18n.hero?.searchPlaceholder || 'Search templates...' %>"
         class="search-input"
         autocomplete="off"
       >
@@ -26,9 +26,9 @@
     <div class="filter-groups">
       <!-- Category Filter -->
       <div class="filter-group">
-        <label>Category:</label>
+        <label><%= i18n.filters?.category || 'Category:' %></label>
         <select id="categoryFilter" class="filter-select">
-          <option value="">All Categories</option>
+          <option value=""><%= i18n.filters?.allCategories || 'All Categories' %></option>
           <% categories.forEach(cat => { %>
             <option value="<%= cat %>"><%= cat %></option>
           <% }) %>
@@ -37,29 +37,18 @@
 
       <!-- Tag Filter -->
       <div class="filter-group">
-        <label>Tags:</label>
+        <label><%= i18n.filters?.tags || 'Tags:' %></label>
         <select id="tagFilter" class="filter-select">
-          <option value="">All Tags</option>
+          <option value=""><%= i18n.filters?.allTags || 'All Tags' %></option>
           <% tags.forEach(tag => { %>
             <option value="<%= tag %>"><%= tag %></option>
           <% }) %>
         </select>
       </div>
-
-      <!-- Difficulty Filter -->
-      <div class="filter-group">
-        <label>Difficulty:</label>
-        <select id="difficultyFilter" class="filter-select">
-          <option value="">All Levels</option>
-          <option value="beginner">Beginner</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="advanced">Advanced</option>
-        </select>
-      </div>
     </div>
 
     <div class="results-count">
-      <span id="resultsCount"><%= templates.length %></span> templates found
+      <span id="resultsCount"><%= templates.length %></span> <%= i18n.filters?.resultsCount || 'templates found' %>
     </div>
   </div>
 </section>
@@ -72,7 +61,7 @@
         <article class="template-card" data-id="<%= template.id %>">
           <div class="template-header">
             <h2 class="template-title">
-              <a href="/templates/<%= template.id %>/index.html"><%= template.name %></a>
+              <a href="<%= baseUrl || '' %>/templates/<%= template.id %>/index.html"><%= template.name %></a>
             </h2>
             <span class="template-category"><%= template.category %></span>
           </div>
@@ -91,18 +80,15 @@
             <% template.tags.forEach(tag => { %>
               <span class="tag"><%= tag %></span>
             <% }) %>
-            <span class="difficulty difficulty-<%= template.difficulty %>">
-              <%= template.difficulty %>
-            </span>
           </div>
 
           <div class="template-actions">
-            <a href="/templates/<%= template.id %>/index.html" class="btn btn-primary">
-              View Details
+            <a href="<%= baseUrl || '' %>/templates/<%= template.id %>/index.html" class="btn btn-primary">
+              <%= i18n.card?.viewDetails || 'View Details' %>
             </a>
             <% if (template.demo) { %>
               <a href="<%= template.demo %>" target="_blank" rel="noopener" class="btn btn-secondary">
-                Live Demo
+                <%= i18n.card?.liveDemo || 'Live Demo' %>
               </a>
             <% } %>
           </div>
@@ -112,8 +98,8 @@
 
     <% if (templates.length === 0) { %>
       <div class="no-results">
-        <h3>No templates found</h3>
-        <p>Try adjusting your search or filters</p>
+        <h3><%= i18n.noResults?.title || 'No templates found' %></h3>
+        <p><%= i18n.noResults?.description || 'Try adjusting your search or filters' %></p>
       </div>
     <% } %>
   </div>

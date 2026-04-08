@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= lang || 'en' %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,7 @@
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <a href="/" class="logo">
+        <a href="<%= baseUrl || '' %>/" class="logo">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="32" height="32" rx="6" fill="currentColor"/>
             <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
@@ -28,9 +28,22 @@
         </a>
 
         <nav class="nav">
-          <a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">Templates</a>
-          <a href="https://jzero.io" target="_blank" rel="noopener">Docs</a>
-          <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
+          <a href="<%= baseUrl || '' %>/" class="<%= currentPage === 'home' ? 'active' : '' %>"><%= i18n.nav?.templates || 'Templates' %></a>
+          <a href="https://jzero.io" target="_blank" rel="noopener"><%= i18n.nav?.docs || 'Docs' %></a>
+          <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener"><%= i18n.nav?.github || 'GitHub' %></a>
+
+          <% if (supportedLangs && supportedLangs.length > 1) { %>
+            <div class="lang-switcher">
+              <select id="langSelect" class="lang-select" onchange="switchLanguage(this.value)">
+                <% supportedLangs.forEach(l => { %>
+                  <% const langName = l === 'zh' ? '中文' : l === 'en' ? 'English' : l.toUpperCase(); %>
+                  <option value="<%= l %>" <%= l === currentLang ? 'selected' : '' %>>
+                    <%= langName %>
+                  </option>
+                <% }) %>
+              </select>
+            </div>
+          <% } %>
         </nav>
       </div>
     </div>
@@ -44,15 +57,41 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; <%= new Date().getFullYear() %> <%= siteTitle %>. Built with JZero.</p>
+      <p>&copy; <%= new Date().getFullYear() %> <%= siteTitle %>. <%= i18n.footer?.copyright || 'Built with Jzero.' %></p>
       <p class="footer-links">
-        <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://jzero.io" target="_blank" rel="noopener">Documentation</a>
+        <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener"><%= i18n.footer?.github || 'GitHub' %></a>
+        <a href="https://jzero.io" target="_blank" rel="noopener"><%= i18n.footer?.documentation || 'Documentation' %></a>
       </p>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="/assets/js/main.js"></script>
+  <script>
+  function switchLanguage(lang) {
+    const currentPath = window.location.pathname;
+    const currentLang = '<%= currentLang %>';
+    const defaultLang = '<%= defaultLang || 'zh' %>';
+
+    let newPath;
+    if (lang === defaultLang) {
+      // Remove language prefix
+      if (currentLang === defaultLang) {
+        newPath = currentPath;
+      } else {
+        newPath = currentPath.replace('/' + currentLang, '') || '/';
+      }
+    } else {
+      // Add language prefix
+      if (currentLang === defaultLang) {
+        newPath = '/' + lang + (currentPath === '/' ? '' : currentPath);
+      } else {
+        newPath = currentPath.replace('/' + currentLang, '/' + lang);
+      }
+    }
+
+    window.location.href = newPath;
+  }
+  </script>
 </body>
 </html>

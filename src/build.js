@@ -6,7 +6,7 @@ const ejs = require('ejs');
 const TemplateLoader = require('./template-loader');
 
 /**
- * Static Site Builder for JZero Template Market
+ * Static Site Builder for Jzero Template Market with Multi-language Support
  */
 class SiteBuilder {
   constructor(config) {
@@ -14,6 +14,27 @@ class SiteBuilder {
     this.templateLoader = new TemplateLoader(config.templatesDir);
     this.templatesDir = path.join(__dirname, 'templates');
     this.outputDir = config.outputDir;
+    this.supportedLangs = config.supportedLangs || ['zh', 'en'];
+    this.defaultLang = config.defaultLang || 'zh';
+    this.i18n = this.loadI18n();
+  }
+
+  /**
+   * Load i18n configuration
+   */
+  loadI18n() {
+    const i18nPath = path.join(__dirname, 'i18n.json');
+    if (fs.existsSync(i18nPath)) {
+      return JSON.parse(fs.readFileSync(i18nPath, 'utf-8'));
+    }
+    return {};
+  }
+
+  /**
+   * Get i18n text for a language
+   */
+  getI18n(lang) {
+    return this.i18n[lang] || this.i18n[this.defaultLang] || this.i18n['en'] || {};
   }
 
   /**
@@ -25,35 +46,46 @@ class SiteBuilder {
     // Ensure output directory exists
     this.ensureDir(this.outputDir);
 
-    // Load all templates
-    console.log('📦 Loading templates...');
-    const templates = await this.templateLoader.loadTemplates();
-    console.log(`   Found ${templates.length} templates\n`);
+    // Build for each language
+    for (const lang of this.supportedLangs) {
+      console.log(`📦 Building for language: ${lang}...`);
 
-    // Get categories and tags
-    const categories = await this.templateLoader.getCategories();
-    const tags = await this.templateLoader.getTags();
+      // Load all templates for this language
+      const templates = await this.templateLoader.loadTemplates(lang);
+      console.log(`   Found ${templates.length} templates`);
 
-    // Build index page
-    console.log('📄 Building index page...');
-    await this.buildIndexPage(templates, categories, tags);
+      // Get categories and tags for this language
+      const categories = await this.templateLoader.getCategories(lang);
+      const tags = await this.templateLoader.getTags(lang);
 
-    // Build template detail pages
-    console.log('📄 Building template detail pages...');
-    await this.buildDetailPages(templates);
+      // Build index page for this language
+      if (lang === this.defaultLang) {
+        console.log('📄 Building index page (default)...');
+        await this.buildIndexPage(templates, categories, tags, lang, '');
+      } else {
+        console.log(`📄 Building index page (${lang})...`);
+        await this.buildIndexPage(templates, categories, tags, lang, `/${lang}`);
+      }
+
+      // Build template detail pages for this language
+      console.log(`📄 Building template detail pages (${lang})...`);
+      await this.buildDetailPages(templates, lang);
+
+      console.log(`\n✅ ${lang} build complete!\n`);
+    }
 
     // Copy assets
     console.log('📦 Copying assets...');
     await this.copyAssets();
 
-    console.log('\n✅ Build complete!');
+    console.log('\n✅ All builds complete!');
     console.log(`📂 Output directory: ${this.outputDir}`);
   }
 
   /**
    * Build the index page
    */
-  async buildIndexPage(templates, categories, tags) {
+  async buildIndexPage(templates, categories, tags, lang, baseUrl) {
     const layoutTemplate = fs.readFileSync(
       path.join(this.templatesDir, 'layout.ejs'),
       'utf-8'
@@ -63,31 +95,48 @@ class SiteBuilder {
       'utf-8'
     );
 
+    const i18n = this.getI18n(lang);
+
     const body = ejs.render(indexTemplate, {
       templates,
       categories,
       tags,
-      siteTitle: this.config.title,
-      siteDescription: this.config.description
+      siteTitle: i18n.siteTitle || this.config.title,
+      siteDescription: i18n.siteDescription || this.config.description,
+      i18n,
+      currentLang: lang,
+      supportedLangs: this.supportedLangs,
+      baseUrl
     });
 
     const html = ejs.render(layoutTemplate, {
       title: 'Home',
-      siteTitle: this.config.title,
-      siteDescription: this.config.description,
-      description: this.config.description,
+      siteTitle: i18n.siteTitle || this.config.title,
+      siteDescription: i18n.siteDescription || this.config.description,
+      description: i18n.siteDescription || this.config.description,
       body,
-      currentPage: 'home'
+      currentPage: 'home',
+      i18n,
+      currentLang: lang,
+      supportedLangs: this.supportedLangs,
+      baseUrl,
+      lang,
+      defaultLang: this.defaultLang
     });
 
-    fs.writeFileSync(path.join(this.outputDir, 'index.html'), html);
-    console.log('   ✓ index.html');
+    const outputPath = baseUrl
+      ? path.join(this.outputDir, lang, 'index.html')
+      : path.join(this.outputDir, 'index.html');
+
+    this.ensureDir(path.dirname(outputPath));
+    fs.writeFileSync(outputPath, html);
+    console.log(`   ✓ ${baseUrl ? lang + '/' : ''}index.html`);
   }
 
   /**
    * Build template detail pages
    */
-  async buildDetailPages(templates) {
+  async buildDetailPages(templates, lang) {
     const layoutTemplate = fs.readFileSync(
       path.join(this.templatesDir, 'layout.ejs'),
       'utf-8'
@@ -97,27 +146,45 @@ class SiteBuilder {
       'utf-8'
     );
 
+    const i18n = this.getI18n(lang);
+
     for (const template of templates) {
-      const templateDir = path.join(this.outputDir, 'templates', template.id);
+      const templateDir = path.join(
+        this.outputDir,
+        lang === this.defaultLang ? '' : lang,
+        'templates',
+        template.id
+      );
       this.ensureDir(templateDir);
 
       const body = ejs.render(detailTemplate, {
         template,
-        siteTitle: this.config.title,
-        siteDescription: this.config.description
+        siteTitle: i18n.siteTitle || this.config.title,
+        siteDescription: i18n.siteDescription || this.config.description,
+        i18n,
+        currentLang: lang,
+        supportedLangs: this.supportedLangs,
+        baseUrl: lang === this.defaultLang ? '' : `/${lang}`
       });
 
       const html = ejs.render(layoutTemplate, {
         title: template.name,
-        siteTitle: this.config.title,
-        siteDescription: this.config.description,
+        siteTitle: i18n.siteTitle || this.config.title,
+        siteDescription: i18n.siteDescription || this.config.description,
         description: template.description,
         body,
-        currentPage: 'detail'
+        currentPage: 'detail',
+        i18n,
+        currentLang: lang,
+        supportedLangs: this.supportedLangs,
+        baseUrl: lang === this.defaultLang ? '' : `/${lang}`,
+        lang,
+        defaultLang: this.defaultLang,
+        templateId: template.id
       });
 
       fs.writeFileSync(path.join(templateDir, 'index.html'), html);
-      console.log(`   ✓ templates/${template.id}/index.html`);
+      console.log(`   ✓ ${lang === this.defaultLang ? '' : lang + '/'}templates/${template.id}/index.html`);
     }
   }
 
@@ -175,10 +242,12 @@ async function main() {
     // Load configuration
     const configPath = path.join(__dirname, '..', 'builder.config.json');
     let config = {
-      title: 'JZero Template Market',
-      description: 'Discover and use JZero templates for your next project',
+      title: 'Jzero Template Market',
+      description: 'Discover and use Jzero templates for your next project',
       templatesDir: path.join(__dirname, '..', 'templates'),
-      outputDir: path.join(__dirname, '..', 'dist')
+      outputDir: path.join(__dirname, '..', 'dist'),
+      supportedLangs: ['zh', 'en'],
+      defaultLang: 'zh'
     };
 
     if (fs.existsSync(configPath)) {

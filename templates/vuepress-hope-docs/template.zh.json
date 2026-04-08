@@ -1,0 +1,19 @@
+{
+  "id": "vuepress-hope-docs",
+  "name": "VuePress Hope 文档",
+  "description": "使用 VuePress Hope 主题的文档站点模板",
+  "category": "文档",
+  "tags": ["文档", "vuepress", "markdown", "博客"],
+  "difficulty": "中级",
+  "command": "jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs",
+  "branch": "vuepress-hope-docs",
+  "features": [
+    "VuePress Hope 主题",
+    "Markdown 文档",
+    "博客功能",
+    "搜索和导航"
+  ],
+  "screenshot": "",
+  "demo": "",
+  "repository": "https://github.com/jzero-io/templates/tree/vuepress-hope-docs"
+}

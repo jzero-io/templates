@@ -4,7 +4,7 @@ const { glob } = require('glob');
 
 /**
  * Template Loader
- * Loads and parses template configurations and guide files
+ * Loads and parses template configurations and guide files with multi-language support
  */
 class TemplateLoader {
   constructor(templatesDir) {
@@ -13,14 +13,15 @@ class TemplateLoader {
 
   /**
    * Load all templates from the templates directory
+   * @param {string} lang - Language code (default: 'zh')
    */
-  async loadTemplates() {
+  async loadTemplates(lang = 'zh') {
     const templateDirs = await this.discoverTemplateDirs();
     const templates = [];
 
     for (const dir of templateDirs) {
       try {
-        const template = await this.loadTemplate(dir);
+        const template = await this.loadTemplate(dir, lang);
         if (template) {
           templates.push(template);
         }
@@ -43,13 +44,24 @@ class TemplateLoader {
   }
 
   /**
-   * Load a single template
+   * Load a single template with language support
+   * @param {string} templateDir - Template directory path
+   * @param {string} lang - Language code (default: 'zh')
    */
-  async loadTemplate(templateDir) {
-    const configPath = path.join(templateDir, 'template.json');
-    const guidePath = path.join(templateDir, 'guide.md');
+  async loadTemplate(templateDir, lang = 'zh') {
+    // Determine config file based on language
+    let configPath = path.join(templateDir, `template.${lang}.json`);
+    if (!fs.existsSync(configPath)) {
+      configPath = path.join(templateDir, 'template.json');
+    }
 
-    // Check if template.json exists
+    // Determine guide file based on language
+    let guidePath = path.join(templateDir, `guide.${lang}.md`);
+    if (!fs.existsSync(guidePath)) {
+      guidePath = path.join(templateDir, 'guide.md');
+    }
+
+    // Check if template config exists
     if (!fs.existsSync(configPath)) {
       return null;
     }
@@ -71,7 +83,6 @@ class TemplateLoader {
       description: config.description || '',
       category: config.category || 'General',
       tags: config.tags || [],
-      difficulty: config.difficulty || 'beginner',
       command: config.command || '',
       branch: config.branch || '',
       features: config.features || [],
@@ -79,6 +90,7 @@ class TemplateLoader {
       demo: config.demo || '',
       repository: config.repository || '',
       guide: guideHtml,
+      lang: lang,
       // Convention: Use folder name as ID if not specified
       dir: path.basename(templateDir)
     };
@@ -99,12 +111,9 @@ class TemplateLoader {
   }
 
   /**
-   * Convert markdown to HTML (simple implementation)
-   * In production, use a proper markdown library
+   * Convert markdown to HTML
    */
   markdownToHtml(markdown) {
-    // Simple markdown to HTML conversion
-    // For production, use 'marked' or similar library
     const { marked } = require('marked');
     return marked(markdown);
   }
@@ -124,26 +133,30 @@ class TemplateLoader {
 
   /**
    * Get template by ID
+   * @param {string} id - Template ID or directory name
+   * @param {string} lang - Language code (default: 'zh')
    */
-  async getTemplateById(id) {
-    const templates = await this.loadTemplates();
+  async getTemplateById(id, lang = 'zh') {
+    const templates = await this.loadTemplates(lang);
     return templates.find(t => t.id === id || t.dir === id);
   }
 
   /**
    * Get all unique categories
+   * @param {string} lang - Language code (default: 'zh')
    */
-  async getCategories() {
-    const templates = await this.loadTemplates();
+  async getCategories(lang = 'zh') {
+    const templates = await this.loadTemplates(lang);
     const categories = new Set(templates.map(t => t.category));
     return Array.from(categories).sort();
   }
 
   /**
    * Get all unique tags
+   * @param {string} lang - Language code (default: 'zh')
    */
-  async getTags() {
-    const templates = await this.loadTemplates();
+  async getTags(lang = 'zh') {
+    const templates = await this.loadTemplates(lang);
     const tags = new Set();
     templates.forEach(t => {
       t.tags.forEach(tag => tags.add(tag));
@@ -153,9 +166,11 @@ class TemplateLoader {
 
   /**
    * Search templates by keyword
+   * @param {string} keyword - Search keyword
+   * @param {string} lang - Language code (default: 'zh')
    */
-  async searchTemplates(keyword) {
-    const templates = await this.loadTemplates();
+  async searchTemplates(keyword, lang = 'zh') {
+    const templates = await this.loadTemplates(lang);
     const lowerKeyword = keyword.toLowerCase();
 
     return templates.filter(t =>
@@ -168,17 +183,21 @@ class TemplateLoader {
 
   /**
    * Filter templates by category
+   * @param {string} category - Category name
+   * @param {string} lang - Language code (default: 'zh')
    */
-  async filterByCategory(category) {
-    const templates = await this.loadTemplates();
+  async filterByCategory(category, lang = 'zh') {
+    const templates = await this.loadTemplates(lang);
     return templates.filter(t => t.category === category);
   }
 
   /**
    * Filter templates by tag
+   * @param {string} tag - Tag name
+   * @param {string} lang - Language code (default: 'zh')
    */
-  async filterByTag(tag) {
-    const templates = await this.loadTemplates();
+  async filterByTag(tag, lang = 'zh') {
+    const templates = await this.loadTemplates(lang);
     return templates.filter(t => t.tags.includes(tag));
   }
 }

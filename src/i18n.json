@@ -1,0 +1,74 @@
+{
+  "en": {
+    "siteTitle": "Jzero Template Market",
+    "siteDescription": "Discover and use Jzero templates for your next project",
+    "nav": {
+      "templates": "Templates",
+      "docs": "Docs",
+      "github": "GitHub"
+    },
+    "hero": {
+      "searchPlaceholder": "Search templates..."
+    },
+    "filters": {
+      "category": "Category:",
+      "allCategories": "All Categories",
+      "tags": "Tags:",
+      "allTags": "All Tags",
+      "resultsCount": "templates found"
+    },
+    "card": {
+      "viewDetails": "View Details",
+      "liveDemo": "Live Demo"
+    },
+    "detail": {
+      "features": "Features",
+      "gettingStarted": "Getting Started Guide"
+    },
+    "noResults": {
+      "title": "No templates found",
+      "description": "Try adjusting your search or filters"
+    },
+    "footer": {
+      "copyright": "Built with Jzero.",
+      "github": "GitHub",
+      "documentation": "Documentation"
+    }
+  },
+  "zh": {
+    "siteTitle": "Jzero 模板市场",
+    "siteDescription": "发现并使用 Jzero 模板来构建你的下一个项目",
+    "nav": {
+      "templates": "模板",
+      "docs": "文档",
+      "github": "GitHub"
+    },
+    "hero": {
+      "searchPlaceholder": "搜索模板..."
+    },
+    "filters": {
+      "category": "分类：",
+      "allCategories": "所有分类",
+      "tags": "标签：",
+      "allTags": "所有标签",
+      "resultsCount": "个模板"
+    },
+    "card": {
+      "viewDetails": "查看详情",
+      "liveDemo": "在线演示"
+    },
+    "detail": {
+      "features": "特性",
+      "gettingStarted": "快速开始指南"
+    },
+    "noResults": {
+      "title": "未找到模板",
+      "description": "尝试调整搜索或筛选条件"
+    },
+    "footer": {
+      "copyright": "由 Jzero 构建。",
+      "github": "GitHub",
+      "documentation": "文档"
+    }
+  }
+}

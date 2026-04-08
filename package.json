@@ -1,7 +1,7 @@
 {
   "name": "jzero-template-market",
   "version": "1.0.0",
-  "description": "JZero Template Market - Static website generator for showcasing templates",
+  "description": "Jzero Template Market - Static website generator for showcasing templates",
   "main": "src/build.js",
   "scripts": {
     "build": "node src/build.js",

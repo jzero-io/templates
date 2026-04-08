@@ -1,7 +1,7 @@
 <!-- Breadcrumb -->
 <nav class="breadcrumb">
   <div class="container">
-    <a href="/">Templates</a>
+    <a href="<%= baseUrl || '' %>/"><%= i18n.nav?.templates || 'Templates' %></a>
     <span class="separator">/</span>
     <span class="current"><%= template.name %></span>
   </div>
@@ -13,9 +13,6 @@
     <header class="template-header-detail">
       <div class="template-meta">
         <span class="template-category"><%= template.category %></span>
-        <span class="difficulty difficulty-<%= template.difficulty %>">
-          <%= template.difficulty %>
-        </span>
       </div>
 
       <h1><%= template.name %></h1>
@@ -49,7 +46,7 @@
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M10 2L3 7v6c0 3.31 2.69 6 6 6h2c3.31 0 6-2.69 6-6V7l-7-5z" stroke="currentColor" stroke-width="2"/>
             </svg>
-            Live Demo
+            <%= i18n.card?.liveDemo || 'Live Demo' %>
           </a>
         <% } %>
 
@@ -68,7 +65,7 @@
       <!-- Features -->
       <% if (template.features && template.features.length > 0) { %>
         <section class="template-features-section">
-          <h2>Features</h2>
+          <h2><%= i18n.detail?.features || 'Features' %></h2>
           <ul class="features-list">
             <% template.features.forEach(feature => { %>
               <li>
@@ -86,7 +83,7 @@
       <!-- Guide -->
       <% if (template.guide) { %>
         <section class="template-guide-section">
-          <h2>Getting Started Guide</h2>
+          <h2><%= i18n.detail?.gettingStarted || 'Getting Started Guide' %></h2>
           <div class="guide-content">
             <%- template.guide %>
           </div>

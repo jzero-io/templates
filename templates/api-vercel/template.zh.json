@@ -1,16 +1,16 @@
 {
   "id": "api-vercel",
-  "name": "API Vercel",
-  "description": "An API template optimized for Vercel deployment",
+  "name": "Vercel API",
+  "description": "专为 Vercel 部署优化的 API 模板",
   "category": "API",
-  "tags": ["api", "vercel", "serverless", "rest"],
-  "difficulty": "beginner",
+  "tags": ["api", "vercel", "无服务器", "rest"],
+  "difficulty": "初级",
   "command": "jzero new simpleapi-vercel --branch api-vercel",
   "branch": "api-vercel",
   "features": [
-    "RESTful API structure",
-    "Vercel serverless deployment",
-    "Built-in middleware"
+    "RESTful API 结构",
+    "Vercel 无服务器部署",
+    "内置中间件"
   ],
   "screenshot": "",
   "demo": "",
