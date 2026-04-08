@@ -603,12 +603,19 @@ body {
   }
 
   .nav {
-    gap: 12px;
+    gap: 8px;
     font-size: 14px;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    margin-top: 8px;
+    flex-wrap: nowrap;
+    margin-left: auto;
+  }
+
+  .nav-github {
+    font-size: 14px;
+  }
+
+  .nav-github svg {
+    width: 18px;
+    height: 18px;
   }
 
   .lang-switcher {
