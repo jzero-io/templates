@@ -7,8 +7,9 @@ let templatesData = [];
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-  // Check if we're on the home page
-  if (document.getElementById('templatesGrid')) {
+  // Check if we're on the home page (any templates grid exists)
+  const hasTemplatesGrid = document.querySelector('[id^="templatesGrid-"]');
+  if (hasTemplatesGrid) {
     initializeHomePage();
   }
 });
@@ -62,14 +63,9 @@ function extractTemplateData() {
  */
 function initializeFilters() {
   const categoryFilter = document.getElementById('categoryFilter');
-  const tagFilter = document.getElementById('tagFilter');
 
   if (categoryFilter) {
     categoryFilter.addEventListener('change', applyFilters);
-  }
-
-  if (tagFilter) {
-    tagFilter.addEventListener('change', applyFilters);
   }
 }
 
@@ -86,11 +82,9 @@ function handleSearch(event) {
  */
 function applyFilters(searchQuery = null) {
   const categoryFilter = document.getElementById('categoryFilter');
-  const tagFilter = document.getElementById('tagFilter');
   const searchInput = document.getElementById('searchInput');
 
   const category = categoryFilter?.value || '';
-  const tag = tagFilter?.value || '';
   const query = searchQuery?.query || (searchInput?.value?.toLowerCase().trim() || '');
 
   let visibleCount = 0;
@@ -100,11 +94,6 @@ function applyFilters(searchQuery = null) {
 
     // Category filter
     if (category && template.category !== category) {
-      isVisible = false;
-    }
-
-    // Tag filter
-    if (tag && !template.tags.includes(tag)) {
       isVisible = false;
     }
 

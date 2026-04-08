@@ -6,6 +6,10 @@
   <title>Home - Jzero Template Market</title>
   <meta name="description" content="Discover and use Jzero templates for your next project">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/highlight.css">
@@ -128,185 +132,305 @@
           
             <option value="Documentation">Documentation</option>
           
-        </select>
-      </div>
-
-      <!-- Tag Filter -->
-      <div class="filter-group">
-        <label>Tags:</label>
-        <select id="tagFilter" class="filter-select">
-          <option value="">All Tags</option>
+            <option value="Gateway">Gateway</option>
           
-            <option value="api">api</option>
-          
-            <option value="automation">automation</option>
-          
-            <option value="blog">blog</option>
-          
-            <option value="cli">cli</option>
-          
-            <option value="command-line">command-line</option>
-          
-            <option value="documentation">documentation</option>
-          
-            <option value="markdown">markdown</option>
-          
-            <option value="rest">rest</option>
-          
-            <option value="serverless">serverless</option>
-          
-            <option value="tool">tool</option>
-          
-            <option value="vercel">vercel</option>
-          
-            <option value="vuepress">vuepress</option>
+            <option value="RPC">RPC</option>
           
         </select>
       </div>
     </div>
 
     <div class="results-count">
-      <span id="resultsCount">3</span> templates found
+      <span id="resultsCount">6</span> templates found
     </div>
   </div>
 </section>
 
 <!-- Templates Grid -->
-<section class="templates">
-  <div class="container">
-    <div class="templates-grid" id="templatesGrid">
-      
-        <article class="template-card" data-id="vuepress-hope-docs">
-          <div class="template-header">
-            <h2 class="template-title">
-              <a href="/en/templates/vuepress-hope-docs/index.html">VuePress Hope Docs</a>
-            </h2>
-            <span class="template-category">Documentation</span>
-          </div>
 
-          <p class="template-description">Documentation site template using VuePress Hope theme</p>
 
+
+  
+  
+    <section class="templates">
+      <div class="container">
+        <h2 class="type-title">Built-in</h2>
+        <div class="templates-grid" id="templatesGrid-embedded">
           
-            <ul class="template-features">
+            <article class="template-card" data-id="rpc">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/en/embedded/rpc/index.html">RPC Service</a>
+                </h2>
+                <span class="template-category">RPC</span>
+              </div>
+
+              <p class="template-description">Build high-performance microservices with gRPC</p>
+
               
-                <li>VuePress Hope theme</li>
+                <ul class="template-features">
+                  
+                    <li>gRPC protocol support</li>
+                  
+                    <li>High performance RPC</li>
+                  
+                    <li>Service mesh ready</li>
+                  
+                </ul>
               
-                <li>Markdown documentation</li>
-              
-                <li>Blog functionality</li>
-              
-            </ul>
+
+              <div class="template-tags">
+                
+                  <span class="tag">rpc</span>
+                
+                  <span class="tag">grpc</span>
+                
+                  <span class="tag">microservices</span>
+                
+                  <span class="tag">backend</span>
+                
+              </div>
+
+              <div class="template-actions">
+                <a href="/en/embedded/rpc/index.html" class="btn btn-primary">
+                  View Details
+                </a>
+                
+              </div>
+            </article>
           
+            <article class="template-card" data-id="gateway">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/en/embedded/gateway/index.html">API Gateway</a>
+                </h2>
+                <span class="template-category">Gateway</span>
+              </div>
 
-          <div class="template-tags">
-            
-              <span class="tag">documentation</span>
-            
-              <span class="tag">vuepress</span>
-            
-              <span class="tag">markdown</span>
-            
-              <span class="tag">blog</span>
-            
-          </div>
+              <p class="template-description">High-performance API gateway supporting both gRPC and HTTP protocols</p>
 
-          <div class="template-actions">
-            <a href="/en/templates/vuepress-hope-docs/index.html" class="btn btn-primary">
-              View Details
-            </a>
-            
-          </div>
-        </article>
-      
-        <article class="template-card" data-id="cli">
-          <div class="template-header">
-            <h2 class="template-title">
-              <a href="/en/templates/cli/index.html">CLI Tool</a>
-            </h2>
-            <span class="template-category">CLI</span>
-          </div>
+              
+                <ul class="template-features">
+                  
+                    <li>Unified gRPC and HTTP interface</li>
+                  
+                    <li>Service discovery and routing</li>
+                  
+                    <li>Load balancing</li>
+                  
+                </ul>
+              
 
-          <p class="template-description">A command-line application template with common CLI patterns</p>
+              <div class="template-tags">
+                
+                  <span class="tag">gateway</span>
+                
+                  <span class="tag">grpc</span>
+                
+                  <span class="tag">http</span>
+                
+                  <span class="tag">microservices</span>
+                
+              </div>
 
+              <div class="template-actions">
+                <a href="/en/embedded/gateway/index.html" class="btn btn-primary">
+                  View Details
+                </a>
+                
+              </div>
+            </article>
           
-            <ul class="template-features">
+            <article class="template-card" data-id="api">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/en/embedded/api/index.html">API Service</a>
+                </h2>
+                <span class="template-category">API</span>
+              </div>
+
+              <p class="template-description">Build RESTful API services with automatic Swagger documentation</p>
+
               
-                <li>Command parsing</li>
+                <ul class="template-features">
+                  
+                    <li>Auto-generated Swagger UI at /swagger</li>
+                  
+                    <li>RESTful API structure</li>
+                  
+                    <li>Model validation</li>
+                  
+                </ul>
               
-                <li>Interactive prompts</li>
-              
-                <li>Configuration management</li>
-              
-            </ul>
+
+              <div class="template-tags">
+                
+                  <span class="tag">api</span>
+                
+                  <span class="tag">rest</span>
+                
+                  <span class="tag">swagger</span>
+                
+                  <span class="tag">backend</span>
+                
+              </div>
+
+              <div class="template-actions">
+                <a href="/en/embedded/api/index.html" class="btn btn-primary">
+                  View Details
+                </a>
+                
+              </div>
+            </article>
           
+        </div>
+      </div>
+    </section>
+  
 
-          <div class="template-tags">
-            
-              <span class="tag">cli</span>
-            
-              <span class="tag">command-line</span>
-            
-              <span class="tag">tool</span>
-            
-              <span class="tag">automation</span>
-            
-          </div>
-
-          <div class="template-actions">
-            <a href="/en/templates/cli/index.html" class="btn btn-primary">
-              View Details
-            </a>
-            
-          </div>
-        </article>
-      
-        <article class="template-card" data-id="api-vercel">
-          <div class="template-header">
-            <h2 class="template-title">
-              <a href="/en/templates/api-vercel/index.html">API Vercel</a>
-            </h2>
-            <span class="template-category">API</span>
-          </div>
-
-          <p class="template-description">An API template optimized for Vercel deployment</p>
-
+  
+  
+    <section class="templates">
+      <div class="container">
+        <h2 class="type-title">Official External</h2>
+        <div class="templates-grid" id="templatesGrid-external">
           
-            <ul class="template-features">
+            <article class="template-card" data-id="vuepress-hope-docs">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/en/external/vuepress-hope-docs/index.html">VuePress Hope Docs</a>
+                </h2>
+                <span class="template-category">Documentation</span>
+              </div>
+
+              <p class="template-description">Documentation site template using VuePress Hope theme</p>
+
               
-                <li>RESTful API structure</li>
+                <ul class="template-features">
+                  
+                    <li>VuePress Hope theme</li>
+                  
+                    <li>Markdown documentation</li>
+                  
+                    <li>Blog functionality</li>
+                  
+                </ul>
               
-                <li>Vercel serverless deployment</li>
-              
-                <li>Built-in middleware</li>
-              
-            </ul>
+
+              <div class="template-tags">
+                
+                  <span class="tag">documentation</span>
+                
+                  <span class="tag">vuepress</span>
+                
+                  <span class="tag">markdown</span>
+                
+                  <span class="tag">blog</span>
+                
+              </div>
+
+              <div class="template-actions">
+                <a href="/en/external/vuepress-hope-docs/index.html" class="btn btn-primary">
+                  View Details
+                </a>
+                
+              </div>
+            </article>
           
+            <article class="template-card" data-id="cli">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/en/external/cli/index.html">CLI Tool</a>
+                </h2>
+                <span class="template-category">CLI</span>
+              </div>
 
-          <div class="template-tags">
-            
-              <span class="tag">api</span>
-            
-              <span class="tag">vercel</span>
-            
-              <span class="tag">serverless</span>
-            
-              <span class="tag">rest</span>
-            
-          </div>
+              <p class="template-description">A command-line application template with common CLI patterns</p>
 
-          <div class="template-actions">
-            <a href="/en/templates/api-vercel/index.html" class="btn btn-primary">
-              View Details
-            </a>
-            
-          </div>
-        </article>
-      
-    </div>
+              
+                <ul class="template-features">
+                  
+                    <li>Command parsing</li>
+                  
+                    <li>Interactive prompts</li>
+                  
+                    <li>Configuration management</li>
+                  
+                </ul>
+              
 
-    
-  </div>
-</section>
+              <div class="template-tags">
+                
+                  <span class="tag">cli</span>
+                
+                  <span class="tag">command-line</span>
+                
+                  <span class="tag">tool</span>
+                
+                  <span class="tag">automation</span>
+                
+              </div>
+
+              <div class="template-actions">
+                <a href="/en/external/cli/index.html" class="btn btn-primary">
+                  View Details
+                </a>
+                
+              </div>
+            </article>
+          
+            <article class="template-card" data-id="api-vercel">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/en/external/api-vercel/index.html">API Vercel</a>
+                </h2>
+                <span class="template-category">API</span>
+              </div>
+
+              <p class="template-description">An API template optimized for Vercel deployment</p>
+
+              
+                <ul class="template-features">
+                  
+                    <li>RESTful API structure</li>
+                  
+                    <li>Vercel serverless deployment</li>
+                  
+                    <li>Built-in middleware</li>
+                  
+                </ul>
+              
+
+              <div class="template-tags">
+                
+                  <span class="tag">api</span>
+                
+                  <span class="tag">vercel</span>
+                
+                  <span class="tag">serverless</span>
+                
+                  <span class="tag">rest</span>
+                
+              </div>
+
+              <div class="template-actions">
+                <a href="/en/external/api-vercel/index.html" class="btn btn-primary">
+                  View Details
+                </a>
+                
+              </div>
+            </article>
+          
+        </div>
+      </div>
+    </section>
+  
+
+  
+  
+
+
+
 
   </main>
 

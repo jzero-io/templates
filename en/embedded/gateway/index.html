@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Gateway - Jzero Template Market</title>
+  <meta name="description" content="High-performance API gateway supporting both gRPC and HTTP protocols">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/en/" class="logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Jzero Template Market</span>
+        </a>
+
+        <nav class="nav">
+          <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener" class="nav-github">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            GitHub
+          </a>
+
+          
+            <div class="lang-switcher">
+              <button
+                class="lang-button"
+                onclick="toggleLangMenu(event)"
+                title="Switch Language"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10z"/>
+                </svg>
+                <span id="currentLangName">EN</span>
+                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+
+              <div class="lang-dropdown" id="langDropdown">
+                
+                  
+                  
+                  
+                    <a
+                      href="/embedded/gateway/"
+                      class="lang-option "
+                    >
+                      中文
+                    </a>
+                  
+                
+                  
+                  
+                  
+                    <a
+                      href="/en/embedded/gateway/"
+                      class="lang-option active"
+                    >
+                      English
+                    </a>
+                  
+                
+              </div>
+            </div>
+          
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Template Detail -->
+<article class="template-detail">
+  <div class="container">
+    <header class="template-header-detail">
+      <div class="template-meta">
+        <span class="template-category">Gateway</span>
+      </div>
+
+      <h1>API Gateway</h1>
+      <p class="template-description-large">High-performance API gateway supporting both gRPC and HTTP protocols</p>
+
+      <div class="template-tags-large">
+        
+          <span class="tag">gateway</span>
+        
+          <span class="tag">grpc</span>
+        
+          <span class="tag">http</span>
+        
+          <span class="tag">microservices</span>
+        
+      </div>
+
+      <div class="template-actions-detail">
+        <div class="command-display">
+          <code>jzero new your_project --frame gateway</code>
+          <button
+            class="copy-button"
+            onclick="copyCommand('jzero new your_project --frame gateway')"
+            title="Copy command"
+            aria-label="Copy command"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+        </div>
+
+        
+          <a href="https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/gateway" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            <span>View Template</span>
+          </a>
+        
+      </div>
+    </header>
+
+    <div class="template-content">
+      <!-- Features -->
+      
+        <section class="template-features-section">
+          <h2>Features</h2>
+          <ul class="features-list">
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Unified gRPC and HTTP interface
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Service discovery and routing
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Load balancing
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Swagger documentation
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Protocol translation
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      <!-- Guide -->
+      
+        <section class="template-guide-section">
+          <h2>Getting Started Guide</h2>
+          <div class="guide-content">
+            <h1>API Gateway Template</h1>
+<p>High-performance API gateway that provides unified access to multiple microservices, supporting both gRPC and HTTP protocols.</p>
+<h2>Features</h2>
+<ul>
+<li>Unified gRPC and HTTP interface</li>
+<li>Service discovery and automatic routing</li>
+<li>Load balancing across multiple service instances</li>
+<li>Swagger documentation for HTTP endpoints</li>
+<li>Protocol translation between gRPC and HTTP</li>
+</ul>
+<h2>Creating a New Project</h2>
+<pre><code class="hljs language-bash">jzero new my-gateway --frame gateway
+<span class="hljs-built_in">cd</span> my-gateway
+jzero run</code></pre><p>The gateway will start listening on the configured port (default: 8001).</p>
+<h2>Architecture</h2>
+<p>The API gateway acts as a single entry point for client requests, routing them to appropriate backend services:</p>
+<ul>
+<li><strong>HTTP Requests</strong>: Directly proxied to HTTP-based microservices</li>
+<li><strong>gRPC Requests</strong>: Translated and routed to gRPC services</li>
+<li><strong>Mixed Services</strong>: Handle both protocols seamlessly</li>
+</ul>
+<h2>Configuration</h2>
+<p>Configure your upstream services in the configuration file:</p>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">upstreams:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">user-service</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">grpc</span>
+    <span class="hljs-attr">address:</span> <span class="hljs-string">localhost:50051</span>
+  
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">order-service</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">http</span>
+    <span class="hljs-attr">address:</span> <span class="hljs-string">http://localhost:8002</span></code></pre><h2>Development</h2>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Run the gateway</span>
+jzero run
+
+<span class="hljs-comment"># Build for production</span>
+jzero build</code></pre><h2>Documentation</h2>
+<p>Access Swagger documentation at <a href="http://localhost:8001/swagger">http://localhost:8001/swagger</a> to explore HTTP endpoints.</p>
+
+          </div>
+        </section>
+      
+    </div>
+  </div>
+</article>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast hidden">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+    <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <span>Command copied to clipboard!</span>
+</div>
+
+<script>
+const currentLang = 'en';
+
+function copyCommand(command) {
+  navigator.clipboard.writeText(command).then(() => {
+    const toast = document.getElementById('toast');
+    const copyButton = document.querySelector('.copy-button');
+
+    // Show success state on button
+    if (copyButton) {
+      copyButton.classList.add('copied');
+      setTimeout(() => {
+        copyButton.classList.remove('copied');
+      }, 1500);
+    }
+
+    // Show toast notification
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 2000);
+  });
+}
+</script>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 jzero-io</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/main.js"></script>
+  <script>
+  function toggleLangMenu(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.classList.toggle('show');
+
+    // Close dropdown when clicking outside
+    setTimeout(() => {
+      document.addEventListener('click', closeLangMenu);
+    }, 10);
+  }
+
+  function closeLangMenu(event) {
+    const dropdown = document.getElementById('langDropdown');
+    const button = document.querySelector('.lang-button');
+    if (!dropdown || !button) return;
+
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      dropdown.classList.remove('show');
+      document.removeEventListener('click', closeLangMenu);
+    }
+  }
+  </script>
+</body>
+</html>

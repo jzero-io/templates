@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CLI Tool - Jzero Template Market</title>
-  <meta name="description" content="A command-line application template with common CLI patterns">
+  <title>RPC Service - Jzero Template Market</title>
+  <meta name="description" content="Build high-performance microservices with gRPC">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -62,7 +66,7 @@
                   
                   
                     <a
-                      href="/templates/cli/"
+                      href="/embedded/rpc/"
                       class="lang-option "
                     >
                       中文
@@ -73,7 +77,7 @@
                   
                   
                     <a
-                      href="/en/templates/cli/"
+                      href="/en/embedded/rpc/"
                       class="lang-option active"
                     >
                       English
@@ -95,30 +99,30 @@
   <div class="container">
     <header class="template-header-detail">
       <div class="template-meta">
-        <span class="template-category">CLI</span>
+        <span class="template-category">RPC</span>
       </div>
 
-      <h1>CLI Tool</h1>
-      <p class="template-description-large">A command-line application template with common CLI patterns</p>
+      <h1>RPC Service</h1>
+      <p class="template-description-large">Build high-performance microservices with gRPC</p>
 
       <div class="template-tags-large">
         
-          <span class="tag">cli</span>
+          <span class="tag">rpc</span>
         
-          <span class="tag">command-line</span>
+          <span class="tag">grpc</span>
         
-          <span class="tag">tool</span>
+          <span class="tag">microservices</span>
         
-          <span class="tag">automation</span>
+          <span class="tag">backend</span>
         
       </div>
 
       <div class="template-actions-detail">
         <div class="command-display">
-          <code>jzero new simplecli --branch cli</code>
+          <code>jzero new your_project --frame rpc</code>
           <button
             class="copy-button"
-            onclick="copyCommand('jzero new simplecli --branch cli')"
+            onclick="copyCommand('jzero new your_project --frame rpc')"
             title="Copy command"
             aria-label="Copy command"
           >
@@ -130,7 +134,7 @@
         </div>
 
         
-          <a href="https://github.com/jzero-io/templates/tree/cli" target="_blank" rel="noopener" class="btn btn-primary">
+          <a href="https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/rpc" target="_blank" rel="noopener" class="btn btn-primary">
             <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
             </svg>
@@ -152,7 +156,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Command parsing
+                gRPC protocol support
               </li>
             
               <li>
@@ -160,7 +164,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Interactive prompts
+                High performance RPC
               </li>
             
               <li>
@@ -168,7 +172,23 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Configuration management
+                Service mesh ready
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Type-safe interfaces
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Binary serialization
               </li>
             
           </ul>
@@ -180,90 +200,65 @@
         <section class="template-guide-section">
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>CLI Tool Template</h1>
-<p>A command-line application template implementing common CLI patterns and best practices.</p>
+            <h1>RPC Service Template</h1>
+<p>Build high-performance microservices using gRPC protocol with type-safe interfaces.</p>
 <h2>Features</h2>
 <ul>
-<li><strong>Command Parsing</strong>: Built-in argument and flag parsing</li>
-<li><strong>Interactive Prompts</strong>: User-friendly interactive input</li>
-<li><strong>Configuration Management</strong>: Support for YAML/TOML/JSON configurations</li>
-<li><strong>Rich Output</strong>: Colored and formatted console output</li>
-<li><strong>Error Handling</strong>: Graceful error messages and exit codes</li>
+<li>Native gRPC protocol support</li>
+<li>High-performance RPC with binary serialization</li>
+<li>Service mesh ready architecture</li>
+<li>Type-safe interfaces with Protocol Buffers</li>
+<li>Efficient data transmission</li>
 </ul>
-<h2>Getting Started</h2>
-<pre><code class="hljs language-bash">jzero new simplecli --branch cli
-<span class="hljs-built_in">cd</span> simplecli
-go mod tidy
-go build -o cli main.go
-./cli --<span class="hljs-built_in">help</span></code></pre><h2>Project Structure</h2>
-<pre><code class="hljs language-plaintext">.
-├── cmd<span class="hljs-symbol">/</span>             <span class="hljs-comment"># Command implementations</span>
-├── config<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Configuration handling</span>
-├── internal<span class="hljs-symbol">/</span>
-│   ├── printer<span class="hljs-symbol">/</span>     <span class="hljs-comment"># Output formatting</span>
-│   └── validator<span class="hljs-symbol">/</span>   <span class="hljs-comment"># Input validation</span>
-├── main.go          <span class="hljs-comment"># Entry point</span>
-└── config.yaml      <span class="hljs-comment"># Default configuration</span></code></pre><h2>Usage Examples</h2>
-<h3>Basic Command</h3>
-<pre><code class="hljs language-bash">./cli command-name --flag value</code></pre><h3>Interactive Mode</h3>
-<pre><code class="hljs language-bash">./cli interactive
-<span class="hljs-comment"># Follow the prompts...</span></code></pre><h3>Configuration File</h3>
-<p>Create <code>config.yaml</code>:</p>
-<pre><code class="hljs language-yaml"><span class="hljs-attr">logLevel:</span> <span class="hljs-string">info</span>
-<span class="hljs-attr">outputFormat:</span> <span class="hljs-string">json</span>
-<span class="hljs-attr">timeout:</span> <span class="hljs-string">30s</span></code></pre><p>Run with config:</p>
-<pre><code class="hljs language-bash">./cli --config config.yaml</code></pre><h2>Adding New Commands</h2>
-<ol>
-<li>Create command file in <code>cmd/</code>:</li>
-</ol>
-<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> cmd
+<h2>Creating a New Project</h2>
+<pre><code class="hljs language-bash">jzero new my-rpc --frame rpc
+<span class="hljs-built_in">cd</span> my-rpc
+jzero run</code></pre><p>Your RPC service will start on the configured port (default: 50051).</p>
+<h2>Protocol Buffers</h2>
+<p>Define your service interface in <code>.proto</code> files:</p>
+<pre><code class="hljs language-protobuf">syntax = <span class="hljs-string">&quot;proto3&quot;</span>;
 
-<span class="hljs-keyword">import</span> (
-    <span class="hljs-string">&quot;github.com/urfave/cli/v2&quot;</span>
-)
+<span class="hljs-keyword">package</span> service;
+<span class="hljs-keyword">option</span> go_package = <span class="hljs-string">&quot;./service&quot;</span>;
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewExampleCommand</span><span class="hljs-params">()</span></span> *cli.Command {
-    <span class="hljs-keyword">return</span> &amp;cli.Command{
-        Name:  <span class="hljs-string">&quot;example&quot;</span>,
-        Usage: <span class="hljs-string">&quot;Example command description&quot;</span>,
-        Flags: []cli.Flag{
-            &amp;cli.StringFlag{
-                Name:  <span class="hljs-string">&quot;input&quot;</span>,
-                Usage: <span class="hljs-string">&quot;Input file path&quot;</span>,
-            },
-        },
-        Action: <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(c *cli.Context)</span></span> <span class="hljs-type">error</span> {
-            <span class="hljs-comment">// Your logic here</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
-        },
-    }
-}</code></pre><ol start="2">
-<li>Register in <code>main.go</code>:</li>
-</ol>
-<pre><code class="hljs language-go">app.Commands = <span class="hljs-built_in">append</span>(app.Commands, cmd.NewExampleCommand())</code></pre><h2>Building and Distribution</h2>
-<h3>Build for Multiple Platforms</h3>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># macOS</span>
-GOOS=darwin GOARCH=amd64 go build -o cli-darwin-amd64 main.go
+<span class="hljs-keyword">service </span><span class="hljs-title class_">Greeter</span> {
+  <span class="hljs-function"><span class="hljs-keyword">rpc</span> SayHello (HelloRequest) <span class="hljs-keyword">returns</span> (HelloReply) </span>{}
+}
 
-<span class="hljs-comment"># Linux</span>
-GOOS=linux GOARCH=amd64 go build -o cli-linux-amd64 main.go
+<span class="hljs-keyword">message </span><span class="hljs-title class_">HelloRequest</span> {
+  <span class="hljs-type">string</span> name = <span class="hljs-number">1</span>;
+}
 
-<span class="hljs-comment"># Windows</span>
-GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go</code></pre><h3>Homebrew Installation (Optional)</h3>
-<p>Create tap for easy installation:</p>
-<pre><code class="hljs language-bash">brew tap yourusername/cli
-brew install yourusername/cli/cli</code></pre><h2>Best Practices</h2>
-<ol>
-<li><strong>Exit Codes</strong>: Use standard exit codes (0 for success, 1 for errors)</li>
-<li><strong>Error Messages</strong>: Provide helpful error messages and suggestions</li>
-<li><strong>Flags</strong>: Use both short and long flags (<code>-v</code> and <code>--verbose</code>)</li>
-<li><strong>Help Text</strong>: Include examples in command help text</li>
-<li><strong>Testing</strong>: Write tests for your command logic</li>
-</ol>
-<h2>Learn More</h2>
+<span class="hljs-keyword">message </span><span class="hljs-title class_">HelloReply</span> {
+  <span class="hljs-type">string</span> message = <span class="hljs-number">2</span>;
+}</code></pre><h2>Project Structure</h2>
+<pre><code class="hljs language-plaintext">my-rpc<span class="hljs-symbol">/</span>
+├── proto<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Protocol Buffer definitions</span>
+├── internal<span class="hljs-symbol">/</span>       <span class="hljs-comment"># Internal implementation</span>
+├── service<span class="hljs-symbol">/</span>        <span class="hljs-comment"># Generated gRPC code</span>
+└── main.go         <span class="hljs-comment"># Application entry point</span></code></pre><h2>Development</h2>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Run the service</span>
+jzero run
+
+<span class="hljs-comment"># Generate gRPC code from proto files</span>
+jzero proto
+
+<span class="hljs-comment"># Build for production</span>
+jzero build</code></pre><h2>Client Example</h2>
+<p>Create a client to connect to your RPC service:</p>
+<pre><code class="hljs language-go">conn, err := grpc.Dial(<span class="hljs-string">&quot;localhost:50051&quot;</span>, grpc.WithTransportCredentials(insecure.NewCredentials()))
+<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+    log.Fatal(err)
+}
+<span class="hljs-keyword">defer</span> conn.Close()
+
+client := pb.NewGreeterClient(conn)
+resp, err := client.SayHello(ctx, &amp;pb.HelloRequest{Name: <span class="hljs-string">&quot;World&quot;</span>})</code></pre><h2>Benefits of gRPC</h2>
 <ul>
-<li><a href="https://cli.urfave.org/">urfave/cli Documentation</a></li>
-<li><a href="https://clig.dev/">Command Line Interface Guidelines</a></li>
+<li><strong>Performance</strong>: Binary serialization is faster than JSON</li>
+<li><strong>Type Safety</strong>: Compile-time type checking</li>
+<li><strong>Code Generation</strong>: Client and server code generated from proto files</li>
+<li><strong>Interoperability</strong>: Works across multiple programming languages</li>
 </ul>
 
           </div>

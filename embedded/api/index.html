@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API 服务 - Jzero 模板市场</title>
+  <meta name="description" content="构建带有自动 Swagger 文档的 RESTful API 服务">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/" class="logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Jzero 模板市场</span>
+        </a>
+
+        <nav class="nav">
+          <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener" class="nav-github">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            GitHub
+          </a>
+
+          
+            <div class="lang-switcher">
+              <button
+                class="lang-button"
+                onclick="toggleLangMenu(event)"
+                title="切换语言"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10z"/>
+                </svg>
+                <span id="currentLangName">中文</span>
+                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+
+              <div class="lang-dropdown" id="langDropdown">
+                
+                  
+                  
+                  
+                    <a
+                      href="/embedded/api/"
+                      class="lang-option active"
+                    >
+                      中文
+                    </a>
+                  
+                
+                  
+                  
+                  
+                    <a
+                      href="/en/embedded/api/"
+                      class="lang-option "
+                    >
+                      English
+                    </a>
+                  
+                
+              </div>
+            </div>
+          
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Template Detail -->
+<article class="template-detail">
+  <div class="container">
+    <header class="template-header-detail">
+      <div class="template-meta">
+        <span class="template-category">API</span>
+      </div>
+
+      <h1>API 服务</h1>
+      <p class="template-description-large">构建带有自动 Swagger 文档的 RESTful API 服务</p>
+
+      <div class="template-tags-large">
+        
+          <span class="tag">api</span>
+        
+          <span class="tag">rest</span>
+        
+          <span class="tag">swagger</span>
+        
+          <span class="tag">后端</span>
+        
+      </div>
+
+      <div class="template-actions-detail">
+        <div class="command-display">
+          <code>jzero new your_project --frame api</code>
+          <button
+            class="copy-button"
+            onclick="copyCommand('jzero new your_project --frame api')"
+            title="复制命令"
+            aria-label="复制命令"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+        </div>
+
+        
+          <a href="https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/api" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            <span>查看模板</span>
+          </a>
+        
+      </div>
+    </header>
+
+    <div class="template-content">
+      <!-- Features -->
+      
+        <section class="template-features-section">
+          <h2>特性</h2>
+          <ul class="features-list">
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                自动生成 Swagger UI 文档
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                RESTful API 结构
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                数据模型验证
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                支持 Redis 缓存
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                数据库 ORM 集成
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      <!-- Guide -->
+      
+        <section class="template-guide-section">
+          <h2>快速开始指南</h2>
+          <div class="guide-content">
+            <h1>API 服务模板</h1>
+<p>构建带有自动 Swagger 文档生成的 RESTful API 服务。</p>
+<h2>特性</h2>
+<ul>
+<li>自动生成 Swagger UI 文档，访问 <code>/swagger</code> 即可查看</li>
+<li>遵循最佳实践的 RESTful API 结构</li>
+<li>请求/响应数据模型验证</li>
+<li>可选的 Redis 缓存支持</li>
+<li>数据库 ORM 集成</li>
+</ul>
+<h2>创建新项目</h2>
+<pre><code class="hljs language-bash">jzero new my-api --frame api
+<span class="hljs-built_in">cd</span> my-api
+jzero run</code></pre><p>启动服务后，访问 <a href="http://localhost:8001/swagger">http://localhost:8001/swagger</a> 查看交互式 API 文档。</p>
+<h2>可选功能</h2>
+<p>创建项目时可以启用额外的功能：</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 启用数据模型验证</span>
+jzero new my-api --frame api --feature=model
+
+<span class="hljs-comment"># 启用 Redis 缓存</span>
+jzero new my-api --frame api --feature=redis
+
+<span class="hljs-comment"># 同时启用模型和 Redis</span>
+jzero new my-api --frame api --feature=model+redis
+
+<span class="hljs-comment"># 启用缓存</span>
+jzero new my-api --frame api --feature=cache</code></pre><h2>项目结构</h2>
+<pre><code class="hljs language-plaintext">my-api<span class="hljs-symbol">/</span>
+├── api<span class="hljs-symbol">/</span>           <span class="hljs-comment"># API 处理器</span>
+├── model<span class="hljs-symbol">/</span>         <span class="hljs-comment"># 数据模型（如果启用）</span>
+├── internal<span class="hljs-symbol">/</span>      <span class="hljs-comment"># 内部包</span>
+└── main.go        <span class="hljs-comment"># 应用入口</span></code></pre><h2>开发</h2>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 运行开发服务器</span>
+jzero run
+
+<span class="hljs-comment"># 构建生产版本</span>
+jzero build</code></pre><p>Swagger 文档会根据您的 API 定义自动更新。</p>
+
+          </div>
+        </section>
+      
+    </div>
+  </div>
+</article>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast hidden">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+    <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <span>命令已复制到剪贴板！</span>
+</div>
+
+<script>
+const currentLang = 'zh';
+
+function copyCommand(command) {
+  navigator.clipboard.writeText(command).then(() => {
+    const toast = document.getElementById('toast');
+    const copyButton = document.querySelector('.copy-button');
+
+    // Show success state on button
+    if (copyButton) {
+      copyButton.classList.add('copied');
+      setTimeout(() => {
+        copyButton.classList.remove('copied');
+      }, 1500);
+    }
+
+    // Show toast notification
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 2000);
+  });
+}
+</script>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 jzero-io</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/main.js"></script>
+  <script>
+  function toggleLangMenu(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.classList.toggle('show');
+
+    // Close dropdown when clicking outside
+    setTimeout(() => {
+      document.addEventListener('click', closeLangMenu);
+    }, 10);
+  }
+
+  function closeLangMenu(event) {
+    const dropdown = document.getElementById('langDropdown');
+    const button = document.querySelector('.lang-button');
+    if (!dropdown || !button) return;
+
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      dropdown.classList.remove('show');
+      document.removeEventListener('click', closeLangMenu);
+    }
+  }
+  </script>
+</body>
+</html>

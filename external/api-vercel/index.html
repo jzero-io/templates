@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>命令行工具 - Jzero 模板市场</title>
-  <meta name="description" content="具有常见 CLI 模式的命令行应用程序模板">
+  <title>Vercel API - Jzero 模板市场</title>
+  <meta name="description" content="专为 Vercel 部署优化的 API 模板">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -62,7 +66,7 @@
                   
                   
                     <a
-                      href="/templates/cli/"
+                      href="/external/api-vercel/"
                       class="lang-option active"
                     >
                       中文
@@ -73,7 +77,7 @@
                   
                   
                     <a
-                      href="/en/templates/cli/"
+                      href="/en/external/api-vercel/"
                       class="lang-option "
                     >
                       English
@@ -95,30 +99,30 @@
   <div class="container">
     <header class="template-header-detail">
       <div class="template-meta">
-        <span class="template-category">CLI</span>
+        <span class="template-category">API</span>
       </div>
 
-      <h1>命令行工具</h1>
-      <p class="template-description-large">具有常见 CLI 模式的命令行应用程序模板</p>
+      <h1>Vercel API</h1>
+      <p class="template-description-large">专为 Vercel 部署优化的 API 模板</p>
 
       <div class="template-tags-large">
         
-          <span class="tag">cli</span>
+          <span class="tag">api</span>
         
-          <span class="tag">命令行</span>
+          <span class="tag">vercel</span>
         
-          <span class="tag">工具</span>
+          <span class="tag">无服务器</span>
         
-          <span class="tag">自动化</span>
+          <span class="tag">rest</span>
         
       </div>
 
       <div class="template-actions-detail">
         <div class="command-display">
-          <code>jzero new simplecli --branch cli</code>
+          <code>jzero new simpleapi-vercel --branch api-vercel</code>
           <button
             class="copy-button"
-            onclick="copyCommand('jzero new simplecli --branch cli')"
+            onclick="copyCommand('jzero new simpleapi-vercel --branch api-vercel')"
             title="复制命令"
             aria-label="复制命令"
           >
@@ -130,7 +134,7 @@
         </div>
 
         
-          <a href="https://github.com/jzero-io/templates/tree/cli" target="_blank" rel="noopener" class="btn btn-primary">
+          <a href="https://github.com/jzero-io/templates/tree/api-vercel" target="_blank" rel="noopener" class="btn btn-primary">
             <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
             </svg>
@@ -152,7 +156,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                命令解析
+                RESTful API 结构
               </li>
             
               <li>
@@ -160,7 +164,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                交互式提示
+                Vercel 无服务器部署
               </li>
             
               <li>
@@ -168,15 +172,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                配置管理
-              </li>
-            
-              <li>
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
-                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                输出格式化
+                内置中间件
               </li>
             
           </ul>
@@ -188,90 +184,57 @@
         <section class="template-guide-section">
           <h2>快速开始指南</h2>
           <div class="guide-content">
-            <h1>命令行工具模板</h1>
-<p>一个命令行应用程序模板，实现了常见的 CLI 模式和最佳实践。</p>
+            <h1>Vercel API 模板</h1>
+<p>专为 Vercel 无服务器部署优化的 API 模板。</p>
 <h2>特性</h2>
 <ul>
-<li><strong>命令解析</strong>：内置参数和标志解析</li>
-<li><strong>交互式提示</strong>：用户友好的交互输入</li>
-<li><strong>配置管理</strong>：支持 YAML/TOML/JSON 配置</li>
-<li><strong>丰富的输出</strong>：彩色和格式化的控制台输出</li>
-<li><strong>错误处理</strong>：优雅的错误消息和退出码</li>
+<li><strong>RESTful API 结构</strong>：清晰有序的 API 设计</li>
+<li><strong>Vercel 无服务器部署</strong>：专为 Vercel 无服务器函数优化</li>
+<li><strong>内置中间件</strong>：开箱即用的常用中间件</li>
+<li><strong>示例端点</strong>：现成可用的 API 示例端点</li>
 </ul>
 <h2>快速开始</h2>
-<pre><code class="hljs language-bash">jzero new simplecli --branch cli
-<span class="hljs-built_in">cd</span> simplecli
-go mod tidy
-go build -o cli main.go
-./cli --<span class="hljs-built_in">help</span></code></pre><h2>项目结构</h2>
+<pre><code class="hljs language-bash">jzero new simpleapi-vercel --branch api-vercel
+<span class="hljs-built_in">cd</span> simpleapi-vercel</code></pre><h2>项目结构</h2>
 <pre><code class="hljs language-plaintext">.
-├── cmd<span class="hljs-symbol">/</span>             <span class="hljs-comment"># 命令实现</span>
-├── config<span class="hljs-symbol">/</span>          <span class="hljs-comment"># 配置处理</span>
-├── internal<span class="hljs-symbol">/</span>
-│   ├── printer<span class="hljs-symbol">/</span>     <span class="hljs-comment"># 输出格式化</span>
-│   └── validator<span class="hljs-symbol">/</span>   <span class="hljs-comment"># 输入验证</span>
-├── main.go          <span class="hljs-comment"># 入口点</span>
-└── config.yaml      <span class="hljs-comment"># 默认配置</span></code></pre><h2>使用示例</h2>
-<h3>基本命令</h3>
-<pre><code class="hljs language-bash">./cli command-name --flag value</code></pre><h3>交互模式</h3>
-<pre><code class="hljs language-bash">./cli interactive
-<span class="hljs-comment"># 按照提示操作...</span></code></pre><h3>配置文件</h3>
-<p>创建 <code>config.yaml</code>：</p>
-<pre><code class="hljs language-yaml"><span class="hljs-attr">logLevel:</span> <span class="hljs-string">info</span>
-<span class="hljs-attr">outputFormat:</span> <span class="hljs-string">json</span>
-<span class="hljs-attr">timeout:</span> <span class="hljs-string">30s</span></code></pre><p>使用配置运行：</p>
-<pre><code class="hljs language-bash">./cli --config config.yaml</code></pre><h2>添加新命令</h2>
-<ol>
-<li>在 <code>cmd/</code> 中创建命令文件：</li>
-</ol>
-<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> cmd
+├── api<span class="hljs-symbol">/</span>              <span class="hljs-comment"># API 端点</span>
+│   ├── handlers<span class="hljs-symbol">/</span>     <span class="hljs-comment"># 请求处理器</span>
+│   ├── logic<span class="hljs-symbol">/</span>        <span class="hljs-comment"># 业务逻辑</span>
+│   └── middleware<span class="hljs-symbol">/</span>   <span class="hljs-comment"># 中间件函数</span>
+├── internal<span class="hljs-symbol">/</span>         <span class="hljs-comment"># 内部包</span>
+├── go.mod            <span class="hljs-comment"># Go 模块文件</span>
+└── vercel.json       <span class="hljs-comment"># Vercel 配置</span></code></pre><h2>使用示例</h2>
+<h3>创建新端点</h3>
+<pre><code class="hljs language-go"><span class="hljs-comment">// api/hello/hello.go</span>
+<span class="hljs-keyword">package</span> hello
 
 <span class="hljs-keyword">import</span> (
-    <span class="hljs-string">&quot;github.com/urfave/cli/v2&quot;</span>
+    <span class="hljs-string">&quot;net/http&quot;</span>
+    
+    <span class="hljs-string">&quot;github.com/zeromicro/go-zero/rest/httpx&quot;</span>
 )
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewExampleCommand</span><span class="hljs-params">()</span></span> *cli.Command {
-    <span class="hljs-keyword">return</span> &amp;cli.Command{
-        Name:  <span class="hljs-string">&quot;example&quot;</span>,
-        Usage: <span class="hljs-string">&quot;示例命令描述&quot;</span>,
-        Flags: []cli.Flag{
-            &amp;cli.StringFlag{
-                Name:  <span class="hljs-string">&quot;input&quot;</span>,
-                Usage: <span class="hljs-string">&quot;输入文件路径&quot;</span>,
-            },
-        },
-        Action: <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(c *cli.Context)</span></span> <span class="hljs-type">error</span> {
-            <span class="hljs-comment">// 你的逻辑</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
-        },
-    }
-}</code></pre><ol start="2">
-<li>在 <code>main.go</code> 中注册：</li>
-</ol>
-<pre><code class="hljs language-go">app.Commands = <span class="hljs-built_in">append</span>(app.Commands, cmd.NewExampleCommand())</code></pre><h2>构建和分发</h2>
-<h3>为多平台构建</h3>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># macOS</span>
-GOOS=darwin GOARCH=amd64 go build -o cli-darwin-amd64 main.go
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Handler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+    httpx.OkJson(w, <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>{
+        <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Hello from Vercel!&quot;</span>,
+    })
+}</code></pre><h3>部署到 Vercel</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 安装 Vercel CLI</span>
+npm i -g vercel
 
-<span class="hljs-comment"># Linux</span>
-GOOS=linux GOARCH=amd64 go build -o cli-linux-amd64 main.go
-
-<span class="hljs-comment"># Windows</span>
-GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go</code></pre><h3>Homebrew 安装（可选）</h3>
-<p>创建 tap 以便于安装：</p>
-<pre><code class="hljs language-bash">brew tap yourusername/cli
-brew install yourusername/cli/cli</code></pre><h2>最佳实践</h2>
-<ol>
-<li><strong>退出码</strong>：使用标准退出码（0 表示成功，1 表示错误）</li>
-<li><strong>错误消息</strong>：提供有用的错误消息和建议</li>
-<li><strong>标志</strong>：同时使用短标志和长标志（<code>-v</code> 和 <code>--verbose</code>）</li>
-<li><strong>帮助文本</strong>：在命令帮助文本中包含示例</li>
-<li><strong>测试</strong>：为命令逻辑编写测试</li>
-</ol>
-<h2>更多信息</h2>
+<span class="hljs-comment"># 部署</span>
+vercel</code></pre><h2>配置</h2>
+<h3>vercel.json</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;functions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;api/**/*.go&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;runtime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;go1.x&quot;</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre><h2>更多信息</h2>
 <ul>
-<li><a href="https://cli.urfave.org/">urfave/cli 文档</a></li>
-<li><a href="https://clig.dev/">命令行界面指南</a></li>
+<li><a href="https://vercel.com/docs">Vercel 文档</a></li>
+<li><a href="https://go-zero.dev/">Go-Zero 文档</a></li>
 </ul>
 
           </div>

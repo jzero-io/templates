@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CLI Tool - Jzero Template Market</title>
+  <meta name="description" content="A command-line application template with common CLI patterns">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/en/" class="logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Jzero Template Market</span>
+        </a>
+
+        <nav class="nav">
+          <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener" class="nav-github">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            GitHub
+          </a>
+
+          
+            <div class="lang-switcher">
+              <button
+                class="lang-button"
+                onclick="toggleLangMenu(event)"
+                title="Switch Language"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10z"/>
+                </svg>
+                <span id="currentLangName">EN</span>
+                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+
+              <div class="lang-dropdown" id="langDropdown">
+                
+                  
+                  
+                  
+                    <a
+                      href="/external/cli/"
+                      class="lang-option "
+                    >
+                      中文
+                    </a>
+                  
+                
+                  
+                  
+                  
+                    <a
+                      href="/en/external/cli/"
+                      class="lang-option active"
+                    >
+                      English
+                    </a>
+                  
+                
+              </div>
+            </div>
+          
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Template Detail -->
+<article class="template-detail">
+  <div class="container">
+    <header class="template-header-detail">
+      <div class="template-meta">
+        <span class="template-category">CLI</span>
+      </div>
+
+      <h1>CLI Tool</h1>
+      <p class="template-description-large">A command-line application template with common CLI patterns</p>
+
+      <div class="template-tags-large">
+        
+          <span class="tag">cli</span>
+        
+          <span class="tag">command-line</span>
+        
+          <span class="tag">tool</span>
+        
+          <span class="tag">automation</span>
+        
+      </div>
+
+      <div class="template-actions-detail">
+        <div class="command-display">
+          <code>jzero new simplecli --branch cli</code>
+          <button
+            class="copy-button"
+            onclick="copyCommand('jzero new simplecli --branch cli')"
+            title="Copy command"
+            aria-label="Copy command"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
+        </div>
+
+        
+          <a href="https://github.com/jzero-io/templates/tree/cli" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            <span>View Template</span>
+          </a>
+        
+      </div>
+    </header>
+
+    <div class="template-content">
+      <!-- Features -->
+      
+        <section class="template-features-section">
+          <h2>Features</h2>
+          <ul class="features-list">
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Command parsing
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Interactive prompts
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Configuration management
+              </li>
+            
+          </ul>
+        </section>
+      
+
+      <!-- Guide -->
+      
+        <section class="template-guide-section">
+          <h2>Getting Started Guide</h2>
+          <div class="guide-content">
+            <h1>CLI Tool Template</h1>
+<p>A command-line application template implementing common CLI patterns and best practices.</p>
+<h2>Features</h2>
+<ul>
+<li><strong>Command Parsing</strong>: Built-in argument and flag parsing</li>
+<li><strong>Interactive Prompts</strong>: User-friendly interactive input</li>
+<li><strong>Configuration Management</strong>: Support for YAML/TOML/JSON configurations</li>
+<li><strong>Rich Output</strong>: Colored and formatted console output</li>
+<li><strong>Error Handling</strong>: Graceful error messages and exit codes</li>
+</ul>
+<h2>Getting Started</h2>
+<pre><code class="hljs language-bash">jzero new simplecli --branch cli
+<span class="hljs-built_in">cd</span> simplecli
+go mod tidy
+go build -o cli main.go
+./cli --<span class="hljs-built_in">help</span></code></pre><h2>Project Structure</h2>
+<pre><code class="hljs language-plaintext">.
+├── cmd<span class="hljs-symbol">/</span>             <span class="hljs-comment"># Command implementations</span>
+├── config<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Configuration handling</span>
+├── internal<span class="hljs-symbol">/</span>
+│   ├── printer<span class="hljs-symbol">/</span>     <span class="hljs-comment"># Output formatting</span>
+│   └── validator<span class="hljs-symbol">/</span>   <span class="hljs-comment"># Input validation</span>
+├── main.go          <span class="hljs-comment"># Entry point</span>
+└── config.yaml      <span class="hljs-comment"># Default configuration</span></code></pre><h2>Usage Examples</h2>
+<h3>Basic Command</h3>
+<pre><code class="hljs language-bash">./cli command-name --flag value</code></pre><h3>Interactive Mode</h3>
+<pre><code class="hljs language-bash">./cli interactive
+<span class="hljs-comment"># Follow the prompts...</span></code></pre><h3>Configuration File</h3>
+<p>Create <code>config.yaml</code>:</p>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">logLevel:</span> <span class="hljs-string">info</span>
+<span class="hljs-attr">outputFormat:</span> <span class="hljs-string">json</span>
+<span class="hljs-attr">timeout:</span> <span class="hljs-string">30s</span></code></pre><p>Run with config:</p>
+<pre><code class="hljs language-bash">./cli --config config.yaml</code></pre><h2>Adding New Commands</h2>
+<ol>
+<li>Create command file in <code>cmd/</code>:</li>
+</ol>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> cmd
+
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;github.com/urfave/cli/v2&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewExampleCommand</span><span class="hljs-params">()</span></span> *cli.Command {
+    <span class="hljs-keyword">return</span> &amp;cli.Command{
+        Name:  <span class="hljs-string">&quot;example&quot;</span>,
+        Usage: <span class="hljs-string">&quot;Example command description&quot;</span>,
+        Flags: []cli.Flag{
+            &amp;cli.StringFlag{
+                Name:  <span class="hljs-string">&quot;input&quot;</span>,
+                Usage: <span class="hljs-string">&quot;Input file path&quot;</span>,
+            },
+        },
+        Action: <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(c *cli.Context)</span></span> <span class="hljs-type">error</span> {
+            <span class="hljs-comment">// Your logic here</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
+        },
+    }
+}</code></pre><ol start="2">
+<li>Register in <code>main.go</code>:</li>
+</ol>
+<pre><code class="hljs language-go">app.Commands = <span class="hljs-built_in">append</span>(app.Commands, cmd.NewExampleCommand())</code></pre><h2>Building and Distribution</h2>
+<h3>Build for Multiple Platforms</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># macOS</span>
+GOOS=darwin GOARCH=amd64 go build -o cli-darwin-amd64 main.go
+
+<span class="hljs-comment"># Linux</span>
+GOOS=linux GOARCH=amd64 go build -o cli-linux-amd64 main.go
+
+<span class="hljs-comment"># Windows</span>
+GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go</code></pre><h3>Homebrew Installation (Optional)</h3>
+<p>Create tap for easy installation:</p>
+<pre><code class="hljs language-bash">brew tap yourusername/cli
+brew install yourusername/cli/cli</code></pre><h2>Best Practices</h2>
+<ol>
+<li><strong>Exit Codes</strong>: Use standard exit codes (0 for success, 1 for errors)</li>
+<li><strong>Error Messages</strong>: Provide helpful error messages and suggestions</li>
+<li><strong>Flags</strong>: Use both short and long flags (<code>-v</code> and <code>--verbose</code>)</li>
+<li><strong>Help Text</strong>: Include examples in command help text</li>
+<li><strong>Testing</strong>: Write tests for your command logic</li>
+</ol>
+<h2>Learn More</h2>
+<ul>
+<li><a href="https://cli.urfave.org/">urfave/cli Documentation</a></li>
+<li><a href="https://clig.dev/">Command Line Interface Guidelines</a></li>
+</ul>
+
+          </div>
+        </section>
+      
+    </div>
+  </div>
+</article>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast hidden">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+    <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <span>Command copied to clipboard!</span>
+</div>
+
+<script>
+const currentLang = 'en';
+
+function copyCommand(command) {
+  navigator.clipboard.writeText(command).then(() => {
+    const toast = document.getElementById('toast');
+    const copyButton = document.querySelector('.copy-button');
+
+    // Show success state on button
+    if (copyButton) {
+      copyButton.classList.add('copied');
+      setTimeout(() => {
+        copyButton.classList.remove('copied');
+      }, 1500);
+    }
+
+    // Show toast notification
+    toast.classList.remove('hidden');
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 2000);
+  });
+}
+</script>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 jzero-io</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/main.js"></script>
+  <script>
+  function toggleLangMenu(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.classList.toggle('show');
+
+    // Close dropdown when clicking outside
+    setTimeout(() => {
+      document.addEventListener('click', closeLangMenu);
+    }, 10);
+  }
+
+  function closeLangMenu(event) {
+    const dropdown = document.getElementById('langDropdown');
+    const button = document.querySelector('.lang-button');
+    if (!dropdown || !button) return;
+
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      dropdown.classList.remove('show');
+      document.removeEventListener('click', closeLangMenu);
+    }
+  }
+  </script>
+</body>
+</html>

@@ -6,6 +6,10 @@
   <title>Home - Jzero 模板市场</title>
   <meta name="description" content="发现并使用 Jzero 模板来构建你的下一个项目">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="stylesheet" href="/assets/css/highlight.css">
@@ -126,187 +130,307 @@
           
             <option value="CLI">CLI</option>
           
-            <option value="文档">文档</option>
-          
-        </select>
-      </div>
-
-      <!-- Tag Filter -->
-      <div class="filter-group">
-        <label>标签：</label>
-        <select id="tagFilter" class="filter-select">
-          <option value="">所有标签</option>
-          
-            <option value="api">api</option>
-          
-            <option value="cli">cli</option>
-          
-            <option value="markdown">markdown</option>
-          
-            <option value="rest">rest</option>
-          
-            <option value="vercel">vercel</option>
-          
-            <option value="vuepress">vuepress</option>
-          
-            <option value="博客">博客</option>
-          
-            <option value="命令行">命令行</option>
-          
-            <option value="工具">工具</option>
+            <option value="RPC">RPC</option>
           
             <option value="文档">文档</option>
           
-            <option value="无服务器">无服务器</option>
-          
-            <option value="自动化">自动化</option>
+            <option value="网关">网关</option>
           
         </select>
       </div>
     </div>
 
     <div class="results-count">
-      <span id="resultsCount">3</span> 个模板
+      <span id="resultsCount">6</span> 个模板
     </div>
   </div>
 </section>
 
 <!-- Templates Grid -->
-<section class="templates">
-  <div class="container">
-    <div class="templates-grid" id="templatesGrid">
-      
-        <article class="template-card" data-id="vuepress-hope-docs">
-          <div class="template-header">
-            <h2 class="template-title">
-              <a href="/templates/vuepress-hope-docs/index.html">VuePress Hope 文档</a>
-            </h2>
-            <span class="template-category">文档</span>
-          </div>
 
-          <p class="template-description">使用 VuePress Hope 主题的文档站点模板</p>
 
+
+  
+  
+    <section class="templates">
+      <div class="container">
+        <h2 class="type-title">内置模板</h2>
+        <div class="templates-grid" id="templatesGrid-embedded">
           
-            <ul class="template-features">
+            <article class="template-card" data-id="rpc">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/embedded/rpc/index.html">RPC 服务</a>
+                </h2>
+                <span class="template-category">RPC</span>
+              </div>
+
+              <p class="template-description">使用 gRPC 构建高性能微服务</p>
+
               
-                <li>VuePress Hope 主题</li>
+                <ul class="template-features">
+                  
+                    <li>支持 gRPC 协议</li>
+                  
+                    <li>高性能 RPC 调用</li>
+                  
+                    <li>服务网格就绪</li>
+                  
+                </ul>
               
-                <li>Markdown 文档</li>
-              
-                <li>博客功能</li>
-              
-            </ul>
+
+              <div class="template-tags">
+                
+                  <span class="tag">rpc</span>
+                
+                  <span class="tag">grpc</span>
+                
+                  <span class="tag">微服务</span>
+                
+                  <span class="tag">后端</span>
+                
+              </div>
+
+              <div class="template-actions">
+                <a href="/embedded/rpc/index.html" class="btn btn-primary">
+                  查看详情
+                </a>
+                
+              </div>
+            </article>
           
+            <article class="template-card" data-id="gateway">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/embedded/gateway/index.html">API 网关</a>
+                </h2>
+                <span class="template-category">网关</span>
+              </div>
 
-          <div class="template-tags">
-            
-              <span class="tag">文档</span>
-            
-              <span class="tag">vuepress</span>
-            
-              <span class="tag">markdown</span>
-            
-              <span class="tag">博客</span>
-            
-          </div>
+              <p class="template-description">高性能 API 网关，同时支持 gRPC 和 HTTP 协议</p>
 
-          <div class="template-actions">
-            <a href="/templates/vuepress-hope-docs/index.html" class="btn btn-primary">
-              查看详情
-            </a>
-            
-          </div>
-        </article>
-      
-        <article class="template-card" data-id="cli">
-          <div class="template-header">
-            <h2 class="template-title">
-              <a href="/templates/cli/index.html">命令行工具</a>
-            </h2>
-            <span class="template-category">CLI</span>
-          </div>
+              
+                <ul class="template-features">
+                  
+                    <li>统一的 gRPC 和 HTTP 接口</li>
+                  
+                    <li>服务发现和路由</li>
+                  
+                    <li>负载均衡</li>
+                  
+                </ul>
+              
 
-          <p class="template-description">具有常见 CLI 模式的命令行应用程序模板</p>
+              <div class="template-tags">
+                
+                  <span class="tag">网关</span>
+                
+                  <span class="tag">grpc</span>
+                
+                  <span class="tag">http</span>
+                
+                  <span class="tag">微服务</span>
+                
+              </div>
 
+              <div class="template-actions">
+                <a href="/embedded/gateway/index.html" class="btn btn-primary">
+                  查看详情
+                </a>
+                
+              </div>
+            </article>
           
-            <ul class="template-features">
+            <article class="template-card" data-id="api">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/embedded/api/index.html">API 服务</a>
+                </h2>
+                <span class="template-category">API</span>
+              </div>
+
+              <p class="template-description">构建带有自动 Swagger 文档的 RESTful API 服务</p>
+
               
-                <li>命令解析</li>
+                <ul class="template-features">
+                  
+                    <li>自动生成 Swagger UI 文档</li>
+                  
+                    <li>RESTful API 结构</li>
+                  
+                    <li>数据模型验证</li>
+                  
+                </ul>
               
-                <li>交互式提示</li>
-              
-                <li>配置管理</li>
-              
-            </ul>
+
+              <div class="template-tags">
+                
+                  <span class="tag">api</span>
+                
+                  <span class="tag">rest</span>
+                
+                  <span class="tag">swagger</span>
+                
+                  <span class="tag">后端</span>
+                
+              </div>
+
+              <div class="template-actions">
+                <a href="/embedded/api/index.html" class="btn btn-primary">
+                  查看详情
+                </a>
+                
+              </div>
+            </article>
           
+        </div>
+      </div>
+    </section>
+  
 
-          <div class="template-tags">
-            
-              <span class="tag">cli</span>
-            
-              <span class="tag">命令行</span>
-            
-              <span class="tag">工具</span>
-            
-              <span class="tag">自动化</span>
-            
-          </div>
-
-          <div class="template-actions">
-            <a href="/templates/cli/index.html" class="btn btn-primary">
-              查看详情
-            </a>
-            
-          </div>
-        </article>
-      
-        <article class="template-card" data-id="api-vercel">
-          <div class="template-header">
-            <h2 class="template-title">
-              <a href="/templates/api-vercel/index.html">Vercel API</a>
-            </h2>
-            <span class="template-category">API</span>
-          </div>
-
-          <p class="template-description">专为 Vercel 部署优化的 API 模板</p>
-
+  
+  
+    <section class="templates">
+      <div class="container">
+        <h2 class="type-title">官方外置模板</h2>
+        <div class="templates-grid" id="templatesGrid-external">
           
-            <ul class="template-features">
+            <article class="template-card" data-id="vuepress-hope-docs">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/external/vuepress-hope-docs/index.html">VuePress Hope 文档</a>
+                </h2>
+                <span class="template-category">文档</span>
+              </div>
+
+              <p class="template-description">使用 VuePress Hope 主题的文档站点模板</p>
+
               
-                <li>RESTful API 结构</li>
+                <ul class="template-features">
+                  
+                    <li>VuePress Hope 主题</li>
+                  
+                    <li>Markdown 文档</li>
+                  
+                    <li>博客功能</li>
+                  
+                </ul>
               
-                <li>Vercel 无服务器部署</li>
-              
-                <li>内置中间件</li>
-              
-            </ul>
+
+              <div class="template-tags">
+                
+                  <span class="tag">文档</span>
+                
+                  <span class="tag">vuepress</span>
+                
+                  <span class="tag">markdown</span>
+                
+                  <span class="tag">博客</span>
+                
+              </div>
+
+              <div class="template-actions">
+                <a href="/external/vuepress-hope-docs/index.html" class="btn btn-primary">
+                  查看详情
+                </a>
+                
+              </div>
+            </article>
           
+            <article class="template-card" data-id="cli">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/external/cli/index.html">命令行工具</a>
+                </h2>
+                <span class="template-category">CLI</span>
+              </div>
 
-          <div class="template-tags">
-            
-              <span class="tag">api</span>
-            
-              <span class="tag">vercel</span>
-            
-              <span class="tag">无服务器</span>
-            
-              <span class="tag">rest</span>
-            
-          </div>
+              <p class="template-description">具有常见 CLI 模式的命令行应用程序模板</p>
 
-          <div class="template-actions">
-            <a href="/templates/api-vercel/index.html" class="btn btn-primary">
-              查看详情
-            </a>
-            
-          </div>
-        </article>
-      
-    </div>
+              
+                <ul class="template-features">
+                  
+                    <li>命令解析</li>
+                  
+                    <li>交互式提示</li>
+                  
+                    <li>配置管理</li>
+                  
+                </ul>
+              
 
-    
-  </div>
-</section>
+              <div class="template-tags">
+                
+                  <span class="tag">cli</span>
+                
+                  <span class="tag">命令行</span>
+                
+                  <span class="tag">工具</span>
+                
+                  <span class="tag">自动化</span>
+                
+              </div>
+
+              <div class="template-actions">
+                <a href="/external/cli/index.html" class="btn btn-primary">
+                  查看详情
+                </a>
+                
+              </div>
+            </article>
+          
+            <article class="template-card" data-id="api-vercel">
+              <div class="template-header">
+                <h2 class="template-title">
+                  <a href="/external/api-vercel/index.html">Vercel API</a>
+                </h2>
+                <span class="template-category">API</span>
+              </div>
+
+              <p class="template-description">专为 Vercel 部署优化的 API 模板</p>
+
+              
+                <ul class="template-features">
+                  
+                    <li>RESTful API 结构</li>
+                  
+                    <li>Vercel 无服务器部署</li>
+                  
+                    <li>内置中间件</li>
+                  
+                </ul>
+              
+
+              <div class="template-tags">
+                
+                  <span class="tag">api</span>
+                
+                  <span class="tag">vercel</span>
+                
+                  <span class="tag">无服务器</span>
+                
+                  <span class="tag">rest</span>
+                
+              </div>
+
+              <div class="template-actions">
+                <a href="/external/api-vercel/index.html" class="btn btn-primary">
+                  查看详情
+                </a>
+                
+              </div>
+            </article>
+          
+        </div>
+      </div>
+    </section>
+  
+
+  
+  
+
+
+
 
   </main>
 

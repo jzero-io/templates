@@ -290,6 +290,28 @@ body {
   padding: 48px 0;
 }
 
+.type-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 32px;
+  text-align: center;
+  color: var(--text-color);
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.type-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+  border-radius: 2px;
+}
+
 .templates-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));

@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>API Vercel - Jzero Template Market</title>
-  <meta name="description" content="An API template optimized for Vercel deployment">
+  <title>API Service - Jzero Template Market</title>
+  <meta name="description" content="Build RESTful API services with automatic Swagger documentation">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -62,7 +66,7 @@
                   
                   
                     <a
-                      href="/templates/api-vercel/"
+                      href="/embedded/api/"
                       class="lang-option "
                     >
                       中文
@@ -73,7 +77,7 @@
                   
                   
                     <a
-                      href="/en/templates/api-vercel/"
+                      href="/en/embedded/api/"
                       class="lang-option active"
                     >
                       English
@@ -98,27 +102,27 @@
         <span class="template-category">API</span>
       </div>
 
-      <h1>API Vercel</h1>
-      <p class="template-description-large">An API template optimized for Vercel deployment</p>
+      <h1>API Service</h1>
+      <p class="template-description-large">Build RESTful API services with automatic Swagger documentation</p>
 
       <div class="template-tags-large">
         
           <span class="tag">api</span>
         
-          <span class="tag">vercel</span>
-        
-          <span class="tag">serverless</span>
-        
           <span class="tag">rest</span>
+        
+          <span class="tag">swagger</span>
+        
+          <span class="tag">backend</span>
         
       </div>
 
       <div class="template-actions-detail">
         <div class="command-display">
-          <code>jzero new simpleapi-vercel --branch api-vercel</code>
+          <code>jzero new your_project --frame api</code>
           <button
             class="copy-button"
-            onclick="copyCommand('jzero new simpleapi-vercel --branch api-vercel')"
+            onclick="copyCommand('jzero new your_project --frame api')"
             title="Copy command"
             aria-label="Copy command"
           >
@@ -130,7 +134,7 @@
         </div>
 
         
-          <a href="https://github.com/jzero-io/templates/tree/api-vercel" target="_blank" rel="noopener" class="btn btn-primary">
+          <a href="https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/api" target="_blank" rel="noopener" class="btn btn-primary">
             <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
             </svg>
@@ -152,6 +156,14 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
+                Auto-generated Swagger UI at /swagger
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
                 RESTful API structure
               </li>
             
@@ -160,7 +172,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Vercel serverless deployment
+                Model validation
               </li>
             
               <li>
@@ -168,7 +180,15 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Built-in middleware
+                Redis caching support
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Database ORM integration
               </li>
             
           </ul>
@@ -180,58 +200,43 @@
         <section class="template-guide-section">
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>API Vercel Template</h1>
-<p>An API template optimized for Vercel serverless deployment.</p>
+            <h1>API Service Template</h1>
+<p>Build RESTful API services with automatic Swagger documentation generation.</p>
 <h2>Features</h2>
 <ul>
-<li><strong>RESTful API Structure</strong>: Clean and organized API design</li>
-<li><strong>Vercel Serverless Deployment</strong>: Optimized for Vercel&#39;s serverless functions</li>
-<li><strong>Built-in Middleware</strong>: Common middleware included out of the box</li>
-<li><strong>Example Endpoints</strong>: Ready-to-use example API endpoints</li>
+<li>Auto-generated Swagger UI accessible at <code>/swagger</code></li>
+<li>RESTful API structure with best practices</li>
+<li>Request/response model validation</li>
+<li>Optional Redis caching support</li>
+<li>Database ORM integration</li>
 </ul>
-<h2>Getting Started</h2>
-<pre><code class="hljs language-bash">jzero new simpleapi-vercel --branch api-vercel
-<span class="hljs-built_in">cd</span> simpleapi-vercel</code></pre><h2>Project Structure</h2>
-<pre><code class="hljs language-plaintext">.
-├── api<span class="hljs-symbol">/</span>              <span class="hljs-comment"># API endpoints</span>
-│   ├── handlers<span class="hljs-symbol">/</span>     <span class="hljs-comment"># Request handlers</span>
-│   ├── logic<span class="hljs-symbol">/</span>        <span class="hljs-comment"># Business logic</span>
-│   └── middleware<span class="hljs-symbol">/</span>   <span class="hljs-comment"># Middleware functions</span>
-├── internal<span class="hljs-symbol">/</span>         <span class="hljs-comment"># Internal packages</span>
-├── go.mod            <span class="hljs-comment"># Go module file</span>
-└── vercel.json       <span class="hljs-comment"># Vercel configuration</span></code></pre><h2>Usage Examples</h2>
-<h3>Create a New Endpoint</h3>
-<pre><code class="hljs language-go"><span class="hljs-comment">// api/hello/hello.go</span>
-<span class="hljs-keyword">package</span> hello
+<h2>Creating a New Project</h2>
+<pre><code class="hljs language-bash">jzero new my-api --frame api
+<span class="hljs-built_in">cd</span> my-api
+jzero run</code></pre><p>After starting the service, visit <a href="http://localhost:8001/swagger">http://localhost:8001/swagger</a> to view the interactive API documentation.</p>
+<h2>Optional Features</h2>
+<p>You can enable additional features when creating the project:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Enable model validation</span>
+jzero new my-api --frame api --feature=model
 
-<span class="hljs-keyword">import</span> (
-    <span class="hljs-string">&quot;net/http&quot;</span>
-    
-    <span class="hljs-string">&quot;github.com/zeromicro/go-zero/rest/httpx&quot;</span>
-)
+<span class="hljs-comment"># Enable Redis caching</span>
+jzero new my-api --frame api --feature=redis
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Handler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
-    httpx.OkJson(w, <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>{
-        <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Hello from Vercel!&quot;</span>,
-    })
-}</code></pre><h3>Deploy to Vercel</h3>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># Install Vercel CLI</span>
-npm i -g vercel
+<span class="hljs-comment"># Enable both model and Redis</span>
+jzero new my-api --frame api --feature=model+redis
 
-<span class="hljs-comment"># Deploy</span>
-vercel</code></pre><h2>Configuration</h2>
-<h3>vercel.json</h3>
-<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">&quot;functions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-    <span class="hljs-attr">&quot;api/**/*.go&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">&quot;runtime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;go1.x&quot;</span>
-    <span class="hljs-punctuation">}</span>
-  <span class="hljs-punctuation">}</span>
-<span class="hljs-punctuation">}</span></code></pre><h2>Learn More</h2>
-<ul>
-<li><a href="https://vercel.com/docs">Vercel Documentation</a></li>
-<li><a href="https://go-zero.dev/">Go-Zero Documentation</a></li>
-</ul>
+<span class="hljs-comment"># Enable cache</span>
+jzero new my-api --frame api --feature=cache</code></pre><h2>Project Structure</h2>
+<pre><code class="hljs language-plaintext">my-api<span class="hljs-symbol">/</span>
+├── api<span class="hljs-symbol">/</span>           <span class="hljs-comment"># API handlers</span>
+├── model<span class="hljs-symbol">/</span>         <span class="hljs-comment"># Data models (if enabled)</span>
+├── internal<span class="hljs-symbol">/</span>      <span class="hljs-comment"># Internal packages</span>
+└── main.go        <span class="hljs-comment"># Application entry point</span></code></pre><h2>Development</h2>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Run the development server</span>
+jzero run
+
+<span class="hljs-comment"># Build for production</span>
+jzero build</code></pre><p>The Swagger documentation will automatically update based on your API definitions.</p>
 
           </div>
         </section>
