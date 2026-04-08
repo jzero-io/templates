@@ -111,10 +111,34 @@ class TemplateLoader {
   }
 
   /**
-   * Convert markdown to HTML
+   * Convert markdown to HTML with syntax highlighting
    */
   markdownToHtml(markdown) {
     const { marked } = require('marked');
+    const hljs = require('highlight.js');
+
+    // Configure marked with highlight.js
+    const renderer = new marked.Renderer();
+    const originalCodeRenderer = renderer.code.bind(renderer);
+
+    renderer.code = function(code, language) {
+      let highlighted;
+      if (language && hljs.getLanguage(language)) {
+        try {
+          highlighted = hljs.highlight(code, { language: language }).value;
+        } catch (err) {
+          console.warn(`Highlight.js error for language ${language}:`, err.message);
+          highlighted = hljs.highlightAuto(code).value;
+        }
+      } else {
+        highlighted = hljs.highlightAuto(code).value;
+      }
+
+      return `<pre><code class="hljs language-${language || 'plaintext'}">${highlighted}</code></pre>`;
+    };
+
+    marked.setOptions({ renderer });
+
     return marked(markdown);
   }
 

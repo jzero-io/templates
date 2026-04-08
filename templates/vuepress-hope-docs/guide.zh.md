@@ -101,20 +101,6 @@ module.exports = {
 ```javascript
 console.log("Hello, VuePress!");
 ```
-
-## 自定义容器
-
-::: tip
-这是一个有用的提示！
-:::
-
-::: warning
-这是一个警告！
-:::
-
-::: danger
-这很危险！
-:::
 ```
 
 ### 博客文章

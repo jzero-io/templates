@@ -1,16 +1,16 @@
 # VuePress Hope Docs Template
 
-A modern documentation site template powered by VuePress and the beautiful Hope theme.
+A modern documentation site template powered by VuePress with the beautiful Hope theme.
 
 ## Features
 
-- **VuePress Hope Theme**: Feature-rich theme with excellent UX
-- **Markdown Support**: Write docs in Markdown with extended syntax
-- **Blog Functionality**: Built-in blog with categories and tags
+- **VuePress Hope Theme**: Feature-rich theme with excellent user experience
+- **Markdown Support**: Write documentation using extended Markdown syntax
+- **Blog Functionality**: Built-in blog system with categories and tags
 - **Full-text Search**: Client-side search with Chinese support
-- **Responsive Design**: Mobile-friendly out of the box
+- **Responsive Design**: Mobile-friendly experience out of the box
 - **Dark Mode**: Automatic dark mode support
-- **Navigation**: Auto-generate sidebar and navbar from file structure
+- **Navigation**: Auto-generated sidebar and navbar from file structure
 
 ## Getting Started
 
@@ -21,7 +21,7 @@ npm install
 npm run dev
 ```
 
-Visit `http://localhost:8080` to see your docs site.
+Visit `http://localhost:8080` to view your documentation site.
 
 ## Project Structure
 
@@ -29,8 +29,8 @@ Visit `http://localhost:8080` to see your docs site.
 .
 ├── docs/
 │   ├── README.md           # Homepage
-│   ├── .vuepress/          # VuePress config
-│   │   ├── config.js       # Main config
+│   ├── .vuepress/          # VuePress configuration
+│   │   ├── config.js       # Main configuration
 │   │   └── theme/          # Custom theme
 │   ├── guide/              # Documentation
 │   │   ├── README.md
@@ -50,14 +50,14 @@ Visit `http://localhost:8080` to see your docs site.
 
 ```javascript
 module.exports = {
-  title: "My Docs",
+  title: "My Documentation",
   description: "Documentation built with VuePress",
-  
+
   theme: "hope",
-  
+
   themeConfig: {
     logo: "/logo.png",
-    
+
     navbar: [
       {
         text: "Guide",
@@ -68,7 +68,7 @@ module.exports = {
         link: "/blog/",
       },
     ],
-    
+
     sidebar: {
       "/guide/": [
         {
@@ -101,20 +101,6 @@ Content goes here...
 ```javascript
 console.log("Hello, VuePress!");
 ```
-
-## Custom Containers
-
-::: tip
-This is a helpful tip!
-:::
-
-::: warning
-This is a warning!
-:::
-
-::: danger
-This is dangerous!
-:::
 ```
 
 ### Blog Posts
@@ -134,10 +120,10 @@ tags:
 
 # My First Blog Post
 
-Content here...
+Content goes here...
 ```
 
-## Build & Deploy
+## Build and Deployment
 
 ### Local Build
 
@@ -145,7 +131,7 @@ Content here...
 npm run build
 ```
 
-Output will be in `docs/.vuepress/dist/`
+Output will be in the `docs/.vuepress/dist/` directory
 
 ### Deployment Options
 
@@ -181,7 +167,7 @@ Create `netlify.toml`:
 
 ## Customization
 
-### Styling
+### Styles
 
 Create custom styles in `docs/.vuepress/styles/`:
 
@@ -211,16 +197,15 @@ export default {
 ```
 
 Use in Markdown:
-
 ```markdown
 <MyComponent>
-  Custom content here
+  Custom content goes here
 </MyComponent>
 ```
 
 ## Plugins
 
-### Popular Plugins
+### Common Plugins
 
 ```javascript
 module.exports = {
@@ -235,15 +220,15 @@ module.exports = {
 
 ## Best Practices
 
-1. **Organize Content**: Group related docs in folders
+1. **Organize Content**: Group related documentation into folders
 2. **Use Frontmatter**: Add metadata to all pages
 3. **Optimize Images**: Compress images before adding
 4. **Internal Links**: Use relative paths for internal links
-5. **SEO**: Add proper meta tags and descriptions
+5. **SEO**: Add appropriate meta tags and descriptions
 6. **Accessibility**: Ensure good contrast and semantic HTML
 
 ## Learn More
 
-- [VuePress Official Docs](https://vuepress.vuejs.org/)
+- [VuePress Official Documentation](https://vuepress.vuejs.org/)
 - [VuePress Hope Theme](https://theme-hope.vuejs.press/)
 - [Markdown Guide](https://www.markdownguide.org/)

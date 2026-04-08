@@ -1,12 +1,12 @@
 # CLI Tool Template
 
-A command-line application template that implements common CLI patterns and best practices.
+A command-line application template implementing common CLI patterns and best practices.
 
 ## Features
 
 - **Command Parsing**: Built-in argument and flag parsing
 - **Interactive Prompts**: User-friendly interactive input
-- **Config Management**: YAML/TOML/JSON configuration support
+- **Configuration Management**: Support for YAML/TOML/JSON configurations
 - **Rich Output**: Colored and formatted console output
 - **Error Handling**: Graceful error messages and exit codes
 
@@ -30,7 +30,7 @@ go build -o cli main.go
 │   ├── printer/     # Output formatting
 │   └── validator/   # Input validation
 ├── main.go          # Entry point
-└── config.yaml      # Default config
+└── config.yaml      # Default configuration
 ```
 
 ## Usage Examples
@@ -95,7 +95,7 @@ func NewExampleCommand() *cli.Command {
 app.Commands = append(app.Commands, cmd.NewExampleCommand())
 ```
 
-## Build & Distribution
+## Building and Distribution
 
 ### Build for Multiple Platforms
 
@@ -112,7 +112,7 @@ GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go
 
 ### Homebrew Installation (Optional)
 
-Create a tap for easy installation:
+Create tap for easy installation:
 ```bash
 brew tap yourusername/cli
 brew install yourusername/cli/cli
@@ -121,10 +121,10 @@ brew install yourusername/cli/cli
 ## Best Practices
 
 1. **Exit Codes**: Use standard exit codes (0 for success, 1 for errors)
-2. **Error Messages**: Provide helpful error messages with suggestions
+2. **Error Messages**: Provide helpful error messages and suggestions
 3. **Flags**: Use both short and long flags (`-v` and `--verbose`)
 4. **Help Text**: Include examples in command help text
-5. **Testing**: Write tests for command logic
+5. **Testing**: Write tests for your command logic
 
 ## Learn More
 
