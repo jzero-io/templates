@@ -8,23 +8,23 @@
 
     <div class="contribute-content">
       <div class="contribute-section">
-        <h2><%= i18n.contribute?.sections?.whatIs || '什么是第三方模板？' %></h2>
-        <p><%= i18n.contribute?.whatIsDescription || '第三方模板是由社区开发者创建并维护的项目模板，可以帮助其他开发者快速启动特定类型的项目。' %></p>
+        <h2><%= i18n.contribute?.sections?.whatIs || 'What are Third-party Templates?' %></h2>
+        <p><%= i18n.contribute?.whatIsDescription || 'Third-party templates are project templates created and maintained by community developers.' %></p>
       </div>
 
       <div class="contribute-section">
-        <h2><%= i18n.contribute?.sections?.structure || '模板结构' %></h2>
-        <p><%= i18n.contribute?.structureDescription || '每个第三方模板需要包含以下文件：' %></p>
+        <h2><%= i18n.contribute?.sections?.structure || 'Template Structure' %></h2>
+        <p><%= i18n.contribute?.structureDescription || 'Each third-party template should contain the following files:' %></p>
         <pre class="code-block"><code>your-template/
-├── template.json          # 模板配置文件（必需）
-├── template.zh.json       # 中文配置文件（可选）
-├── README.md              # 模板说明文档（必需）
-└── [template files]       # 模板文件和目录</code></pre>
+├── template.json          # Template config file (required)
+├── template.zh.json       # Chinese config file (optional)
+├── README.md              # Template documentation (required)
+└── [template files]       # Template files and directories</code></pre>
       </div>
 
       <div class="contribute-section">
-        <h2><%= i18n.contribute?.sections?.configFile || '配置文件说明' %></h2>
-        <p><%= i18n.contribute?.configFileDescription || '模板配置文件是 JSON 格式，包含以下字段：' %></p>
+        <h2><%= i18n.contribute?.sections?.configFile || 'Configuration File' %></h2>
+        <p><%= i18n.contribute?.configFileDescription || 'Template configuration file is in JSON format with the following fields:' %></p>
         <pre class="code-block"><code>{
   "id": "your-template-id",
   "name": "Your Template Name",
@@ -45,10 +45,10 @@
         <table class="fields-table">
           <thead>
             <tr>
-              <th><%= i18n.contribute?.table?.field || '字段' %></th>
-              <th><%= i18n.contribute?.table?.type || '类型' %></th>
-              <th><%= i18n.contribute?.table?.required || '必需' %></th>
-              <th><%= i18n.contribute?.table?.description || '说明' %></th>
+              <th><%= i18n.contribute?.table?.field || 'Field' %></th>
+              <th><%= i18n.contribute?.table?.type || 'Type' %></th>
+              <th><%= i18n.contribute?.table?.required || 'Required' %></th>
+              <th><%= i18n.contribute?.table?.description || 'Description' %></th>
             </tr>
           </thead>
           <tbody>
@@ -56,63 +56,63 @@
               <td><code>id</code></td>
               <td>string</td>
               <td><%= i18n.contribute?.table?.yes || '✅' %></td>
-              <td><%= i18n.contribute?.fieldDescriptions?.id || '模板唯一标识符' %></td>
+              <td><%= i18n.contribute?.fieldDescriptions?.id || 'Template unique identifier' %></td>
             </tr>
             <tr>
               <td><code>name</code></td>
               <td>string</td>
               <td><%= i18n.contribute?.table?.yes || '✅' %></td>
-              <td><%= i18n.contribute?.fieldDescriptions?.name || '模板名称' %></td>
+              <td><%= i18n.contribute?.fieldDescriptions?.name || 'Template name' %></td>
             </tr>
             <tr>
               <td><code>description</code></td>
               <td>string</td>
               <td><%= i18n.contribute?.table?.yes || '✅' %></td>
-              <td><%= i18n.contribute?.fieldDescriptions?.description || '模板简短描述' %></td>
+              <td><%= i18n.contribute?.fieldDescriptions?.description || 'Brief template description' %></td>
             </tr>
             <tr>
               <td><code>category</code></td>
               <td>string</td>
               <td><%= i18n.contribute?.table?.yes || '✅' %></td>
-              <td><%= i18n.contribute?.fieldDescriptions?.category || '模板分类' %></td>
+              <td><%= i18n.contribute?.fieldDescriptions?.category || 'Template category' %></td>
             </tr>
             <tr>
               <td><code>tags</code></td>
               <td>array</td>
               <td><%= i18n.contribute?.table?.yes || '✅' %></td>
-              <td><%= i18n.contribute?.fieldDescriptions?.tags || '模板标签数组' %></td>
+              <td><%= i18n.contribute?.fieldDescriptions?.tags || 'Template tag array' %></td>
             </tr>
             <tr>
               <td><code>command</code></td>
               <td>string</td>
               <td><%= i18n.contribute?.table?.yes || '✅' %></td>
-              <td><%= i18n.contribute?.fieldDescriptions?.command || '使用模板的命令' %></td>
+              <td><%= i18n.contribute?.fieldDescriptions?.command || 'Command to use template' %></td>
             </tr>
             <tr>
               <td><code>repository</code></td>
               <td>string</td>
               <td><%= i18n.contribute?.table?.no || '❌' %></td>
-              <td><%= i18n.contribute?.fieldDescriptions?.repository || '模板源码仓库地址' %></td>
+              <td><%= i18n.contribute?.fieldDescriptions?.repository || 'Template repository URL' %></td>
             </tr>
             <tr>
               <td><code>demo</code></td>
               <td>string</td>
               <td><%= i18n.contribute?.table?.no || '❌' %></td>
-              <td><%= i18n.contribute?.fieldDescriptions?.demo || '在线演示地址' %></td>
+              <td><%= i18n.contribute?.fieldDescriptions?.demo || 'Online demo URL' %></td>
             </tr>
             <tr>
               <td><code>features</code></td>
               <td>array</td>
               <td><%= i18n.contribute?.table?.no || '❌' %></td>
-              <td><%= i18n.contribute?.fieldDescriptions?.features || '模板特性列表' %></td>
+              <td><%= i18n.contribute?.fieldDescriptions?.features || 'Template feature list' %></td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="contribute-section">
-        <h2><%= i18n.contribute?.sections?.multilingual || '多语言支持' %></h2>
-        <p><%= i18n.contribute?.multilingualDescription || '如果需要支持中文，创建 template.zh.json 文件：' %></p>
+        <h2><%= i18n.contribute?.sections?.multilingual || 'Multi-language Support' %></h2>
+        <p><%= i18n.contribute?.multilingualDescription || 'To support Chinese, create a template.zh.json file:' %></p>
         <pre class="code-block"><code>{
   "id": "your-template-id",
   "name": "模板中文名称",
@@ -130,29 +130,34 @@
       </div>
 
       <div class="contribute-section">
-        <h2><%= i18n.contribute?.sections?.bestPractices || '最佳实践' %></h2>
+        <h2><%= i18n.contribute?.sections?.bestPractices || 'Best Practices' %></h2>
         <ul class="contribute-list">
-          <li><strong><%= i18n.contribute?.practices?.naming || '模板命名' %></strong>: <%= i18n.contribute?.namingDescription || '使用有意义的名称，推荐格式：用途-技术栈-特性' %></li>
-          <li><strong><%= i18n.contribute?.practices?.categories || '分类选择' %></strong>: <%= i18n.contribute?.categoryDescription || 'Web、API、CLI、Mobile、Desktop 等' %></li>
-          <li><strong><%= i18n.contribute?.practices?.tags || '标签使用' %></strong>: <%= i18n.contribute?.tagsDescription || '添加 3-8 个相关标签，包含技术栈和项目类型' %></li>
-          <li><strong><%= i18n.contribute?.practices?.docs || '文档编写' %></strong>: <%= i18n.contribute?.docsDescription || 'README.md 应包含项目简介、功能特性、快速开始指南' %></li>
+          <li><strong><%= i18n.contribute?.practices?.naming || 'Template Naming' %></strong>: <%= i18n.contribute?.namingDescription || 'Use meaningful names, recommended format: purpose-techstack-features' %></li>
+          <li><strong><%= i18n.contribute?.practices?.categories || 'Category Selection' %></strong>: <%= i18n.contribute?.categoryDescription || 'Web, API, CLI, Mobile, Desktop, etc.' %></li>
+          <li><strong><%= i18n.contribute?.practices?.tags || 'Tags Usage' %></strong>: <%= i18n.contribute?.tagsDescription || 'Add 3-8 related tags, including tech stack and project type' %></li>
+          <li><strong><%= i18n.contribute?.practices?.docs || 'Documentation' %></strong>: <%= i18n.contribute?.docsDescription || 'README.md should include project introduction, features, and quick start guide' %></li>
         </ul>
       </div>
 
       <div class="contribute-section">
-        <h2><%= i18n.contribute?.sections?.submit || '提交模板' %></h2>
+        <h2><%= i18n.contribute?.sections?.submit || 'Submit Template' %></h2>
         <ol class="contribute-steps">
-          <li><%= i18n.contribute?.steps?.prepare || '准备提交：确保包含完整的 template.json 和 README.md' %></li>
-          <li><%= i18n.contribute?.steps?.fork || 'Fork 本仓库' %></li>
-          <li><%= i18n.contribute?.steps?.create || '在 third_party/ 目录下创建您的模板' %></li>
-          <li><%= i18n.contribute?.steps?.pr || '创建 Pull Request' %></li>
-          <li><%= i18n.contribute?.steps?.wait || '等待审核' %></li>
+          <li><%= i18n.contribute?.steps?.prepare || 'Prepare submission: Ensure complete template.json and README.md' %></li>
+          <li><%= i18n.contribute?.steps?.fork || 'Fork this repository' %></li>
+          <li><%= i18n.contribute?.steps?.create || 'Create your template in the third_party/ directory' %></li>
+          <li><%= i18n.contribute?.steps?.pr || 'Create Pull Request' %></li>
+          <li><%= i18n.contribute?.steps?.wait || 'Wait for review' %></li>
         </ol>
       </div>
 
       <div class="contribute-section">
         <h2><%= i18n.contribute?.sections?.help || '获取帮助' %></h2>
         <ul class="contribute-links">
+          <li>
+            <a href="https://github.com/jzero-io/templates/tree/main/third_party/README.<%= currentLang %>.md" target="_blank" rel="noopener">
+              <%= i18n.contribute?.helpLinks?.readme || 'README' %>
+            </a>
+          </li>
           <li>
             <a href="https://github.com/jzero-io/templates/discussions" target="_blank" rel="noopener">
               <%= i18n.contribute?.helpLinks?.discussions || 'GitHub Discussions' %>
@@ -167,10 +172,10 @@
       </div>
 
       <div class="contribute-cta">
-        <h3><%= i18n.contribute?.cta?.title || '准备好贡献了吗？' %></h3>
-        <p><%= i18n.contribute?.cta?.description || '开始创建您的模板，帮助更多开发者！' %></p>
+        <h3><%= i18n.contribute?.cta?.title || 'Ready to Contribute?' %></h3>
+        <p><%= i18n.contribute?.cta?.description || 'Start creating your template and help more developers!' %></p>
         <a href="https://github.com/jzero-io/templates/fork" target="_blank" rel="noopener" class="btn btn-primary">
-          <%= i18n.contribute?.cta?.button || 'Fork 仓库开始贡献' %>
+          <%= i18n.contribute?.cta?.button || 'Fork Repository to Start' %>
         </a>
       </div>
     </div>

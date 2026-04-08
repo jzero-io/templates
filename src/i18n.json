@@ -101,6 +101,7 @@
         "wait": "Wait for review"
       },
       "helpLinks": {
+        "readme": "README (EN)",
         "discussions": "GitHub Discussions",
         "issues": "Issue Tracker"
       },
@@ -216,6 +217,7 @@
         "wait": "等待审核"
       },
       "helpLinks": {
+        "readme": "README (中文)",
         "discussions": "GitHub Discussions",
         "issues": "问题反馈"
       },
