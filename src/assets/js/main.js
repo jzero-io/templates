@@ -120,6 +120,19 @@ function applyFilters(searchQuery = null) {
     resultsCount.textContent = visibleCount;
   }
 
+  // Show/hide template sections based on visible templates
+  const templateSections = document.querySelectorAll('.templates');
+  templateSections.forEach(section => {
+    const grid = section.querySelector('.templates-grid');
+    if (grid) {
+      const visibleCards = grid.querySelectorAll('.template-card:not([style*="display: none"])');
+      const visibleCardsArray = Array.from(visibleCards).filter(card => {
+        return card.style.display !== 'none';
+      });
+      section.style.display = visibleCardsArray.length > 0 ? '' : 'none';
+    }
+  });
+
   // Show/hide no results message
   const noResults = document.querySelector('.no-results');
   if (noResults) {
