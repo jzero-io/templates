@@ -1,0 +1,120 @@
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <h1><%= siteTitle %></h1>
+    <p class="hero-description"><%= siteDescription %></p>
+
+    <!-- Search -->
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search templates..."
+        class="search-input"
+        autocomplete="off"
+      >
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Filters -->
+<section class="filters">
+  <div class="container">
+    <div class="filter-groups">
+      <!-- Category Filter -->
+      <div class="filter-group">
+        <label>Category:</label>
+        <select id="categoryFilter" class="filter-select">
+          <option value="">All Categories</option>
+          <% categories.forEach(cat => { %>
+            <option value="<%= cat %>"><%= cat %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <!-- Tag Filter -->
+      <div class="filter-group">
+        <label>Tags:</label>
+        <select id="tagFilter" class="filter-select">
+          <option value="">All Tags</option>
+          <% tags.forEach(tag => { %>
+            <option value="<%= tag %>"><%= tag %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <!-- Difficulty Filter -->
+      <div class="filter-group">
+        <label>Difficulty:</label>
+        <select id="difficultyFilter" class="filter-select">
+          <option value="">All Levels</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="results-count">
+      <span id="resultsCount"><%= templates.length %></span> templates found
+    </div>
+  </div>
+</section>
+
+<!-- Templates Grid -->
+<section class="templates">
+  <div class="container">
+    <div class="templates-grid" id="templatesGrid">
+      <% templates.forEach(template => { %>
+        <article class="template-card" data-id="<%= template.id %>">
+          <div class="template-header">
+            <h2 class="template-title">
+              <a href="/templates/<%= template.id %>/index.html"><%= template.name %></a>
+            </h2>
+            <span class="template-category"><%= template.category %></span>
+          </div>
+
+          <p class="template-description"><%= template.description %></p>
+
+          <% if (template.features && template.features.length > 0) { %>
+            <ul class="template-features">
+              <% template.features.slice(0, 3).forEach(feature => { %>
+                <li><%= feature %></li>
+              <% }) %>
+            </ul>
+          <% } %>
+
+          <div class="template-tags">
+            <% template.tags.forEach(tag => { %>
+              <span class="tag"><%= tag %></span>
+            <% }) %>
+            <span class="difficulty difficulty-<%= template.difficulty %>">
+              <%= template.difficulty %>
+            </span>
+          </div>
+
+          <div class="template-actions">
+            <a href="/templates/<%= template.id %>/index.html" class="btn btn-primary">
+              View Details
+            </a>
+            <% if (template.demo) { %>
+              <a href="<%= template.demo %>" target="_blank" rel="noopener" class="btn btn-secondary">
+                Live Demo
+              </a>
+            <% } %>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+
+    <% if (templates.length === 0) { %>
+      <div class="no-results">
+        <h3>No templates found</h3>
+        <p>Try adjusting your search or filters</p>
+      </div>
+    <% } %>
+  </div>
+</section>

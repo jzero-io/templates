@@ -1,0 +1,19 @@
+{
+  "id": "vuepress-hope-docs",
+  "name": "VuePress Hope Docs",
+  "description": "Documentation site template using VuePress Hope theme",
+  "category": "Documentation",
+  "tags": ["documentation", "vuepress", "markdown", "blog"],
+  "difficulty": "intermediate",
+  "command": "jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs",
+  "branch": "vuepress-hope-docs",
+  "features": [
+    "VuePress Hope theme",
+    "Markdown documentation",
+    "Blog functionality",
+    "Search and navigation"
+  ],
+  "screenshot": "",
+  "demo": "",
+  "repository": "https://github.com/jzero-io/templates/tree/vuepress-hope-docs"
+}

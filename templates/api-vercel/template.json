@@ -1,0 +1,19 @@
+{
+  "id": "api-vercel",
+  "name": "Simple API Vercel",
+  "description": "A simple API template optimized for Vercel deployment",
+  "category": "API",
+  "tags": ["api", "vercel", "serverless", "rest"],
+  "difficulty": "beginner",
+  "command": "jzero new simpleapi-vercel --branch api-vercel",
+  "branch": "api-vercel",
+  "features": [
+    "RESTful API structure",
+    "Vercel serverless deployment",
+    "Built-in middleware",
+    "Example endpoints"
+  ],
+  "screenshot": "",
+  "demo": "",
+  "repository": "https://github.com/jzero-io/templates/tree/api-vercel"
+}

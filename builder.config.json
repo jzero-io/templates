@@ -1,0 +1,12 @@
+{
+  "title": "JZero Template Market",
+  "description": "Discover and use JZero templates for your next project",
+  "baseUrl": "/",
+  "templatesDir": "templates",
+  "outputDir": "dist",
+  "theme": {
+    "primaryColor": "#007bff",
+    "secondaryColor": "#6c757d",
+    "backgroundColor": "#f8f9fa"
+  }
+}

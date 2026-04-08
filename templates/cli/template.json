@@ -1,0 +1,19 @@
+{
+  "id": "cli",
+  "name": "Simple CLI Tool",
+  "description": "A command-line application template with common CLI patterns",
+  "category": "CLI",
+  "tags": ["cli", "command-line", "tool", "automation"],
+  "difficulty": "beginner",
+  "command": "jzero new simplecli --branch cli",
+  "branch": "cli",
+  "features": [
+    "Command parsing",
+    "Interactive prompts",
+    "Configuration management",
+    "Output formatting"
+  ],
+  "screenshot": "",
+  "demo": "",
+  "repository": "https://github.com/jzero-io/templates/tree/cli"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "jzero-template-market",
+  "version": "1.0.0",
+  "description": "JZero Template Market - Static website generator for showcasing templates",
+  "main": "src/build.js",
+  "scripts": {
+    "build": "node src/build.js",
+    "dev": "node src/build.js --watch",
+    "serve": "npx serve dist",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "jzero",
+    "template",
+    "market",
+    "static-site-generator"
+  ],
+  "author": "jzero-io",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "front-matter": "^4.0.2",
+    "marked": "^12.0.0",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}

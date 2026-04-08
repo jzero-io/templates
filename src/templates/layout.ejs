@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - <%= siteTitle %></title>
+  <meta name="description" content="<%= description || siteDescription %>">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/" class="logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="6" fill="currentColor"/>
+            <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
+          </svg>
+          <span><%= siteTitle %></span>
+        </a>
+
+        <nav class="nav">
+          <a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>">Templates</a>
+          <a href="https://jzero.io" target="_blank" rel="noopener">Docs</a>
+          <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <%- body %>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; <%= new Date().getFullYear() %> <%= siteTitle %>. Built with JZero.</p>
+      <p class="footer-links">
+        <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://jzero.io" target="_blank" rel="noopener">Documentation</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
