@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
+const marked = require('marked');
 const TemplateLoader = require('./template-loader');
 
 /**
@@ -210,13 +211,23 @@ class SiteBuilder {
 
     const i18n = this.getI18n(lang);
 
+    // Read README file based on language
+    const readmeFileName = `README.${lang}.md`;
+    const readmePath = path.join(process.cwd(), 'third_party', readmeFileName);
+
+    let readmeContent = '';
+    if (fs.existsSync(readmePath)) {
+      readmeContent = fs.readFileSync(readmePath, 'utf-8');
+    }
+
     const body = ejs.render(contributeTemplate, {
       siteTitle: i18n.siteTitle || this.config.title,
       siteDescription: i18n.siteDescription || this.config.description,
       i18n,
       currentLang: lang,
       supportedLangs: this.supportedLangs,
-      baseUrl
+      baseUrl,
+      readmeContent: marked.parse(readmeContent)
     });
 
     const html = ejs.render(layoutTemplate, {
