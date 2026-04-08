@@ -9,7 +9,7 @@
       <input
         type="text"
         id="searchInput"
-        placeholder="<%= i18n.hero?.searchPlaceholder || 'Search templates...' %>"
+        placeholder="<%= i18n.hero?.searchPlaceholder %>"
         class="search-input"
         autocomplete="off"
       >
@@ -26,9 +26,9 @@
     <div class="filter-groups">
       <!-- Category Filter -->
       <div class="filter-group">
-        <label><%= i18n.filters?.category || 'Category:' %></label>
+        <label><%= i18n.filters?.category %></label>
         <select id="categoryFilter" class="filter-select">
-          <option value=""><%= i18n.filters?.allCategories || 'All Categories' %></option>
+          <option value=""><%= i18n.filters?.allCategories %></option>
           <% categories.forEach(cat => { %>
             <option value="<%= cat %>"><%= cat %></option>
           <% }) %>
@@ -37,16 +37,16 @@
     </div>
 
     <div class="results-count">
-      <span id="resultsCount"><%= templates.length %></span> <%= i18n.filters?.resultsCount || 'templates found' %>
+      <span id="resultsCount"><%= templates.length %></span> <%= i18n.filters?.resultsCount %>
     </div>
   </div>
 </section>
 
 <!-- Templates Grid -->
 <% const types = [
-  { key: 'embedded', name: i18n.types?.embedded || 'Built-in' },
-  { key: 'external', name: i18n.types?.external || 'Official External' },
-  { key: 'third_party', name: i18n.types?.third_party || 'Third-party' }
+  { key: 'embedded', name: i18n.types?.embedded },
+  { key: 'external', name: i18n.types?.external },
+  { key: 'third_party', name: i18n.types?.third_party }
 ]; %>
 
 <% types.forEach(type => { %>
@@ -66,10 +66,10 @@
               </svg>
             </div>
             <div class="contribution-content">
-              <h3><%= i18n.contribution?.title || 'Contribute Your Template' %></h3>
-              <p><%= i18n.contribution?.description || 'Create and share your template to help more developers start projects quickly.' %></p>
+              <h3><%= i18n.contribution?.title %></h3>
+              <p><%= i18n.contribution?.description %></p>
               <a href="<%= baseUrl || '' %>/contribute/index.html" class="btn btn-contribution">
-                <%= i18n.contribution?.button || 'View Contribution Guide' %>
+                <%= i18n.contribution?.button %>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
                   <polyline points="15 3 21 3 21 9"/>
@@ -108,11 +108,11 @@
 
               <div class="template-actions">
                 <a href="<%= baseUrl || '' %>/<%= template.type %>/<%= template.id %>/index.html" class="btn btn-primary">
-                  <%= i18n.card?.viewDetails || 'View Details' %>
+                  <%= i18n.card?.viewDetails %>
                 </a>
                 <% if (template.demo) { %>
                   <a href="<%= template.demo %>" target="_blank" rel="noopener" class="btn btn-secondary">
-                    <%= i18n.card?.liveDemo || 'Live Demo' %>
+                    <%= i18n.card?.liveDemo %>
                   </a>
                 <% } %>
               </div>
@@ -128,8 +128,8 @@
   <section class="templates">
     <div class="container">
       <div class="no-results">
-        <h3><%= i18n.noResults?.title || 'No templates found' %></h3>
-        <p><%= i18n.noResults?.description || 'Try adjusting your search or filters' %></p>
+        <h3><%= i18n.noResults?.title %></h3>
+        <p><%= i18n.noResults?.description %></p>
       </div>
     </div>
   </section>

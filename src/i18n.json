@@ -20,12 +20,12 @@
       "allTags": "All Tags",
       "resultsCount": "templates found",
       "type": "Type:",
-      "allTypes": "All Types",
-      "types": {
-        "embedded": "Built-in",
-        "external": "Official External",
-        "third_party": "Third-party"
-      }
+      "allTypes": "All Types"
+    },
+    "types": {
+      "embedded": "Built-in",
+      "external": "Official External",
+      "third_party": "Third-party"
     },
     "card": {
       "viewDetails": "View Details",
