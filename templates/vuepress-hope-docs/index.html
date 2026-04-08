@@ -166,69 +166,69 @@
         <section class="template-guide-section">
           <h2>快速开始指南</h2>
           <div class="guide-content">
-            <h1>VuePress Hope Docs Template</h1>
-<p>A modern documentation site template powered by VuePress and the beautiful Hope theme.</p>
-<h2>Features</h2>
+            <h1>VuePress Hope 文档模板</h1>
+<p>一个由 VuePress 驱动、使用精美 Hope 主题的现代文档站点模板。</p>
+<h2>特性</h2>
 <ul>
-<li><strong>VuePress Hope Theme</strong>: Feature-rich theme with excellent UX</li>
-<li><strong>Markdown Support</strong>: Write docs in Markdown with extended syntax</li>
-<li><strong>Blog Functionality</strong>: Built-in blog with categories and tags</li>
-<li><strong>Full-text Search</strong>: Client-side search with Chinese support</li>
-<li><strong>Responsive Design</strong>: Mobile-friendly out of the box</li>
-<li><strong>Dark Mode</strong>: Automatic dark mode support</li>
-<li><strong>Navigation</strong>: Auto-generate sidebar and navbar from file structure</li>
+<li><strong>VuePress Hope 主题</strong>：功能丰富的主题，提供优秀的用户体验</li>
+<li><strong>Markdown 支持</strong>：使用扩展的 Markdown 语法编写文档</li>
+<li><strong>博客功能</strong>：内置博客系统，支持分类和标签</li>
+<li><strong>全文搜索</strong>：客户端搜索，支持中文</li>
+<li><strong>响应式设计</strong>：开箱即用的移动端友好体验</li>
+<li><strong>深色模式</strong>：自动支持深色模式</li>
+<li><strong>导航功能</strong>：从文件结构自动生成侧边栏和导航栏</li>
 </ul>
-<h2>Getting Started</h2>
+<h2>快速开始</h2>
 <pre><code class="language-bash">jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs
 cd simple-vuepress-hope-docs
 npm install
 npm run dev
 </code></pre>
-<p>Visit <code>http://localhost:8080</code> to see your docs site.</p>
-<h2>Project Structure</h2>
+<p>访问 <code>http://localhost:8080</code> 查看您的文档站点。</p>
+<h2>项目结构</h2>
 <pre><code>.
 ├── docs/
-│   ├── README.md           # Homepage
-│   ├── .vuepress/          # VuePress config
-│   │   ├── config.js       # Main config
-│   │   └── theme/          # Custom theme
-│   ├── guide/              # Documentation
+│   ├── README.md           # 首页
+│   ├── .vuepress/          # VuePress 配置
+│   │   ├── config.js       # 主配置
+│   │   └── theme/          # 自定义主题
+│   ├── guide/              # 文档
 │   │   ├── README.md
 │   │   ├── getting-started.md
 │   │   └── configuration.md
-│   └── blog/               # Blog posts
+│   └── blog/               # 博客文章
 │       ├── README.md
 │       └── 2024/
 │           └── example-post.md
 ├── package.json
 └── README.md
 </code></pre>
-<h2>Configuration</h2>
-<h3>Basic Setup (<code>docs/.vuepress/config.js</code>)</h3>
+<h2>配置</h2>
+<h3>基础设置 (<code>docs/.vuepress/config.js</code>)</h3>
 <pre><code class="language-javascript">module.exports = {
-  title: &quot;My Docs&quot;,
-  description: &quot;Documentation built with VuePress&quot;,
-  
+  title: &quot;我的文档&quot;,
+  description: &quot;使用 VuePress 构建的文档&quot;,
+
   theme: &quot;hope&quot;,
-  
+
   themeConfig: {
     logo: &quot;/logo.png&quot;,
-    
+
     navbar: [
       {
-        text: &quot;Guide&quot;,
+        text: &quot;指南&quot;,
         link: &quot;/guide/&quot;,
       },
       {
-        text: &quot;Blog&quot;,
+        text: &quot;博客&quot;,
         link: &quot;/blog/&quot;,
       },
     ],
-    
+
     sidebar: {
       &quot;/guide/&quot;: [
         {
-          title: &quot;Getting Started&quot;,
+          title: &quot;快速开始&quot;,
           collapsable: false,
           children: [
             &quot;getting-started&quot;,
@@ -240,69 +240,69 @@ npm run dev
   },
 };
 </code></pre>
-<h2>Writing Content</h2>
-<h3>Documentation Pages</h3>
-<p>Create Markdown files in <code>docs/guide/</code>:</p>
-<pre><code class="language-markdown"># Page Title
+<h2>编写内容</h2>
+<h3>文档页面</h3>
+<p>在 <code>docs/guide/</code> 中创建 Markdown 文件：</p>
+<pre><code class="language-markdown"># 页面标题
 
-Content goes here...
+内容写在这里...
 
-## Code Blocks
+## 代码块
 
 ```javascript
 console.log(&quot;Hello, VuePress!&quot;);
 </code></pre>
-<h2>Custom Containers</h2>
+<h2>自定义容器</h2>
 <p>::: tip
-This is a helpful tip!
+这是一个有用的提示！
 :::</p>
 <p>::: warning
-This is a warning!
+这是一个警告！
 :::</p>
 <p>::: danger
-This is dangerous!
+这很危险！
 :::</p>
 <pre><code>
-### Blog Posts
+### 博客文章
 
-Add blog posts in `docs/blog/`:
+在 `docs/blog/` 中添加博客文章：
 
 ```markdown
 ---
-title: My First Post
+title: 我的第一篇文章
 date: 2024-01-15
 categories:
-  - Tutorial
+  - 教程
 tags:
   - VuePress
-  - Documentation
+  - 文档
 ---
 
-# My First Blog Post
+# 我的第一篇博客文章
 
-Content here...
+内容写在这里...
 </code></pre>
-<h2>Build &amp; Deploy</h2>
-<h3>Local Build</h3>
+<h2>构建和部署</h2>
+<h3>本地构建</h3>
 <pre><code class="language-bash">npm run build
 </code></pre>
-<p>Output will be in <code>docs/.vuepress/dist/</code></p>
-<h3>Deployment Options</h3>
+<p>输出将在 <code>docs/.vuepress/dist/</code> 目录中</p>
+<h3>部署选项</h3>
 <h4>Vercel</h4>
 <pre><code class="language-bash">npm install -g vercel
 vercel --prod
 </code></pre>
 <h4>GitHub Pages</h4>
 <ol>
-<li>Set base URL in <code>config.js</code>:</li>
+<li>在 <code>config.js</code> 中设置基础 URL：</li>
 </ol>
 <pre><code class="language-javascript">base: &quot;/your-repo/&quot;,
 </code></pre>
 <ol start="2">
-<li>Deploy workflow in <code>.github/workflows/deploy.yml</code></li>
+<li>在 <code>.github/workflows/deploy.yml</code> 中部署工作流</li>
 </ol>
 <h4>Netlify</h4>
-<p>Create <code>netlify.toml</code>:</p>
+<p>创建 <code>netlify.toml</code>：</p>
 <pre><code class="language-toml">[build]
   command = &quot;npm run build&quot;
   publish = &quot;docs/.vuepress/dist&quot;
@@ -312,16 +312,16 @@ vercel --prod
   to = &quot;/index.html&quot;
   status = 200
 </code></pre>
-<h2>Customization</h2>
-<h3>Styling</h3>
-<p>Create custom styles in <code>docs/.vuepress/styles/</code>:</p>
+<h2>自定义</h2>
+<h3>样式</h3>
+<p>在 <code>docs/.vuepress/styles/</code> 中创建自定义样式：</p>
 <pre><code class="language-css">/* index.styl */
 .hero {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 </code></pre>
-<h3>Components</h3>
-<p>Add Vue components in <code>docs/.vuepress/components/</code>:</p>
+<h3>组件</h3>
+<p>在 <code>docs/.vuepress/components/</code> 中添加 Vue 组件：</p>
 <pre><code class="language-vue">&lt;template&gt;
   &lt;div class=&quot;my-component&quot;&gt;
     &lt;slot&gt;&lt;/slot&gt;
@@ -334,13 +334,13 @@ export default {
 };
 &lt;/script&gt;
 </code></pre>
-<p>Use in Markdown:</p>
+<p>在 Markdown 中使用：</p>
 <pre><code class="language-markdown">&lt;MyComponent&gt;
-  Custom content here
+  自定义内容写在这里
 &lt;/MyComponent&gt;
 </code></pre>
-<h2>Plugins</h2>
-<h3>Popular Plugins</h3>
+<h2>插件</h2>
+<h3>常用插件</h3>
 <pre><code class="language-javascript">module.exports = {
   plugins: [
     &quot;@vuepress/plugin-search&quot;,
@@ -350,20 +350,20 @@ export default {
   ],
 };
 </code></pre>
-<h2>Best Practices</h2>
+<h2>最佳实践</h2>
 <ol>
-<li><strong>Organize Content</strong>: Group related docs in folders</li>
-<li><strong>Use Frontmatter</strong>: Add metadata to all pages</li>
-<li><strong>Optimize Images</strong>: Compress images before adding</li>
-<li><strong>Internal Links</strong>: Use relative paths for internal links</li>
-<li><strong>SEO</strong>: Add proper meta tags and descriptions</li>
-<li><strong>Accessibility</strong>: Ensure good contrast and semantic HTML</li>
+<li><strong>组织内容</strong>：将相关文档分组到文件夹中</li>
+<li><strong>使用 Frontmatter</strong>：为所有页面添加元数据</li>
+<li><strong>优化图片</strong>：添加前先压缩图片</li>
+<li><strong>内部链接</strong>：内部链接使用相对路径</li>
+<li><strong>SEO</strong>：添加适当的 meta 标签和描述</li>
+<li><strong>可访问性</strong>：确保良好的对比度和语义化 HTML</li>
 </ol>
-<h2>Learn More</h2>
+<h2>更多信息</h2>
 <ul>
-<li><a href="https://vuepress.vuejs.org/">VuePress Official Docs</a></li>
-<li><a href="https://theme-hope.vuejs.press/">VuePress Hope Theme</a></li>
-<li><a href="https://www.markdownguide.org/">Markdown Guide</a></li>
+<li><a href="https://vuepress.vuejs.org/">VuePress 官方文档</a></li>
+<li><a href="https://theme-hope.vuejs.press/">VuePress Hope 主题</a></li>
+<li><a href="https://www.markdownguide.org/">Markdown 指南</a></li>
 </ul>
 
           </div>

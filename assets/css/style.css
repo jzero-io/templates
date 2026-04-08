@@ -581,28 +581,256 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+  /* Container */
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Header */
+  .header-content {
+    flex-wrap: wrap;
+    padding: 12px 0;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .logo svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .nav {
+    gap: 12px;
+    font-size: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .lang-switcher {
+    margin-left: 8px;
+    padding-left: 8px;
+  }
+
+  .lang-select {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 48px 0;
+  }
+
   .hero h1 {
-    font-size: 32px;
+    font-size: 28px;
+    margin-bottom: 12px;
   }
 
   .hero-description {
     font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .search-input {
+    padding: 14px 40px 14px 16px;
+    font-size: 15px;
+  }
+
+  /* Filters */
+  .filters {
+    padding: 16px 0;
   }
 
   .filter-groups {
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
+  }
+
+  .filter-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .filter-select {
+    width: 100%;
+    padding: 10px 12px;
+  }
+
+  .results-count {
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  /* Templates Grid */
+  .templates {
+    padding: 32px 0;
   }
 
   .templates-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .template-actions-detail {
+  .template-card {
+    padding: 20px;
+  }
+
+  .template-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .template-title {
+    font-size: 18px;
+  }
+
+  .template-features {
+    margin-bottom: 12px;
+  }
+
+  .template-features li {
+    font-size: 13px;
+  }
+
+  .template-actions {
     flex-direction: column;
   }
 
-  .nav {
-    gap: 16px;
+  .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  /* Template Detail */
+  .breadcrumb {
+    padding: 12px 0;
+    font-size: 13px;
+  }
+
+  .template-detail {
+    padding: 32px 0;
+  }
+
+  .template-header-detail {
+    margin-bottom: 32px;
+  }
+
+  .template-meta {
+    flex-wrap: wrap;
+  }
+
+  .template-description-large {
+    font-size: 18px;
+  }
+
+  .template-tags-large {
+    gap: 8px;
+  }
+
+  .template-tags-large .tag {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+
+  .template-actions-detail {
+    gap: 12px;
+  }
+
+  .template-actions-detail .btn {
+    width: 100%;
+  }
+
+  .command-display {
+    padding: 12px;
+  }
+
+  .command-display code {
+    font-size: 13px;
+    word-break: break-all;
+  }
+
+  .template-features-section h2,
+  .template-guide-section h2 {
+    font-size: 24px;
+  }
+
+  .features-list {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-content {
+    padding: 20px;
+  }
+
+  .guide-content pre {
+    padding: 12px;
+    font-size: 13px;
+    overflow-x: auto;
+  }
+
+  .guide-content code {
+    font-size: 13px;
+  }
+
+  /* Toast */
+  .toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 24px 0;
+    margin-top: 32px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small devices */
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+  }
+
+  .template-card {
+    padding: 16px;
+  }
+
+  .template-title {
+    font-size: 16px;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+
+  .template-description-large {
+    font-size: 16px;
+  }
+
+  .template-features-section h2,
+  .template-guide-section h2 {
+    font-size: 20px;
+  }
+
+  .guide-content {
+    padding: 16px;
   }
 }
