@@ -2,10 +2,13 @@
   "en": {
     "siteTitle": "Jzero Template Market",
     "siteDescription": "Discover and use Jzero templates for your next project",
+    "language": "English",
+    "languageCode": "en",
     "nav": {
       "templates": "Templates",
       "docs": "Docs",
-      "github": "GitHub"
+      "github": "GitHub",
+      "switchLanguage": "Switch Language"
     },
     "hero": {
       "searchPlaceholder": "Search templates..."
@@ -26,11 +29,16 @@
     },
     "card": {
       "viewDetails": "View Details",
-      "liveDemo": "Live Demo"
+      "liveDemo": "Live Demo",
+      "viewTemplate": "View Template"
     },
     "detail": {
       "features": "Features",
-      "gettingStarted": "Getting Started Guide"
+      "gettingStarted": "Getting Started Guide",
+      "copyCommand": "Copy command",
+      "commandCopied": "Command copied to clipboard!",
+      "copySuccess": "Copied!",
+      "copyFailed": "Copy failed"
     },
     "noResults": {
       "title": "No templates found",
@@ -39,7 +47,68 @@
     "contribution": {
       "title": "Contribute Your Template",
       "description": "Create and share your template to help more developers start projects quickly.",
-      "button": "View Contribution Guide"
+      "button": "View Contribution Guide",
+      "pageTitle": "Contribution Guide",
+      "pageSubtitle": "Contribute your template to the Jzero Template Market",
+      "sections": {
+        "whatIs": "What are Third-party Templates?",
+        "structure": "Template Structure",
+        "configFile": "Configuration File",
+        "fields": "Field Descriptions",
+        "multilingual": "Multi-language Support",
+        "bestPractices": "Best Practices",
+        "submit": "Submit Template",
+        "help": "Get Help"
+      },
+      "whatIsDescription": "Third-party templates are project templates created and maintained by community developers to help other developers quickly start specific types of projects.",
+      "structureDescription": "Each third-party template should contain the following files:",
+      "configFileDescription": "Template configuration file is in JSON format with the following fields:",
+      "fieldDescriptions": {
+        "id": "Template unique identifier",
+        "name": "Template name",
+        "description": "Brief template description",
+        "category": "Template category",
+        "tags": "Template tag array",
+        "command": "Command to use template",
+        "repository": "Template repository URL",
+        "demo": "Online demo URL",
+        "features": "Template feature list"
+      },
+      "table": {
+        "field": "Field",
+        "type": "Type",
+        "required": "Required",
+        "description": "Description",
+        "yes": "✅",
+        "no": "❌"
+      },
+      "multilingualDescription": "To support Chinese, create a template.zh.json file:",
+      "practices": {
+        "naming": "Template Naming",
+        "categories": "Category Selection",
+        "tags": "Tags Usage",
+        "docs": "Documentation"
+      },
+      "namingDescription": "Use meaningful names, recommended format: purpose-techstack-features",
+      "categoryDescription": "Web, API, CLI, Mobile, Desktop, etc.",
+      "tagsDescription": "Add 3-8 related tags, including tech stack and project type",
+      "docsDescription": "README.md should include project introduction, features, and quick start guide",
+      "steps": {
+        "prepare": "Prepare submission: Ensure complete template.json and README.md",
+        "fork": "Fork this repository",
+        "create": "Create your template in the third_party/ directory",
+        "pr": "Create Pull Request",
+        "wait": "Wait for review"
+      },
+      "helpLinks": {
+        "discussions": "GitHub Discussions",
+        "issues": "Issue Tracker"
+      },
+      "cta": {
+        "title": "Ready to Contribute?",
+        "description": "Start creating your template and help more developers!",
+        "button": "Fork Repository to Start"
+      }
     },
     "footer": {
       "copyright": "Built with Jzero.",
@@ -50,10 +119,13 @@
   "zh": {
     "siteTitle": "Jzero 模板市场",
     "siteDescription": "发现并使用 Jzero 模板来构建你的下一个项目",
+    "language": "中文",
+    "languageCode": "zh",
     "nav": {
       "templates": "模板",
       "docs": "文档",
-      "github": "GitHub"
+      "github": "GitHub",
+      "switchLanguage": "切换语言"
     },
     "hero": {
       "searchPlaceholder": "搜索模板..."
@@ -72,15 +144,86 @@
     },
     "card": {
       "viewDetails": "查看详情",
-      "liveDemo": "在线演示"
+      "liveDemo": "在线演示",
+      "viewTemplate": "查看模板"
     },
     "detail": {
       "features": "特性",
-      "gettingStarted": "快速开始指南"
+      "gettingStarted": "快速开始指南",
+      "copyCommand": "复制命令",
+      "commandCopied": "命令已复制到剪贴板！",
+      "copySuccess": "已复制！",
+      "copyFailed": "复制失败"
     },
     "noResults": {
       "title": "未找到模板",
       "description": "尝试调整搜索或筛选条件"
+    },
+    "contribution": {
+      "title": "贡献您的模板",
+      "description": "创建并分享您的模板，帮助更多开发者快速启动项目。",
+      "button": "查看制作指南",
+      "pageTitle": "贡献指南",
+      "pageSubtitle": "为 Jzero 模板市场贡献您的模板",
+      "sections": {
+        "whatIs": "什么是第三方模板？",
+        "structure": "模板结构",
+        "configFile": "配置文件说明",
+        "fields": "字段说明",
+        "multilingual": "多语言支持",
+        "bestPractices": "最佳实践",
+        "submit": "提交模板",
+        "help": "获取帮助"
+      },
+      "whatIsDescription": "第三方模板是由社区开发者创建并维护的项目模板，可以帮助其他开发者快速启动特定类型的项目。",
+      "structureDescription": "每个第三方模板需要包含以下文件：",
+      "configFileDescription": "模板配置文件是 JSON 格式，包含以下字段：",
+      "fieldDescriptions": {
+        "id": "模板唯一标识符",
+        "name": "模板名称",
+        "description": "模板简短描述",
+        "category": "模板分类",
+        "tags": "模板标签数组",
+        "command": "使用模板的命令",
+        "repository": "模板源码仓库地址",
+        "demo": "在线演示地址",
+        "features": "模板特性列表"
+      },
+      "table": {
+        "field": "字段",
+        "type": "类型",
+        "required": "必需",
+        "description": "说明",
+        "yes": "✅",
+        "no": "❌"
+      },
+      "multilingualDescription": "如果需要支持中文，创建 template.zh.json 文件：",
+      "practices": {
+        "naming": "模板命名",
+        "categories": "分类选择",
+        "tags": "标签使用",
+        "docs": "文档编写"
+      },
+      "namingDescription": "使用有意义的名称，推荐格式：用途-技术栈-特性",
+      "categoryDescription": "Web、API、CLI、Mobile、Desktop 等",
+      "tagsDescription": "添加 3-8 个相关标签，包含技术栈和项目类型",
+      "docsDescription": "README.md 应包含项目简介、功能特性、快速开始指南",
+      "steps": {
+        "prepare": "准备提交：确保包含完整的 template.json 和 README.md",
+        "fork": "Fork 本仓库",
+        "create": "在 third_party/ 目录下创建您的模板",
+        "pr": "创建 Pull Request",
+        "wait": "等待审核"
+      },
+      "helpLinks": {
+        "discussions": "GitHub Discussions",
+        "issues": "问题反馈"
+      },
+      "cta": {
+        "title": "准备好贡献了吗？",
+        "description": "开始创建您的模板，帮助更多开发者！",
+        "button": "Fork 仓库开始贡献"
+      }
     },
     "contribution": {
       "title": "贡献您的模板",

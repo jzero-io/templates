@@ -44,9 +44,9 @@
 
 <!-- Templates Grid -->
 <% const types = [
-  { key: 'embedded', name: i18n.types?.embedded || (currentLang === 'zh' ? '内置模板' : 'Built-in') },
-  { key: 'external', name: i18n.types?.external || (currentLang === 'zh' ? '官方外置模板' : 'Official External') },
-  { key: 'third_party', name: i18n.types?.third_party || (currentLang === 'zh' ? '第三方模板' : 'Third-party') }
+  { key: 'embedded', name: i18n.types?.embedded || 'Built-in' },
+  { key: 'external', name: i18n.types?.external || 'Official External' },
+  { key: 'third_party', name: i18n.types?.third_party || 'Third-party' }
 ]; %>
 
 <% types.forEach(type => { %>
@@ -66,10 +66,10 @@
               </svg>
             </div>
             <div class="contribution-content">
-              <h3><%= i18n.contribution?.title || (currentLang === 'zh' ? '贡献您的模板' : 'Contribute Your Template') %></h3>
-              <p><%= i18n.contribution?.description || (currentLang === 'zh' ? '创建并分享您的模板，帮助更多开发者快速启动项目。' : 'Create and share your template to help more developers start projects quickly.') %></p>
-              <a href="https://github.com/jzero-io/templates/tree/main/third_party/README.md" target="_blank" rel="noopener" class="btn btn-contribution">
-                <%= i18n.contribution?.button || (currentLang === 'zh' ? '查看制作指南' : 'View Contribution Guide') %>
+              <h3><%= i18n.contribution?.title || 'Contribute Your Template' %></h3>
+              <p><%= i18n.contribution?.description || 'Create and share your template to help more developers start projects quickly.' %></p>
+              <a href="<%= baseUrl || '' %>/contribute/index.html" class="btn btn-contribution">
+                <%= i18n.contribution?.button || 'View Contribution Guide' %>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
                   <polyline points="15 3 21 3 21 9"/>

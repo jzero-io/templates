@@ -58,18 +58,24 @@ class SiteBuilder {
       const categories = await this.templateLoader.getCategories(lang);
       const tags = await this.templateLoader.getTags(lang);
 
+      // Determine base URL for this language
+      const baseUrl = lang === this.defaultLang ? '' : `/${lang}`;
+
       // Build index page for this language
       if (lang === this.defaultLang) {
         console.log('📄 Building index page (default)...');
-        await this.buildIndexPage(templates, categories, tags, lang, '');
       } else {
         console.log(`📄 Building index page (${lang})...`);
-        await this.buildIndexPage(templates, categories, tags, lang, `/${lang}`);
       }
+      await this.buildIndexPage(templates, categories, tags, lang, baseUrl);
 
       // Build template detail pages for this language
       console.log(`📄 Building template detail pages (${lang})...`);
       await this.buildDetailPages(templates, lang);
+
+      // Build contribute page for this language
+      console.log(`📄 Building contribute page (${lang})...`);
+      await this.buildContributePage(lang, baseUrl);
 
       console.log(`\n✅ ${lang} build complete!\n`);
     }
@@ -187,6 +193,54 @@ class SiteBuilder {
       fs.writeFileSync(path.join(templateDir, 'index.html'), html);
       console.log(`   ✓ ${lang === this.defaultLang ? '' : lang + '/'}${template.type}/${template.id}/index.html`);
     }
+  }
+
+  /**
+   * Build contribute page
+   */
+  async buildContributePage(lang, baseUrl) {
+    const layoutTemplate = fs.readFileSync(
+      path.join(this.templatesDir, 'layout.ejs'),
+      'utf-8'
+    );
+    const contributeTemplate = fs.readFileSync(
+      path.join(this.templatesDir, 'contribute.ejs'),
+      'utf-8'
+    );
+
+    const i18n = this.getI18n(lang);
+
+    const body = ejs.render(contributeTemplate, {
+      siteTitle: i18n.siteTitle || this.config.title,
+      siteDescription: i18n.siteDescription || this.config.description,
+      i18n,
+      currentLang: lang,
+      supportedLangs: this.supportedLangs,
+      baseUrl
+    });
+
+    const html = ejs.render(layoutTemplate, {
+      title: i18n.contribute?.pageTitle || (lang === 'zh' ? '贡献指南' : 'Contribution Guide'),
+      siteTitle: i18n.siteTitle || this.config.title,
+      siteDescription: i18n.siteDescription || this.config.description,
+      description: i18n.contribute?.pageSubtitle || '',
+      body,
+      currentPage: 'contribute',
+      i18n,
+      currentLang: lang,
+      supportedLangs: this.supportedLangs,
+      baseUrl,
+      lang,
+      defaultLang: this.defaultLang
+    });
+
+    const outputPath = baseUrl
+      ? path.join(this.outputDir, lang, 'contribute', 'index.html')
+      : path.join(this.outputDir, 'contribute', 'index.html');
+
+    this.ensureDir(path.dirname(outputPath));
+    fs.writeFileSync(outputPath, html);
+    console.log(`   ✓ ${baseUrl ? lang + '/' : ''}contribute/index.html`);
   }
 
   /**
