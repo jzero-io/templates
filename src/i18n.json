@@ -36,6 +36,11 @@
       "title": "No templates found",
       "description": "Try adjusting your search or filters"
     },
+    "contribution": {
+      "title": "Contribute Your Template",
+      "description": "Create and share your template to help more developers start projects quickly.",
+      "button": "View Contribution Guide"
+    },
     "footer": {
       "copyright": "Built with Jzero.",
       "github": "GitHub",
@@ -76,6 +81,11 @@
     "noResults": {
       "title": "未找到模板",
       "description": "尝试调整搜索或筛选条件"
+    },
+    "contribution": {
+      "title": "贡献您的模板",
+      "description": "创建并分享您的模板，帮助更多开发者快速启动项目。",
+      "button": "查看制作指南"
     },
     "footer": {
       "copyright": "由 Jzero 构建。",

@@ -51,10 +51,35 @@
 
 <% types.forEach(type => { %>
   <% const typeTemplates = templates.filter(t => t.type === type.key); %>
-  <% if (typeTemplates.length > 0) { %>
+  <% if (typeTemplates.length > 0 || type.key === 'third_party') { %>
     <section class="templates">
       <div class="container">
         <h2 class="type-title"><%= type.name %></h2>
+
+        <% if (type.key === 'third_party') { %>
+          <div class="contribution-card">
+            <div class="contribution-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div class="contribution-content">
+              <h3><%= i18n.contribution?.title || (currentLang === 'zh' ? '贡献您的模板' : 'Contribute Your Template') %></h3>
+              <p><%= i18n.contribution?.description || (currentLang === 'zh' ? '创建并分享您的模板，帮助更多开发者快速启动项目。' : 'Create and share your template to help more developers start projects quickly.') %></p>
+              <a href="https://github.com/jzero-io/templates/tree/main/third_party/README.md" target="_blank" rel="noopener" class="btn btn-contribution">
+                <%= i18n.contribution?.button || (currentLang === 'zh' ? '查看制作指南' : 'View Contribution Guide') %>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        <% } %>
+
         <div class="templates-grid" id="templatesGrid-<%= type.key %>">
           <% typeTemplates.forEach(template => { %>
             <article class="template-card" data-id="<%= template.id %>">
