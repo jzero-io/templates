@@ -8,6 +8,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,9 +21,11 @@
     <div class="container">
       <div class="header-content">
         <a href="/en/" class="logo">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="6" fill="currentColor"/>
-            <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
           </svg>
           <span>Jzero Template Market</span>
         </a>
@@ -37,19 +40,47 @@
 
           
             <div class="lang-switcher">
-              <select id="langSelect" class="lang-select" onchange="switchLanguage(this.value)">
+              <button
+                class="lang-button"
+                onclick="toggleLangMenu(event)"
+                title="Switch Language"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10z"/>
+                </svg>
+                <span id="currentLangName">EN</span>
+                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+
+              <div class="lang-dropdown" id="langDropdown">
                 
                   
-                  <option value="zh" >
-                    中文
-                  </option>
+                  
+                  
+                    <a
+                      href="/"
+                      class="lang-option "
+                    >
+                      中文
+                    </a>
+                  
                 
                   
-                  <option value="en" selected>
-                    English
-                  </option>
+                  
+                  
+                    <a
+                      href="/en/"
+                      class="lang-option active"
+                    >
+                      English
+                    </a>
+                  
                 
-              </select>
+              </div>
             </div>
           
         </nav>
@@ -289,29 +320,26 @@
   <!-- Scripts -->
   <script src="/assets/js/main.js"></script>
   <script>
-  function switchLanguage(lang) {
-    const currentPath = window.location.pathname;
-    const currentLang = 'en';
-    const defaultLang = 'zh';
+  function toggleLangMenu(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.classList.toggle('show');
 
-    let newPath;
-    if (lang === defaultLang) {
-      // Remove language prefix
-      if (currentLang === defaultLang) {
-        newPath = currentPath;
-      } else {
-        newPath = currentPath.replace('/' + currentLang, '') || '/';
-      }
-    } else {
-      // Add language prefix
-      if (currentLang === defaultLang) {
-        newPath = '/' + lang + (currentPath === '/' ? '' : currentPath);
-      } else {
-        newPath = currentPath.replace('/' + currentLang, '/' + lang);
-      }
+    // Close dropdown when clicking outside
+    setTimeout(() => {
+      document.addEventListener('click', closeLangMenu);
+    }, 10);
+  }
+
+  function closeLangMenu(event) {
+    const dropdown = document.getElementById('langDropdown');
+    const button = document.querySelector('.lang-button');
+    if (!dropdown || !button) return;
+
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      dropdown.classList.remove('show');
+      document.removeEventListener('click', closeLangMenu);
     }
-
-    window.location.href = newPath;
   }
   </script>
 </body>

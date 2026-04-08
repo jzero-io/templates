@@ -8,6 +8,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,9 +21,11 @@
     <div class="container">
       <div class="header-content">
         <a href="/" class="logo">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="6" fill="currentColor"/>
-            <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
           </svg>
           <span>Jzero 模板市场</span>
         </a>
@@ -37,19 +40,47 @@
 
           
             <div class="lang-switcher">
-              <select id="langSelect" class="lang-select" onchange="switchLanguage(this.value)">
+              <button
+                class="lang-button"
+                onclick="toggleLangMenu(event)"
+                title="切换语言"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10z"/>
+                </svg>
+                <span id="currentLangName">中文</span>
+                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+
+              <div class="lang-dropdown" id="langDropdown">
                 
                   
-                  <option value="zh" selected>
-                    中文
-                  </option>
+                  
+                  
+                    <a
+                      href="/templates/vuepress-hope-docs/"
+                      class="lang-option active"
+                    >
+                      中文
+                    </a>
+                  
                 
                   
-                  <option value="en" >
-                    English
-                  </option>
+                  
+                  
+                    <a
+                      href="/en/templates/vuepress-hope-docs/"
+                      class="lang-option "
+                    >
+                      English
+                    </a>
+                  
                 
-              </select>
+              </div>
             </div>
           
         </nav>
@@ -59,16 +90,7 @@
 
   <!-- Main Content -->
   <main class="main">
-    <!-- Breadcrumb -->
-<nav class="breadcrumb">
-  <div class="container">
-    <a href="/">模板</a>
-    <span class="separator">/</span>
-    <span class="current">VuePress Hope 文档</span>
-  </div>
-</nav>
-
-<!-- Template Detail -->
+    <!-- Template Detail -->
 <article class="template-detail">
   <div class="container">
     <header class="template-header-detail">
@@ -92,30 +114,27 @@
       </div>
 
       <div class="template-actions-detail">
-        <button
-          class="btn btn-primary btn-large"
-          onclick="copyCommand('jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs')"
-          title="Click to copy command"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-            <path d="M7 7h6M7 10h6M7 13h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span id="copyText">Copy Command</span>
-        </button>
-
         <div class="command-display">
           <code>jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs</code>
+          <button
+            class="copy-button"
+            onclick="copyCommand('jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs')"
+            title="复制命令"
+            aria-label="复制命令"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
         </div>
 
         
-
-        
-          <a href="https://github.com/jzero-io/templates/tree/vuepress-hope-docs" target="_blank" rel="noopener" class="btn btn-secondary">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 2C5.03 2 1 6.03 1 11c0 3.98 2.5 7.37 6 8.54.44.08.6-.19.6-.42v-1.57c-2.45.53-2.96-1.18-2.96-1.18-.4-1.02-.98-1.29-.98-1.29-.8-.55.06-.54.06-.54.88.06 1.34.9 1.34.9.78 1.34 2.05.95 2.55.73.08-.57.31-.95.56-1.17-1.95-.22-4-1.57-4-5.52 0-1.22.44-2.22 1.16-3-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.11 1.15.9-.25 1.87-.38 2.83-.38.96 0 1.93.13 2.83.38 2.16-1.45 3.11-1.15 3.11-1.15.61 1.54.23 2.68.11 2.96.72.78 1.16 1.78 1.16 3 0 3.96-2.05 5.29-4 5.52.31.27.59.8.59 1.61v2.39c0 .23.16.5.6.42 3.5-1.17 6-4.56 6-8.54 0-4.97-4.03-9-9-9z" fill="currentColor"/>
+          <a href="https://github.com/jzero-io/templates/tree/vuepress-hope-docs" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
             </svg>
-            View Source
+            <span>查看模板</span>
           </a>
         
       </div>
@@ -182,178 +201,142 @@
 <li><strong>导航功能</strong>：从文件结构自动生成侧边栏和导航栏</li>
 </ul>
 <h2>快速开始</h2>
-<pre><code class="language-bash">jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs
-cd simple-vuepress-hope-docs
+<pre><code class="hljs language-bash">jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs
+<span class="hljs-built_in">cd</span> simple-vuepress-hope-docs
 npm install
-npm run dev
-</code></pre>
-<p>访问 <code>http://localhost:8080</code> 查看您的文档站点。</p>
+npm run dev</code></pre><p>访问 <code>http://localhost:8080</code> 查看您的文档站点。</p>
 <h2>项目结构</h2>
-<pre><code>.
-├── docs/
-│   ├── README.md           # 首页
-│   ├── .vuepress/          # VuePress 配置
-│   │   ├── config.js       # 主配置
-│   │   └── theme/          # 自定义主题
-│   ├── guide/              # 文档
+<pre><code class="hljs language-plaintext">.
+├── docs<span class="hljs-symbol">/</span>
+│   ├── README.md           <span class="hljs-comment"># 首页</span>
+│   ├── .vuepress<span class="hljs-symbol">/</span>          <span class="hljs-comment"># VuePress 配置</span>
+│   │   ├── config.js       <span class="hljs-comment"># 主配置</span>
+│   │   └── theme<span class="hljs-symbol">/</span>          <span class="hljs-comment"># 自定义主题</span>
+│   ├── guide<span class="hljs-symbol">/</span>              <span class="hljs-comment"># 文档</span>
 │   │   ├── README.md
 │   │   ├── getting-started.md
 │   │   └── configuration.md
-│   └── blog/               # 博客文章
+│   └── blog<span class="hljs-symbol">/</span>               <span class="hljs-comment"># 博客文章</span>
 │       ├── README.md
-│       └── 2024/
+│       └── <span class="hljs-number">2024</span><span class="hljs-symbol">/</span>
 │           └── example-post.md
 ├── package.json
-└── README.md
-</code></pre>
-<h2>配置</h2>
+└── README.md</code></pre><h2>配置</h2>
 <h3>基础设置 (<code>docs/.vuepress/config.js</code>)</h3>
-<pre><code class="language-javascript">module.exports = {
-  title: &quot;我的文档&quot;,
-  description: &quot;使用 VuePress 构建的文档&quot;,
+<pre><code class="hljs language-javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;我的文档&quot;</span>,
+  <span class="hljs-attr">description</span>: <span class="hljs-string">&quot;使用 VuePress 构建的文档&quot;</span>,
 
-  theme: &quot;hope&quot;,
+  <span class="hljs-attr">theme</span>: <span class="hljs-string">&quot;hope&quot;</span>,
 
-  themeConfig: {
-    logo: &quot;/logo.png&quot;,
+  <span class="hljs-attr">themeConfig</span>: {
+    <span class="hljs-attr">logo</span>: <span class="hljs-string">&quot;/logo.png&quot;</span>,
 
-    navbar: [
+    <span class="hljs-attr">navbar</span>: [
       {
-        text: &quot;指南&quot;,
-        link: &quot;/guide/&quot;,
+        <span class="hljs-attr">text</span>: <span class="hljs-string">&quot;指南&quot;</span>,
+        <span class="hljs-attr">link</span>: <span class="hljs-string">&quot;/guide/&quot;</span>,
       },
       {
-        text: &quot;博客&quot;,
-        link: &quot;/blog/&quot;,
+        <span class="hljs-attr">text</span>: <span class="hljs-string">&quot;博客&quot;</span>,
+        <span class="hljs-attr">link</span>: <span class="hljs-string">&quot;/blog/&quot;</span>,
       },
     ],
 
-    sidebar: {
-      &quot;/guide/&quot;: [
+    <span class="hljs-attr">sidebar</span>: {
+      <span class="hljs-string">&quot;/guide/&quot;</span>: [
         {
-          title: &quot;快速开始&quot;,
-          collapsable: false,
-          children: [
-            &quot;getting-started&quot;,
-            &quot;configuration&quot;,
+          <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;快速开始&quot;</span>,
+          <span class="hljs-attr">collapsable</span>: <span class="hljs-literal">false</span>,
+          <span class="hljs-attr">children</span>: [
+            <span class="hljs-string">&quot;getting-started&quot;</span>,
+            <span class="hljs-string">&quot;configuration&quot;</span>,
           ],
         },
       ],
     },
   },
-};
-</code></pre>
-<h2>编写内容</h2>
+};</code></pre><h2>编写内容</h2>
 <h3>文档页面</h3>
 <p>在 <code>docs/guide/</code> 中创建 Markdown 文件：</p>
-<pre><code class="language-markdown"># 页面标题
+<pre><code class="hljs language-markdown"><span class="hljs-section"># 页面标题</span>
 
 内容写在这里...
 
-## 代码块
+<span class="hljs-section">## 代码块</span>
 
-```javascript
-console.log(&quot;Hello, VuePress!&quot;);
-</code></pre>
-<h2>自定义容器</h2>
-<p>::: tip
-这是一个有用的提示！
-:::</p>
-<p>::: warning
-这是一个警告！
-:::</p>
-<p>::: danger
-这很危险！
-:::</p>
-<pre><code>
-### 博客文章
+<span class="hljs-code">```javascript
+console.log(&quot;Hello, VuePress!&quot;);</span></code></pre><pre><code class="hljs language-plaintext">
+<span class="hljs-comment">### 博客文章</span>
 
-在 `docs/blog/` 中添加博客文章：
+<span class="hljs-string">在</span> <span class="hljs-string">`docs/blog/`</span> <span class="hljs-string">中添加博客文章：</span>
 
-```markdown
----
-title: 我的第一篇文章
-date: 2024-01-15
-categories:
-  - 教程
-tags:
-  - VuePress
-  - 文档
----
+<span class="hljs-string">```markdown</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">title:</span> <span class="hljs-string">我的第一篇文章</span>
+<span class="hljs-attr">date:</span> <span class="hljs-number">2024-01-15</span>
+<span class="hljs-attr">categories:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">教程</span>
+<span class="hljs-attr">tags:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">VuePress</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">文档</span>
+<span class="hljs-meta">---
+</span>
+<span class="hljs-comment"># 我的第一篇博客文章</span>
 
-# 我的第一篇博客文章
-
-内容写在这里...
-</code></pre>
-<h2>构建和部署</h2>
+<span class="hljs-string">内容写在这里...</span></code></pre><h2>构建和部署</h2>
 <h3>本地构建</h3>
-<pre><code class="language-bash">npm run build
-</code></pre>
-<p>输出将在 <code>docs/.vuepress/dist/</code> 目录中</p>
+<pre><code class="hljs language-bash">npm run build</code></pre><p>输出将在 <code>docs/.vuepress/dist/</code> 目录中</p>
 <h3>部署选项</h3>
 <h4>Vercel</h4>
-<pre><code class="language-bash">npm install -g vercel
-vercel --prod
-</code></pre>
-<h4>GitHub Pages</h4>
+<pre><code class="hljs language-bash">npm install -g vercel
+vercel --prod</code></pre><h4>GitHub Pages</h4>
 <ol>
 <li>在 <code>config.js</code> 中设置基础 URL：</li>
 </ol>
-<pre><code class="language-javascript">base: &quot;/your-repo/&quot;,
-</code></pre>
-<ol start="2">
+<pre><code class="hljs language-javascript"><span class="hljs-attr">base</span>: <span class="hljs-string">&quot;/your-repo/&quot;</span>,</code></pre><ol start="2">
 <li>在 <code>.github/workflows/deploy.yml</code> 中部署工作流</li>
 </ol>
 <h4>Netlify</h4>
 <p>创建 <code>netlify.toml</code>：</p>
-<pre><code class="language-toml">[build]
-  command = &quot;npm run build&quot;
-  publish = &quot;docs/.vuepress/dist&quot;
+<pre><code class="hljs language-toml"><span class="hljs-section">[build]</span>
+  <span class="hljs-attr">command</span> = <span class="hljs-string">&quot;npm run build&quot;</span>
+  <span class="hljs-attr">publish</span> = <span class="hljs-string">&quot;docs/.vuepress/dist&quot;</span>
 
-[[redirects]]
-  from = &quot;/*&quot;
-  to = &quot;/index.html&quot;
-  status = 200
-</code></pre>
-<h2>自定义</h2>
+<span class="hljs-section">[[redirects]]</span>
+  <span class="hljs-attr">from</span> = <span class="hljs-string">&quot;/*&quot;</span>
+  <span class="hljs-attr">to</span> = <span class="hljs-string">&quot;/index.html&quot;</span>
+  <span class="hljs-attr">status</span> = <span class="hljs-number">200</span></code></pre><h2>自定义</h2>
 <h3>样式</h3>
 <p>在 <code>docs/.vuepress/styles/</code> 中创建自定义样式：</p>
-<pre><code class="language-css">/* index.styl */
-.hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-</code></pre>
-<h3>组件</h3>
+<pre><code class="hljs language-css"><span class="hljs-comment">/* index.styl */</span>
+<span class="hljs-selector-class">.hero</span> {
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, <span class="hljs-number">#667eea</span> <span class="hljs-number">0%</span>, <span class="hljs-number">#764ba2</span> <span class="hljs-number">100%</span>);
+}</code></pre><h3>组件</h3>
 <p>在 <code>docs/.vuepress/components/</code> 中添加 Vue 组件：</p>
-<pre><code class="language-vue">&lt;template&gt;
-  &lt;div class=&quot;my-component&quot;&gt;
-    &lt;slot&gt;&lt;/slot&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
+<pre><code class="hljs language-vue"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  </span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;my-component&quot;</span>&gt;</span>
+    </span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span><span class="language-xml">
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><span class="language-xml">
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span>
 
-&lt;script&gt;
-export default {
-  name: &quot;MyComponent&quot;,
-};
-&lt;/script&gt;
-</code></pre>
-<p>在 Markdown 中使用：</p>
-<pre><code class="language-markdown">&lt;MyComponent&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> </span></span><span class="language-xquery">{
+ <span class="hljs-built_in"> name</span>: <span class="hljs-string">&quot;MyComponent&quot;</span>,
+}</span><span class="language-xml">;
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre><p>在 Markdown 中使用：</p>
+<pre><code class="hljs language-markdown"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span>&gt;</span></span>
   自定义内容写在这里
-&lt;/MyComponent&gt;
-</code></pre>
-<h2>插件</h2>
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">MyComponent</span>&gt;</span></span></code></pre><h2>插件</h2>
 <h3>常用插件</h3>
-<pre><code class="language-javascript">module.exports = {
-  plugins: [
-    &quot;@vuepress/plugin-search&quot;,
-    &quot;@vuepress/plugin-medium-zoom&quot;,
-    &quot;vuepress-plugin-reading-time&quot;,
-    &quot;vuepress-plugin-comment&quot;,
+<pre><code class="hljs language-javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-string">&quot;@vuepress/plugin-search&quot;</span>,
+    <span class="hljs-string">&quot;@vuepress/plugin-medium-zoom&quot;</span>,
+    <span class="hljs-string">&quot;vuepress-plugin-reading-time&quot;</span>,
+    <span class="hljs-string">&quot;vuepress-plugin-comment&quot;</span>,
   ],
-};
-</code></pre>
-<h2>最佳实践</h2>
+};</code></pre><h2>最佳实践</h2>
 <ol>
 <li><strong>组织内容</strong>：将相关文档分组到文件夹中</li>
 <li><strong>使用 Frontmatter</strong>：为所有页面添加元数据</li>
@@ -382,21 +365,29 @@ export default {
     <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
     <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
   </svg>
-  <span>Command copied to clipboard!</span>
+  <span>命令已复制到剪贴板！</span>
 </div>
 
 <script>
+const currentLang = 'zh';
+
 function copyCommand(command) {
   navigator.clipboard.writeText(command).then(() => {
     const toast = document.getElementById('toast');
-    const copyText = document.getElementById('copyText');
+    const copyButton = document.querySelector('.copy-button');
 
+    // Show success state on button
+    if (copyButton) {
+      copyButton.classList.add('copied');
+      setTimeout(() => {
+        copyButton.classList.remove('copied');
+      }, 1500);
+    }
+
+    // Show toast notification
     toast.classList.remove('hidden');
-    copyText.textContent = 'Copied!';
-
     setTimeout(() => {
       toast.classList.add('hidden');
-      copyText.textContent = 'Copy Command';
     }, 2000);
   });
 }
@@ -414,29 +405,26 @@ function copyCommand(command) {
   <!-- Scripts -->
   <script src="/assets/js/main.js"></script>
   <script>
-  function switchLanguage(lang) {
-    const currentPath = window.location.pathname;
-    const currentLang = 'zh';
-    const defaultLang = 'zh';
+  function toggleLangMenu(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.classList.toggle('show');
 
-    let newPath;
-    if (lang === defaultLang) {
-      // Remove language prefix
-      if (currentLang === defaultLang) {
-        newPath = currentPath;
-      } else {
-        newPath = currentPath.replace('/' + currentLang, '') || '/';
-      }
-    } else {
-      // Add language prefix
-      if (currentLang === defaultLang) {
-        newPath = '/' + lang + (currentPath === '/' ? '' : currentPath);
-      } else {
-        newPath = currentPath.replace('/' + currentLang, '/' + lang);
-      }
+    // Close dropdown when clicking outside
+    setTimeout(() => {
+      document.addEventListener('click', closeLangMenu);
+    }, 10);
+  }
+
+  function closeLangMenu(event) {
+    const dropdown = document.getElementById('langDropdown');
+    const button = document.querySelector('.lang-button');
+    if (!dropdown || !button) return;
+
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      dropdown.classList.remove('show');
+      document.removeEventListener('click', closeLangMenu);
     }
-
-    window.location.href = newPath;
   }
   </script>
 </body>

@@ -8,6 +8,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,9 +21,11 @@
     <div class="container">
       <div class="header-content">
         <a href="/en/" class="logo">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="6" fill="currentColor"/>
-            <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
           </svg>
           <span>Jzero Template Market</span>
         </a>
@@ -37,19 +40,47 @@
 
           
             <div class="lang-switcher">
-              <select id="langSelect" class="lang-select" onchange="switchLanguage(this.value)">
+              <button
+                class="lang-button"
+                onclick="toggleLangMenu(event)"
+                title="Switch Language"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10z"/>
+                </svg>
+                <span id="currentLangName">EN</span>
+                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+
+              <div class="lang-dropdown" id="langDropdown">
                 
                   
-                  <option value="zh" >
-                    中文
-                  </option>
+                  
+                  
+                    <a
+                      href="/templates/cli/"
+                      class="lang-option "
+                    >
+                      中文
+                    </a>
+                  
                 
                   
-                  <option value="en" selected>
-                    English
-                  </option>
+                  
+                  
+                    <a
+                      href="/en/templates/cli/"
+                      class="lang-option active"
+                    >
+                      English
+                    </a>
+                  
                 
-              </select>
+              </div>
             </div>
           
         </nav>
@@ -59,16 +90,7 @@
 
   <!-- Main Content -->
   <main class="main">
-    <!-- Breadcrumb -->
-<nav class="breadcrumb">
-  <div class="container">
-    <a href="/en/">Templates</a>
-    <span class="separator">/</span>
-    <span class="current">CLI Tool</span>
-  </div>
-</nav>
-
-<!-- Template Detail -->
+    <!-- Template Detail -->
 <article class="template-detail">
   <div class="container">
     <header class="template-header-detail">
@@ -92,30 +114,27 @@
       </div>
 
       <div class="template-actions-detail">
-        <button
-          class="btn btn-primary btn-large"
-          onclick="copyCommand('jzero new simplecli --branch cli')"
-          title="Click to copy command"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-            <path d="M7 7h6M7 10h6M7 13h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span id="copyText">Copy Command</span>
-        </button>
-
         <div class="command-display">
           <code>jzero new simplecli --branch cli</code>
+          <button
+            class="copy-button"
+            onclick="copyCommand('jzero new simplecli --branch cli')"
+            title="Copy command"
+            aria-label="Copy command"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
         </div>
 
         
-
-        
-          <a href="https://github.com/jzero-io/templates/tree/cli" target="_blank" rel="noopener" class="btn btn-secondary">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 2C5.03 2 1 6.03 1 11c0 3.98 2.5 7.37 6 8.54.44.08.6-.19.6-.42v-1.57c-2.45.53-2.96-1.18-2.96-1.18-.4-1.02-.98-1.29-.98-1.29-.8-.55.06-.54.06-.54.88.06 1.34.9 1.34.9.78 1.34 2.05.95 2.55.73.08-.57.31-.95.56-1.17-1.95-.22-4-1.57-4-5.52 0-1.22.44-2.22 1.16-3-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.11 1.15.9-.25 1.87-.38 2.83-.38.96 0 1.93.13 2.83.38 2.16-1.45 3.11-1.15 3.11-1.15.61 1.54.23 2.68.11 2.96.72.78 1.16 1.78 1.16 3 0 3.96-2.05 5.29-4 5.52.31.27.59.8.59 1.61v2.39c0 .23.16.5.6.42 3.5-1.17 6-4.56 6-8.54 0-4.97-4.03-9-9-9z" fill="currentColor"/>
+          <a href="https://github.com/jzero-io/templates/tree/cli" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
             </svg>
-            View Source
+            <span>View Template</span>
           </a>
         
       </div>
@@ -162,104 +181,84 @@
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
             <h1>CLI Tool Template</h1>
-<p>A command-line application template that implements common CLI patterns and best practices.</p>
+<p>A command-line application template implementing common CLI patterns and best practices.</p>
 <h2>Features</h2>
 <ul>
 <li><strong>Command Parsing</strong>: Built-in argument and flag parsing</li>
 <li><strong>Interactive Prompts</strong>: User-friendly interactive input</li>
-<li><strong>Config Management</strong>: YAML/TOML/JSON configuration support</li>
+<li><strong>Configuration Management</strong>: Support for YAML/TOML/JSON configurations</li>
 <li><strong>Rich Output</strong>: Colored and formatted console output</li>
 <li><strong>Error Handling</strong>: Graceful error messages and exit codes</li>
 </ul>
 <h2>Getting Started</h2>
-<pre><code class="language-bash">jzero new simplecli --branch cli
-cd simplecli
+<pre><code class="hljs language-bash">jzero new simplecli --branch cli
+<span class="hljs-built_in">cd</span> simplecli
 go mod tidy
 go build -o cli main.go
-./cli --help
-</code></pre>
-<h2>Project Structure</h2>
-<pre><code>.
-├── cmd/             # Command implementations
-├── config/          # Configuration handling
-├── internal/
-│   ├── printer/     # Output formatting
-│   └── validator/   # Input validation
-├── main.go          # Entry point
-└── config.yaml      # Default config
-</code></pre>
-<h2>Usage Examples</h2>
+./cli --<span class="hljs-built_in">help</span></code></pre><h2>Project Structure</h2>
+<pre><code class="hljs language-plaintext">.
+├── cmd<span class="hljs-symbol">/</span>             <span class="hljs-comment"># Command implementations</span>
+├── config<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Configuration handling</span>
+├── internal<span class="hljs-symbol">/</span>
+│   ├── printer<span class="hljs-symbol">/</span>     <span class="hljs-comment"># Output formatting</span>
+│   └── validator<span class="hljs-symbol">/</span>   <span class="hljs-comment"># Input validation</span>
+├── main.go          <span class="hljs-comment"># Entry point</span>
+└── config.yaml      <span class="hljs-comment"># Default configuration</span></code></pre><h2>Usage Examples</h2>
 <h3>Basic Command</h3>
-<pre><code class="language-bash">./cli command-name --flag value
-</code></pre>
-<h3>Interactive Mode</h3>
-<pre><code class="language-bash">./cli interactive
-# Follow the prompts...
-</code></pre>
-<h3>Configuration File</h3>
+<pre><code class="hljs language-bash">./cli command-name --flag value</code></pre><h3>Interactive Mode</h3>
+<pre><code class="hljs language-bash">./cli interactive
+<span class="hljs-comment"># Follow the prompts...</span></code></pre><h3>Configuration File</h3>
 <p>Create <code>config.yaml</code>:</p>
-<pre><code class="language-yaml">logLevel: info
-outputFormat: json
-timeout: 30s
-</code></pre>
-<p>Run with config:</p>
-<pre><code class="language-bash">./cli --config config.yaml
-</code></pre>
-<h2>Adding New Commands</h2>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">logLevel:</span> <span class="hljs-string">info</span>
+<span class="hljs-attr">outputFormat:</span> <span class="hljs-string">json</span>
+<span class="hljs-attr">timeout:</span> <span class="hljs-string">30s</span></code></pre><p>Run with config:</p>
+<pre><code class="hljs language-bash">./cli --config config.yaml</code></pre><h2>Adding New Commands</h2>
 <ol>
 <li>Create command file in <code>cmd/</code>:</li>
 </ol>
-<pre><code class="language-go">package cmd
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> cmd
 
-import (
-    &quot;github.com/urfave/cli/v2&quot;
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;github.com/urfave/cli/v2&quot;</span>
 )
 
-func NewExampleCommand() *cli.Command {
-    return &amp;cli.Command{
-        Name:  &quot;example&quot;,
-        Usage: &quot;Example command description&quot;,
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewExampleCommand</span><span class="hljs-params">()</span></span> *cli.Command {
+    <span class="hljs-keyword">return</span> &amp;cli.Command{
+        Name:  <span class="hljs-string">&quot;example&quot;</span>,
+        Usage: <span class="hljs-string">&quot;Example command description&quot;</span>,
         Flags: []cli.Flag{
             &amp;cli.StringFlag{
-                Name:  &quot;input&quot;,
-                Usage: &quot;Input file path&quot;,
+                Name:  <span class="hljs-string">&quot;input&quot;</span>,
+                Usage: <span class="hljs-string">&quot;Input file path&quot;</span>,
             },
         },
-        Action: func(c *cli.Context) error {
-            // Your logic here
-            return nil
+        Action: <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(c *cli.Context)</span></span> <span class="hljs-type">error</span> {
+            <span class="hljs-comment">// Your logic here</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
         },
     }
-}
-</code></pre>
-<ol start="2">
+}</code></pre><ol start="2">
 <li>Register in <code>main.go</code>:</li>
 </ol>
-<pre><code class="language-go">app.Commands = append(app.Commands, cmd.NewExampleCommand())
-</code></pre>
-<h2>Build &amp; Distribution</h2>
+<pre><code class="hljs language-go">app.Commands = <span class="hljs-built_in">append</span>(app.Commands, cmd.NewExampleCommand())</code></pre><h2>Building and Distribution</h2>
 <h3>Build for Multiple Platforms</h3>
-<pre><code class="language-bash"># macOS
+<pre><code class="hljs language-bash"><span class="hljs-comment"># macOS</span>
 GOOS=darwin GOARCH=amd64 go build -o cli-darwin-amd64 main.go
 
-# Linux
+<span class="hljs-comment"># Linux</span>
 GOOS=linux GOARCH=amd64 go build -o cli-linux-amd64 main.go
 
-# Windows
-GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go
-</code></pre>
-<h3>Homebrew Installation (Optional)</h3>
-<p>Create a tap for easy installation:</p>
-<pre><code class="language-bash">brew tap yourusername/cli
-brew install yourusername/cli/cli
-</code></pre>
-<h2>Best Practices</h2>
+<span class="hljs-comment"># Windows</span>
+GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go</code></pre><h3>Homebrew Installation (Optional)</h3>
+<p>Create tap for easy installation:</p>
+<pre><code class="hljs language-bash">brew tap yourusername/cli
+brew install yourusername/cli/cli</code></pre><h2>Best Practices</h2>
 <ol>
 <li><strong>Exit Codes</strong>: Use standard exit codes (0 for success, 1 for errors)</li>
-<li><strong>Error Messages</strong>: Provide helpful error messages with suggestions</li>
+<li><strong>Error Messages</strong>: Provide helpful error messages and suggestions</li>
 <li><strong>Flags</strong>: Use both short and long flags (<code>-v</code> and <code>--verbose</code>)</li>
 <li><strong>Help Text</strong>: Include examples in command help text</li>
-<li><strong>Testing</strong>: Write tests for command logic</li>
+<li><strong>Testing</strong>: Write tests for your command logic</li>
 </ol>
 <h2>Learn More</h2>
 <ul>
@@ -284,17 +283,25 @@ brew install yourusername/cli/cli
 </div>
 
 <script>
+const currentLang = 'en';
+
 function copyCommand(command) {
   navigator.clipboard.writeText(command).then(() => {
     const toast = document.getElementById('toast');
-    const copyText = document.getElementById('copyText');
+    const copyButton = document.querySelector('.copy-button');
 
+    // Show success state on button
+    if (copyButton) {
+      copyButton.classList.add('copied');
+      setTimeout(() => {
+        copyButton.classList.remove('copied');
+      }, 1500);
+    }
+
+    // Show toast notification
     toast.classList.remove('hidden');
-    copyText.textContent = 'Copied!';
-
     setTimeout(() => {
       toast.classList.add('hidden');
-      copyText.textContent = 'Copy Command';
     }, 2000);
   });
 }
@@ -312,29 +319,26 @@ function copyCommand(command) {
   <!-- Scripts -->
   <script src="/assets/js/main.js"></script>
   <script>
-  function switchLanguage(lang) {
-    const currentPath = window.location.pathname;
-    const currentLang = 'en';
-    const defaultLang = 'zh';
+  function toggleLangMenu(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.classList.toggle('show');
 
-    let newPath;
-    if (lang === defaultLang) {
-      // Remove language prefix
-      if (currentLang === defaultLang) {
-        newPath = currentPath;
-      } else {
-        newPath = currentPath.replace('/' + currentLang, '') || '/';
-      }
-    } else {
-      // Add language prefix
-      if (currentLang === defaultLang) {
-        newPath = '/' + lang + (currentPath === '/' ? '' : currentPath);
-      } else {
-        newPath = currentPath.replace('/' + currentLang, '/' + lang);
-      }
+    // Close dropdown when clicking outside
+    setTimeout(() => {
+      document.addEventListener('click', closeLangMenu);
+    }, 10);
+  }
+
+  function closeLangMenu(event) {
+    const dropdown = document.getElementById('langDropdown');
+    const button = document.querySelector('.lang-button');
+    if (!dropdown || !button) return;
+
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      dropdown.classList.remove('show');
+      document.removeEventListener('click', closeLangMenu);
     }
-
-    window.location.href = newPath;
   }
   </script>
 </body>

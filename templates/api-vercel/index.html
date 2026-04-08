@@ -8,6 +8,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,9 +21,11 @@
     <div class="container">
       <div class="header-content">
         <a href="/" class="logo">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="6" fill="currentColor"/>
-            <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
           </svg>
           <span>Jzero 模板市场</span>
         </a>
@@ -37,19 +40,47 @@
 
           
             <div class="lang-switcher">
-              <select id="langSelect" class="lang-select" onchange="switchLanguage(this.value)">
+              <button
+                class="lang-button"
+                onclick="toggleLangMenu(event)"
+                title="切换语言"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10z"/>
+                </svg>
+                <span id="currentLangName">中文</span>
+                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+
+              <div class="lang-dropdown" id="langDropdown">
                 
                   
-                  <option value="zh" selected>
-                    中文
-                  </option>
+                  
+                  
+                    <a
+                      href="/templates/api-vercel/"
+                      class="lang-option active"
+                    >
+                      中文
+                    </a>
+                  
                 
                   
-                  <option value="en" >
-                    English
-                  </option>
+                  
+                  
+                    <a
+                      href="/en/templates/api-vercel/"
+                      class="lang-option "
+                    >
+                      English
+                    </a>
+                  
                 
-              </select>
+              </div>
             </div>
           
         </nav>
@@ -59,16 +90,7 @@
 
   <!-- Main Content -->
   <main class="main">
-    <!-- Breadcrumb -->
-<nav class="breadcrumb">
-  <div class="container">
-    <a href="/">模板</a>
-    <span class="separator">/</span>
-    <span class="current">Vercel API</span>
-  </div>
-</nav>
-
-<!-- Template Detail -->
+    <!-- Template Detail -->
 <article class="template-detail">
   <div class="container">
     <header class="template-header-detail">
@@ -92,30 +114,27 @@
       </div>
 
       <div class="template-actions-detail">
-        <button
-          class="btn btn-primary btn-large"
-          onclick="copyCommand('jzero new simpleapi-vercel --branch api-vercel')"
-          title="Click to copy command"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-            <path d="M7 7h6M7 10h6M7 13h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span id="copyText">Copy Command</span>
-        </button>
-
         <div class="command-display">
           <code>jzero new simpleapi-vercel --branch api-vercel</code>
+          <button
+            class="copy-button"
+            onclick="copyCommand('jzero new simpleapi-vercel --branch api-vercel')"
+            title="复制命令"
+            aria-label="复制命令"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
         </div>
 
         
-
-        
-          <a href="https://github.com/jzero-io/templates/tree/api-vercel" target="_blank" rel="noopener" class="btn btn-secondary">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 2C5.03 2 1 6.03 1 11c0 3.98 2.5 7.37 6 8.54.44.08.6-.19.6-.42v-1.57c-2.45.53-2.96-1.18-2.96-1.18-.4-1.02-.98-1.29-.98-1.29-.8-.55.06-.54.06-.54.88.06 1.34.9 1.34.9.78 1.34 2.05.95 2.55.73.08-.57.31-.95.56-1.17-1.95-.22-4-1.57-4-5.52 0-1.22.44-2.22 1.16-3-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.11 1.15.9-.25 1.87-.38 2.83-.38.96 0 1.93.13 2.83.38 2.16-1.45 3.11-1.15 3.11-1.15.61 1.54.23 2.68.11 2.96.72.78 1.16 1.78 1.16 3 0 3.96-2.05 5.29-4 5.52.31.27.59.8.59 1.61v2.39c0 .23.16.5.6.42 3.5-1.17 6-4.56 6-8.54 0-4.97-4.03-9-9-9z" fill="currentColor"/>
+          <a href="https://github.com/jzero-io/templates/tree/api-vercel" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
             </svg>
-            View Source
+            <span>查看模板</span>
           </a>
         
       </div>
@@ -171,54 +190,44 @@
 <li><strong>示例端点</strong>：现成可用的 API 示例端点</li>
 </ul>
 <h2>快速开始</h2>
-<pre><code class="language-bash">jzero new simpleapi-vercel --branch api-vercel
-cd simpleapi-vercel
-</code></pre>
-<h2>项目结构</h2>
-<pre><code>.
-├── api/              # API 端点
-│   ├── handlers/     # 请求处理器
-│   ├── logic/        # 业务逻辑
-│   └── middleware/   # 中间件函数
-├── internal/         # 内部包
-├── go.mod            # Go 模块文件
-└── vercel.json       # Vercel 配置
-</code></pre>
-<h2>使用示例</h2>
+<pre><code class="hljs language-bash">jzero new simpleapi-vercel --branch api-vercel
+<span class="hljs-built_in">cd</span> simpleapi-vercel</code></pre><h2>项目结构</h2>
+<pre><code class="hljs language-plaintext">.
+├── api<span class="hljs-symbol">/</span>              <span class="hljs-comment"># API 端点</span>
+│   ├── handlers<span class="hljs-symbol">/</span>     <span class="hljs-comment"># 请求处理器</span>
+│   ├── logic<span class="hljs-symbol">/</span>        <span class="hljs-comment"># 业务逻辑</span>
+│   └── middleware<span class="hljs-symbol">/</span>   <span class="hljs-comment"># 中间件函数</span>
+├── internal<span class="hljs-symbol">/</span>         <span class="hljs-comment"># 内部包</span>
+├── go.mod            <span class="hljs-comment"># Go 模块文件</span>
+└── vercel.json       <span class="hljs-comment"># Vercel 配置</span></code></pre><h2>使用示例</h2>
 <h3>创建新端点</h3>
-<pre><code class="language-go">// api/hello/hello.go
-package hello
+<pre><code class="hljs language-go"><span class="hljs-comment">// api/hello/hello.go</span>
+<span class="hljs-keyword">package</span> hello
 
-import (
-    &quot;net/http&quot;
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;net/http&quot;</span>
     
-    &quot;github.com/zeromicro/go-zero/rest/httpx&quot;
+    <span class="hljs-string">&quot;github.com/zeromicro/go-zero/rest/httpx&quot;</span>
 )
 
-func Handler(w http.ResponseWriter, r *http.Request) {
-    httpx.OkJson(w, map[string]string{
-        &quot;message&quot;: &quot;Hello from Vercel!&quot;,
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Handler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+    httpx.OkJson(w, <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>{
+        <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Hello from Vercel!&quot;</span>,
     })
-}
-</code></pre>
-<h3>部署到 Vercel</h3>
-<pre><code class="language-bash"># 安装 Vercel CLI
+}</code></pre><h3>部署到 Vercel</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 安装 Vercel CLI</span>
 npm i -g vercel
 
-# 部署
-vercel
-</code></pre>
-<h2>配置</h2>
+<span class="hljs-comment"># 部署</span>
+vercel</code></pre><h2>配置</h2>
 <h3>vercel.json</h3>
-<pre><code class="language-json">{
-  &quot;functions&quot;: {
-    &quot;api/**/*.go&quot;: {
-      &quot;runtime&quot;: &quot;go1.x&quot;
-    }
-  }
-}
-</code></pre>
-<h2>更多信息</h2>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;functions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;api/**/*.go&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;runtime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;go1.x&quot;</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre><h2>更多信息</h2>
 <ul>
 <li><a href="https://vercel.com/docs">Vercel 文档</a></li>
 <li><a href="https://go-zero.dev/">Go-Zero 文档</a></li>
@@ -237,21 +246,29 @@ vercel
     <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
     <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
   </svg>
-  <span>Command copied to clipboard!</span>
+  <span>命令已复制到剪贴板！</span>
 </div>
 
 <script>
+const currentLang = 'zh';
+
 function copyCommand(command) {
   navigator.clipboard.writeText(command).then(() => {
     const toast = document.getElementById('toast');
-    const copyText = document.getElementById('copyText');
+    const copyButton = document.querySelector('.copy-button');
 
+    // Show success state on button
+    if (copyButton) {
+      copyButton.classList.add('copied');
+      setTimeout(() => {
+        copyButton.classList.remove('copied');
+      }, 1500);
+    }
+
+    // Show toast notification
     toast.classList.remove('hidden');
-    copyText.textContent = 'Copied!';
-
     setTimeout(() => {
       toast.classList.add('hidden');
-      copyText.textContent = 'Copy Command';
     }, 2000);
   });
 }
@@ -269,29 +286,26 @@ function copyCommand(command) {
   <!-- Scripts -->
   <script src="/assets/js/main.js"></script>
   <script>
-  function switchLanguage(lang) {
-    const currentPath = window.location.pathname;
-    const currentLang = 'zh';
-    const defaultLang = 'zh';
+  function toggleLangMenu(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.classList.toggle('show');
 
-    let newPath;
-    if (lang === defaultLang) {
-      // Remove language prefix
-      if (currentLang === defaultLang) {
-        newPath = currentPath;
-      } else {
-        newPath = currentPath.replace('/' + currentLang, '') || '/';
-      }
-    } else {
-      // Add language prefix
-      if (currentLang === defaultLang) {
-        newPath = '/' + lang + (currentPath === '/' ? '' : currentPath);
-      } else {
-        newPath = currentPath.replace('/' + currentLang, '/' + lang);
-      }
+    // Close dropdown when clicking outside
+    setTimeout(() => {
+      document.addEventListener('click', closeLangMenu);
+    }, 10);
+  }
+
+  function closeLangMenu(event) {
+    const dropdown = document.getElementById('langDropdown');
+    const button = document.querySelector('.lang-button');
+    if (!dropdown || !button) return;
+
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      dropdown.classList.remove('show');
+      document.removeEventListener('click', closeLangMenu);
     }
-
-    window.location.href = newPath;
   }
   </script>
 </body>

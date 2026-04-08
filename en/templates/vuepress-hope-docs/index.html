@@ -8,6 +8,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,9 +21,11 @@
     <div class="container">
       <div class="header-content">
         <a href="/en/" class="logo">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="32" height="32" rx="6" fill="currentColor"/>
-            <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
           </svg>
           <span>Jzero Template Market</span>
         </a>
@@ -37,19 +40,47 @@
 
           
             <div class="lang-switcher">
-              <select id="langSelect" class="lang-select" onchange="switchLanguage(this.value)">
+              <button
+                class="lang-button"
+                onclick="toggleLangMenu(event)"
+                title="Switch Language"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10z"/>
+                </svg>
+                <span id="currentLangName">EN</span>
+                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+
+              <div class="lang-dropdown" id="langDropdown">
                 
                   
-                  <option value="zh" >
-                    中文
-                  </option>
+                  
+                  
+                    <a
+                      href="/templates/vuepress-hope-docs/"
+                      class="lang-option "
+                    >
+                      中文
+                    </a>
+                  
                 
                   
-                  <option value="en" selected>
-                    English
-                  </option>
+                  
+                  
+                    <a
+                      href="/en/templates/vuepress-hope-docs/"
+                      class="lang-option active"
+                    >
+                      English
+                    </a>
+                  
                 
-              </select>
+              </div>
             </div>
           
         </nav>
@@ -59,16 +90,7 @@
 
   <!-- Main Content -->
   <main class="main">
-    <!-- Breadcrumb -->
-<nav class="breadcrumb">
-  <div class="container">
-    <a href="/en/">Templates</a>
-    <span class="separator">/</span>
-    <span class="current">VuePress Hope Docs</span>
-  </div>
-</nav>
-
-<!-- Template Detail -->
+    <!-- Template Detail -->
 <article class="template-detail">
   <div class="container">
     <header class="template-header-detail">
@@ -92,30 +114,27 @@
       </div>
 
       <div class="template-actions-detail">
-        <button
-          class="btn btn-primary btn-large"
-          onclick="copyCommand('jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs')"
-          title="Click to copy command"
-        >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-            <path d="M7 7h6M7 10h6M7 13h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <span id="copyText">Copy Command</span>
-        </button>
-
         <div class="command-display">
           <code>jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs</code>
+          <button
+            class="copy-button"
+            onclick="copyCommand('jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs')"
+            title="Copy command"
+            aria-label="Copy command"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
         </div>
 
         
-
-        
-          <a href="https://github.com/jzero-io/templates/tree/vuepress-hope-docs" target="_blank" rel="noopener" class="btn btn-secondary">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 2C5.03 2 1 6.03 1 11c0 3.98 2.5 7.37 6 8.54.44.08.6-.19.6-.42v-1.57c-2.45.53-2.96-1.18-2.96-1.18-.4-1.02-.98-1.29-.98-1.29-.8-.55.06-.54.06-.54.88.06 1.34.9 1.34.9.78 1.34 2.05.95 2.55.73.08-.57.31-.95.56-1.17-1.95-.22-4-1.57-4-5.52 0-1.22.44-2.22 1.16-3-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.11 1.15.9-.25 1.87-.38 2.83-.38.96 0 1.93.13 2.83.38 2.16-1.45 3.11-1.15 3.11-1.15.61 1.54.23 2.68.11 2.96.72.78 1.16 1.78 1.16 3 0 3.96-2.05 5.29-4 5.52.31.27.59.8.59 1.61v2.39c0 .23.16.5.6.42 3.5-1.17 6-4.56 6-8.54 0-4.97-4.03-9-9-9z" fill="currentColor"/>
+          <a href="https://github.com/jzero-io/templates/tree/vuepress-hope-docs" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
             </svg>
-            View Source
+            <span>View Template</span>
           </a>
         
       </div>
@@ -170,201 +189,165 @@
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
             <h1>VuePress Hope Docs Template</h1>
-<p>A modern documentation site template powered by VuePress and the beautiful Hope theme.</p>
+<p>A modern documentation site template powered by VuePress with the beautiful Hope theme.</p>
 <h2>Features</h2>
 <ul>
-<li><strong>VuePress Hope Theme</strong>: Feature-rich theme with excellent UX</li>
-<li><strong>Markdown Support</strong>: Write docs in Markdown with extended syntax</li>
-<li><strong>Blog Functionality</strong>: Built-in blog with categories and tags</li>
+<li><strong>VuePress Hope Theme</strong>: Feature-rich theme with excellent user experience</li>
+<li><strong>Markdown Support</strong>: Write documentation using extended Markdown syntax</li>
+<li><strong>Blog Functionality</strong>: Built-in blog system with categories and tags</li>
 <li><strong>Full-text Search</strong>: Client-side search with Chinese support</li>
-<li><strong>Responsive Design</strong>: Mobile-friendly out of the box</li>
+<li><strong>Responsive Design</strong>: Mobile-friendly experience out of the box</li>
 <li><strong>Dark Mode</strong>: Automatic dark mode support</li>
-<li><strong>Navigation</strong>: Auto-generate sidebar and navbar from file structure</li>
+<li><strong>Navigation</strong>: Auto-generated sidebar and navbar from file structure</li>
 </ul>
 <h2>Getting Started</h2>
-<pre><code class="language-bash">jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs
-cd simple-vuepress-hope-docs
+<pre><code class="hljs language-bash">jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs
+<span class="hljs-built_in">cd</span> simple-vuepress-hope-docs
 npm install
-npm run dev
-</code></pre>
-<p>Visit <code>http://localhost:8080</code> to see your docs site.</p>
+npm run dev</code></pre><p>Visit <code>http://localhost:8080</code> to view your documentation site.</p>
 <h2>Project Structure</h2>
-<pre><code>.
-├── docs/
-│   ├── README.md           # Homepage
-│   ├── .vuepress/          # VuePress config
-│   │   ├── config.js       # Main config
-│   │   └── theme/          # Custom theme
-│   ├── guide/              # Documentation
+<pre><code class="hljs language-plaintext">.
+├── docs<span class="hljs-symbol">/</span>
+│   ├── README.md           <span class="hljs-comment"># Homepage</span>
+│   ├── .vuepress<span class="hljs-symbol">/</span>          <span class="hljs-comment"># VuePress configuration</span>
+│   │   ├── config.js       <span class="hljs-comment"># Main configuration</span>
+│   │   └── theme<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Custom theme</span>
+│   ├── guide<span class="hljs-symbol">/</span>              <span class="hljs-comment"># Documentation</span>
 │   │   ├── README.md
 │   │   ├── getting-started.md
 │   │   └── configuration.md
-│   └── blog/               # Blog posts
+│   └── blog<span class="hljs-symbol">/</span>               <span class="hljs-comment"># Blog posts</span>
 │       ├── README.md
-│       └── 2024/
+│       └── <span class="hljs-number">2024</span><span class="hljs-symbol">/</span>
 │           └── example-post.md
 ├── package.json
-└── README.md
-</code></pre>
-<h2>Configuration</h2>
+└── README.md</code></pre><h2>Configuration</h2>
 <h3>Basic Setup (<code>docs/.vuepress/config.js</code>)</h3>
-<pre><code class="language-javascript">module.exports = {
-  title: &quot;My Docs&quot;,
-  description: &quot;Documentation built with VuePress&quot;,
-  
-  theme: &quot;hope&quot;,
-  
-  themeConfig: {
-    logo: &quot;/logo.png&quot;,
-    
-    navbar: [
+<pre><code class="hljs language-javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;My Documentation&quot;</span>,
+  <span class="hljs-attr">description</span>: <span class="hljs-string">&quot;Documentation built with VuePress&quot;</span>,
+
+  <span class="hljs-attr">theme</span>: <span class="hljs-string">&quot;hope&quot;</span>,
+
+  <span class="hljs-attr">themeConfig</span>: {
+    <span class="hljs-attr">logo</span>: <span class="hljs-string">&quot;/logo.png&quot;</span>,
+
+    <span class="hljs-attr">navbar</span>: [
       {
-        text: &quot;Guide&quot;,
-        link: &quot;/guide/&quot;,
+        <span class="hljs-attr">text</span>: <span class="hljs-string">&quot;Guide&quot;</span>,
+        <span class="hljs-attr">link</span>: <span class="hljs-string">&quot;/guide/&quot;</span>,
       },
       {
-        text: &quot;Blog&quot;,
-        link: &quot;/blog/&quot;,
+        <span class="hljs-attr">text</span>: <span class="hljs-string">&quot;Blog&quot;</span>,
+        <span class="hljs-attr">link</span>: <span class="hljs-string">&quot;/blog/&quot;</span>,
       },
     ],
-    
-    sidebar: {
-      &quot;/guide/&quot;: [
+
+    <span class="hljs-attr">sidebar</span>: {
+      <span class="hljs-string">&quot;/guide/&quot;</span>: [
         {
-          title: &quot;Getting Started&quot;,
-          collapsable: false,
-          children: [
-            &quot;getting-started&quot;,
-            &quot;configuration&quot;,
+          <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Getting Started&quot;</span>,
+          <span class="hljs-attr">collapsable</span>: <span class="hljs-literal">false</span>,
+          <span class="hljs-attr">children</span>: [
+            <span class="hljs-string">&quot;getting-started&quot;</span>,
+            <span class="hljs-string">&quot;configuration&quot;</span>,
           ],
         },
       ],
     },
   },
-};
-</code></pre>
-<h2>Writing Content</h2>
+};</code></pre><h2>Writing Content</h2>
 <h3>Documentation Pages</h3>
 <p>Create Markdown files in <code>docs/guide/</code>:</p>
-<pre><code class="language-markdown"># Page Title
+<pre><code class="hljs language-markdown"><span class="hljs-section"># Page Title</span>
 
 Content goes here...
 
-## Code Blocks
+<span class="hljs-section">## Code Blocks</span>
 
-```javascript
-console.log(&quot;Hello, VuePress!&quot;);
-</code></pre>
-<h2>Custom Containers</h2>
-<p>::: tip
-This is a helpful tip!
-:::</p>
-<p>::: warning
-This is a warning!
-:::</p>
-<p>::: danger
-This is dangerous!
-:::</p>
-<pre><code>
-### Blog Posts
+<span class="hljs-code">```javascript
+console.log(&quot;Hello, VuePress!&quot;);</span></code></pre><pre><code class="hljs language-plaintext">
+<span class="hljs-comment">### Blog Posts</span>
 
-Add blog posts in `docs/blog/`:
+<span class="hljs-string">Add</span> <span class="hljs-string">blog</span> <span class="hljs-string">posts</span> <span class="hljs-string">in</span> <span class="hljs-string">`docs/blog/`:</span>
 
-```markdown
----
-title: My First Post
-date: 2024-01-15
-categories:
-  - Tutorial
-tags:
-  - VuePress
-  - Documentation
----
+<span class="hljs-string">```markdown</span>
+<span class="hljs-meta">---</span>
+<span class="hljs-attr">title:</span> <span class="hljs-string">My</span> <span class="hljs-string">First</span> <span class="hljs-string">Post</span>
+<span class="hljs-attr">date:</span> <span class="hljs-number">2024-01-15</span>
+<span class="hljs-attr">categories:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">Tutorial</span>
+<span class="hljs-attr">tags:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">VuePress</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">Documentation</span>
+<span class="hljs-meta">---
+</span>
+<span class="hljs-comment"># My First Blog Post</span>
 
-# My First Blog Post
-
-Content here...
-</code></pre>
-<h2>Build &amp; Deploy</h2>
+<span class="hljs-string">Content</span> <span class="hljs-string">goes</span> <span class="hljs-string">here...</span></code></pre><h2>Build and Deployment</h2>
 <h3>Local Build</h3>
-<pre><code class="language-bash">npm run build
-</code></pre>
-<p>Output will be in <code>docs/.vuepress/dist/</code></p>
+<pre><code class="hljs language-bash">npm run build</code></pre><p>Output will be in the <code>docs/.vuepress/dist/</code> directory</p>
 <h3>Deployment Options</h3>
 <h4>Vercel</h4>
-<pre><code class="language-bash">npm install -g vercel
-vercel --prod
-</code></pre>
-<h4>GitHub Pages</h4>
+<pre><code class="hljs language-bash">npm install -g vercel
+vercel --prod</code></pre><h4>GitHub Pages</h4>
 <ol>
 <li>Set base URL in <code>config.js</code>:</li>
 </ol>
-<pre><code class="language-javascript">base: &quot;/your-repo/&quot;,
-</code></pre>
-<ol start="2">
+<pre><code class="hljs language-javascript"><span class="hljs-attr">base</span>: <span class="hljs-string">&quot;/your-repo/&quot;</span>,</code></pre><ol start="2">
 <li>Deploy workflow in <code>.github/workflows/deploy.yml</code></li>
 </ol>
 <h4>Netlify</h4>
 <p>Create <code>netlify.toml</code>:</p>
-<pre><code class="language-toml">[build]
-  command = &quot;npm run build&quot;
-  publish = &quot;docs/.vuepress/dist&quot;
+<pre><code class="hljs language-toml"><span class="hljs-section">[build]</span>
+  <span class="hljs-attr">command</span> = <span class="hljs-string">&quot;npm run build&quot;</span>
+  <span class="hljs-attr">publish</span> = <span class="hljs-string">&quot;docs/.vuepress/dist&quot;</span>
 
-[[redirects]]
-  from = &quot;/*&quot;
-  to = &quot;/index.html&quot;
-  status = 200
-</code></pre>
-<h2>Customization</h2>
-<h3>Styling</h3>
+<span class="hljs-section">[[redirects]]</span>
+  <span class="hljs-attr">from</span> = <span class="hljs-string">&quot;/*&quot;</span>
+  <span class="hljs-attr">to</span> = <span class="hljs-string">&quot;/index.html&quot;</span>
+  <span class="hljs-attr">status</span> = <span class="hljs-number">200</span></code></pre><h2>Customization</h2>
+<h3>Styles</h3>
 <p>Create custom styles in <code>docs/.vuepress/styles/</code>:</p>
-<pre><code class="language-css">/* index.styl */
-.hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-</code></pre>
-<h3>Components</h3>
+<pre><code class="hljs language-css"><span class="hljs-comment">/* index.styl */</span>
+<span class="hljs-selector-class">.hero</span> {
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, <span class="hljs-number">#667eea</span> <span class="hljs-number">0%</span>, <span class="hljs-number">#764ba2</span> <span class="hljs-number">100%</span>);
+}</code></pre><h3>Components</h3>
 <p>Add Vue components in <code>docs/.vuepress/components/</code>:</p>
-<pre><code class="language-vue">&lt;template&gt;
-  &lt;div class=&quot;my-component&quot;&gt;
-    &lt;slot&gt;&lt;/slot&gt;
-  &lt;/div&gt;
-&lt;/template&gt;
+<pre><code class="hljs language-vue"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  </span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;my-component&quot;</span>&gt;</span>
+    </span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span><span class="language-xml">
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><span class="language-xml">
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span>
 
-&lt;script&gt;
-export default {
-  name: &quot;MyComponent&quot;,
-};
-&lt;/script&gt;
-</code></pre>
-<p>Use in Markdown:</p>
-<pre><code class="language-markdown">&lt;MyComponent&gt;
-  Custom content here
-&lt;/MyComponent&gt;
-</code></pre>
-<h2>Plugins</h2>
-<h3>Popular Plugins</h3>
-<pre><code class="language-javascript">module.exports = {
-  plugins: [
-    &quot;@vuepress/plugin-search&quot;,
-    &quot;@vuepress/plugin-medium-zoom&quot;,
-    &quot;vuepress-plugin-reading-time&quot;,
-    &quot;vuepress-plugin-comment&quot;,
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> </span></span><span class="language-xquery">{
+ <span class="hljs-built_in"> name</span>: <span class="hljs-string">&quot;MyComponent&quot;</span>,
+}</span><span class="language-xml">;
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre><p>Use in Markdown:</p>
+<pre><code class="hljs language-markdown"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span>&gt;</span></span>
+  Custom content goes here
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">MyComponent</span>&gt;</span></span></code></pre><h2>Plugins</h2>
+<h3>Common Plugins</h3>
+<pre><code class="hljs language-javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-string">&quot;@vuepress/plugin-search&quot;</span>,
+    <span class="hljs-string">&quot;@vuepress/plugin-medium-zoom&quot;</span>,
+    <span class="hljs-string">&quot;vuepress-plugin-reading-time&quot;</span>,
+    <span class="hljs-string">&quot;vuepress-plugin-comment&quot;</span>,
   ],
-};
-</code></pre>
-<h2>Best Practices</h2>
+};</code></pre><h2>Best Practices</h2>
 <ol>
-<li><strong>Organize Content</strong>: Group related docs in folders</li>
+<li><strong>Organize Content</strong>: Group related documentation into folders</li>
 <li><strong>Use Frontmatter</strong>: Add metadata to all pages</li>
 <li><strong>Optimize Images</strong>: Compress images before adding</li>
 <li><strong>Internal Links</strong>: Use relative paths for internal links</li>
-<li><strong>SEO</strong>: Add proper meta tags and descriptions</li>
+<li><strong>SEO</strong>: Add appropriate meta tags and descriptions</li>
 <li><strong>Accessibility</strong>: Ensure good contrast and semantic HTML</li>
 </ol>
 <h2>Learn More</h2>
 <ul>
-<li><a href="https://vuepress.vuejs.org/">VuePress Official Docs</a></li>
+<li><a href="https://vuepress.vuejs.org/">VuePress Official Documentation</a></li>
 <li><a href="https://theme-hope.vuejs.press/">VuePress Hope Theme</a></li>
 <li><a href="https://www.markdownguide.org/">Markdown Guide</a></li>
 </ul>
@@ -386,17 +369,25 @@ export default {
 </div>
 
 <script>
+const currentLang = 'en';
+
 function copyCommand(command) {
   navigator.clipboard.writeText(command).then(() => {
     const toast = document.getElementById('toast');
-    const copyText = document.getElementById('copyText');
+    const copyButton = document.querySelector('.copy-button');
 
+    // Show success state on button
+    if (copyButton) {
+      copyButton.classList.add('copied');
+      setTimeout(() => {
+        copyButton.classList.remove('copied');
+      }, 1500);
+    }
+
+    // Show toast notification
     toast.classList.remove('hidden');
-    copyText.textContent = 'Copied!';
-
     setTimeout(() => {
       toast.classList.add('hidden');
-      copyText.textContent = 'Copy Command';
     }, 2000);
   });
 }
@@ -414,29 +405,26 @@ function copyCommand(command) {
   <!-- Scripts -->
   <script src="/assets/js/main.js"></script>
   <script>
-  function switchLanguage(lang) {
-    const currentPath = window.location.pathname;
-    const currentLang = 'en';
-    const defaultLang = 'zh';
+  function toggleLangMenu(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.classList.toggle('show');
 
-    let newPath;
-    if (lang === defaultLang) {
-      // Remove language prefix
-      if (currentLang === defaultLang) {
-        newPath = currentPath;
-      } else {
-        newPath = currentPath.replace('/' + currentLang, '') || '/';
-      }
-    } else {
-      // Add language prefix
-      if (currentLang === defaultLang) {
-        newPath = '/' + lang + (currentPath === '/' ? '' : currentPath);
-      } else {
-        newPath = currentPath.replace('/' + currentLang, '/' + lang);
-      }
+    // Close dropdown when clicking outside
+    setTimeout(() => {
+      document.addEventListener('click', closeLangMenu);
+    }, 10);
+  }
+
+  function closeLangMenu(event) {
+    const dropdown = document.getElementById('langDropdown');
+    const button = document.querySelector('.lang-button');
+    if (!dropdown || !button) return;
+
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      dropdown.classList.remove('show');
+      document.removeEventListener('click', closeLangMenu);
     }
-
-    window.location.href = newPath;
   }
   </script>
 </body>
