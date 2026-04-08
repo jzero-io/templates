@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VuePress Hope 文档 - Jzero 模板市场</title>
-  <meta name="description" content="使用 VuePress Hope 主题的文档站点模板">
+  <title>VuePress Hope Docs - Jzero Template Market</title>
+  <meta name="description" content="Documentation site template using VuePress Hope theme">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -19,17 +19,17 @@
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <a href="/" class="logo">
+        <a href="/en/" class="logo">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="32" height="32" rx="6" fill="currentColor"/>
             <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
           </svg>
-          <span>Jzero 模板市场</span>
+          <span>Jzero Template Market</span>
         </a>
 
         <nav class="nav">
-          <a href="/" class="">模板</a>
-          <a href="https://jzero.io" target="_blank" rel="noopener">文档</a>
+          <a href="/en/" class="">Templates</a>
+          <a href="https://jzero.io" target="_blank" rel="noopener">Docs</a>
           <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
 
           
@@ -37,12 +37,12 @@
               <select id="langSelect" class="lang-select" onchange="switchLanguage(this.value)">
                 
                   
-                  <option value="zh" selected>
+                  <option value="zh" >
                     中文
                   </option>
                 
                   
-                  <option value="en" >
+                  <option value="en" selected>
                     English
                   </option>
                 
@@ -59,9 +59,9 @@
     <!-- Breadcrumb -->
 <nav class="breadcrumb">
   <div class="container">
-    <a href="/">模板</a>
+    <a href="/en/">Templates</a>
     <span class="separator">/</span>
-    <span class="current">VuePress Hope 文档</span>
+    <span class="current">VuePress Hope Docs</span>
   </div>
 </nav>
 
@@ -70,21 +70,21 @@
   <div class="container">
     <header class="template-header-detail">
       <div class="template-meta">
-        <span class="template-category">文档</span>
+        <span class="template-category">Documentation</span>
       </div>
 
-      <h1>VuePress Hope 文档</h1>
-      <p class="template-description-large">使用 VuePress Hope 主题的文档站点模板</p>
+      <h1>VuePress Hope Docs</h1>
+      <p class="template-description-large">Documentation site template using VuePress Hope theme</p>
 
       <div class="template-tags-large">
         
-          <span class="tag">文档</span>
+          <span class="tag">documentation</span>
         
           <span class="tag">vuepress</span>
         
           <span class="tag">markdown</span>
         
-          <span class="tag">博客</span>
+          <span class="tag">blog</span>
         
       </div>
 
@@ -122,7 +122,7 @@
       <!-- Features -->
       
         <section class="template-features-section">
-          <h2>特性</h2>
+          <h2>Features</h2>
           <ul class="features-list">
             
               <li>
@@ -130,7 +130,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                VuePress Hope 主题
+                VuePress Hope theme
               </li>
             
               <li>
@@ -138,7 +138,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Markdown 文档
+                Markdown documentation
               </li>
             
               <li>
@@ -146,7 +146,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                博客功能
+                Blog functionality
               </li>
             
               <li>
@@ -154,7 +154,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                搜索和导航
+                Search and navigation
               </li>
             
           </ul>
@@ -164,7 +164,7 @@
       <!-- Guide -->
       
         <section class="template-guide-section">
-          <h2>快速开始指南</h2>
+          <h2>Getting Started Guide</h2>
           <div class="guide-content">
             <h1>VuePress Hope Docs Template</h1>
 <p>A modern documentation site template powered by VuePress and the beautiful Hope theme.</p>
@@ -404,10 +404,10 @@ function copyCommand(command) {
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 Jzero 模板市场. 由 Jzero 构建。</p>
+      <p>&copy; 2026 Jzero Template Market. Built with Jzero.</p>
       <p class="footer-links">
         <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://jzero.io" target="_blank" rel="noopener">文档</a>
+        <a href="https://jzero.io" target="_blank" rel="noopener">Documentation</a>
       </p>
     </div>
   </footer>
@@ -417,7 +417,7 @@ function copyCommand(command) {
   <script>
   function switchLanguage(lang) {
     const currentPath = window.location.pathname;
-    const currentLang = 'zh';
+    const currentLang = 'en';
     const defaultLang = 'zh';
 
     let newPath;

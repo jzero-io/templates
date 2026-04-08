@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple CLI Tool - JZero Template Market</title>
-  <meta name="description" content="A command-line application template with common CLI patterns">
+  <title>命令行工具 - Jzero 模板市场</title>
+  <meta name="description" content="具有常见 CLI 模式的命令行应用程序模板">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -24,13 +24,31 @@
             <rect width="32" height="32" rx="6" fill="currentColor"/>
             <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
           </svg>
-          <span>JZero Template Market</span>
+          <span>Jzero 模板市场</span>
         </a>
 
         <nav class="nav">
-          <a href="/" class="">Templates</a>
-          <a href="https://jzero.io" target="_blank" rel="noopener">Docs</a>
+          <a href="/" class="">模板</a>
+          <a href="https://jzero.io" target="_blank" rel="noopener">文档</a>
           <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
+
+          
+            <div class="lang-switcher">
+              <select id="langSelect" class="lang-select" onchange="switchLanguage(this.value)">
+                
+                  
+                  <option value="zh" selected>
+                    中文
+                  </option>
+                
+                  
+                  <option value="en" >
+                    English
+                  </option>
+                
+              </select>
+            </div>
+          
         </nav>
       </div>
     </div>
@@ -41,9 +59,9 @@
     <!-- Breadcrumb -->
 <nav class="breadcrumb">
   <div class="container">
-    <a href="/">Templates</a>
+    <a href="/">模板</a>
     <span class="separator">/</span>
-    <span class="current">Simple CLI Tool</span>
+    <span class="current">命令行工具</span>
   </div>
 </nav>
 
@@ -53,23 +71,20 @@
     <header class="template-header-detail">
       <div class="template-meta">
         <span class="template-category">CLI</span>
-        <span class="difficulty difficulty-beginner">
-          beginner
-        </span>
       </div>
 
-      <h1>Simple CLI Tool</h1>
-      <p class="template-description-large">A command-line application template with common CLI patterns</p>
+      <h1>命令行工具</h1>
+      <p class="template-description-large">具有常见 CLI 模式的命令行应用程序模板</p>
 
       <div class="template-tags-large">
         
           <span class="tag">cli</span>
         
-          <span class="tag">command-line</span>
+          <span class="tag">命令行</span>
         
-          <span class="tag">tool</span>
+          <span class="tag">工具</span>
         
-          <span class="tag">automation</span>
+          <span class="tag">自动化</span>
         
       </div>
 
@@ -107,7 +122,7 @@
       <!-- Features -->
       
         <section class="template-features-section">
-          <h2>Features</h2>
+          <h2>特性</h2>
           <ul class="features-list">
             
               <li>
@@ -115,7 +130,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Command parsing
+                命令解析
               </li>
             
               <li>
@@ -123,7 +138,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Interactive prompts
+                交互式提示
               </li>
             
               <li>
@@ -131,7 +146,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Configuration management
+                配置管理
               </li>
             
               <li>
@@ -139,7 +154,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Output formatting
+                输出格式化
               </li>
             
           </ul>
@@ -149,55 +164,55 @@
       <!-- Guide -->
       
         <section class="template-guide-section">
-          <h2>Getting Started Guide</h2>
+          <h2>快速开始指南</h2>
           <div class="guide-content">
-            <h1>CLI Tool Template</h1>
-<p>A feature-rich command-line application template that implements common CLI patterns and best practices.</p>
-<h2>Features</h2>
+            <h1>命令行工具模板</h1>
+<p>一个命令行应用程序模板，实现了常见的 CLI 模式和最佳实践。</p>
+<h2>特性</h2>
 <ul>
-<li><strong>Command Parsing</strong>: Built-in argument and flag parsing</li>
-<li><strong>Interactive Prompts</strong>: User-friendly interactive input</li>
-<li><strong>Config Management</strong>: YAML/TOML/JSON configuration support</li>
-<li><strong>Rich Output</strong>: Colored and formatted console output</li>
-<li><strong>Error Handling</strong>: Graceful error messages and exit codes</li>
+<li><strong>命令解析</strong>：内置参数和标志解析</li>
+<li><strong>交互式提示</strong>：用户友好的交互输入</li>
+<li><strong>配置管理</strong>：支持 YAML/TOML/JSON 配置</li>
+<li><strong>丰富的输出</strong>：彩色和格式化的控制台输出</li>
+<li><strong>错误处理</strong>：优雅的错误消息和退出码</li>
 </ul>
-<h2>Getting Started</h2>
+<h2>快速开始</h2>
 <pre><code class="language-bash">jzero new simplecli --branch cli
 cd simplecli
 go mod tidy
 go build -o cli main.go
 ./cli --help
 </code></pre>
-<h2>Project Structure</h2>
+<h2>项目结构</h2>
 <pre><code>.
-├── cmd/             # Command implementations
-├── config/          # Configuration handling
+├── cmd/             # 命令实现
+├── config/          # 配置处理
 ├── internal/
-│   ├── printer/     # Output formatting
-│   └── validator/   # Input validation
-├── main.go          # Entry point
-└── config.yaml      # Default config
+│   ├── printer/     # 输出格式化
+│   └── validator/   # 输入验证
+├── main.go          # 入口点
+└── config.yaml      # 默认配置
 </code></pre>
-<h2>Usage Examples</h2>
-<h3>Basic Command</h3>
+<h2>使用示例</h2>
+<h3>基本命令</h3>
 <pre><code class="language-bash">./cli command-name --flag value
 </code></pre>
-<h3>Interactive Mode</h3>
+<h3>交互模式</h3>
 <pre><code class="language-bash">./cli interactive
-# Follow the prompts...
+# 按照提示操作...
 </code></pre>
-<h3>Configuration File</h3>
-<p>Create <code>config.yaml</code>:</p>
+<h3>配置文件</h3>
+<p>创建 <code>config.yaml</code>：</p>
 <pre><code class="language-yaml">logLevel: info
 outputFormat: json
 timeout: 30s
 </code></pre>
-<p>Run with config:</p>
+<p>使用配置运行：</p>
 <pre><code class="language-bash">./cli --config config.yaml
 </code></pre>
-<h2>Adding New Commands</h2>
+<h2>添加新命令</h2>
 <ol>
-<li>Create command file in <code>cmd/</code>:</li>
+<li>在 <code>cmd/</code> 中创建命令文件：</li>
 </ol>
 <pre><code class="language-go">package cmd
 
@@ -208,27 +223,27 @@ import (
 func NewExampleCommand() *cli.Command {
     return &amp;cli.Command{
         Name:  &quot;example&quot;,
-        Usage: &quot;Example command description&quot;,
+        Usage: &quot;示例命令描述&quot;,
         Flags: []cli.Flag{
             &amp;cli.StringFlag{
                 Name:  &quot;input&quot;,
-                Usage: &quot;Input file path&quot;,
+                Usage: &quot;输入文件路径&quot;,
             },
         },
         Action: func(c *cli.Context) error {
-            // Your logic here
+            // 你的逻辑
             return nil
         },
     }
 }
 </code></pre>
 <ol start="2">
-<li>Register in <code>main.go</code>:</li>
+<li>在 <code>main.go</code> 中注册：</li>
 </ol>
 <pre><code class="language-go">app.Commands = append(app.Commands, cmd.NewExampleCommand())
 </code></pre>
-<h2>Build &amp; Distribution</h2>
-<h3>Build for Multiple Platforms</h3>
+<h2>构建和分发</h2>
+<h3>为多平台构建</h3>
 <pre><code class="language-bash"># macOS
 GOOS=darwin GOARCH=amd64 go build -o cli-darwin-amd64 main.go
 
@@ -238,23 +253,23 @@ GOOS=linux GOARCH=amd64 go build -o cli-linux-amd64 main.go
 # Windows
 GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go
 </code></pre>
-<h3>Homebrew Installation (Optional)</h3>
-<p>Create a tap for easy installation:</p>
+<h3>Homebrew 安装（可选）</h3>
+<p>创建 tap 以便于安装：</p>
 <pre><code class="language-bash">brew tap yourusername/cli
 brew install yourusername/cli/cli
 </code></pre>
-<h2>Best Practices</h2>
+<h2>最佳实践</h2>
 <ol>
-<li><strong>Exit Codes</strong>: Use standard exit codes (0 for success, 1 for errors)</li>
-<li><strong>Error Messages</strong>: Provide helpful error messages with suggestions</li>
-<li><strong>Flags</strong>: Use both short and long flags (<code>-v</code> and <code>--verbose</code>)</li>
-<li><strong>Help Text</strong>: Include examples in command help text</li>
-<li><strong>Testing</strong>: Write tests for command logic</li>
+<li><strong>退出码</strong>：使用标准退出码（0 表示成功，1 表示错误）</li>
+<li><strong>错误消息</strong>：提供有用的错误消息和建议</li>
+<li><strong>标志</strong>：同时使用短标志和长标志（<code>-v</code> 和 <code>--verbose</code>）</li>
+<li><strong>帮助文本</strong>：在命令帮助文本中包含示例</li>
+<li><strong>测试</strong>：为命令逻辑编写测试</li>
 </ol>
-<h2>Learn More</h2>
+<h2>更多信息</h2>
 <ul>
-<li><a href="https://cli.urfave.org/">urfave/cli Documentation</a></li>
-<li><a href="https://clig.dev/">Command Line Interface Guidelines</a></li>
+<li><a href="https://cli.urfave.org/">urfave/cli 文档</a></li>
+<li><a href="https://clig.dev/">命令行界面指南</a></li>
 </ul>
 
           </div>
@@ -295,15 +310,41 @@ function copyCommand(command) {
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 JZero Template Market. Built with JZero.</p>
+      <p>&copy; 2026 Jzero 模板市场. 由 Jzero 构建。</p>
       <p class="footer-links">
         <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://jzero.io" target="_blank" rel="noopener">Documentation</a>
+        <a href="https://jzero.io" target="_blank" rel="noopener">文档</a>
       </p>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script src="/assets/js/main.js"></script>
+  <script>
+  function switchLanguage(lang) {
+    const currentPath = window.location.pathname;
+    const currentLang = 'zh';
+    const defaultLang = 'zh';
+
+    let newPath;
+    if (lang === defaultLang) {
+      // Remove language prefix
+      if (currentLang === defaultLang) {
+        newPath = currentPath;
+      } else {
+        newPath = currentPath.replace('/' + currentLang, '') || '/';
+      }
+    } else {
+      // Add language prefix
+      if (currentLang === defaultLang) {
+        newPath = '/' + lang + (currentPath === '/' ? '' : currentPath);
+      } else {
+        newPath = currentPath.replace('/' + currentLang, '/' + lang);
+      }
+    }
+
+    window.location.href = newPath;
+  }
+  </script>
 </body>
 </html>

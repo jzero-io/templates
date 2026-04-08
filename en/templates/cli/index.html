@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vercel API - Jzero 模板市场</title>
-  <meta name="description" content="专为 Vercel 部署优化的 API 模板">
+  <title>CLI Tool - Jzero Template Market</title>
+  <meta name="description" content="A command-line application template with common CLI patterns">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -19,17 +19,17 @@
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <a href="/" class="logo">
+        <a href="/en/" class="logo">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="32" height="32" rx="6" fill="currentColor"/>
             <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
           </svg>
-          <span>Jzero 模板市场</span>
+          <span>Jzero Template Market</span>
         </a>
 
         <nav class="nav">
-          <a href="/" class="">模板</a>
-          <a href="https://jzero.io" target="_blank" rel="noopener">文档</a>
+          <a href="/en/" class="">Templates</a>
+          <a href="https://jzero.io" target="_blank" rel="noopener">Docs</a>
           <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
 
           
@@ -37,12 +37,12 @@
               <select id="langSelect" class="lang-select" onchange="switchLanguage(this.value)">
                 
                   
-                  <option value="zh" selected>
+                  <option value="zh" >
                     中文
                   </option>
                 
                   
-                  <option value="en" >
+                  <option value="en" selected>
                     English
                   </option>
                 
@@ -59,9 +59,9 @@
     <!-- Breadcrumb -->
 <nav class="breadcrumb">
   <div class="container">
-    <a href="/">模板</a>
+    <a href="/en/">Templates</a>
     <span class="separator">/</span>
-    <span class="current">Vercel API</span>
+    <span class="current">CLI Tool</span>
   </div>
 </nav>
 
@@ -70,28 +70,28 @@
   <div class="container">
     <header class="template-header-detail">
       <div class="template-meta">
-        <span class="template-category">API</span>
+        <span class="template-category">CLI</span>
       </div>
 
-      <h1>Vercel API</h1>
-      <p class="template-description-large">专为 Vercel 部署优化的 API 模板</p>
+      <h1>CLI Tool</h1>
+      <p class="template-description-large">A command-line application template with common CLI patterns</p>
 
       <div class="template-tags-large">
         
-          <span class="tag">api</span>
+          <span class="tag">cli</span>
         
-          <span class="tag">vercel</span>
+          <span class="tag">command-line</span>
         
-          <span class="tag">无服务器</span>
+          <span class="tag">tool</span>
         
-          <span class="tag">rest</span>
+          <span class="tag">automation</span>
         
       </div>
 
       <div class="template-actions-detail">
         <button
           class="btn btn-primary btn-large"
-          onclick="copyCommand('jzero new simpleapi-vercel --branch api-vercel')"
+          onclick="copyCommand('jzero new simplecli --branch cli')"
           title="Click to copy command"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -102,13 +102,13 @@
         </button>
 
         <div class="command-display">
-          <code>jzero new simpleapi-vercel --branch api-vercel</code>
+          <code>jzero new simplecli --branch cli</code>
         </div>
 
         
 
         
-          <a href="https://github.com/jzero-io/templates/tree/api-vercel" target="_blank" rel="noopener" class="btn btn-secondary">
+          <a href="https://github.com/jzero-io/templates/tree/cli" target="_blank" rel="noopener" class="btn btn-secondary">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M10 2C5.03 2 1 6.03 1 11c0 3.98 2.5 7.37 6 8.54.44.08.6-.19.6-.42v-1.57c-2.45.53-2.96-1.18-2.96-1.18-.4-1.02-.98-1.29-.98-1.29-.8-.55.06-.54.06-.54.88.06 1.34.9 1.34.9.78 1.34 2.05.95 2.55.73.08-.57.31-.95.56-1.17-1.95-.22-4-1.57-4-5.52 0-1.22.44-2.22 1.16-3-.12-.28-.5-1.42.11-2.96 0 0 .95-.3 3.11 1.15.9-.25 1.87-.38 2.83-.38.96 0 1.93.13 2.83.38 2.16-1.45 3.11-1.15 3.11-1.15.61 1.54.23 2.68.11 2.96.72.78 1.16 1.78 1.16 3 0 3.96-2.05 5.29-4 5.52.31.27.59.8.59 1.61v2.39c0 .23.16.5.6.42 3.5-1.17 6-4.56 6-8.54 0-4.97-4.03-9-9-9z" fill="currentColor"/>
             </svg>
@@ -122,7 +122,7 @@
       <!-- Features -->
       
         <section class="template-features-section">
-          <h2>特性</h2>
+          <h2>Features</h2>
           <ul class="features-list">
             
               <li>
@@ -130,7 +130,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                RESTful API 结构
+                Command parsing
               </li>
             
               <li>
@@ -138,7 +138,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Vercel 无服务器部署
+                Interactive prompts
               </li>
             
               <li>
@@ -146,7 +146,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                内置中间件
+                Configuration management
               </li>
             
           </ul>
@@ -156,69 +156,112 @@
       <!-- Guide -->
       
         <section class="template-guide-section">
-          <h2>快速开始指南</h2>
+          <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>Vercel API 模板</h1>
-<p>专为 Vercel 无服务器部署优化的 API 模板。</p>
-<h2>特性</h2>
+            <h1>CLI Tool Template</h1>
+<p>A command-line application template that implements common CLI patterns and best practices.</p>
+<h2>Features</h2>
 <ul>
-<li><strong>RESTful API 结构</strong>：清晰有序的 API 设计</li>
-<li><strong>Vercel 无服务器部署</strong>：专为 Vercel 无服务器函数优化</li>
-<li><strong>内置中间件</strong>：开箱即用的常用中间件</li>
-<li><strong>示例端点</strong>：现成可用的 API 示例端点</li>
+<li><strong>Command Parsing</strong>: Built-in argument and flag parsing</li>
+<li><strong>Interactive Prompts</strong>: User-friendly interactive input</li>
+<li><strong>Config Management</strong>: YAML/TOML/JSON configuration support</li>
+<li><strong>Rich Output</strong>: Colored and formatted console output</li>
+<li><strong>Error Handling</strong>: Graceful error messages and exit codes</li>
 </ul>
-<h2>快速开始</h2>
-<pre><code class="language-bash">jzero new simpleapi-vercel --branch api-vercel
-cd simpleapi-vercel
+<h2>Getting Started</h2>
+<pre><code class="language-bash">jzero new simplecli --branch cli
+cd simplecli
+go mod tidy
+go build -o cli main.go
+./cli --help
 </code></pre>
-<h2>项目结构</h2>
+<h2>Project Structure</h2>
 <pre><code>.
-├── api/              # API 端点
-│   ├── handlers/     # 请求处理器
-│   ├── logic/        # 业务逻辑
-│   └── middleware/   # 中间件函数
-├── internal/         # 内部包
-├── go.mod            # Go 模块文件
-└── vercel.json       # Vercel 配置
+├── cmd/             # Command implementations
+├── config/          # Configuration handling
+├── internal/
+│   ├── printer/     # Output formatting
+│   └── validator/   # Input validation
+├── main.go          # Entry point
+└── config.yaml      # Default config
 </code></pre>
-<h2>使用示例</h2>
-<h3>创建新端点</h3>
-<pre><code class="language-go">// api/hello/hello.go
-package hello
+<h2>Usage Examples</h2>
+<h3>Basic Command</h3>
+<pre><code class="language-bash">./cli command-name --flag value
+</code></pre>
+<h3>Interactive Mode</h3>
+<pre><code class="language-bash">./cli interactive
+# Follow the prompts...
+</code></pre>
+<h3>Configuration File</h3>
+<p>Create <code>config.yaml</code>:</p>
+<pre><code class="language-yaml">logLevel: info
+outputFormat: json
+timeout: 30s
+</code></pre>
+<p>Run with config:</p>
+<pre><code class="language-bash">./cli --config config.yaml
+</code></pre>
+<h2>Adding New Commands</h2>
+<ol>
+<li>Create command file in <code>cmd/</code>:</li>
+</ol>
+<pre><code class="language-go">package cmd
 
 import (
-    &quot;net/http&quot;
-    
-    &quot;github.com/zeromicro/go-zero/rest/httpx&quot;
+    &quot;github.com/urfave/cli/v2&quot;
 )
 
-func Handler(w http.ResponseWriter, r *http.Request) {
-    httpx.OkJson(w, map[string]string{
-        &quot;message&quot;: &quot;Hello from Vercel!&quot;,
-    })
-}
-</code></pre>
-<h3>部署到 Vercel</h3>
-<pre><code class="language-bash"># 安装 Vercel CLI
-npm i -g vercel
-
-# 部署
-vercel
-</code></pre>
-<h2>配置</h2>
-<h3>vercel.json</h3>
-<pre><code class="language-json">{
-  &quot;functions&quot;: {
-    &quot;api/**/*.go&quot;: {
-      &quot;runtime&quot;: &quot;go1.x&quot;
+func NewExampleCommand() *cli.Command {
+    return &amp;cli.Command{
+        Name:  &quot;example&quot;,
+        Usage: &quot;Example command description&quot;,
+        Flags: []cli.Flag{
+            &amp;cli.StringFlag{
+                Name:  &quot;input&quot;,
+                Usage: &quot;Input file path&quot;,
+            },
+        },
+        Action: func(c *cli.Context) error {
+            // Your logic here
+            return nil
+        },
     }
-  }
 }
 </code></pre>
-<h2>更多信息</h2>
+<ol start="2">
+<li>Register in <code>main.go</code>:</li>
+</ol>
+<pre><code class="language-go">app.Commands = append(app.Commands, cmd.NewExampleCommand())
+</code></pre>
+<h2>Build &amp; Distribution</h2>
+<h3>Build for Multiple Platforms</h3>
+<pre><code class="language-bash"># macOS
+GOOS=darwin GOARCH=amd64 go build -o cli-darwin-amd64 main.go
+
+# Linux
+GOOS=linux GOARCH=amd64 go build -o cli-linux-amd64 main.go
+
+# Windows
+GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go
+</code></pre>
+<h3>Homebrew Installation (Optional)</h3>
+<p>Create a tap for easy installation:</p>
+<pre><code class="language-bash">brew tap yourusername/cli
+brew install yourusername/cli/cli
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Exit Codes</strong>: Use standard exit codes (0 for success, 1 for errors)</li>
+<li><strong>Error Messages</strong>: Provide helpful error messages with suggestions</li>
+<li><strong>Flags</strong>: Use both short and long flags (<code>-v</code> and <code>--verbose</code>)</li>
+<li><strong>Help Text</strong>: Include examples in command help text</li>
+<li><strong>Testing</strong>: Write tests for command logic</li>
+</ol>
+<h2>Learn More</h2>
 <ul>
-<li><a href="https://vercel.com/docs">Vercel 文档</a></li>
-<li><a href="https://go-zero.dev/">Go-Zero 文档</a></li>
+<li><a href="https://cli.urfave.org/">urfave/cli Documentation</a></li>
+<li><a href="https://clig.dev/">Command Line Interface Guidelines</a></li>
 </ul>
 
           </div>
@@ -259,10 +302,10 @@ function copyCommand(command) {
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 Jzero 模板市场. 由 Jzero 构建。</p>
+      <p>&copy; 2026 Jzero Template Market. Built with Jzero.</p>
       <p class="footer-links">
         <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://jzero.io" target="_blank" rel="noopener">文档</a>
+        <a href="https://jzero.io" target="_blank" rel="noopener">Documentation</a>
       </p>
     </div>
   </footer>
@@ -272,7 +315,7 @@ function copyCommand(command) {
   <script>
   function switchLanguage(lang) {
     const currentPath = window.location.pathname;
-    const currentLang = 'zh';
+    const currentLang = 'en';
     const defaultLang = 'zh';
 
     let newPath;

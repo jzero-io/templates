@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vercel API - Jzero 模板市场</title>
-  <meta name="description" content="专为 Vercel 部署优化的 API 模板">
+  <title>API Vercel - Jzero Template Market</title>
+  <meta name="description" content="An API template optimized for Vercel deployment">
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/style.css">
@@ -19,17 +19,17 @@
   <header class="header">
     <div class="container">
       <div class="header-content">
-        <a href="/" class="logo">
+        <a href="/en/" class="logo">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="32" height="32" rx="6" fill="currentColor"/>
             <path d="M16 8L24 16L16 24L8 16L16 8Z" fill="white"/>
           </svg>
-          <span>Jzero 模板市场</span>
+          <span>Jzero Template Market</span>
         </a>
 
         <nav class="nav">
-          <a href="/" class="">模板</a>
-          <a href="https://jzero.io" target="_blank" rel="noopener">文档</a>
+          <a href="/en/" class="">Templates</a>
+          <a href="https://jzero.io" target="_blank" rel="noopener">Docs</a>
           <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
 
           
@@ -37,12 +37,12 @@
               <select id="langSelect" class="lang-select" onchange="switchLanguage(this.value)">
                 
                   
-                  <option value="zh" selected>
+                  <option value="zh" >
                     中文
                   </option>
                 
                   
-                  <option value="en" >
+                  <option value="en" selected>
                     English
                   </option>
                 
@@ -59,9 +59,9 @@
     <!-- Breadcrumb -->
 <nav class="breadcrumb">
   <div class="container">
-    <a href="/">模板</a>
+    <a href="/en/">Templates</a>
     <span class="separator">/</span>
-    <span class="current">Vercel API</span>
+    <span class="current">API Vercel</span>
   </div>
 </nav>
 
@@ -73,8 +73,8 @@
         <span class="template-category">API</span>
       </div>
 
-      <h1>Vercel API</h1>
-      <p class="template-description-large">专为 Vercel 部署优化的 API 模板</p>
+      <h1>API Vercel</h1>
+      <p class="template-description-large">An API template optimized for Vercel deployment</p>
 
       <div class="template-tags-large">
         
@@ -82,7 +82,7 @@
         
           <span class="tag">vercel</span>
         
-          <span class="tag">无服务器</span>
+          <span class="tag">serverless</span>
         
           <span class="tag">rest</span>
         
@@ -122,7 +122,7 @@
       <!-- Features -->
       
         <section class="template-features-section">
-          <h2>特性</h2>
+          <h2>Features</h2>
           <ul class="features-list">
             
               <li>
@@ -130,7 +130,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                RESTful API 结构
+                RESTful API structure
               </li>
             
               <li>
@@ -138,7 +138,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Vercel 无服务器部署
+                Vercel serverless deployment
               </li>
             
               <li>
@@ -146,7 +146,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                内置中间件
+                Built-in middleware
               </li>
             
           </ul>
@@ -156,33 +156,33 @@
       <!-- Guide -->
       
         <section class="template-guide-section">
-          <h2>快速开始指南</h2>
+          <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>Vercel API 模板</h1>
-<p>专为 Vercel 无服务器部署优化的 API 模板。</p>
-<h2>特性</h2>
+            <h1>API Vercel Template</h1>
+<p>An API template optimized for Vercel serverless deployment.</p>
+<h2>Features</h2>
 <ul>
-<li><strong>RESTful API 结构</strong>：清晰有序的 API 设计</li>
-<li><strong>Vercel 无服务器部署</strong>：专为 Vercel 无服务器函数优化</li>
-<li><strong>内置中间件</strong>：开箱即用的常用中间件</li>
-<li><strong>示例端点</strong>：现成可用的 API 示例端点</li>
+<li><strong>RESTful API Structure</strong>: Clean and organized API design</li>
+<li><strong>Vercel Serverless Deployment</strong>: Optimized for Vercel&#39;s serverless functions</li>
+<li><strong>Built-in Middleware</strong>: Common middleware included out of the box</li>
+<li><strong>Example Endpoints</strong>: Ready-to-use example API endpoints</li>
 </ul>
-<h2>快速开始</h2>
+<h2>Getting Started</h2>
 <pre><code class="language-bash">jzero new simpleapi-vercel --branch api-vercel
 cd simpleapi-vercel
 </code></pre>
-<h2>项目结构</h2>
+<h2>Project Structure</h2>
 <pre><code>.
-├── api/              # API 端点
-│   ├── handlers/     # 请求处理器
-│   ├── logic/        # 业务逻辑
-│   └── middleware/   # 中间件函数
-├── internal/         # 内部包
-├── go.mod            # Go 模块文件
-└── vercel.json       # Vercel 配置
+├── api/              # API endpoints
+│   ├── handlers/     # Request handlers
+│   ├── logic/        # Business logic
+│   └── middleware/   # Middleware functions
+├── internal/         # Internal packages
+├── go.mod            # Go module file
+└── vercel.json       # Vercel configuration
 </code></pre>
-<h2>使用示例</h2>
-<h3>创建新端点</h3>
+<h2>Usage Examples</h2>
+<h3>Create a New Endpoint</h3>
 <pre><code class="language-go">// api/hello/hello.go
 package hello
 
@@ -198,14 +198,14 @@ func Handler(w http.ResponseWriter, r *http.Request) {
     })
 }
 </code></pre>
-<h3>部署到 Vercel</h3>
-<pre><code class="language-bash"># 安装 Vercel CLI
+<h3>Deploy to Vercel</h3>
+<pre><code class="language-bash"># Install Vercel CLI
 npm i -g vercel
 
-# 部署
+# Deploy
 vercel
 </code></pre>
-<h2>配置</h2>
+<h2>Configuration</h2>
 <h3>vercel.json</h3>
 <pre><code class="language-json">{
   &quot;functions&quot;: {
@@ -215,10 +215,10 @@ vercel
   }
 }
 </code></pre>
-<h2>更多信息</h2>
+<h2>Learn More</h2>
 <ul>
-<li><a href="https://vercel.com/docs">Vercel 文档</a></li>
-<li><a href="https://go-zero.dev/">Go-Zero 文档</a></li>
+<li><a href="https://vercel.com/docs">Vercel Documentation</a></li>
+<li><a href="https://go-zero.dev/">Go-Zero Documentation</a></li>
 </ul>
 
           </div>
@@ -259,10 +259,10 @@ function copyCommand(command) {
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 Jzero 模板市场. 由 Jzero 构建。</p>
+      <p>&copy; 2026 Jzero Template Market. Built with Jzero.</p>
       <p class="footer-links">
         <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://jzero.io" target="_blank" rel="noopener">文档</a>
+        <a href="https://jzero.io" target="_blank" rel="noopener">Documentation</a>
       </p>
     </div>
   </footer>
@@ -272,7 +272,7 @@ function copyCommand(command) {
   <script>
   function switchLanguage(lang) {
     const currentPath = window.location.pathname;
-    const currentLang = 'zh';
+    const currentLang = 'en';
     const defaultLang = 'zh';
 
     let newPath;
