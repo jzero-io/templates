@@ -2,6 +2,33 @@
 
 A static website generator for showcasing JZero templates with a modern, responsive interface.
 
+[![Deploy to GitHub Pages](https://github.com/jzero-io/templates/workflows/Build%20and%20Deploy%20to%20gh-pages/badge.svg)](https://github.com/jzero-io/templates/actions)
+
+## Quick Start
+
+### 🚀 One-Click Deployment
+
+The easiest way to deploy is using GitHub Actions:
+
+1. **Fork or use this repository**
+2. **Enable GitHub Pages** in repository Settings → Pages → Source: "GitHub Actions"
+3. **Push to main branch** - The site will automatically build and deploy!
+
+That's it! Your site will be available at `https://<username>.github.io/<repository>/`
+
+### Local Development
+
+```bash
+# Install dependencies
+npm install --registry=https://registry.npmmirror.com
+
+# Build the site
+npm run build
+
+# Preview locally
+npm run serve
+```
+
 ## Features
 
 - 📋 **Template Listing**: Display all available templates with cards showing key information
@@ -188,26 +215,6 @@ To use templates from other repositories:
 ```shell
 jzero new your_template --remote https://github.com/xx/xx.git --branch your_branch
 ```
-
-## Deployment
-
-### GitHub Pages
-
-1. Build the site: `npm run build`
-2. Push to GitHub
-3. Enable GitHub Pages in repository settings
-4. Set source to `dist` directory
-
-### Netlify
-
-1. Connect your repository to Netlify
-2. Set build command: `npm run build`
-3. Set publish directory: `dist`
-
-### Vercel
-
-1. Install Vercel CLI: `npm i -g vercel`
-2. Deploy: `vercel --prod`
 
 ## Development
 
