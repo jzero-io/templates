@@ -368,6 +368,12 @@ body {
   border-bottom-right-radius: var(--border-radius-lg, 16px);
   font-weight: 500;
   transition: all var(--transition-fast, 150ms ease);
+  color-scheme: dark;
+}
+
+.category-select option {
+  background-color: #1a1a1a;
+  color: #ffffff;
 }
 
 .category-select:hover {
@@ -430,10 +436,12 @@ body {
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-lg, 16px);
   padding: var(--spacing-xl, 2rem);
+  padding-top: calc(var(--spacing-xl, 2rem) + 28px);
   box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3));
   transition: all var(--transition-base, 250ms ease);
   display: flex;
   flex-direction: column;
+  position: relative;
   position: relative;
   overflow: hidden;
 }
@@ -470,6 +478,9 @@ body {
 }
 
 .template-category {
+  position: absolute;
+  top: 12px;
+  right: 12px;
   background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
   color: var(--background-color);
   padding: 6px 14px;
@@ -479,6 +490,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
+  z-index: 1;
 }
 
 .template-description {
@@ -1667,7 +1679,7 @@ body {
     top: 60px;
     left: 0;
     right: 0;
-    background: white;
+    background: var(--background-color);
     flex-direction: column;
     gap: 0;
     padding: 16px;
@@ -1800,6 +1812,7 @@ body {
 
   .template-card {
     padding: 20px;
+    padding-top: 48px;
   }
 
   .template-header {
