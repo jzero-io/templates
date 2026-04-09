@@ -192,90 +192,133 @@
         <section class="template-guide-section">
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>CLI Tool Template</h1>
-<p>A command-line application template implementing common CLI patterns and best practices.</p>
-<h2>Features</h2>
-<ul>
-<li><strong>Command Parsing</strong>: Built-in argument and flag parsing</li>
-<li><strong>Interactive Prompts</strong>: User-friendly interactive input</li>
-<li><strong>Configuration Management</strong>: Support for YAML/TOML/JSON configurations</li>
-<li><strong>Rich Output</strong>: Colored and formatted console output</li>
-<li><strong>Error Handling</strong>: Graceful error messages and exit codes</li>
-</ul>
-<h2>Getting Started</h2>
-<pre><code class="hljs language-bash">jzero new simplecli --branch cli
-<span class="hljs-built_in">cd</span> simplecli
+            <h1>CLI Template Guide</h1>
+<h2>Overview</h2>
+<p>The CLI template provides a command-line tool project structure based on the cobra framework with plugin system and configuration management support.</p>
+<h2>Quick Start</h2>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Create a new CLI project</span>
+jzero new YOUR_APP_NAME --branch cli
+<span class="hljs-built_in">cd</span> YOUR_APP_NAME
 go mod tidy
-go build -o cli main.go
-./cli --<span class="hljs-built_in">help</span></code></pre><h2>Project Structure</h2>
+go build
+./YOUR_APP_NAME version</code></pre><h2>Core Features</h2>
+<h3>1. Cobra Framework</h3>
+<p>Built on <a href="https://github.com/spf13/cobra">spf13/cobra</a> framework providing powerful CLI capabilities:</p>
+<ul>
+<li>Automatic command and flag generation</li>
+<li>Automatic help documentation</li>
+<li>Subcommand support</li>
+<li>Intelligent suggestions (shell completions)</li>
+</ul>
+<h3>2. Configuration Management</h3>
+<p>Multiple configuration methods supported:</p>
+<ul>
+<li><strong>Config file</strong>: <code>~/.YOUR_APP.yaml</code></li>
+<li><strong>Environment variables config</strong>: <code>.YOUR_APP.env.yaml</code></li>
+<li><strong>Command line flags</strong></li>
+</ul>
+<h4>Configuration Priority</h4>
+<p>Command line flags &gt; Environment variables &gt; Config file</p>
+<h4>Setting Environment Variables</h4>
+<p>Create variables in <code>.YOUR_APP.env.yaml</code>:</p>
+<pre><code class="hljs language-yaml"><span class="hljs-comment"># Environment variables</span>
+<span class="hljs-attr">DATABASE_URL:</span> <span class="hljs-string">postgres://localhost/mydb</span>
+<span class="hljs-attr">LOG_LEVEL:</span> <span class="hljs-string">debug</span></code></pre><p>Use in <code>~/.YOUR_APP.yaml</code>:</p>
+<pre><code class="hljs language-yaml"><span class="hljs-comment"># Use environment variables</span>
+<span class="hljs-attr">database:</span>
+  <span class="hljs-attr">url:</span> <span class="hljs-string">${DATABASE_URL}</span>
+<span class="hljs-attr">log:</span>
+  <span class="hljs-attr">level:</span> <span class="hljs-string">${LOG_LEVEL}</span></code></pre><p>Environment variable prefix rules:</p>
+<ul>
+<li>Prefix is <code>{APP_NAME}_</code> (uppercase)</li>
+<li>Hierarchy connected with <code>_</code></li>
+<li>Example: <code>MY_APP_A_B</code> maps to <code>config.C.a.b</code></li>
+</ul>
+<h3>3. Plugin System</h3>
+<p>Supports automatic plugin discovery and execution:</p>
+<ul>
+<li>Plugin executables prefixed with <code>YOUR_APP-</code></li>
+<li>Plugins automatically searched from PATH</li>
+<li>Multi-level command naming supported</li>
+</ul>
+<h2>Project Structure</h2>
 <pre><code class="hljs">.
-├── cmd<span class="hljs-symbol">/</span>             <span class="hljs-comment"># Command implementations</span>
-├── config<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Configuration handling</span>
-├── internal<span class="hljs-symbol">/</span>
-│   ├── printer<span class="hljs-symbol">/</span>     <span class="hljs-comment"># Output formatting</span>
-│   └── validator<span class="hljs-symbol">/</span>   <span class="hljs-comment"># Input validation</span>
-├── main.go          <span class="hljs-comment"># Entry point</span>
-└── config.yaml      <span class="hljs-comment"># Default configuration</span></code></pre><h2>Usage Examples</h2>
-<h3>Basic Command</h3>
-<pre><code class="hljs language-bash">./cli command-name --flag value</code></pre><h3>Interactive Mode</h3>
-<pre><code class="hljs language-bash">./cli interactive
-<span class="hljs-comment"># Follow the prompts...</span></code></pre><h3>Configuration File</h3>
-<p>Create <code>config.yaml</code>:</p>
-<pre><code class="hljs language-yaml"><span class="hljs-attr">logLevel:</span> <span class="hljs-string">info</span>
-<span class="hljs-attr">outputFormat:</span> <span class="hljs-string">json</span>
-<span class="hljs-attr">timeout:</span> <span class="hljs-string">30s</span></code></pre><p>Run with config:</p>
-<pre><code class="hljs language-bash">./cli --config config.yaml</code></pre><h2>Adding New Commands</h2>
-<ol>
-<li>Create command file in <code>cmd/</code>:</li>
-</ol>
-<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> cmd
+├── main.<span class="hljs-keyword">go</span>                      # Entry point
+├── internal/
+│   ├── <span class="hljs-keyword">command</span>/
+│   │   └── <span class="hljs-keyword">version</span>/            # Version <span class="hljs-keyword">command</span>
+│   │       └── <span class="hljs-keyword">version</span>.<span class="hljs-keyword">go</span>
+│   └── config/
+│       └── config.<span class="hljs-keyword">go</span>           # Configuration management
+└── <span class="hljs-keyword">go</span>.<span class="hljs-keyword">mod</span></code></pre><h2>Configuration Files</h2>
+<h3>Main Config File</h3>
+<p>Default location: <code>~/.YOUR_APP.yaml</code></p>
+<pre><code class="hljs language-yaml"><span class="hljs-comment"># Debug mode</span>
+<span class="hljs-attr">debug:</span> <span class="hljs-literal">false</span>
+
+<span class="hljs-comment"># Debug sleep time (seconds)</span>
+<span class="hljs-attr">debug-sleep-time:</span> <span class="hljs-number">0</span></code></pre><h3>Environment Variables Config File</h3>
+<p>Default location: <code>.YOUR_APP.env.yaml</code></p>
+<pre><code class="hljs language-yaml"><span class="hljs-comment"># Define environment variables here</span>
+<span class="hljs-comment"># These can be referenced in main config using ${VAR_NAME}</span></code></pre><h2>Commands</h2>
+<h3>Version Command</h3>
+<pre><code class="hljs language-bash">./YOUR_APP_NAME version</code></pre><p>Output:</p>
+<pre><code class="hljs"><span class="hljs-attribute">YOUR_APP_NAME</span> version <span class="hljs-number">1</span>.<span class="hljs-number">0</span>.<span class="hljs-number">0</span> darwin/amd64
+<span class="hljs-attribute">Go</span> version go1.<span class="hljs-number">21</span>.<span class="hljs-number">0</span>
+<span class="hljs-attribute">Git</span> commit abc123
+<span class="hljs-attribute">Build</span> date <span class="hljs-number">2024</span>-<span class="hljs-number">01</span>-<span class="hljs-number">01</span> <span class="hljs-number">12</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> +<span class="hljs-number">0000</span> UTC</code></pre><h3>Help Command</h3>
+<pre><code class="hljs language-bash">./YOUR_APP_NAME --<span class="hljs-built_in">help</span>
+./YOUR_APP_NAME <span class="hljs-built_in">command</span> --<span class="hljs-built_in">help</span></code></pre><h2>Adding New Commands</h2>
+<h3>1. Create Command File</h3>
+<p>Create new directory under <code>internal/command/</code>:</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> mycmd
 
 <span class="hljs-keyword">import</span> (
-    <span class="hljs-string">&quot;github.com/urfave/cli/v2&quot;</span>
+    <span class="hljs-string">&quot;github.com/spf13/cobra&quot;</span>
 )
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewExampleCommand</span><span class="hljs-params">()</span></span> *cli.Command {
-    <span class="hljs-keyword">return</span> &amp;cli.Command{
-        Name:  <span class="hljs-string">&quot;example&quot;</span>,
-        Usage: <span class="hljs-string">&quot;Example command description&quot;</span>,
-        Flags: []cli.Flag{
-            &amp;cli.StringFlag{
-                Name:  <span class="hljs-string">&quot;input&quot;</span>,
-                Usage: <span class="hljs-string">&quot;Input file path&quot;</span>,
-            },
-        },
-        Action: <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(c *cli.Context)</span></span> <span class="hljs-type">error</span> {
-            <span class="hljs-comment">// Your logic here</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
-        },
-    }
-}</code></pre><ol start="2">
-<li>Register in <code>main.go</code>:</li>
-</ol>
-<pre><code class="hljs language-go">app.Commands = <span class="hljs-built_in">append</span>(app.Commands, cmd.NewExampleCommand())</code></pre><h2>Building and Distribution</h2>
-<h3>Build for Multiple Platforms</h3>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># macOS</span>
-GOOS=darwin GOARCH=amd64 go build -o cli-darwin-amd64 main.go
+<span class="hljs-keyword">var</span> Cmd = &amp;cobra.Command{
+    Use:   <span class="hljs-string">&quot;mycmd&quot;</span>,
+    Short: <span class="hljs-string">&quot;My command&quot;</span>,
+    Run: <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(cmd *cobra.Command, args []<span class="hljs-type">string</span>)</span></span> {
+        <span class="hljs-comment">// Command logic</span>
+    },
+}
 
-<span class="hljs-comment"># Linux</span>
-GOOS=linux GOARCH=amd64 go build -o cli-linux-amd64 main.go
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-comment">// Add flags</span>
+    Cmd.Flags().StringP(<span class="hljs-string">&quot;output&quot;</span>, <span class="hljs-string">&quot;o&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;Output file&quot;</span>)
+}</code></pre><h3>2. Register Command</h3>
+<p>Add in <code>main.go</code>:</p>
+<pre><code class="hljs language-go"><span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;{{ .Module }}/internal/command/mycmd&quot;</span>
+)
 
-<span class="hljs-comment"># Windows</span>
-GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go</code></pre><h3>Homebrew Installation (Optional)</h3>
-<p>Create tap for easy installation:</p>
-<pre><code class="hljs language-bash">brew tap yourusername/cli
-brew install yourusername/cli/cli</code></pre><h2>Best Practices</h2>
-<ol>
-<li><strong>Exit Codes</strong>: Use standard exit codes (0 for success, 1 for errors)</li>
-<li><strong>Error Messages</strong>: Provide helpful error messages and suggestions</li>
-<li><strong>Flags</strong>: Use both short and long flags (<code>-v</code> and <code>--verbose</code>)</li>
-<li><strong>Help Text</strong>: Include examples in command help text</li>
-<li><strong>Testing</strong>: Write tests for your command logic</li>
-</ol>
-<h2>Learn More</h2>
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span> {
+    rootCmd.AddCommand(mycmd.Cmd)
+}</code></pre><h2>Debugging</h2>
+<p>Enable debug mode:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Via config file</span>
+~/.YOUR_APP.yaml:
+  debug: <span class="hljs-literal">true</span>
+
+<span class="hljs-comment"># Via environment variable</span>
+<span class="hljs-built_in">export</span> YOUR_APP_DEBUG=<span class="hljs-literal">true</span>
+./YOUR_APP_NAME
+
+<span class="hljs-comment"># Via command line flag</span>
+./YOUR_APP_NAME --debug</code></pre><p>Set debug sleep time:</p>
+<pre><code class="hljs language-bash">./YOUR_APP_NAME --debug --debug-sleep-time 5</code></pre><h2>Building Version Information</h2>
+<p>Inject version information during build:</p>
+<pre><code class="hljs language-bash">go build \
+  -ldflags=<span class="hljs-string">&quot;-X &#x27;main.version=1.0.0&#x27; \
+           -X &#x27;main.commit=<span class="hljs-subst">$(git rev-parse HEAD)</span>&#x27; \
+           -X &#x27;main.date=<span class="hljs-subst">$(date -u +%Y-%m-%dT%H:%M:%SZ)</span>&#x27;&quot;</span> \
+  -o YOUR_APP_NAME</code></pre><h2>Related Resources</h2>
 <ul>
-<li><a href="https://cli.urfave.org/">urfave/cli Documentation</a></li>
-<li><a href="https://clig.dev/">Command Line Interface Guidelines</a></li>
+<li><a href="https://github.com/spf13/cobra">Cobra Documentation</a></li>
+<li><a href="https://github.com/spf13/viper">Viper Documentation</a></li>
+<li><a href="https://docs.jzero.io">jzero Documentation</a></li>
 </ul>
 
           </div>

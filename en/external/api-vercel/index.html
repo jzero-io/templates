@@ -192,57 +192,70 @@
         <section class="template-guide-section">
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>API Vercel Template</h1>
-<p>An API template optimized for Vercel serverless deployment.</p>
-<h2>Features</h2>
+            <h1>API Vercel Template Guide</h1>
+<h2>Overview</h2>
+<p>jzero deeply integrates with Vercel ecosystem, bringing Go developers a frontend-level deployment experience! Automatically generate Vercel-compliant serverless functions from <code>.api</code> definitions, no need to deploy to your own servers.</p>
+<h3>Core Value</h3>
 <ul>
-<li><strong>RESTful API Structure</strong>: Clean and organized API design</li>
-<li><strong>Vercel Serverless Deployment</strong>: Optimized for Vercel&#39;s serverless functions</li>
-<li><strong>Built-in Middleware</strong>: Common middleware included out of the box</li>
-<li><strong>Example Endpoints</strong>: Ready-to-use example API endpoints</li>
+<li>✅ <strong>Zero-Config Deployment</strong>: Deploy directly from Git repository, no extra configuration needed, no servers required, no CI/CD pipeline</li>
+<li>✅ <strong>Global Edge Network</strong>: Deploy Go functions to edge nodes nearest to users using Vercel&#39;s global infrastructure, achieving millisecond-level response</li>
+<li>✅ <strong>Free Domain &amp; HTTPS</strong>: Automatically get <code>.vercel.app</code> production-grade domain with built-in CDN acceleration and SSL certificates</li>
+<li>✅ <strong>Preview Environments</strong>: Automatically generate independent preview URLs for each PR</li>
 </ul>
-<h2>Getting Started</h2>
-<pre><code class="hljs language-bash">jzero new simpleapi-vercel --branch api-vercel
-<span class="hljs-built_in">cd</span> simpleapi-vercel</code></pre><h2>Project Structure</h2>
-<pre><code class="hljs">.
-├── api<span class="hljs-symbol">/</span>              <span class="hljs-comment"># API endpoints</span>
-│   ├── handlers<span class="hljs-symbol">/</span>     <span class="hljs-comment"># Request handlers</span>
-│   ├── logic<span class="hljs-symbol">/</span>        <span class="hljs-comment"># Business logic</span>
-│   └── middleware<span class="hljs-symbol">/</span>   <span class="hljs-comment"># Middleware functions</span>
-├── internal<span class="hljs-symbol">/</span>         <span class="hljs-comment"># Internal packages</span>
-├── go.mod            <span class="hljs-comment"># Go module file</span>
-└── vercel.json       <span class="hljs-comment"># Vercel configuration</span></code></pre><h2>Usage Examples</h2>
-<h3>Create a New Endpoint</h3>
-<pre><code class="hljs language-go"><span class="hljs-comment">// api/hello/hello.go</span>
-<span class="hljs-keyword">package</span> hello
+<h2>Quick Start</h2>
+<h3>Install jzero</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Install jzero</span>
+go install github.com/jzero-io/jzero@latest
 
-<span class="hljs-keyword">import</span> (
-    <span class="hljs-string">&quot;net/http&quot;</span>
-    
-    <span class="hljs-string">&quot;github.com/zeromicro/go-zero/rest/httpx&quot;</span>
-)
+<span class="hljs-comment"># Install related tools</span>
+jzero check
+go install github.com/jzero-io/gorename@latest</code></pre><h3>Create Vercel Project</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Create new Vercel serverless project from remote template</span>
+jzero new jzero-api-vercel-example --remote https://github.com/jzero-io/templates --branch api-vercel
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Handler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
-    httpx.OkJson(w, <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>{
-        <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Hello from Vercel!&quot;</span>,
-    })
-}</code></pre><h3>Deploy to Vercel</h3>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># Install Vercel CLI</span>
-npm i -g vercel
+<span class="hljs-comment"># Add new api</span>
+jzero add api <span class="hljs-built_in">test</span>
 
-<span class="hljs-comment"># Deploy</span>
-vercel</code></pre><h2>Configuration</h2>
-<h3>vercel.json</h3>
-<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">&quot;functions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-    <span class="hljs-attr">&quot;api/**/*.go&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">&quot;runtime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;go1.x&quot;</span>
-    <span class="hljs-punctuation">}</span>
-  <span class="hljs-punctuation">}</span>
-<span class="hljs-punctuation">}</span></code></pre><h2>Learn More</h2>
+<span class="hljs-comment"># Generate code</span>
+jzero gen</code></pre><h2>Project Structure</h2>
+<pre><code class="hljs">jzero-api-vercel-example<span class="hljs-symbol">/</span>
+├── vercel<span class="hljs-symbol">/</span>
+│   └── client.go       <span class="hljs-comment"># Vercel Go runtime entry</span>
+├── desc<span class="hljs-symbol">/</span>               <span class="hljs-comment"># API definitions</span>
+│   └── api<span class="hljs-symbol">/</span>           <span class="hljs-comment"># .api files</span>
+├── server<span class="hljs-symbol">/</span>            <span class="hljs-comment"># Server side</span>
+│   ├── handler<span class="hljs-symbol">/</span>       <span class="hljs-comment"># HTTP handlers</span>
+│   ├── logic<span class="hljs-symbol">/</span>         <span class="hljs-comment"># Business logic</span>
+│   └── types<span class="hljs-symbol">/</span>         <span class="hljs-comment"># Type definitions</span>
+├── vercel.json        <span class="hljs-comment"># Vercel platform configuration</span>
+├── main.go            <span class="hljs-comment"># Local runtime entry</span>
+└── go.mod             <span class="hljs-comment"># Go module file</span></code></pre><h2>Deploy to Vercel</h2>
+<h3>Git Push to Deploy</h3>
+<p>jzero-generated projects are fully compatible with Vercel&#39;s Git workflow for automatic deployment:</p>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">cd</span> jzero-api-vercel-example
+
+<span class="hljs-comment"># Initialize git</span>
+git init
+git add .
+git commit -m <span class="hljs-string">&quot;Initial commit&quot;</span>
+
+<span class="hljs-comment"># Create repository on GitHub and push</span>
+git remote add origin https://github.com/your-username/jzero-api-vercel-example.git
+git push -u origin main</code></pre><h3>Vercel Platform Auto-Detection</h3>
+<ol>
+<li>Visit <a href="https://vercel.com/dashboard">Vercel Dashboard</a></li>
+<li>Click &quot;Add New Project&quot;</li>
+<li>Import your GitHub repository</li>
+<li><code>vercel.json</code> configuration lets Vercel automatically recognize it as a Go project</li>
+<li>Click &quot;Deploy&quot;</li>
+</ol>
+<p><strong>🎉 Deployment complete! Your Go API is now connected to Vercel&#39;s global network</strong></p>
+<h2>Related Resources</h2>
 <ul>
-<li><a href="https://vercel.com/docs">Vercel Documentation</a></li>
-<li><a href="https://go-zero.dev/">Go-Zero Documentation</a></li>
+<li><a href="https://github.com/jzero-io/jzero">jzero GitHub</a></li>
+<li><a href="https://jzero.io">jzero Official Site</a></li>
+<li><a href="https://github.com/jzero-io/templates/tree/api-vercel">Vercel Template Repository</a></li>
+<li><a href="https://github.com/jaronnie/jzero-api-vercel-example">Example Code Repository</a></li>
 </ul>
 
           </div>

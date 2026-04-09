@@ -192,57 +192,70 @@
         <section class="template-guide-section">
           <h2>快速开始指南</h2>
           <div class="guide-content">
-            <h1>Vercel API 模板</h1>
-<p>专为 Vercel 无服务器部署优化的 API 模板。</p>
-<h2>特性</h2>
+            <h1>API Vercel 模板指南</h1>
+<h2>概述</h2>
+<p>jzero 深度打通 Vercel 生态，让 Go 开发者享受前端级别的部署体验！通过 <code>.api</code> 定义自动生成符合 Vercel 规范的无服务器函数，无需再部署到自己的服务器上。</p>
+<h3>核心价值</h3>
 <ul>
-<li><strong>RESTful API 结构</strong>：清晰有序的 API 设计</li>
-<li><strong>Vercel 无服务器部署</strong>：专为 Vercel 无服务器函数优化</li>
-<li><strong>内置中间件</strong>：开箱即用的常用中间件</li>
-<li><strong>示例端点</strong>：现成可用的 API 示例端点</li>
+<li>✅ <strong>零配置部署</strong>：从 Git 仓库直接部署，无需额外配置，无需自己的服务器，无需 ci/cd 流程</li>
+<li>✅ <strong>全球边缘网络</strong>：借助 Vercel 的全球基础设施，将 Go 函数部署到离用户最近的边缘节点，实现毫秒级响应</li>
+<li>✅ <strong>免费域名与 HTTPS</strong>：自动获得 <code>.vercel.app</code> 生产级域名，内置 CDN 加速和 SSL 证书</li>
+<li>✅ <strong>预览环境</strong>：每次提交 PR 自动生成独立预览 URL</li>
 </ul>
 <h2>快速开始</h2>
-<pre><code class="hljs language-bash">jzero new simpleapi-vercel --branch api-vercel
-<span class="hljs-built_in">cd</span> simpleapi-vercel</code></pre><h2>项目结构</h2>
-<pre><code class="hljs">.
-├── api<span class="hljs-symbol">/</span>              <span class="hljs-comment"># API 端点</span>
-│   ├── handlers<span class="hljs-symbol">/</span>     <span class="hljs-comment"># 请求处理器</span>
-│   ├── logic<span class="hljs-symbol">/</span>        <span class="hljs-comment"># 业务逻辑</span>
-│   └── middleware<span class="hljs-symbol">/</span>   <span class="hljs-comment"># 中间件函数</span>
-├── internal<span class="hljs-symbol">/</span>         <span class="hljs-comment"># 内部包</span>
-├── go.mod            <span class="hljs-comment"># Go 模块文件</span>
-└── vercel.json       <span class="hljs-comment"># Vercel 配置</span></code></pre><h2>使用示例</h2>
-<h3>创建新端点</h3>
-<pre><code class="hljs language-go"><span class="hljs-comment">// api/hello/hello.go</span>
-<span class="hljs-keyword">package</span> hello
+<h3>安装 jzero</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 安装 jzero</span>
+go install github.com/jzero-io/jzero@latest
 
-<span class="hljs-keyword">import</span> (
-    <span class="hljs-string">&quot;net/http&quot;</span>
-    
-    <span class="hljs-string">&quot;github.com/zeromicro/go-zero/rest/httpx&quot;</span>
-)
+<span class="hljs-comment"># 安装相关工具</span>
+jzero check
+go install github.com/jzero-io/gorename@latest</code></pre><h3>创建 Vercel 项目</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 从远程模板创建新的 Vercel 无服务器项目</span>
+jzero new jzero-api-vercel-example --remote https://github.com/jzero-io/templates --branch api-vercel
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Handler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
-    httpx.OkJson(w, <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>{
-        <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Hello from Vercel!&quot;</span>,
-    })
-}</code></pre><h3>部署到 Vercel</h3>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># 安装 Vercel CLI</span>
-npm i -g vercel
+<span class="hljs-comment"># 添加新的 api</span>
+jzero add api <span class="hljs-built_in">test</span>
 
-<span class="hljs-comment"># 部署</span>
-vercel</code></pre><h2>配置</h2>
-<h3>vercel.json</h3>
-<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">&quot;functions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-    <span class="hljs-attr">&quot;api/**/*.go&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">&quot;runtime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;go1.x&quot;</span>
-    <span class="hljs-punctuation">}</span>
-  <span class="hljs-punctuation">}</span>
-<span class="hljs-punctuation">}</span></code></pre><h2>更多信息</h2>
+<span class="hljs-comment"># 生成代码</span>
+jzero gen</code></pre><h2>项目结构</h2>
+<pre><code class="hljs">jzero-api-vercel-example<span class="hljs-symbol">/</span>
+├── vercel<span class="hljs-symbol">/</span>
+│   └── client.go       <span class="hljs-comment"># Vercel Go 运行时入口</span>
+├── desc<span class="hljs-symbol">/</span>               <span class="hljs-comment"># API 定义</span>
+│   └── api<span class="hljs-symbol">/</span>           <span class="hljs-comment"># .api 文件</span>
+├── server<span class="hljs-symbol">/</span>            <span class="hljs-comment"># 服务端</span>
+│   ├── handler<span class="hljs-symbol">/</span>       <span class="hljs-comment"># HTTP 处理器</span>
+│   ├── logic<span class="hljs-symbol">/</span>         <span class="hljs-comment"># 业务逻辑</span>
+│   └── types<span class="hljs-symbol">/</span>         <span class="hljs-comment"># 类型定义</span>
+├── vercel.json        <span class="hljs-comment"># Vercel 平台配置</span>
+├── main.go            <span class="hljs-comment"># 本地运行入口</span>
+└── go.mod             <span class="hljs-comment"># Go 模块文件</span></code></pre><h2>部署到 Vercel</h2>
+<h3>Git 推送即部署</h3>
+<p>jzero 生成的项目完全兼容 Vercel 的 Git 工作流，实现代码推送自动部署：</p>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">cd</span> jzero-api-vercel-example
+
+<span class="hljs-comment"># 初始化 git</span>
+git init
+git add .
+git commit -m <span class="hljs-string">&quot;Initial commit&quot;</span>
+
+<span class="hljs-comment"># 在 GitHub 上创建仓库并推送</span>
+git remote add origin https://github.com/your-username/jzero-api-vercel-example.git
+git push -u origin main</code></pre><h3>Vercel 平台自动识别</h3>
+<ol>
+<li>访问 <a href="https://vercel.com/dashboard">Vercel 控制台</a></li>
+<li>点击 &quot;Add New Project&quot;</li>
+<li>导入您的 GitHub 仓库</li>
+<li><code>vercel.json</code> 配置让 Vercel 自动识别为 Go 项目</li>
+<li>点击 &quot;Deploy&quot;</li>
+</ol>
+<p><strong>🎉 部署完成！您的 Go API 已接入 Vercel 全球网络</strong></p>
+<h2>相关资源</h2>
 <ul>
-<li><a href="https://vercel.com/docs">Vercel 文档</a></li>
-<li><a href="https://go-zero.dev/">Go-Zero 文档</a></li>
+<li><a href="https://github.com/jzero-io/jzero">jzero GitHub</a></li>
+<li><a href="https://jzero.io">jzero 官网</a></li>
+<li><a href="https://github.com/jzero-io/templates/tree/api-vercel">Vercel 模板仓库</a></li>
+<li><a href="https://github.com/jaronnie/jzero-api-vercel-example">示例代码仓库</a></li>
 </ul>
 
           </div>
