@@ -1,7 +1,7 @@
 {
   "id": "api",
   "name": "API 服务",
-  "description": "构建带有自动 Swagger 文档的 RESTful API 服务",
+  "description": "jzero api 服务",
   "category": "API",
   "tags": ["api", "rest", "swagger", "后端"],
   "command": "jzero new your_project --frame api",
@@ -14,3 +14,4 @@
     "数据库 ORM 集成"
   ]
 }
+  

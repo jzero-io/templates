@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
 const marked = require('marked');
+const chokidar = require('chokidar');
 const TemplateLoader = require('./template-loader');
 
 /**
@@ -305,6 +306,9 @@ class SiteBuilder {
  */
 async function main() {
   try {
+    // Check for --watch flag
+    const watchMode = process.argv.includes('--watch');
+
     // Load configuration
     const configPath = path.join(__dirname, '..', 'builder.config.json');
     let config = {
@@ -323,7 +327,48 @@ async function main() {
 
     // Build site
     const builder = new SiteBuilder(config);
-    await builder.build();
+
+    if (watchMode) {
+      console.log('👀 Watch mode enabled. Press Ctrl+C to stop.\n');
+      await builder.build();
+
+      // Watch for changes
+      const watchPaths = [
+        path.join(process.cwd(), 'embedded'),
+        path.join(process.cwd(), 'external'),
+        path.join(process.cwd(), 'third_party'),
+        path.join(__dirname, 'templates'),
+        path.join(__dirname, 'assets'),
+        path.join(__dirname, 'i18n.json'),
+        path.join(__dirname, 'template-loader.js'),
+        path.join(__dirname, 'build.js')
+      ];
+
+      const watcher = chokidar.watch(watchPaths, {
+        ignored: /(^|[\/\\])\../, // ignore dotfiles
+        persistent: true
+      });
+
+      watcher.on('change', async (filePath) => {
+        console.log(`\n📝 File changed: ${path.relative(process.cwd(), filePath)}`);
+        console.log('🔄 Rebuilding...\n');
+        try {
+          await builder.build();
+        } catch (error) {
+          console.error('❌ Build failed:', error.message);
+        }
+      });
+
+      // Keep process alive
+      process.on('SIGINT', () => {
+        console.log('\n\n👋 Stopping watch mode...');
+        watcher.close();
+        process.exit(0);
+      });
+
+    } else {
+      await builder.build();
+    }
 
   } catch (error) {
     console.error('\n❌ Build failed:', error.message);

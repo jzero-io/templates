@@ -5,8 +5,7 @@
   "main": "src/build.js",
   "scripts": {
     "build": "node src/build.js",
-    "dev": "node src/build.js --watch",
-    "serve": "npx serve dist",
+    "dev": "concurrently \"node src/build.js --watch\" \"npx serve dist\"",
     "clean": "rm -rf dist"
   },
   "keywords": [
@@ -18,6 +17,7 @@
   "author": "jzero-io",
   "license": "MIT",
   "dependencies": {
+    "chokidar": "^5.0.0",
     "ejs": "^3.1.9",
     "front-matter": "^4.0.2",
     "glob": "^10.3.10",
@@ -25,6 +25,7 @@
     "marked": "^12.0.2"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "serve": "^14.2.1"
   }
 }

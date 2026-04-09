@@ -36,16 +36,20 @@ class TemplateLoader {
 
   /**
    * Discover all template directories
-   * Convention: A template directory must contain template.json
+   * Convention: A template directory must contain template.{lang}.json
    */
   async discoverTemplateDirs() {
     const templateDirs = [];
 
     for (const category of this.categories) {
-      const pattern = path.join(process.cwd(), category, '*/template.json');
+      // Look for template.*.json files (any language)
+      const pattern = path.join(process.cwd(), category, '*/template.*.json');
       const files = await glob(pattern);
       for (const file of files) {
-        templateDirs.push(path.dirname(file));
+        const dir = path.dirname(file);
+        if (!templateDirs.includes(dir)) {
+          templateDirs.push(dir);
+        }
       }
     }
 
@@ -58,17 +62,11 @@ class TemplateLoader {
    * @param {string} lang - Language code (default: 'zh')
    */
   async loadTemplate(templateDir, lang = 'zh') {
-    // Determine config file based on language
-    let configPath = path.join(templateDir, `template.${lang}.json`);
-    if (!fs.existsSync(configPath)) {
-      configPath = path.join(templateDir, 'template.json');
-    }
+    // Only look for language-specific config files
+    const configPath = path.join(templateDir, `template.${lang}.json`);
 
-    // Determine guide file based on language
-    let guidePath = path.join(templateDir, `guide.${lang}.md`);
-    if (!fs.existsSync(guidePath)) {
-      guidePath = path.join(templateDir, 'guide.md');
-    }
+    // Only look for language-specific guide files
+    const guidePath = path.join(templateDir, `guide.${lang}.md`);
 
     // Check if template config exists
     if (!fs.existsSync(configPath)) {
@@ -82,106 +80,35 @@ class TemplateLoader {
     let guideHtml = '';
     if (fs.existsSync(guidePath)) {
       const guideContent = fs.readFileSync(guidePath, 'utf-8');
-      guideHtml = this.markdownToHtml(guideContent);
+      // Parse markdown to HTML (you can use a markdown library here)
+      guideHtml = guideContent; // For now, just store the raw content
     }
 
-    // Determine template type from directory path
-    const relativePath = path.relative(this.templatesDir, templateDir);
-    const templateType = relativePath.split(path.sep)[0] || 'embedded';
+    // Extract template metadata
+    const templateName = path.basename(templateDir);
 
-    // Extract metadata from config with defaults
-    const template = {
-      id: config.id || this.slugify(config.name),
-      name: config.name || 'Unnamed Template',
-      description: config.description || '',
-      category: config.category || 'General',
-      tags: config.tags || [],
-      command: config.command || '',
-      branch: config.branch || '',
-      features: config.features || [],
-      screenshot: config.screenshot || '',
-      demo: config.demo || '',
-      repository: config.repository || '',
-      guide: guideHtml,
-      lang: lang,
-      type: templateType,
-      // Convention: Use folder name as ID if not specified
-      dir: path.basename(templateDir)
+    return {
+      ...config,
+      type: this.getTemplateCategory(templateDir),
+      guide: guideHtml
     };
-
-    return template;
   }
 
   /**
-   * Load and parse JSON file
+   * Get template category from directory path
    */
-  loadJSON(filePath) {
-    try {
-      const content = fs.readFileSync(filePath, 'utf-8');
-      return JSON.parse(content);
-    } catch (error) {
-      throw new Error(`Failed to parse JSON file ${filePath}: ${error.message}`);
-    }
-  }
-
-  /**
-   * Convert markdown to HTML with syntax highlighting
-   */
-  markdownToHtml(markdown) {
-    const { marked } = require('marked');
-    const hljs = require('highlight.js');
-
-    // Configure marked with highlight.js
-    const renderer = new marked.Renderer();
-    const originalCodeRenderer = renderer.code.bind(renderer);
-
-    renderer.code = function(code, language) {
-      let highlighted;
-      if (language && hljs.getLanguage(language)) {
-        try {
-          highlighted = hljs.highlight(code, { language: language }).value;
-        } catch (err) {
-          console.warn(`Highlight.js error for language ${language}:`, err.message);
-          highlighted = hljs.highlightAuto(code).value;
-        }
-      } else {
-        highlighted = hljs.highlightAuto(code).value;
+  getTemplateCategory(templateDir) {
+    const parts = templateDir.split(path.sep);
+    for (const category of this.categories) {
+      if (parts.includes(category)) {
+        return category;
       }
-
-      return `<pre><code class="hljs language-${language || 'plaintext'}">${highlighted}</code></pre>`;
-    };
-
-    marked.setOptions({ renderer });
-
-    return marked(markdown);
-  }
-
-  /**
-   * Convert string to URL-friendly slug
-   */
-  slugify(text) {
-    return text
-      .toString()
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, '-')
-      .replace(/[^\w\-]+/g, '')
-      .replace(/\-\-+/g, '-');
-  }
-
-  /**
-   * Get template by ID
-   * @param {string} id - Template ID or directory name
-   * @param {string} lang - Language code (default: 'zh')
-   */
-  async getTemplateById(id, lang = 'zh') {
-    const templates = await this.loadTemplates(lang);
-    return templates.find(t => t.id === id || t.dir === id);
+    }
+    return 'unknown';
   }
 
   /**
    * Get all unique categories
-   * @param {string} lang - Language code (default: 'zh')
    */
   async getCategories(lang = 'zh') {
     const templates = await this.loadTemplates(lang);
@@ -191,52 +118,28 @@ class TemplateLoader {
 
   /**
    * Get all unique tags
-   * @param {string} lang - Language code (default: 'zh')
    */
   async getTags(lang = 'zh') {
     const templates = await this.loadTemplates(lang);
     const tags = new Set();
     templates.forEach(t => {
-      t.tags.forEach(tag => tags.add(tag));
+      if (t.tags && Array.isArray(t.tags)) {
+        t.tags.forEach(tag => tags.add(tag));
+      }
     });
     return Array.from(tags).sort();
   }
 
   /**
-   * Search templates by keyword
-   * @param {string} keyword - Search keyword
-   * @param {string} lang - Language code (default: 'zh')
+   * Load JSON file
    */
-  async searchTemplates(keyword, lang = 'zh') {
-    const templates = await this.loadTemplates(lang);
-    const lowerKeyword = keyword.toLowerCase();
-
-    return templates.filter(t =>
-      t.name.toLowerCase().includes(lowerKeyword) ||
-      t.description.toLowerCase().includes(lowerKeyword) ||
-      t.tags.some(tag => tag.toLowerCase().includes(lowerKeyword)) ||
-      t.category.toLowerCase().includes(lowerKeyword)
-    );
-  }
-
-  /**
-   * Filter templates by category
-   * @param {string} category - Category name
-   * @param {string} lang - Language code (default: 'zh')
-   */
-  async filterByCategory(category, lang = 'zh') {
-    const templates = await this.loadTemplates(lang);
-    return templates.filter(t => t.category === category);
-  }
-
-  /**
-   * Filter templates by tag
-   * @param {string} tag - Tag name
-   * @param {string} lang - Language code (default: 'zh')
-   */
-  async filterByTag(tag, lang = 'zh') {
-    const templates = await this.loadTemplates(lang);
-    return templates.filter(t => t.tags.includes(tag));
+  loadJSON(filePath) {
+    try {
+      const content = fs.readFileSync(filePath, 'utf-8');
+      return JSON.parse(content);
+    } catch (error) {
+      throw new Error(`Failed to parse JSON from ${filePath}: ${error.message}`);
+    }
   }
 }
 
