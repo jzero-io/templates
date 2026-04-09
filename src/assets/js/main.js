@@ -120,6 +120,8 @@ function initializeFilters() {
   const categoryFilter = document.getElementById('categoryFilter');
 
   if (categoryFilter) {
+    // Set dark theme for mobile select dropdown
+    categoryFilter.setAttribute('data-theme', 'dark');
     categoryFilter.addEventListener('change', handleCategoryChange);
   }
 }
