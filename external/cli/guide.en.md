@@ -1,132 +1,214 @@
-# CLI Tool Template
+# CLI Template Guide
 
-A command-line application template implementing common CLI patterns and best practices.
+## Overview
 
-## Features
+The CLI template provides a command-line tool project structure based on the cobra framework with plugin system and configuration management support.
 
-- **Command Parsing**: Built-in argument and flag parsing
-- **Interactive Prompts**: User-friendly interactive input
-- **Configuration Management**: Support for YAML/TOML/JSON configurations
-- **Rich Output**: Colored and formatted console output
-- **Error Handling**: Graceful error messages and exit codes
-
-## Getting Started
+## Quick Start
 
 ```bash
-jzero new simplecli --branch cli
-cd simplecli
+# Create a new CLI project
+jzero new YOUR_APP_NAME --branch cli
+cd YOUR_APP_NAME
 go mod tidy
-go build -o cli main.go
-./cli --help
+go build
+./YOUR_APP_NAME version
 ```
+
+## Core Features
+
+### 1. Cobra Framework
+
+Built on [spf13/cobra](https://github.com/spf13/cobra) framework providing powerful CLI capabilities:
+
+- Automatic command and flag generation
+- Automatic help documentation
+- Subcommand support
+- Intelligent suggestions (shell completions)
+
+### 2. Configuration Management
+
+Multiple configuration methods supported:
+
+- **Config file**: `~/.YOUR_APP.yaml`
+- **Environment variables config**: `.YOUR_APP.env.yaml`
+- **Command line flags**
+
+#### Configuration Priority
+
+Command line flags > Environment variables > Config file
+
+#### Setting Environment Variables
+
+Create variables in `.YOUR_APP.env.yaml`:
+
+```yaml
+# Environment variables
+DATABASE_URL: postgres://localhost/mydb
+LOG_LEVEL: debug
+```
+
+Use in `~/.YOUR_APP.yaml`:
+
+```yaml
+# Use environment variables
+database:
+  url: ${DATABASE_URL}
+log:
+  level: ${LOG_LEVEL}
+```
+
+Environment variable prefix rules:
+- Prefix is `{APP_NAME}_` (uppercase)
+- Hierarchy connected with `_`
+- Example: `MY_APP_A_B` maps to `config.C.a.b`
+
+### 3. Plugin System
+
+Supports automatic plugin discovery and execution:
+
+- Plugin executables prefixed with `YOUR_APP-`
+- Plugins automatically searched from PATH
+- Multi-level command naming supported
 
 ## Project Structure
 
 ```
 .
-├── cmd/             # Command implementations
-├── config/          # Configuration handling
+├── main.go                      # Entry point
 ├── internal/
-│   ├── printer/     # Output formatting
-│   └── validator/   # Input validation
-├── main.go          # Entry point
-└── config.yaml      # Default configuration
+│   ├── command/
+│   │   └── version/            # Version command
+│   │       └── version.go
+│   └── config/
+│       └── config.go           # Configuration management
+└── go.mod
 ```
 
-## Usage Examples
+## Configuration Files
 
-### Basic Command
+### Main Config File
 
-```bash
-./cli command-name --flag value
-```
+Default location: `~/.YOUR_APP.yaml`
 
-### Interactive Mode
-
-```bash
-./cli interactive
-# Follow the prompts...
-```
-
-### Configuration File
-
-Create `config.yaml`:
 ```yaml
-logLevel: info
-outputFormat: json
-timeout: 30s
+# Debug mode
+debug: false
+
+# Debug sleep time (seconds)
+debug-sleep-time: 0
 ```
 
-Run with config:
+### Environment Variables Config File
+
+Default location: `.YOUR_APP.env.yaml`
+
+```yaml
+# Define environment variables here
+# These can be referenced in main config using ${VAR_NAME}
+```
+
+## Commands
+
+### Version Command
+
 ```bash
-./cli --config config.yaml
+./YOUR_APP_NAME version
+```
+
+Output:
+```
+YOUR_APP_NAME version 1.0.0 darwin/amd64
+Go version go1.21.0
+Git commit abc123
+Build date 2024-01-01 12:00:00 +0000 UTC
+```
+
+### Help Command
+
+```bash
+./YOUR_APP_NAME --help
+./YOUR_APP_NAME command --help
 ```
 
 ## Adding New Commands
 
-1. Create command file in `cmd/`:
+### 1. Create Command File
+
+Create new directory under `internal/command/`:
+
 ```go
-package cmd
+package mycmd
 
 import (
-    "github.com/urfave/cli/v2"
+    "github.com/spf13/cobra"
 )
 
-func NewExampleCommand() *cli.Command {
-    return &cli.Command{
-        Name:  "example",
-        Usage: "Example command description",
-        Flags: []cli.Flag{
-            &cli.StringFlag{
-                Name:  "input",
-                Usage: "Input file path",
-            },
-        },
-        Action: func(c *cli.Context) error {
-            // Your logic here
-            return nil
-        },
-    }
+var Cmd = &cobra.Command{
+    Use:   "mycmd",
+    Short: "My command",
+    Run: func(cmd *cobra.Command, args []string) {
+        // Command logic
+    },
+}
+
+func init() {
+    // Add flags
+    Cmd.Flags().StringP("output", "o", "", "Output file")
 }
 ```
 
-2. Register in `main.go`:
+### 2. Register Command
+
+Add in `main.go`:
+
 ```go
-app.Commands = append(app.Commands, cmd.NewExampleCommand())
+import (
+    "{{ .Module }}/internal/command/mycmd"
+)
+
+func init() {
+    rootCmd.AddCommand(mycmd.Cmd)
+}
 ```
 
-## Building and Distribution
+## Debugging
 
-### Build for Multiple Platforms
+Enable debug mode:
 
 ```bash
-# macOS
-GOOS=darwin GOARCH=amd64 go build -o cli-darwin-amd64 main.go
+# Via config file
+~/.YOUR_APP.yaml:
+  debug: true
 
-# Linux
-GOOS=linux GOARCH=amd64 go build -o cli-linux-amd64 main.go
+# Via environment variable
+export YOUR_APP_DEBUG=true
+./YOUR_APP_NAME
 
-# Windows
-GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go
+# Via command line flag
+./YOUR_APP_NAME --debug
 ```
 
-### Homebrew Installation (Optional)
+Set debug sleep time:
 
-Create tap for easy installation:
 ```bash
-brew tap yourusername/cli
-brew install yourusername/cli/cli
+./YOUR_APP_NAME --debug --debug-sleep-time 5
 ```
 
-## Best Practices
+## Building Version Information
 
-1. **Exit Codes**: Use standard exit codes (0 for success, 1 for errors)
-2. **Error Messages**: Provide helpful error messages and suggestions
-3. **Flags**: Use both short and long flags (`-v` and `--verbose`)
-4. **Help Text**: Include examples in command help text
-5. **Testing**: Write tests for your command logic
+Inject version information during build:
 
-## Learn More
+```bash
+go build \
+  -ldflags="-X 'main.version=1.0.0' \
+           -X 'main.commit=$(git rev-parse HEAD)' \
+           -X 'main.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)'" \
+  -o YOUR_APP_NAME
+```
 
-- [urfave/cli Documentation](https://cli.urfave.org/)
-- [Command Line Interface Guidelines](https://clig.dev/)
+## Related Resources
+
+- [Cobra Documentation](https://github.com/spf13/cobra)
+- [Viper Documentation](https://github.com/spf13/viper)
+- [jzero Documentation](https://docs.jzero.io)

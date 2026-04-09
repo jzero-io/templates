@@ -1,132 +1,214 @@
-# 命令行工具模板
+# CLI 模板指南
 
-一个命令行应用程序模板，实现了常见的 CLI 模式和最佳实践。
+## 概述
 
-## 特性
-
-- **命令解析**：内置参数和标志解析
-- **交互式提示**：用户友好的交互输入
-- **配置管理**：支持 YAML/TOML/JSON 配置
-- **丰富的输出**：彩色和格式化的控制台输出
-- **错误处理**：优雅的错误消息和退出码
+CLI 模板提供了一个基于 cobra 框架的命令行工具项目结构，支持插件系统和配置管理。
 
 ## 快速开始
 
 ```bash
-jzero new simplecli --branch cli
-cd simplecli
+# 创建新的 CLI 项目
+jzero new YOUR_APP_NAME --branch cli
+cd YOUR_APP_NAME
 go mod tidy
-go build -o cli main.go
-./cli --help
+go build
+./YOUR_APP_NAME version
 ```
+
+## 核心特性
+
+### 1. Cobra 框架
+
+基于 [spf13/cobra](https://github.com/spf13/cobra) 框架，提供强大的命令行功能：
+
+- 自动生成命令和标志
+- 自动生成帮助文档
+- 支持子命令
+- 智能提示（shell completions）
+
+### 2. 配置管理
+
+支持多种配置方式：
+
+- **配置文件**：`~/.YOUR_APP.yaml`
+- **环境变量配置**：`.YOUR_APP.env.yaml`
+- **命令行标志**
+
+#### 配置优先级
+
+命令行标志 > 环境变量 > 配置文件
+
+#### 环境变量设置
+
+在 `.YOUR_APP.env.yaml` 中创建变量：
+
+```yaml
+# 环境变量
+DATABASE_URL: postgres://localhost/mydb
+LOG_LEVEL: debug
+```
+
+在 `~/.YOUR_APP.yaml` 中使用：
+
+```yaml
+# 使用环境变量
+database:
+  url: ${DATABASE_URL}
+log:
+  level: ${LOG_LEVEL}
+```
+
+环境变量前缀规则：
+- 前缀为 `{APP_NAME}_` (大写)
+- 层级结构用 `_` 连接
+- 例如：`MY_APP_A_B` 对应 `config.C.a.b`
+
+### 3. 插件系统
+
+支持自动发现和执行插件：
+
+- 插件可执行文件以 `YOUR_APP-` 为前缀
+- 插件自动从 PATH 中搜索
+- 支持多级命令命名
 
 ## 项目结构
 
 ```
 .
-├── cmd/             # 命令实现
-├── config/          # 配置处理
+├── main.go                      # 入口文件
 ├── internal/
-│   ├── printer/     # 输出格式化
-│   └── validator/   # 输入验证
-├── main.go          # 入口点
-└── config.yaml      # 默认配置
+│   ├── command/
+│   │   └── version/            # 版本命令
+│   │       └── version.go
+│   └── config/
+│       └── config.go           # 配置管理
+└── go.mod
 ```
 
-## 使用示例
+## 配置文件
 
-### 基本命令
+### 主配置文件
 
-```bash
-./cli command-name --flag value
-```
+默认位置：`~/.YOUR_APP.yaml`
 
-### 交互模式
-
-```bash
-./cli interactive
-# 按照提示操作...
-```
-
-### 配置文件
-
-创建 `config.yaml`：
 ```yaml
-logLevel: info
-outputFormat: json
-timeout: 30s
+# 调试模式
+debug: false
+
+# 调试睡眠时间（秒）
+debug-sleep-time: 0
 ```
 
-使用配置运行：
+### 环境变量配置文件
+
+默认位置：`.YOUR_APP.env.yaml`
+
+```yaml
+# 可以在这里定义环境变量
+# 这些变量可以在主配置文件中通过 ${VAR_NAME} 引用
+```
+
+## 命令
+
+### 版本命令
+
 ```bash
-./cli --config config.yaml
+./YOUR_APP_NAME version
+```
+
+输出：
+```
+YOUR_APP_NAME version 1.0.0 darwin/amd64
+Go version go1.21.0
+Git commit abc123
+Build date 2024-01-01 12:00:00 +0000 UTC
+```
+
+### 帮助命令
+
+```bash
+./YOUR_APP_NAME --help
+./YOUR_APP_NAME command --help
 ```
 
 ## 添加新命令
 
-1. 在 `cmd/` 中创建命令文件：
+### 1. 创建命令文件
+
+在 `internal/command/` 下创建新目录：
+
 ```go
-package cmd
+package mycmd
 
 import (
-    "github.com/urfave/cli/v2"
+    "github.com/spf13/cobra"
 )
 
-func NewExampleCommand() *cli.Command {
-    return &cli.Command{
-        Name:  "example",
-        Usage: "示例命令描述",
-        Flags: []cli.Flag{
-            &cli.StringFlag{
-                Name:  "input",
-                Usage: "输入文件路径",
-            },
-        },
-        Action: func(c *cli.Context) error {
-            // 你的逻辑
-            return nil
-        },
-    }
+var Cmd = &cobra.Command{
+    Use:   "mycmd",
+    Short: "我的命令",
+    Run: func(cmd *cobra.Command, args []string) {
+        // 命令逻辑
+    },
+}
+
+func init() {
+    // 添加标志
+    Cmd.Flags().StringP("output", "o", "", "输出文件")
 }
 ```
 
-2. 在 `main.go` 中注册：
+### 2. 注册命令
+
+在 `main.go` 中添加：
+
 ```go
-app.Commands = append(app.Commands, cmd.NewExampleCommand())
+import (
+    "{{ .Module }}/internal/command/mycmd"
+)
+
+func init() {
+    rootCmd.AddCommand(mycmd.Cmd)
+}
 ```
 
-## 构建和分发
+## 调试
 
-### 为多平台构建
+启用调试模式：
 
 ```bash
-# macOS
-GOOS=darwin GOARCH=amd64 go build -o cli-darwin-amd64 main.go
+# 通过配置文件
+~/.YOUR_APP.yaml:
+  debug: true
 
-# Linux
-GOOS=linux GOARCH=amd64 go build -o cli-linux-amd64 main.go
+# 通过环境变量
+export YOUR_APP_DEBUG=true
+./YOUR_APP_NAME
 
-# Windows
-GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go
+# 通过命令行标志
+./YOUR_APP_NAME --debug
 ```
 
-### Homebrew 安装（可选）
+设置调试睡眠时间：
 
-创建 tap 以便于安装：
 ```bash
-brew tap yourusername/cli
-brew install yourusername/cli/cli
+./YOUR_APP_NAME --debug --debug-sleep-time 5
 ```
 
-## 最佳实践
+## 构建版本信息
 
-1. **退出码**：使用标准退出码（0 表示成功，1 表示错误）
-2. **错误消息**：提供有用的错误消息和建议
-3. **标志**：同时使用短标志和长标志（`-v` 和 `--verbose`）
-4. **帮助文本**：在命令帮助文本中包含示例
-5. **测试**：为命令逻辑编写测试
+构建时注入版本信息：
 
-## 更多信息
+```bash
+go build \
+  -ldflags="-X 'main.version=1.0.0' \
+           -X 'main.commit=$(git rev-parse HEAD)' \
+           -X 'main.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)'" \
+  -o YOUR_APP_NAME
+```
 
-- [urfave/cli 文档](https://cli.urfave.org/)
-- [命令行界面指南](https://clig.dev/)
+## 相关资源
+
+- [Cobra 文档](https://github.com/spf13/cobra)
+- [Viper 文档](https://github.com/spf13/viper)
+- [jzero 文档](https://docs.jzero.io)

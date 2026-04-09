@@ -1,80 +1,91 @@
-# API Vercel Template
+# API Vercel Template Guide
 
-An API template optimized for Vercel serverless deployment.
+## Overview
 
-## Features
+jzero deeply integrates with Vercel ecosystem, bringing Go developers a frontend-level deployment experience! Automatically generate Vercel-compliant serverless functions from `.api` definitions, no need to deploy to your own servers.
 
-- **RESTful API Structure**: Clean and organized API design
-- **Vercel Serverless Deployment**: Optimized for Vercel's serverless functions
-- **Built-in Middleware**: Common middleware included out of the box
-- **Example Endpoints**: Ready-to-use example API endpoints
+### Core Value
 
-## Getting Started
+- ✅ **Zero-Config Deployment**: Deploy directly from Git repository, no extra configuration needed, no servers required, no CI/CD pipeline
+- ✅ **Global Edge Network**: Deploy Go functions to edge nodes nearest to users using Vercel's global infrastructure, achieving millisecond-level response
+- ✅ **Free Domain & HTTPS**: Automatically get `.vercel.app` production-grade domain with built-in CDN acceleration and SSL certificates
+- ✅ **Preview Environments**: Automatically generate independent preview URLs for each PR
+
+## Quick Start
+
+### Install jzero
 
 ```bash
-jzero new simpleapi-vercel --branch api-vercel
-cd simpleapi-vercel
+# Install jzero
+go install github.com/jzero-io/jzero@latest
+
+# Install related tools
+jzero check
+go install github.com/jzero-io/gorename@latest
+```
+
+### Create Vercel Project
+
+```bash
+# Create new Vercel serverless project from remote template
+jzero new jzero-api-vercel-example --remote https://github.com/jzero-io/templates --branch api-vercel
+
+# Add new api
+jzero add api test
+
+# Generate code
+jzero gen
 ```
 
 ## Project Structure
 
 ```
-.
-├── api/              # API endpoints
-│   ├── handlers/     # Request handlers
-│   ├── logic/        # Business logic
-│   └── middleware/   # Middleware functions
-├── internal/         # Internal packages
-├── go.mod            # Go module file
-└── vercel.json       # Vercel configuration
+jzero-api-vercel-example/
+├── vercel/
+│   └── client.go       # Vercel Go runtime entry
+├── desc/               # API definitions
+│   └── api/           # .api files
+├── server/            # Server side
+│   ├── handler/       # HTTP handlers
+│   ├── logic/         # Business logic
+│   └── types/         # Type definitions
+├── vercel.json        # Vercel platform configuration
+├── main.go            # Local runtime entry
+└── go.mod             # Go module file
 ```
 
-## Usage Examples
+## Deploy to Vercel
 
-### Create a New Endpoint
+### Git Push to Deploy
 
-```go
-// api/hello/hello.go
-package hello
-
-import (
-    "net/http"
-    
-    "github.com/zeromicro/go-zero/rest/httpx"
-)
-
-func Handler(w http.ResponseWriter, r *http.Request) {
-    httpx.OkJson(w, map[string]string{
-        "message": "Hello from Vercel!",
-    })
-}
-```
-
-### Deploy to Vercel
+jzero-generated projects are fully compatible with Vercel's Git workflow for automatic deployment:
 
 ```bash
-# Install Vercel CLI
-npm i -g vercel
+cd jzero-api-vercel-example
 
-# Deploy
-vercel
+# Initialize git
+git init
+git add .
+git commit -m "Initial commit"
+
+# Create repository on GitHub and push
+git remote add origin https://github.com/your-username/jzero-api-vercel-example.git
+git push -u origin main
 ```
 
-## Configuration
+### Vercel Platform Auto-Detection
 
-### vercel.json
+1. Visit [Vercel Dashboard](https://vercel.com/dashboard)
+2. Click "Add New Project"
+3. Import your GitHub repository
+4. `vercel.json` configuration lets Vercel automatically recognize it as a Go project
+5. Click "Deploy"
 
-```json
-{
-  "functions": {
-    "api/**/*.go": {
-      "runtime": "go1.x"
-    }
-  }
-}
-```
+**🎉 Deployment complete! Your Go API is now connected to Vercel's global network**
 
-## Learn More
+## Related Resources
 
-- [Vercel Documentation](https://vercel.com/docs)
-- [Go-Zero Documentation](https://go-zero.dev/)
+- [jzero GitHub](https://github.com/jzero-io/jzero)
+- [jzero Official Site](https://jzero.io)
+- [Vercel Template Repository](https://github.com/jzero-io/templates/tree/api-vercel)
+- [Example Code Repository](https://github.com/jaronnie/jzero-api-vercel-example)
