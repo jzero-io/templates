@@ -192,138 +192,91 @@
         <section class="template-guide-section">
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            # CLI Tool Template
-
-A command-line application template implementing common CLI patterns and best practices.
-
-## Features
-
-- **Command Parsing**: Built-in argument and flag parsing
-- **Interactive Prompts**: User-friendly interactive input
-- **Configuration Management**: Support for YAML/TOML/JSON configurations
-- **Rich Output**: Colored and formatted console output
-- **Error Handling**: Graceful error messages and exit codes
-
-## Getting Started
-
-```bash
-jzero new simplecli --branch cli
-cd simplecli
+            <h1>CLI Tool Template</h1>
+<p>A command-line application template implementing common CLI patterns and best practices.</p>
+<h2>Features</h2>
+<ul>
+<li><strong>Command Parsing</strong>: Built-in argument and flag parsing</li>
+<li><strong>Interactive Prompts</strong>: User-friendly interactive input</li>
+<li><strong>Configuration Management</strong>: Support for YAML/TOML/JSON configurations</li>
+<li><strong>Rich Output</strong>: Colored and formatted console output</li>
+<li><strong>Error Handling</strong>: Graceful error messages and exit codes</li>
+</ul>
+<h2>Getting Started</h2>
+<pre><code class="hljs language-bash">jzero new simplecli --branch cli
+<span class="hljs-built_in">cd</span> simplecli
 go mod tidy
 go build -o cli main.go
-./cli --help
-```
+./cli --<span class="hljs-built_in">help</span></code></pre><h2>Project Structure</h2>
+<pre><code class="hljs">.
+├── cmd<span class="hljs-symbol">/</span>             <span class="hljs-comment"># Command implementations</span>
+├── config<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Configuration handling</span>
+├── internal<span class="hljs-symbol">/</span>
+│   ├── printer<span class="hljs-symbol">/</span>     <span class="hljs-comment"># Output formatting</span>
+│   └── validator<span class="hljs-symbol">/</span>   <span class="hljs-comment"># Input validation</span>
+├── main.go          <span class="hljs-comment"># Entry point</span>
+└── config.yaml      <span class="hljs-comment"># Default configuration</span></code></pre><h2>Usage Examples</h2>
+<h3>Basic Command</h3>
+<pre><code class="hljs language-bash">./cli command-name --flag value</code></pre><h3>Interactive Mode</h3>
+<pre><code class="hljs language-bash">./cli interactive
+<span class="hljs-comment"># Follow the prompts...</span></code></pre><h3>Configuration File</h3>
+<p>Create <code>config.yaml</code>:</p>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">logLevel:</span> <span class="hljs-string">info</span>
+<span class="hljs-attr">outputFormat:</span> <span class="hljs-string">json</span>
+<span class="hljs-attr">timeout:</span> <span class="hljs-string">30s</span></code></pre><p>Run with config:</p>
+<pre><code class="hljs language-bash">./cli --config config.yaml</code></pre><h2>Adding New Commands</h2>
+<ol>
+<li>Create command file in <code>cmd/</code>:</li>
+</ol>
+<pre><code class="hljs language-go"><span class="hljs-keyword">package</span> cmd
 
-## Project Structure
-
-```
-.
-├── cmd/             # Command implementations
-├── config/          # Configuration handling
-├── internal/
-│   ├── printer/     # Output formatting
-│   └── validator/   # Input validation
-├── main.go          # Entry point
-└── config.yaml      # Default configuration
-```
-
-## Usage Examples
-
-### Basic Command
-
-```bash
-./cli command-name --flag value
-```
-
-### Interactive Mode
-
-```bash
-./cli interactive
-# Follow the prompts...
-```
-
-### Configuration File
-
-Create `config.yaml`:
-```yaml
-logLevel: info
-outputFormat: json
-timeout: 30s
-```
-
-Run with config:
-```bash
-./cli --config config.yaml
-```
-
-## Adding New Commands
-
-1. Create command file in `cmd/`:
-```go
-package cmd
-
-import (
-    "github.com/urfave/cli/v2"
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;github.com/urfave/cli/v2&quot;</span>
 )
 
-func NewExampleCommand() *cli.Command {
-    return &cli.Command{
-        Name:  "example",
-        Usage: "Example command description",
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">NewExampleCommand</span><span class="hljs-params">()</span></span> *cli.Command {
+    <span class="hljs-keyword">return</span> &amp;cli.Command{
+        Name:  <span class="hljs-string">&quot;example&quot;</span>,
+        Usage: <span class="hljs-string">&quot;Example command description&quot;</span>,
         Flags: []cli.Flag{
-            &cli.StringFlag{
-                Name:  "input",
-                Usage: "Input file path",
+            &amp;cli.StringFlag{
+                Name:  <span class="hljs-string">&quot;input&quot;</span>,
+                Usage: <span class="hljs-string">&quot;Input file path&quot;</span>,
             },
         },
-        Action: func(c *cli.Context) error {
-            // Your logic here
-            return nil
+        Action: <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(c *cli.Context)</span></span> <span class="hljs-type">error</span> {
+            <span class="hljs-comment">// Your logic here</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
         },
     }
-}
-```
-
-2. Register in `main.go`:
-```go
-app.Commands = append(app.Commands, cmd.NewExampleCommand())
-```
-
-## Building and Distribution
-
-### Build for Multiple Platforms
-
-```bash
-# macOS
+}</code></pre><ol start="2">
+<li>Register in <code>main.go</code>:</li>
+</ol>
+<pre><code class="hljs language-go">app.Commands = <span class="hljs-built_in">append</span>(app.Commands, cmd.NewExampleCommand())</code></pre><h2>Building and Distribution</h2>
+<h3>Build for Multiple Platforms</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># macOS</span>
 GOOS=darwin GOARCH=amd64 go build -o cli-darwin-amd64 main.go
 
-# Linux
+<span class="hljs-comment"># Linux</span>
 GOOS=linux GOARCH=amd64 go build -o cli-linux-amd64 main.go
 
-# Windows
-GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go
-```
-
-### Homebrew Installation (Optional)
-
-Create tap for easy installation:
-```bash
-brew tap yourusername/cli
-brew install yourusername/cli/cli
-```
-
-## Best Practices
-
-1. **Exit Codes**: Use standard exit codes (0 for success, 1 for errors)
-2. **Error Messages**: Provide helpful error messages and suggestions
-3. **Flags**: Use both short and long flags (`-v` and `--verbose`)
-4. **Help Text**: Include examples in command help text
-5. **Testing**: Write tests for your command logic
-
-## Learn More
-
-- [urfave/cli Documentation](https://cli.urfave.org/)
-- [Command Line Interface Guidelines](https://clig.dev/)
+<span class="hljs-comment"># Windows</span>
+GOOS=windows GOARCH=amd64 go build -o cli-windows-amd64.exe main.go</code></pre><h3>Homebrew Installation (Optional)</h3>
+<p>Create tap for easy installation:</p>
+<pre><code class="hljs language-bash">brew tap yourusername/cli
+brew install yourusername/cli/cli</code></pre><h2>Best Practices</h2>
+<ol>
+<li><strong>Exit Codes</strong>: Use standard exit codes (0 for success, 1 for errors)</li>
+<li><strong>Error Messages</strong>: Provide helpful error messages and suggestions</li>
+<li><strong>Flags</strong>: Use both short and long flags (<code>-v</code> and <code>--verbose</code>)</li>
+<li><strong>Help Text</strong>: Include examples in command help text</li>
+<li><strong>Testing</strong>: Write tests for your command logic</li>
+</ol>
+<h2>Learn More</h2>
+<ul>
+<li><a href="https://cli.urfave.org/">urfave/cli Documentation</a></li>
+<li><a href="https://clig.dev/">Command Line Interface Guidelines</a></li>
+</ul>
 
           </div>
         </section>

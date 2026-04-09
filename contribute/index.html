@@ -114,32 +114,28 @@
 <p>第三方模板是由社区开发者创建并维护的项目模板，可以帮助其他开发者快速启动特定类型的项目。</p>
 <h2>模板结构</h2>
 <p>每个第三方模板需要包含以下文件：</p>
-<pre><code>your-template/
-├── template.json          # 模板配置文件（必需）
-├── template.zh.json       # 中文配置文件（可选，用于多语言支持）
-├── README.md              # 模板说明文档（必需）
-└── [template files]       # 模板文件和目录
-</code></pre>
-<h2>配置文件说明</h2>
+<pre><code class="hljs">your-<span class="hljs-keyword">template</span>/
+├── <span class="hljs-keyword">template</span>.json          <span class="hljs-comment"># 模板配置文件（必需）</span>
+├── <span class="hljs-keyword">template</span>.zh.json       <span class="hljs-comment"># 中文配置文件（可选，用于多语言支持）</span>
+├── <span class="hljs-type">README</span>.md              <span class="hljs-comment"># 模板说明文档（必需）</span>
+└── [<span class="hljs-keyword">template</span> files]       <span class="hljs-comment"># 模板文件和目录</span></code></pre><h2>配置文件说明</h2>
 <h3>template.json</h3>
 <p>模板配置文件是 JSON 格式，包含以下字段：</p>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;your-template-id&quot;,
-  &quot;name&quot;: &quot;Your Template Name&quot;,
-  &quot;description&quot;: &quot;A brief description of your template&quot;,
-  &quot;category&quot;: &quot;Category Name&quot;,
-  &quot;tags&quot;: [&quot;tag1&quot;, &quot;tag2&quot;, &quot;tag3&quot;],
-  &quot;command&quot;: &quot;jzero new project_name --template your-template-id&quot;,
-  &quot;repository&quot;: &quot;https://github.com/username/repo&quot;,
-  &quot;demo&quot;: &quot;https://your-demo-url.com&quot;,
-  &quot;features&quot;: [
-    &quot;Feature 1&quot;,
-    &quot;Feature 2&quot;,
-    &quot;Feature 3&quot;
-  ]
-}
-</code></pre>
-<h3>字段说明</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-template-id&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Your Template Name&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;A brief description of your template&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Category Name&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;tag1&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;tag2&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;tag3&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new project_name --template your-template-id&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/repo&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://your-demo-url.com&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-string">&quot;Feature 1&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;Feature 2&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;Feature 3&quot;</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre><h3>字段说明</h3>
 <table>
 <thead>
 <tr>
@@ -206,85 +202,77 @@
 </tbody></table>
 <h3>多语言支持</h3>
 <p>如果需要支持中文，创建 <code>template.zh.json</code> 文件：</p>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;your-template-id&quot;,
-  &quot;name&quot;: &quot;模板中文名称&quot;,
-  &quot;description&quot;: &quot;模板的中文描述&quot;,
-  &quot;category&quot;: &quot;分类名称&quot;,
-  &quot;tags&quot;: [&quot;标签1&quot;, &quot;标签2&quot;],
-  &quot;command&quot;: &quot;jzero new project_name --template your-template-id&quot;,
-  &quot;repository&quot;: &quot;https://github.com/username/repo&quot;,
-  &quot;demo&quot;: &quot;https://your-demo-url.com&quot;,
-  &quot;features&quot;: [
-    &quot;特性1&quot;,
-    &quot;特性2&quot;
-  ]
-}
-</code></pre>
-<h2>创建模板</h2>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-template-id&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;模板中文名称&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;模板的中文描述&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;分类名称&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;标签1&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;标签2&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new project_name --template your-template-id&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/repo&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://your-demo-url.com&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-string">&quot;特性1&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;特性2&quot;</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre><h2>创建模板</h2>
 <h3>1. 创建模板目录</h3>
 <p>在 <code>third_party/</code> 目录下创建您的模板目录：</p>
-<pre><code class="language-bash">mkdir third_party/your-template-id
-cd third_party/your-template-id
-</code></pre>
-<h3>2. 创建配置文件</h3>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">mkdir</span> third_party/your-template-id
+<span class="hljs-built_in">cd</span> third_party/your-template-id</code></pre><h3>2. 创建配置文件</h3>
 <p>创建 <code>template.json</code> 文件：</p>
-<pre><code class="language-json">{
-  &quot;id&quot;: &quot;my-web-app&quot;,
-  &quot;name&quot;: &quot;My Modern Web App&quot;,
-  &quot;description&quot;: &quot;A full-stack web application with React and Node.js&quot;,
-  &quot;category&quot;: &quot;Web&quot;,
-  &quot;tags&quot;: [&quot;react&quot;, &quot;nodejs&quot;, &quot;fullstack&quot;, &quot;typescript&quot;],
-  &quot;command&quot;: &quot;jzero new myapp --template my-web-app&quot;,
-  &quot;repository&quot;: &quot;https://github.com/username/my-web-app-template&quot;,
-  &quot;demo&quot;: &quot;https://my-web-app-demo.example.com&quot;,
-  &quot;features&quot;: [
-    &quot;React 18 with TypeScript&quot;,
-    &quot;Node.js backend with Express&quot;,
-    &quot;PostgreSQL database integration&quot;,
-    &quot;JWT authentication&quot;,
-    &quot;Docker support&quot;
-  ]
-}
-</code></pre>
-<h3>3. 创建 README.md</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;my-web-app&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;My Modern Web App&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;A full-stack web application with React and Node.js&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Web&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;react&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;nodejs&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;fullstack&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;typescript&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new myapp --template my-web-app&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/my-web-app-template&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://my-web-app-demo.example.com&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-string">&quot;React 18 with TypeScript&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;Node.js backend with Express&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;PostgreSQL database integration&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;JWT authentication&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;Docker support&quot;</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre><h3>3. 创建 README.md</h3>
 <p>在模板目录下创建详细的 README.md：</p>
-<pre><code class="language-markdown"># My Modern Web App
+<pre><code class="hljs language-markdown"><span class="hljs-section"># My Modern Web App</span>
 
 一个功能完整的全栈 Web 应用模板。
 
-## 功能特性
+<span class="hljs-section">## 功能特性</span>
 
-- React 18 + TypeScript
-- Node.js + Express 后端
-- PostgreSQL 数据库
-- JWT 认证
-- Docker 部署支持
+<span class="hljs-bullet">-</span> React 18 + TypeScript
+<span class="hljs-bullet">-</span> Node.js + Express 后端
+<span class="hljs-bullet">-</span> PostgreSQL 数据库
+<span class="hljs-bullet">-</span> JWT 认证
+<span class="hljs-bullet">-</span> Docker 部署支持
 
-## 快速开始
+<span class="hljs-section">## 快速开始</span>
 
-\`\`\`bash
+\<span class="hljs-code">`\`</span>\`bash
 jzero new myapp --template my-web-app
 cd myapp
 npm install
 npm run dev
-\`\`\`
+\<span class="hljs-code">`\`</span>\`
 
-## 项目结构
+<span class="hljs-section">## 项目结构</span>
 
-\`\`\`
+\<span class="hljs-code">`\`</span>\`
 myapp/
 ├── frontend/          # React 前端
 ├── backend/           # Node.js 后端
 ├── database/          # 数据库脚本
 └── docker-compose.yml # Docker 配置
-\`\`\`
+\<span class="hljs-code">`\`</span>\`
 
-## 许可证
+<span class="hljs-section">## 许可证</span>
 
-MIT License
-</code></pre>
-<h2>最佳实践</h2>
+MIT License</code></pre><h2>最佳实践</h2>
 <h3>1. 模板命名</h3>
 <ul>
 <li>使用有意义的名称，能清晰表达模板用途</li>

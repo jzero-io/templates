@@ -208,64 +208,43 @@
         <section class="template-guide-section">
           <h2>快速开始指南</h2>
           <div class="guide-content">
-            # API 网关模板
-
-高性能 API 网关，为多个微服务提供统一访问入口，同时支持 gRPC 和 HTTP 协议。
-
-## 特性
-
-- 统一的 gRPC 和 HTTP 接口
-- 服务发现和自动路由
-- 跨多个服务实例的负载均衡
-- HTTP 端点的 Swagger 文档
-- gRPC 和 HTTP 之间的协议转换
-
-## 创建新项目
-
-```bash
-jzero new my-gateway --frame gateway
-cd my-gateway
-jzero run
-```
-
-网关将开始在配置的端口上监听（默认：8001）。
-
-## 架构
-
-API 网关作为客户端请求的单一入口点，将请求路由到适当的后端服务：
-
-- **HTTP 请求**：直接代理到基于 HTTP 的微服务
-- **gRPC 请求**：转换并路由到 gRPC 服务
-- **混合服务**：无缝处理两种协议
-
-## 配置
-
-在配置文件中配置上游服务：
-
-```yaml
-upstreams:
-  - name: user-service
-    type: grpc
-    address: localhost:50051
+            <h1>API 网关模板</h1>
+<p>高性能 API 网关，为多个微服务提供统一访问入口，同时支持 gRPC 和 HTTP 协议。</p>
+<h2>特性</h2>
+<ul>
+<li>统一的 gRPC 和 HTTP 接口</li>
+<li>服务发现和自动路由</li>
+<li>跨多个服务实例的负载均衡</li>
+<li>HTTP 端点的 Swagger 文档</li>
+<li>gRPC 和 HTTP 之间的协议转换</li>
+</ul>
+<h2>创建新项目</h2>
+<pre><code class="hljs language-bash">jzero new my-gateway --frame gateway
+<span class="hljs-built_in">cd</span> my-gateway
+jzero run</code></pre><p>网关将开始在配置的端口上监听（默认：8001）。</p>
+<h2>架构</h2>
+<p>API 网关作为客户端请求的单一入口点，将请求路由到适当的后端服务：</p>
+<ul>
+<li><strong>HTTP 请求</strong>：直接代理到基于 HTTP 的微服务</li>
+<li><strong>gRPC 请求</strong>：转换并路由到 gRPC 服务</li>
+<li><strong>混合服务</strong>：无缝处理两种协议</li>
+</ul>
+<h2>配置</h2>
+<p>在配置文件中配置上游服务：</p>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">upstreams:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">user-service</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">grpc</span>
+    <span class="hljs-attr">address:</span> <span class="hljs-string">localhost:50051</span>
   
-  - name: order-service
-    type: http
-    address: http://localhost:8002
-```
-
-## 开发
-
-```bash
-# 运行网关
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">order-service</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">http</span>
+    <span class="hljs-attr">address:</span> <span class="hljs-string">http://localhost:8002</span></code></pre><h2>开发</h2>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 运行网关</span>
 jzero run
 
-# 构建生产版本
-jzero build
-```
-
-## 文档
-
-访问 http://localhost:8001/swagger 查看 HTTP 端点的 Swagger 文档。
+<span class="hljs-comment"># 构建生产版本</span>
+jzero build</code></pre><h2>文档</h2>
+<p>访问 <a href="http://localhost:8001/swagger">http://localhost:8001/swagger</a> 查看 HTTP 端点的 Swagger 文档。</p>
 
           </div>
         </section>

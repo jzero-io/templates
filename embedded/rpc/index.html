@@ -208,95 +208,66 @@
         <section class="template-guide-section">
           <h2>快速开始指南</h2>
           <div class="guide-content">
-            # RPC 服务模板
+            <h1>RPC 服务模板</h1>
+<p>使用 gRPC 协议构建高性能微服务，提供类型安全的接口。</p>
+<h2>特性</h2>
+<ul>
+<li>原生 gRPC 协议支持</li>
+<li>二进制序列化的高性能 RPC</li>
+<li>服务网格就绪的架构</li>
+<li>Protocol Buffers 类型安全接口</li>
+<li>高效的数据传输</li>
+</ul>
+<h2>创建新项目</h2>
+<pre><code class="hljs language-bash">jzero new my-rpc --frame rpc
+<span class="hljs-built_in">cd</span> my-rpc
+jzero run</code></pre><p>您的 RPC 服务将在配置的端口上启动（默认：50051）。</p>
+<h2>Protocol Buffers</h2>
+<p>在 <code>.proto</code> 文件中定义服务接口：</p>
+<pre><code class="hljs language-protobuf">syntax = <span class="hljs-string">&quot;proto3&quot;</span>;
 
-使用 gRPC 协议构建高性能微服务，提供类型安全的接口。
+<span class="hljs-keyword">package</span> service;
+<span class="hljs-keyword">option</span> go_package = <span class="hljs-string">&quot;./service&quot;</span>;
 
-## 特性
-
-- 原生 gRPC 协议支持
-- 二进制序列化的高性能 RPC
-- 服务网格就绪的架构
-- Protocol Buffers 类型安全接口
-- 高效的数据传输
-
-## 创建新项目
-
-```bash
-jzero new my-rpc --frame rpc
-cd my-rpc
-jzero run
-```
-
-您的 RPC 服务将在配置的端口上启动（默认：50051）。
-
-## Protocol Buffers
-
-在 `.proto` 文件中定义服务接口：
-
-```protobuf
-syntax = "proto3";
-
-package service;
-option go_package = "./service";
-
-service Greeter {
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+<span class="hljs-keyword">service </span><span class="hljs-title class_">Greeter</span> {
+  <span class="hljs-function"><span class="hljs-keyword">rpc</span> SayHello (HelloRequest) <span class="hljs-keyword">returns</span> (HelloReply) </span>{}
 }
 
-message HelloRequest {
-  string name = 1;
+<span class="hljs-keyword">message </span><span class="hljs-title class_">HelloRequest</span> {
+  <span class="hljs-type">string</span> name = <span class="hljs-number">1</span>;
 }
 
-message HelloReply {
-  string message = 2;
-}
-```
-
-## 项目结构
-
-```
-my-rpc/
-├── proto/          # Protocol Buffer 定义
-├── internal/       # 内部实现
-├── service/        # 生成的 gRPC 代码
-└── main.go         # 应用入口
-```
-
-## 开发
-
-```bash
-# 运行服务
+<span class="hljs-keyword">message </span><span class="hljs-title class_">HelloReply</span> {
+  <span class="hljs-type">string</span> message = <span class="hljs-number">2</span>;
+}</code></pre><h2>项目结构</h2>
+<pre><code class="hljs">my-rpc<span class="hljs-symbol">/</span>
+├── proto<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Protocol Buffer 定义</span>
+├── internal<span class="hljs-symbol">/</span>       <span class="hljs-comment"># 内部实现</span>
+├── service<span class="hljs-symbol">/</span>        <span class="hljs-comment"># 生成的 gRPC 代码</span>
+└── main.go         <span class="hljs-comment"># 应用入口</span></code></pre><h2>开发</h2>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 运行服务</span>
 jzero run
 
-# 从 proto 文件生成 gRPC 代码
+<span class="hljs-comment"># 从 proto 文件生成 gRPC 代码</span>
 jzero proto
 
-# 构建生产版本
-jzero build
-```
-
-## 客户端示例
-
-创建客户端连接到您的 RPC 服务：
-
-```go
-conn, err := grpc.Dial("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
-if err != nil {
+<span class="hljs-comment"># 构建生产版本</span>
+jzero build</code></pre><h2>客户端示例</h2>
+<p>创建客户端连接到您的 RPC 服务：</p>
+<pre><code class="hljs language-go">conn, err := grpc.Dial(<span class="hljs-string">&quot;localhost:50051&quot;</span>, grpc.WithTransportCredentials(insecure.NewCredentials()))
+<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
     log.Fatal(err)
 }
-defer conn.Close()
+<span class="hljs-keyword">defer</span> conn.Close()
 
 client := pb.NewGreeterClient(conn)
-resp, err := client.SayHello(ctx, &pb.HelloRequest{Name: "World"})
-```
-
-## gRPC 的优势
-
-- **性能**：二进制序列化比 JSON 更快
-- **类型安全**：编译时类型检查
-- **代码生成**：从 proto 文件自动生成客户端和服务器代码
-- **互操作性**：支持多种编程语言
+resp, err := client.SayHello(ctx, &amp;pb.HelloRequest{Name: <span class="hljs-string">&quot;World&quot;</span>})</code></pre><h2>gRPC 的优势</h2>
+<ul>
+<li><strong>性能</strong>：二进制序列化比 JSON 更快</li>
+<li><strong>类型安全</strong>：编译时类型检查</li>
+<li><strong>代码生成</strong>：从 proto 文件自动生成客户端和服务器代码</li>
+<li><strong>互操作性</strong>：支持多种编程语言</li>
+</ul>
 
           </div>
         </section>

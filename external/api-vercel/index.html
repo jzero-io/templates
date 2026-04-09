@@ -192,86 +192,58 @@
         <section class="template-guide-section">
           <h2>快速开始指南</h2>
           <div class="guide-content">
-            # Vercel API 模板
+            <h1>Vercel API 模板</h1>
+<p>专为 Vercel 无服务器部署优化的 API 模板。</p>
+<h2>特性</h2>
+<ul>
+<li><strong>RESTful API 结构</strong>：清晰有序的 API 设计</li>
+<li><strong>Vercel 无服务器部署</strong>：专为 Vercel 无服务器函数优化</li>
+<li><strong>内置中间件</strong>：开箱即用的常用中间件</li>
+<li><strong>示例端点</strong>：现成可用的 API 示例端点</li>
+</ul>
+<h2>快速开始</h2>
+<pre><code class="hljs language-bash">jzero new simpleapi-vercel --branch api-vercel
+<span class="hljs-built_in">cd</span> simpleapi-vercel</code></pre><h2>项目结构</h2>
+<pre><code class="hljs">.
+├── api<span class="hljs-symbol">/</span>              <span class="hljs-comment"># API 端点</span>
+│   ├── handlers<span class="hljs-symbol">/</span>     <span class="hljs-comment"># 请求处理器</span>
+│   ├── logic<span class="hljs-symbol">/</span>        <span class="hljs-comment"># 业务逻辑</span>
+│   └── middleware<span class="hljs-symbol">/</span>   <span class="hljs-comment"># 中间件函数</span>
+├── internal<span class="hljs-symbol">/</span>         <span class="hljs-comment"># 内部包</span>
+├── go.mod            <span class="hljs-comment"># Go 模块文件</span>
+└── vercel.json       <span class="hljs-comment"># Vercel 配置</span></code></pre><h2>使用示例</h2>
+<h3>创建新端点</h3>
+<pre><code class="hljs language-go"><span class="hljs-comment">// api/hello/hello.go</span>
+<span class="hljs-keyword">package</span> hello
 
-专为 Vercel 无服务器部署优化的 API 模板。
-
-## 特性
-
-- **RESTful API 结构**：清晰有序的 API 设计
-- **Vercel 无服务器部署**：专为 Vercel 无服务器函数优化
-- **内置中间件**：开箱即用的常用中间件
-- **示例端点**：现成可用的 API 示例端点
-
-## 快速开始
-
-```bash
-jzero new simpleapi-vercel --branch api-vercel
-cd simpleapi-vercel
-```
-
-## 项目结构
-
-```
-.
-├── api/              # API 端点
-│   ├── handlers/     # 请求处理器
-│   ├── logic/        # 业务逻辑
-│   └── middleware/   # 中间件函数
-├── internal/         # 内部包
-├── go.mod            # Go 模块文件
-└── vercel.json       # Vercel 配置
-```
-
-## 使用示例
-
-### 创建新端点
-
-```go
-// api/hello/hello.go
-package hello
-
-import (
-    "net/http"
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;net/http&quot;</span>
     
-    "github.com/zeromicro/go-zero/rest/httpx"
+    <span class="hljs-string">&quot;github.com/zeromicro/go-zero/rest/httpx&quot;</span>
 )
 
-func Handler(w http.ResponseWriter, r *http.Request) {
-    httpx.OkJson(w, map[string]string{
-        "message": "Hello from Vercel!",
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Handler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
+    httpx.OkJson(w, <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>{
+        <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Hello from Vercel!&quot;</span>,
     })
-}
-```
-
-### 部署到 Vercel
-
-```bash
-# 安装 Vercel CLI
+}</code></pre><h3>部署到 Vercel</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 安装 Vercel CLI</span>
 npm i -g vercel
 
-# 部署
-vercel
-```
-
-## 配置
-
-### vercel.json
-
-```json
-{
-  "functions": {
-    "api/**/*.go": {
-      "runtime": "go1.x"
-    }
-  }
-}
-```
-
-## 更多信息
-
-- [Vercel 文档](https://vercel.com/docs)
-- [Go-Zero 文档](https://go-zero.dev/)
+<span class="hljs-comment"># 部署</span>
+vercel</code></pre><h2>配置</h2>
+<h3>vercel.json</h3>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;functions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;api/**/*.go&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;runtime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;go1.x&quot;</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre><h2>更多信息</h2>
+<ul>
+<li><a href="https://vercel.com/docs">Vercel 文档</a></li>
+<li><a href="https://go-zero.dev/">Go-Zero 文档</a></li>
+</ul>
 
           </div>
         </section>
