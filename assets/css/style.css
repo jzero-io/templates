@@ -50,6 +50,7 @@ body {
   line-height: 1.6;
   color: var(--text-color);
   background: var(--background-color);
+  padding-top: 64px;
 }
 
 .container {
@@ -250,7 +251,7 @@ body {
 
 /* Hero */
 .hero {
-  padding: calc(64px + var(--spacing-4xl, 6rem)) 0 var(--spacing-xl, 2rem);
+  padding: var(--spacing-4xl, 6rem) 0 var(--spacing-xl, 2rem);
   text-align: center;
   background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
 }
@@ -1381,6 +1382,7 @@ body {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   margin: var(--spacing-lg, 1.5rem) 0 var(--spacing-md, 1rem);
+  color: var(--primary-color);
   background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1738,7 +1740,7 @@ body {
 
   /* Hero */
   .hero {
-    padding: 48px 0;
+    padding: calc(64px + 32px) 0 32px;
   }
 
   .hero h1 {
