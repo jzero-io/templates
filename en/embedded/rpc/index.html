@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RPC Service - Jzero Template Market</title>
-  <meta name="description" content="Build high-performance microservices with gRPC">
+  <meta name="description" content="High-performance gRPC microservice framework based on Protocol Buffers">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
@@ -111,7 +111,7 @@
       </div>
 
       <h1>RPC Service</h1>
-      <p class="template-description-large">Build high-performance microservices with gRPC</p>
+      <p class="template-description-large">High-performance gRPC microservice framework based on Protocol Buffers</p>
 
       <div class="template-tags-large">
         
@@ -122,6 +122,10 @@
           <span class="tag">microservices</span>
         
           <span class="tag">backend</span>
+        
+          <span class="tag">proto</span>
+        
+          <span class="tag">validation</span>
         
       </div>
 
@@ -164,7 +168,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                gRPC protocol support
+                Protocol Buffers for service interfaces
               </li>
             
               <li>
@@ -172,7 +176,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                High performance RPC
+                gRPC high-performance binary protocol
               </li>
             
               <li>
@@ -180,7 +184,23 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Service mesh ready
+                Field validation with buf.validate
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Multiple proto files support
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Middleware configuration support
               </li>
             
               <li>
@@ -196,7 +216,15 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Binary serialization
+                Auto-generated zrpc clients
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Service mesh ready
               </li>
             
           </ul>
@@ -208,65 +236,77 @@
         <section class="template-guide-section">
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>RPC Service Template</h1>
-<p>Build high-performance microservices using gRPC protocol with type-safe interfaces.</p>
-<h2>Features</h2>
-<ul>
-<li>Native gRPC protocol support</li>
-<li>High-performance RPC with binary serialization</li>
-<li>Service mesh ready architecture</li>
-<li>Type-safe interfaces with Protocol Buffers</li>
-<li>Efficient data transmission</li>
-</ul>
-<h2>Creating a New Project</h2>
-<pre><code class="hljs language-bash">jzero new my-rpc --frame rpc
-<span class="hljs-built_in">cd</span> my-rpc
-jzero run</code></pre><p>Your RPC service will start on the configured port (default: 50051).</p>
-<h2>Protocol Buffers</h2>
-<p>Define your service interface in <code>.proto</code> files:</p>
+            <h1>RPC Service Template Guide</h1>
+<h2>Overview</h2>
+<p>The RPC service template provides a high-performance microservice framework based on Protocol Buffers. Define service interfaces through Proto description language with automatic code generation and type-safe communication.</p>
+<h2>Core Features</h2>
+<h3>1. Proto Description Language</h3>
+<p>Define service interfaces using Protocol Buffers:</p>
 <pre><code class="hljs language-protobuf">syntax = <span class="hljs-string">&quot;proto3&quot;</span>;
 
-<span class="hljs-keyword">package</span> service;
-<span class="hljs-keyword">option</span> go_package = <span class="hljs-string">&quot;./service&quot;</span>;
+<span class="hljs-keyword">package</span> user;
+<span class="hljs-keyword">option</span> go_package = <span class="hljs-string">&quot;./user&quot;</span>;
 
-<span class="hljs-keyword">service </span><span class="hljs-title class_">Greeter</span> {
-  <span class="hljs-function"><span class="hljs-keyword">rpc</span> SayHello (HelloRequest) <span class="hljs-keyword">returns</span> (HelloReply) </span>{}
+<span class="hljs-keyword">service </span><span class="hljs-title class_">UserService</span> {
+    <span class="hljs-function"><span class="hljs-keyword">rpc</span> CreateUser(CreateUserRequest) <span class="hljs-keyword">returns</span> (CreateUserResponse)</span>;
 }
 
-<span class="hljs-keyword">message </span><span class="hljs-title class_">HelloRequest</span> {
-  <span class="hljs-type">string</span> name = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">message </span><span class="hljs-title class_">CreateUserRequest</span> {
+    <span class="hljs-type">string</span> name = <span class="hljs-number">1</span>;
+    <span class="hljs-type">string</span> email = <span class="hljs-number">2</span>;
 }
 
-<span class="hljs-keyword">message </span><span class="hljs-title class_">HelloReply</span> {
-  <span class="hljs-type">string</span> message = <span class="hljs-number">2</span>;
-}</code></pre><h2>Project Structure</h2>
-<pre><code class="hljs">my-rpc<span class="hljs-symbol">/</span>
-├── proto<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Protocol Buffer definitions</span>
-├── internal<span class="hljs-symbol">/</span>       <span class="hljs-comment"># Internal implementation</span>
-├── service<span class="hljs-symbol">/</span>        <span class="hljs-comment"># Generated gRPC code</span>
-└── main.go         <span class="hljs-comment"># Application entry point</span></code></pre><h2>Development</h2>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># Run the service</span>
-jzero run
+<span class="hljs-keyword">message </span><span class="hljs-title class_">CreateUserResponse</span> {
+    <span class="hljs-type">int64</span> id = <span class="hljs-number">1</span>;
+    <span class="hljs-type">string</span> name = <span class="hljs-number">2</span>;
+}</code></pre><h3>2. Field Validation</h3>
+<p>Use <code>buf.validate</code> for field validation:</p>
+<pre><code class="hljs language-protobuf"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;validate/validate.proto&quot;</span>;
 
-<span class="hljs-comment"># Generate gRPC code from proto files</span>
-jzero proto
+<span class="hljs-keyword">message </span><span class="hljs-title class_">CreateUserRequest</span> {
+    <span class="hljs-type">string</span> name = <span class="hljs-number">1</span> [(validate.rules).<span class="hljs-type">string</span>.min_len = <span class="hljs-number">1</span>];
+    <span class="hljs-type">string</span> email = <span class="hljs-number">2</span> [(validate.rules).<span class="hljs-type">string</span>.email = <span class="hljs-literal">true</span>];
+}</code></pre><h3>3. Middleware Support</h3>
+<p>Support configuring middleware in services for authentication, logging, rate limiting, etc.</p>
+<h2>Common Commands</h2>
+<h3>Add Proto Files</h3>
+<p>Add proto files in the desc/proto folder:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Service is Test</span>
+jzero add proto <span class="hljs-built_in">test</span></code></pre><h3>Generate Code</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Generate service code</span>
+jzero gen
 
-<span class="hljs-comment"># Build for production</span>
-jzero build</code></pre><h2>Client Example</h2>
-<p>Create a client to connect to your RPC service:</p>
-<pre><code class="hljs language-go">conn, err := grpc.Dial(<span class="hljs-string">&quot;localhost:50051&quot;</span>, grpc.WithTransportCredentials(insecure.NewCredentials()))
-<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
-    log.Fatal(err)
-}
-<span class="hljs-keyword">defer</span> conn.Close()
+<span class="hljs-comment"># Generate based on changed files</span>
+jzero gen --git-change
 
-client := pb.NewGreeterClient(conn)
-resp, err := client.SayHello(ctx, &amp;pb.HelloRequest{Name: <span class="hljs-string">&quot;World&quot;</span>})</code></pre><h2>Benefits of gRPC</h2>
+<span class="hljs-comment"># Generate by specifying description directory or file</span>
+jzero gen --desc desc/
+jzero gen --desc desc/proto/user.proto</code></pre><h3>Generate Client</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Generate zrpc client</span>
+jzero gen zrpcclient</code></pre><h2>Project Structure</h2>
+<pre><code class="hljs">.
+├── desc<span class="hljs-symbol">/</span>                   <span class="hljs-comment"># Description files</span>
+│   └── proto<span class="hljs-symbol">/</span>             <span class="hljs-comment"># Proto description files</span>
+│       └── user.proto     <span class="hljs-comment"># User service Proto definition</span>
+├── internal<span class="hljs-symbol">/</span>
+│   ├── logic<span class="hljs-symbol">/</span>            <span class="hljs-comment"># Business logic</span>
+│   ├── server<span class="hljs-symbol">/</span>           <span class="hljs-comment"># gRPC server</span>
+│   ├── svc<span class="hljs-symbol">/</span>              <span class="hljs-comment"># Service context</span>
+│   └── middleware<span class="hljs-symbol">/</span>       <span class="hljs-comment"># Middleware</span>
+└── cmd<span class="hljs-symbol">/</span>
+    └── server.go         <span class="hljs-comment"># Service entry point</span></code></pre><h2>Development Workflow</h2>
+<ol>
+<li><strong>Add Proto File</strong>: Run <code>jzero add proto test</code> to create proto file in desc/proto/ directory</li>
+<li><strong>Generate Code</strong>: Run <code>jzero gen</code> to generate code</li>
+<li><strong>Implement Logic</strong>: Implement business logic in <code>internal/logic/</code></li>
+<li><strong>Generate Client</strong>: Run <code>jzero gen zrpcclient</code> to generate client</li>
+</ol>
+<h2>Related Resources</h2>
 <ul>
-<li><strong>Performance</strong>: Binary serialization is faster than JSON</li>
-<li><strong>Type Safety</strong>: Compile-time type checking</li>
-<li><strong>Code Generation</strong>: Client and server code generated from proto files</li>
-<li><strong>Interoperability</strong>: Works across multiple programming languages</li>
+<li><a href="https://docs.jzero.io/guide/proto.html">Proto Guide</a></li>
+<li><a href="https://docs.jzero.io/getting-started/add.html">Add Command</a></li>
+<li><a href="https://docs.jzero.io/getting-started/gen.html">Gen Command</a></li>
+<li><a href="https://docs.jzero.io/getting-started/genclient.html">Client Generation</a></li>
 </ul>
 
           </div>

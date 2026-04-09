@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>API 服务 - Jzero 模板市场</title>
-  <meta name="description" content="jzero api 服务">
+  <meta name="description" content="基于 API 描述语言的轻量级、高性能 RESTful API 服务框架">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
@@ -111,7 +111,7 @@
       </div>
 
       <h1>API 服务</h1>
-      <p class="template-description-large">jzero api 服务</p>
+      <p class="template-description-large">基于 API 描述语言的轻量级、高性能 RESTful API 服务框架</p>
 
       <div class="template-tags-large">
         
@@ -122,6 +122,8 @@
           <span class="tag">swagger</span>
         
           <span class="tag">后端</span>
+        
+          <span class="tag">validation</span>
         
       </div>
 
@@ -164,6 +166,14 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
+                API 描述语言定义服务接口
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
                 自动生成 Swagger UI 文档
               </li>
             
@@ -172,7 +182,39 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                RESTful API 结构
+                RESTful API 标准结构
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                字段验证（go-playground/validator）
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                go_package 选项组织类型
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                compact_handler 合并处理器
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                中间件配置支持
               </li>
             
               <li>
@@ -208,43 +250,154 @@
         <section class="template-guide-section">
           <h2>快速开始指南</h2>
           <div class="guide-content">
-            <h1>API 服务模板</h1>
-<p>构建带有自动 Swagger 文档生成的 RESTful API 服务。</p>
-<h2>特性</h2>
+            <h1>API 服务模板指南</h1>
+<h2>目录</h2>
 <ul>
-<li>自动生成 Swagger UI 文档，访问 <code>/swagger</code> 即可查看</li>
-<li>遵循最佳实践的 RESTful API 结构</li>
-<li>请求/响应数据模型验证</li>
-<li>可选的 Redis 缓存支持</li>
-<li>数据库 ORM 集成</li>
+<li><a href="#%E6%A6%82%E8%BF%B0">概述</a></li>
+<li><a href="#api-%E5%AE%9A%E4%B9%89">API 定义</a></li>
+<li><a href="#api-%E5%AD%97%E6%AE%B5%E6%A0%A1%E9%AA%8C">API 字段校验</a></li>
+<li><a href="#%E5%B0%86-types-%E6%96%87%E4%BB%B6%E5%A4%B9%E6%8C%89%E7%85%A7-go_package-%E8%BF%9B%E8%A1%8C%E5%88%86%E7%BB%84">将 types 文件夹按照 go_package 进行分组</a></li>
+<li><a href="#%E5%90%88%E5%B9%B6%E5%90%8C%E4%B8%80%E4%B8%AA-group-%E7%9A%84-handler-%E4%B8%BA%E5%90%8C%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6">合并同一个 group 的 handler 为同一个文件</a></li>
+<li><a href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">常用命令</a><ul>
+<li><a href="#%E6%B7%BB%E5%8A%A0-api-%E6%96%87%E4%BB%B6">添加 API 文件</a></li>
+<li><a href="#%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81">生成代码</a></li>
+<li><a href="#%E7%94%9F%E6%88%90-swagger-%E6%96%87%E6%A1%A3">生成 Swagger 文档</a></li>
 </ul>
-<h2>创建新项目</h2>
-<pre><code class="hljs language-bash">jzero new my-api --frame api
-<span class="hljs-built_in">cd</span> my-api
-jzero run</code></pre><p>启动服务后，访问 <a href="http://localhost:8001/swagger">http://localhost:8001/swagger</a> 查看交互式 API 文档。</p>
-<h2>可选功能</h2>
-<p>创建项目时可以启用额外的功能：</p>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># 启用数据模型验证</span>
-jzero new my-api --frame api --feature=model
+</li>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84">项目结构</a></li>
+<li><a href="#%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90">相关资源</a></li>
+</ul>
+<h2>概述</h2>
+<p>api 是 go-zero 自研的领域特性语言（下文称 api 语言或 api 描述语言），旨在实现人性化的基础描述语言，作为生成 HTTP 服务最基本的描述语言。</p>
+<p>jzero 扩展了 api 语法，支持了以下特性：</p>
+<ul>
+<li><code>go_package</code>: 将 go types 生成在定义的 package 中，所以能支持不同 api 文件的 type 定义可以同名，保持和 proto 中的 <code>go_package</code> 一致</li>
+<li><code>compact_handler</code>: 能将同一组路由的 handler 生成在同一个文件中，减少文件的数量，保持和 proto 的 server 模块一致</li>
+</ul>
+<h2>API 定义</h2>
+<pre><code class="hljs"><span class="hljs-keyword">info</span> (
+  // 定义 go_package: 生成的 go <span class="hljs-keyword">types</span> 放入的文件夹位置
+  go_package: &quot;user&quot;
+)
 
-<span class="hljs-comment"># 启用 Redis 缓存</span>
-jzero new my-api --frame api --feature=redis
+<span class="hljs-keyword">type</span> <span class="hljs-keyword">User</span> {
+  Id <span class="hljs-type">int</span> `<span class="hljs-type">json</span>:&quot;id&quot;`
+  Username string `<span class="hljs-type">json</span>:&quot;username&quot;`
+}
 
-<span class="hljs-comment"># 同时启用模型和 Redis</span>
-jzero new my-api --frame api --feature=model+redis
+<span class="hljs-keyword">type</span> PageRequest {
+  Page <span class="hljs-type">int</span> `form:&quot;page&quot;`
+  Size <span class="hljs-type">int</span> `form:&quot;size&quot;`
+  Username string `form:&quot;username,optional&quot;` // 过滤参数，可选
+}
 
-<span class="hljs-comment"># 启用缓存</span>
-jzero new my-api --frame api --feature=cache</code></pre><h2>项目结构</h2>
-<pre><code class="hljs">my-api<span class="hljs-symbol">/</span>
-├── api<span class="hljs-symbol">/</span>           <span class="hljs-comment"># API 处理器</span>
-├── model<span class="hljs-symbol">/</span>         <span class="hljs-comment"># 数据模型（如果启用）</span>
-├── internal<span class="hljs-symbol">/</span>      <span class="hljs-comment"># 内部包</span>
-└── main.go        <span class="hljs-comment"># 应用入口</span></code></pre><h2>开发</h2>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># 运行开发服务器</span>
-jzero run
+<span class="hljs-keyword">type</span> PageResponse {
+  Total uint64 `<span class="hljs-type">json</span>:&quot;total&quot;` // 总数
+  List []<span class="hljs-keyword">User</span> `<span class="hljs-type">json</span>:&quot;list&quot;` // 分页数据
+}
 
-<span class="hljs-comment"># 构建生产版本</span>
-jzero build</code></pre><p>Swagger 文档会根据您的 API 定义自动更新。</p>
+<span class="hljs-keyword">type</span> UpdateRequest {
+  Id <span class="hljs-type">int</span> `<span class="hljs-type">path</span>:&quot;id&quot;`
+  Username string `<span class="hljs-type">json</span>:&quot;username&quot;`
+}
+
+<span class="hljs-keyword">type</span> UpdateResponse {}
+
+@<span class="hljs-keyword">server</span> (
+  prefix: /api/<span class="hljs-keyword">user</span> // 路由 prefix
+  <span class="hljs-keyword">group</span>: <span class="hljs-keyword">user</span> // 生成的 <span class="hljs-keyword">handler</span>/logic 文件夹位置
+  jwt: JwtAuth // 是否启用 jwt 验证
+  middleware: AuthX // 该组路由的中间件
+  compact_handler: <span class="hljs-keyword">true</span> // 是否合并该组的 <span class="hljs-keyword">handler</span> 为同一个文件，默认每个路由都有 <span class="hljs-keyword">handler</span> 文件
+)
+service simpleapi {
+  @doc &quot;用户分页&quot;
+  @<span class="hljs-keyword">handler</span> Page
+  <span class="hljs-keyword">get</span> /page (PageRequest) <span class="hljs-keyword">returns</span> (PageResponse)
+
+  @doc &quot;更新用户&quot;
+  @<span class="hljs-keyword">handler</span> <span class="hljs-keyword">Update</span>
+  post /<span class="hljs-keyword">update</span> (UpdateRequest) <span class="hljs-keyword">returns</span> (UpdateResponse)
+}</code></pre><p>对应的 curl 命令：</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 用户分页接口</span>
+curl -X GET <span class="hljs-string">&quot;http://localhost:8080/api/user/page?page=1&amp;size=10&amp;username=test&quot;</span> \
+-H <span class="hljs-string">&quot;Authorization: Bearer &quot;</span>
+
+<span class="hljs-comment"># 更新用户接口</span>
+curl -X POST <span class="hljs-string">&quot;http://localhost:8080/api/user/update/123&quot;</span> \
+-H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span> \
+-H <span class="hljs-string">&quot;Authorization: Bearer &quot;</span> \
+-d <span class="hljs-string">&#x27;{&quot;username&quot;: &quot;new_username&quot;}&#x27;</span></code></pre><h2>API 字段校验</h2>
+<blockquote>
+<p>jzero 默认集成 <a href="https://github.com/go-playground/validator">https://github.com/go-playground/validator</a> 进行字段校验</p>
+</blockquote>
+<pre><code class="hljs">syntax = &quot;v1&quot;
+
+<span class="hljs-keyword">type</span> CreateRequest {
+  <span class="hljs-type">Name</span> string `<span class="hljs-type">json</span>:&quot;name&quot; <span class="hljs-keyword">validate</span>:&quot;gte=2,lte=30&quot;` // 名称
+}</code></pre><h2>将 types 文件夹按照 go_package 进行分组</h2>
+<p>go_package 的选项，参考自 proto 文件，能将 message 生成的结构体分组。在 api 文件中同理，go_package 选项能将定义的 type 生成的结构体分组。</p>
+<p>两大优点：</p>
+<ol>
+<li>避免默认生成的 types/types.go 爆炸</li>
+<li>提升开发体验，不同 group 下的 type 命名不会冲突</li>
+</ol>
+<pre><code class="hljs"><span class="hljs-attribute">syntax</span> = <span class="hljs-string">&quot;v1&quot;</span>
+
+<span class="hljs-literal">info</span> (
+go_package: <span class="hljs-string">&quot;version&quot;</span>
+)</code></pre><h2>合并同一个 group 的 handler 为同一个文件</h2>
+<pre><code class="hljs"><span class="hljs-variable">@server</span> (
+  <span class="hljs-attribute">prefix</span>: /api/v1
+  <span class="hljs-attribute">group</span>: system/user
+  <span class="hljs-attribute">compact_handler</span>: true
+)
+service simpleapi {
+  <span class="hljs-variable">@handler</span> GetUserHandler
+  get /system/user/getUser (GetUserRequest) returns (GetUserResponse)
+
+  <span class="hljs-variable">@handler</span> DeleteUserHandler
+  get /system/user/deleteUser (DeleteUserRequest) returns (DeleteUserResponse)
+}</code></pre><h2>常用命令</h2>
+<h3>添加 API 文件</h3>
+<p>将在 desc/api 文件夹下新增 api 文件：</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># group 为 test</span>
+jzero add api <span class="hljs-built_in">test</span>
+
+<span class="hljs-comment"># group 为 test/test1</span>
+jzero add api <span class="hljs-built_in">test</span>/test1</code></pre><h3>生成代码</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 生成服务代码</span>
+jzero gen
+
+<span class="hljs-comment"># 基于变更文件生成</span>
+jzero gen --git-change
+
+<span class="hljs-comment"># 指定描述文件目录或文件生成</span>
+jzero gen --desc desc/
+jzero gen --desc desc/api/user.api</code></pre><h3>生成 Swagger 文档</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 生成 Swagger UI 文档</span>
+jzero gen swagger
+
+<span class="hljs-comment"># 在代码中访问</span>
+<span class="hljs-comment"># GET /swagger/</span></code></pre><h2>项目结构</h2>
+<pre><code class="hljs">.
+├── desc<span class="hljs-symbol">/</span>                   <span class="hljs-comment"># 描述文件目录</span>
+│   └── api<span class="hljs-symbol">/</span>               <span class="hljs-comment"># API 描述文件</span>
+│       └── user.api       <span class="hljs-comment"># 用户服务 API 定义</span>
+├── internal<span class="hljs-symbol">/</span>
+│   ├── handler<span class="hljs-symbol">/</span>           <span class="hljs-comment"># HTTP 处理器</span>
+│   ├── logic<span class="hljs-symbol">/</span>            <span class="hljs-comment"># 业务逻辑</span>
+│   ├── svc<span class="hljs-symbol">/</span>              <span class="hljs-comment"># 服务上下文</span>
+│   ├── types<span class="hljs-symbol">/</span>            <span class="hljs-comment"># 类型定义</span>
+│   └── middleware<span class="hljs-symbol">/</span>       <span class="hljs-comment"># 中间件</span>
+└── cmd<span class="hljs-symbol">/</span>
+    └── server.go         <span class="hljs-comment"># 服务入口</span></code></pre><h2>相关资源</h2>
+<ul>
+<li><a href="https://docs.jzero.io/zh-CN/guide/api.html">API 指南</a></li>
+<li><a href="https://docs.jzero.io/zh-CN/getting-started/add.html">添加命令文档</a></li>
+<li><a href="https://docs.jzero.io/zh-CN/getting-started/gen.html">生成命令文档</a></li>
+<li><a href="https://docs.jzero.io/zh-CN/getting-started/genclient.html">Swagger 生成</a></li>
+</ul>
 
           </div>
         </section>

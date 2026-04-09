@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RPC 服务 - Jzero 模板市场</title>
-  <meta name="description" content="使用 gRPC 构建高性能微服务">
+  <meta name="description" content="基于 Protocol Buffers 的高性能 gRPC 微服务框架">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
@@ -111,7 +111,7 @@
       </div>
 
       <h1>RPC 服务</h1>
-      <p class="template-description-large">使用 gRPC 构建高性能微服务</p>
+      <p class="template-description-large">基于 Protocol Buffers 的高性能 gRPC 微服务框架</p>
 
       <div class="template-tags-large">
         
@@ -122,6 +122,10 @@
           <span class="tag">微服务</span>
         
           <span class="tag">后端</span>
+        
+          <span class="tag">proto</span>
+        
+          <span class="tag">validation</span>
         
       </div>
 
@@ -164,7 +168,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                支持 gRPC 协议
+                Protocol Buffers 定义服务接口
               </li>
             
               <li>
@@ -172,7 +176,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                高性能 RPC 调用
+                gRPC 高性能二进制协议
               </li>
             
               <li>
@@ -180,7 +184,23 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                服务网格就绪
+                字段验证（buf.validate）
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                多 proto 文件支持
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                中间件配置支持
               </li>
             
               <li>
@@ -196,7 +216,15 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                二进制序列化
+                自动生成 zrpc 客户端
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                服务网格就绪
               </li>
             
           </ul>
@@ -208,65 +236,77 @@
         <section class="template-guide-section">
           <h2>快速开始指南</h2>
           <div class="guide-content">
-            <h1>RPC 服务模板</h1>
-<p>使用 gRPC 协议构建高性能微服务，提供类型安全的接口。</p>
-<h2>特性</h2>
-<ul>
-<li>原生 gRPC 协议支持</li>
-<li>二进制序列化的高性能 RPC</li>
-<li>服务网格就绪的架构</li>
-<li>Protocol Buffers 类型安全接口</li>
-<li>高效的数据传输</li>
-</ul>
-<h2>创建新项目</h2>
-<pre><code class="hljs language-bash">jzero new my-rpc --frame rpc
-<span class="hljs-built_in">cd</span> my-rpc
-jzero run</code></pre><p>您的 RPC 服务将在配置的端口上启动（默认：50051）。</p>
-<h2>Protocol Buffers</h2>
-<p>在 <code>.proto</code> 文件中定义服务接口：</p>
+            <h1>RPC 服务模板指南</h1>
+<h2>概述</h2>
+<p>RPC 服务模板基于 Protocol Buffers 提供高性能的微服务框架。通过 Proto 描述语言定义服务接口，支持自动代码生成和类型安全的通信。</p>
+<h2>核心特性</h2>
+<h3>1. Proto 描述语言</h3>
+<p>使用 Protocol Buffers 定义服务接口：</p>
 <pre><code class="hljs language-protobuf">syntax = <span class="hljs-string">&quot;proto3&quot;</span>;
 
-<span class="hljs-keyword">package</span> service;
-<span class="hljs-keyword">option</span> go_package = <span class="hljs-string">&quot;./service&quot;</span>;
+<span class="hljs-keyword">package</span> user;
+<span class="hljs-keyword">option</span> go_package = <span class="hljs-string">&quot;./user&quot;</span>;
 
-<span class="hljs-keyword">service </span><span class="hljs-title class_">Greeter</span> {
-  <span class="hljs-function"><span class="hljs-keyword">rpc</span> SayHello (HelloRequest) <span class="hljs-keyword">returns</span> (HelloReply) </span>{}
+<span class="hljs-keyword">service </span><span class="hljs-title class_">UserService</span> {
+    <span class="hljs-function"><span class="hljs-keyword">rpc</span> CreateUser(CreateUserRequest) <span class="hljs-keyword">returns</span> (CreateUserResponse)</span>;
 }
 
-<span class="hljs-keyword">message </span><span class="hljs-title class_">HelloRequest</span> {
-  <span class="hljs-type">string</span> name = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">message </span><span class="hljs-title class_">CreateUserRequest</span> {
+    <span class="hljs-type">string</span> name = <span class="hljs-number">1</span>;
+    <span class="hljs-type">string</span> email = <span class="hljs-number">2</span>;
 }
 
-<span class="hljs-keyword">message </span><span class="hljs-title class_">HelloReply</span> {
-  <span class="hljs-type">string</span> message = <span class="hljs-number">2</span>;
-}</code></pre><h2>项目结构</h2>
-<pre><code class="hljs">my-rpc<span class="hljs-symbol">/</span>
-├── proto<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Protocol Buffer 定义</span>
-├── internal<span class="hljs-symbol">/</span>       <span class="hljs-comment"># 内部实现</span>
-├── service<span class="hljs-symbol">/</span>        <span class="hljs-comment"># 生成的 gRPC 代码</span>
-└── main.go         <span class="hljs-comment"># 应用入口</span></code></pre><h2>开发</h2>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># 运行服务</span>
-jzero run
+<span class="hljs-keyword">message </span><span class="hljs-title class_">CreateUserResponse</span> {
+    <span class="hljs-type">int64</span> id = <span class="hljs-number">1</span>;
+    <span class="hljs-type">string</span> name = <span class="hljs-number">2</span>;
+}</code></pre><h3>2. 字段验证</h3>
+<p>使用 <code>buf.validate</code> 进行字段验证：</p>
+<pre><code class="hljs language-protobuf"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;validate/validate.proto&quot;</span>;
 
-<span class="hljs-comment"># 从 proto 文件生成 gRPC 代码</span>
-jzero proto
+<span class="hljs-keyword">message </span><span class="hljs-title class_">CreateUserRequest</span> {
+    <span class="hljs-type">string</span> name = <span class="hljs-number">1</span> [(validate.rules).<span class="hljs-type">string</span>.min_len = <span class="hljs-number">1</span>];
+    <span class="hljs-type">string</span> email = <span class="hljs-number">2</span> [(validate.rules).<span class="hljs-type">string</span>.email = <span class="hljs-literal">true</span>];
+}</code></pre><h3>3. 中间件支持</h3>
+<p>支持在服务中配置中间件，用于认证、日志、限流等功能。</p>
+<h2>常用命令</h2>
+<h3>添加 Proto 文件</h3>
+<p>将在 desc/proto 文件夹下新增 proto 文件：</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Service 为 Test</span>
+jzero add proto <span class="hljs-built_in">test</span></code></pre><h3>生成代码</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 生成服务代码</span>
+jzero gen
 
-<span class="hljs-comment"># 构建生产版本</span>
-jzero build</code></pre><h2>客户端示例</h2>
-<p>创建客户端连接到您的 RPC 服务：</p>
-<pre><code class="hljs language-go">conn, err := grpc.Dial(<span class="hljs-string">&quot;localhost:50051&quot;</span>, grpc.WithTransportCredentials(insecure.NewCredentials()))
-<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
-    log.Fatal(err)
-}
-<span class="hljs-keyword">defer</span> conn.Close()
+<span class="hljs-comment"># 基于变更文件生成</span>
+jzero gen --git-change
 
-client := pb.NewGreeterClient(conn)
-resp, err := client.SayHello(ctx, &amp;pb.HelloRequest{Name: <span class="hljs-string">&quot;World&quot;</span>})</code></pre><h2>gRPC 的优势</h2>
+<span class="hljs-comment"># 指定描述文件目录或文件生成</span>
+jzero gen --desc desc/
+jzero gen --desc desc/proto/user.proto</code></pre><h3>生成客户端</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 生成 zrpc 客户端</span>
+jzero gen zrpcclient</code></pre><h2>项目结构</h2>
+<pre><code class="hljs">.
+├── desc<span class="hljs-symbol">/</span>                   <span class="hljs-comment"># 描述文件目录</span>
+│   └── proto<span class="hljs-symbol">/</span>             <span class="hljs-comment"># Proto 描述文件</span>
+│       └── user.proto     <span class="hljs-comment"># 用户服务 Proto 定义</span>
+├── internal<span class="hljs-symbol">/</span>
+│   ├── logic<span class="hljs-symbol">/</span>            <span class="hljs-comment"># 业务逻辑</span>
+│   ├── server<span class="hljs-symbol">/</span>           <span class="hljs-comment"># gRPC 服务器</span>
+│   ├── svc<span class="hljs-symbol">/</span>              <span class="hljs-comment"># 服务上下文</span>
+│   └── middleware<span class="hljs-symbol">/</span>       <span class="hljs-comment"># 中间件</span>
+└── cmd<span class="hljs-symbol">/</span>
+    └── server.go         <span class="hljs-comment"># 服务入口</span></code></pre><h2>开发流程</h2>
+<ol>
+<li><strong>添加 Proto 文件</strong>：运行 <code>jzero add proto test</code> 在 desc/proto/ 目录创建 proto 文件</li>
+<li><strong>生成代码</strong>：运行 <code>jzero gen</code> 生成代码</li>
+<li><strong>实现逻辑</strong>：在 <code>internal/logic/</code> 中实现业务逻辑</li>
+<li><strong>生成客户端</strong>：运行 <code>jzero gen zrpcclient</code> 生成客户端</li>
+</ol>
+<h2>相关资源</h2>
 <ul>
-<li><strong>性能</strong>：二进制序列化比 JSON 更快</li>
-<li><strong>类型安全</strong>：编译时类型检查</li>
-<li><strong>代码生成</strong>：从 proto 文件自动生成客户端和服务器代码</li>
-<li><strong>互操作性</strong>：支持多种编程语言</li>
+<li><a href="https://docs.jzero.io/zh-CN/guide/proto.html">Proto 指南</a></li>
+<li><a href="https://docs.jzero.io/zh-CN/getting-started/add.html">添加命令文档</a></li>
+<li><a href="https://docs.jzero.io/zh-CN/getting-started/gen.html">生成命令文档</a></li>
+<li><a href="https://docs.jzero.io/zh-CN/getting-started/genclient.html">客户端生成</a></li>
 </ul>
 
           </div>

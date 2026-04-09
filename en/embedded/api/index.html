@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>API Service - Jzero Template Market</title>
-  <meta name="description" content="Build RESTful API services with automatic Swagger documentation">
+  <meta name="description" content="Lightweight, high-performance RESTful API service framework based on API description language">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
@@ -111,7 +111,7 @@
       </div>
 
       <h1>API Service</h1>
-      <p class="template-description-large">Build RESTful API services with automatic Swagger documentation</p>
+      <p class="template-description-large">Lightweight, high-performance RESTful API service framework based on API description language</p>
 
       <div class="template-tags-large">
         
@@ -122,6 +122,8 @@
           <span class="tag">swagger</span>
         
           <span class="tag">backend</span>
+        
+          <span class="tag">validation</span>
         
       </div>
 
@@ -164,7 +166,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Auto-generated Swagger UI at /swagger
+                API description language for service interfaces
               </li>
             
               <li>
@@ -172,7 +174,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                RESTful API structure
+                Auto-generated Swagger UI documentation
               </li>
             
               <li>
@@ -180,7 +182,7 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Model validation
+                RESTful API standard architecture
               </li>
             
               <li>
@@ -188,7 +190,47 @@
                   <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
                   <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-                Redis caching support
+                Field validation with go-playground/validator
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                go_package option for type organization
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                compact_handler for handler merging
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Middleware configuration support
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Data model validation
+              </li>
+            
+              <li>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M6 10l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Redis cache support
               </li>
             
               <li>
@@ -208,43 +250,154 @@
         <section class="template-guide-section">
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>API Service Template</h1>
-<p>Build RESTful API services with automatic Swagger documentation generation.</p>
-<h2>Features</h2>
+            <h1>API Service Template Guide</h1>
+<h2>Table of Contents</h2>
 <ul>
-<li>Auto-generated Swagger UI accessible at <code>/swagger</code></li>
-<li>RESTful API structure with best practices</li>
-<li>Request/response model validation</li>
-<li>Optional Redis caching support</li>
-<li>Database ORM integration</li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#api-definition">API Definition</a></li>
+<li><a href="#api-field-validation">API Field Validation</a></li>
+<li><a href="#group-types-folder-by-go_package">Group types folder by go_package</a></li>
+<li><a href="#merge-handlers-of-the-same-group-into-one-file">Merge handlers of the same group into one file</a></li>
+<li><a href="#common-commands">Common Commands</a><ul>
+<li><a href="#add-api-files">Add API Files</a></li>
+<li><a href="#generate-code">Generate Code</a></li>
+<li><a href="#generate-swagger-documentation">Generate Swagger Documentation</a></li>
 </ul>
-<h2>Creating a New Project</h2>
-<pre><code class="hljs language-bash">jzero new my-api --frame api
-<span class="hljs-built_in">cd</span> my-api
-jzero run</code></pre><p>After starting the service, visit <a href="http://localhost:8001/swagger">http://localhost:8001/swagger</a> to view the interactive API documentation.</p>
-<h2>Optional Features</h2>
-<p>You can enable additional features when creating the project:</p>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># Enable model validation</span>
-jzero new my-api --frame api --feature=model
+</li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#related-resources">Related Resources</a></li>
+</ul>
+<h2>Overview</h2>
+<p>API is a domain-specific language developed by go-zero (hereinafter referred to as API language or API description language), designed to implement a human-friendly basic description language for generating HTTP services.</p>
+<p>jzero has extended the API syntax with the following features:</p>
+<ul>
+<li><code>go_package</code>: Generate go types in the defined package, supporting duplicate type names across different API files, consistent with <code>go_package</code> in proto</li>
+<li><code>compact_handler</code>: Generate handlers for the same route group in a single file, reducing the number of files, consistent with the proto server module</li>
+</ul>
+<h2>API Definition</h2>
+<pre><code class="hljs"><span class="hljs-keyword">info</span> (
+  // Define go_package: folder <span class="hljs-keyword">location</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">generated</span> go <span class="hljs-keyword">types</span>
+  go_package: &quot;user&quot;
+)
 
-<span class="hljs-comment"># Enable Redis caching</span>
-jzero new my-api --frame api --feature=redis
+<span class="hljs-keyword">type</span> <span class="hljs-keyword">User</span> {
+  Id <span class="hljs-type">int</span> `<span class="hljs-type">json</span>:&quot;id&quot;`
+  Username string `<span class="hljs-type">json</span>:&quot;username&quot;`
+}
 
-<span class="hljs-comment"># Enable both model and Redis</span>
-jzero new my-api --frame api --feature=model+redis
+<span class="hljs-keyword">type</span> PageRequest {
+  Page <span class="hljs-type">int</span> `form:&quot;page&quot;`
+  Size <span class="hljs-type">int</span> `form:&quot;size&quot;`
+  Username string `form:&quot;username,optional&quot;` // <span class="hljs-keyword">Filter</span> parameter, optional
+}
 
-<span class="hljs-comment"># Enable cache</span>
-jzero new my-api --frame api --feature=cache</code></pre><h2>Project Structure</h2>
-<pre><code class="hljs">my-api<span class="hljs-symbol">/</span>
-├── api<span class="hljs-symbol">/</span>           <span class="hljs-comment"># API handlers</span>
-├── model<span class="hljs-symbol">/</span>         <span class="hljs-comment"># Data models (if enabled)</span>
-├── internal<span class="hljs-symbol">/</span>      <span class="hljs-comment"># Internal packages</span>
-└── main.go        <span class="hljs-comment"># Application entry point</span></code></pre><h2>Development</h2>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># Run the development server</span>
-jzero run
+<span class="hljs-keyword">type</span> PageResponse {
+  Total uint64 `<span class="hljs-type">json</span>:&quot;total&quot;` // Total
+  List []<span class="hljs-keyword">User</span> `<span class="hljs-type">json</span>:&quot;list&quot;` // Paginated data
+}
 
-<span class="hljs-comment"># Build for production</span>
-jzero build</code></pre><p>The Swagger documentation will automatically update based on your API definitions.</p>
+<span class="hljs-keyword">type</span> UpdateRequest {
+  Id <span class="hljs-type">int</span> `<span class="hljs-type">path</span>:&quot;id&quot;`
+  Username string `<span class="hljs-type">json</span>:&quot;username&quot;`
+}
+
+<span class="hljs-keyword">type</span> UpdateResponse {}
+
+@<span class="hljs-keyword">server</span> (
+  prefix: /api/<span class="hljs-keyword">user</span> // Route prefix
+  <span class="hljs-keyword">group</span>: <span class="hljs-keyword">user</span> // <span class="hljs-keyword">Handler</span>/logic folder <span class="hljs-keyword">location</span>
+  jwt: JwtAuth // <span class="hljs-keyword">Enable</span> jwt authentication
+  middleware: AuthX // Middleware <span class="hljs-keyword">for</span> this route <span class="hljs-keyword">group</span>
+  compact_handler: <span class="hljs-keyword">true</span> // Merge handlers <span class="hljs-keyword">of</span> this <span class="hljs-keyword">group</span> <span class="hljs-keyword">into</span> one file
+)
+service simpleapi {
+  @doc &quot;User Pagination&quot;
+  @<span class="hljs-keyword">handler</span> Page
+  <span class="hljs-keyword">get</span> /page (PageRequest) <span class="hljs-keyword">returns</span> (PageResponse)
+
+  @doc &quot;Update User&quot;
+  @<span class="hljs-keyword">handler</span> <span class="hljs-keyword">Update</span>
+  post /<span class="hljs-keyword">update</span> (UpdateRequest) <span class="hljs-keyword">returns</span> (UpdateResponse)
+}</code></pre><p>Corresponding curl commands:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># User pagination endpoint</span>
+curl -X GET <span class="hljs-string">&quot;http://localhost:8080/api/user/page?page=1&amp;size=10&amp;username=test&quot;</span> \
+-H <span class="hljs-string">&quot;Authorization: Bearer &quot;</span>
+
+<span class="hljs-comment"># Update user endpoint</span>
+curl -X POST <span class="hljs-string">&quot;http://localhost:8080/api/user/update/123&quot;</span> \
+-H <span class="hljs-string">&quot;Content-Type: application/json&quot;</span> \
+-H <span class="hljs-string">&quot;Authorization: Bearer &quot;</span> \
+-d <span class="hljs-string">&#x27;{&quot;username&quot;: &quot;new_username&quot;}&#x27;</span></code></pre><h2>API Field Validation</h2>
+<blockquote>
+<p>jzero integrates <a href="https://github.com/go-playground/validator">https://github.com/go-playground/validator</a> for field validation by default</p>
+</blockquote>
+<pre><code class="hljs">syntax = &quot;v1&quot;
+
+<span class="hljs-keyword">type</span> CreateRequest {
+  <span class="hljs-type">Name</span> string `<span class="hljs-type">json</span>:&quot;name&quot; <span class="hljs-keyword">validate</span>:&quot;gte=2,lte=30&quot;` // <span class="hljs-type">Name</span>
+}</code></pre><h2>Group types folder by go_package</h2>
+<p>The go_package option, referenced from proto files, can group generated message structures. Similarly in API files, the go_package option can group generated type structures.</p>
+<p>Two major advantages:</p>
+<ol>
+<li>Avoid explosion of default generated types/types.go</li>
+<li>Improve development experience, type names in different groups won&#39;t conflict</li>
+</ol>
+<pre><code class="hljs"><span class="hljs-attribute">syntax</span> = <span class="hljs-string">&quot;v1&quot;</span>
+
+<span class="hljs-literal">info</span> (
+go_package: <span class="hljs-string">&quot;version&quot;</span>
+)</code></pre><h2>Merge handlers of the same group into one file</h2>
+<pre><code class="hljs"><span class="hljs-variable">@server</span> (
+  <span class="hljs-attribute">prefix</span>: /api/v1
+  <span class="hljs-attribute">group</span>: system/user
+  <span class="hljs-attribute">compact_handler</span>: true
+)
+service simpleapi {
+  <span class="hljs-variable">@handler</span> GetUserHandler
+  get /system/user/getUser (GetUserRequest) returns (GetUserResponse)
+
+  <span class="hljs-variable">@handler</span> DeleteUserHandler
+  get /system/user/deleteUser (DeleteUserRequest) returns (DeleteUserResponse)
+}</code></pre><h2>Common Commands</h2>
+<h3>Add API Files</h3>
+<p>Add api files in the desc/api folder:</p>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># group is test</span>
+jzero add api <span class="hljs-built_in">test</span>
+
+<span class="hljs-comment"># group is test/test1</span>
+jzero add api <span class="hljs-built_in">test</span>/test1</code></pre><h3>Generate Code</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Generate service code</span>
+jzero gen
+
+<span class="hljs-comment"># Generate based on changed files</span>
+jzero gen --git-change
+
+<span class="hljs-comment"># Generate by specifying description directory or file</span>
+jzero gen --desc desc/
+jzero gen --desc desc/api/user.api</code></pre><h3>Generate Swagger Documentation</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Generate Swagger UI documentation</span>
+jzero gen swagger
+
+<span class="hljs-comment"># Access in browser</span>
+<span class="hljs-comment"># GET /swagger/</span></code></pre><h2>Project Structure</h2>
+<pre><code class="hljs">.
+├── desc<span class="hljs-symbol">/</span>                   <span class="hljs-comment"># Description files</span>
+│   └── api<span class="hljs-symbol">/</span>               <span class="hljs-comment"># API description files</span>
+│       └── user.api       <span class="hljs-comment"># User service API definition</span>
+├── internal<span class="hljs-symbol">/</span>
+│   ├── handler<span class="hljs-symbol">/</span>           <span class="hljs-comment"># HTTP handlers</span>
+│   ├── logic<span class="hljs-symbol">/</span>            <span class="hljs-comment"># Business logic</span>
+│   ├── svc<span class="hljs-symbol">/</span>              <span class="hljs-comment"># Service context</span>
+│   ├── types<span class="hljs-symbol">/</span>            <span class="hljs-comment"># Type definitions</span>
+│   └── middleware<span class="hljs-symbol">/</span>       <span class="hljs-comment"># Middleware</span>
+└── cmd<span class="hljs-symbol">/</span>
+    └── server.go         <span class="hljs-comment"># Service entry point</span></code></pre><h2>Related Resources</h2>
+<ul>
+<li><a href="https://docs.jzero.io/guide/api.html">API Guide</a></li>
+<li><a href="https://docs.jzero.io/getting-started/add.html">Add Command</a></li>
+<li><a href="https://docs.jzero.io/getting-started/gen.html">Gen Command</a></li>
+<li><a href="https://docs.jzero.io/getting-started/genclient.html">Swagger Generation</a></li>
+</ul>
 
           </div>
         </section>
