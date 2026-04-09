@@ -114,28 +114,32 @@
 <p>Third-party templates are project templates created and maintained by community developers to help other developers quickly start specific types of projects.</p>
 <h2>Template Structure</h2>
 <p>Each third-party template should contain the following files:</p>
-<pre><code class="hljs language-plaintext">your-<span class="hljs-keyword">template</span>/
-├── <span class="hljs-keyword">template</span>.json          <span class="hljs-comment"># Template config file (required)</span>
-├── <span class="hljs-keyword">template</span>.zh.json       <span class="hljs-comment"># Chinese config file (optional, for i18n)</span>
-├── <span class="hljs-type">README</span>.md              <span class="hljs-comment"># Template documentation (required)</span>
-└── [<span class="hljs-keyword">template</span> files]       <span class="hljs-comment"># Template files and directories</span></code></pre><h2>Configuration File</h2>
+<pre><code>your-template/
+├── template.json          # Template config file (required)
+├── template.zh.json       # Chinese config file (optional, for i18n)
+├── README.md              # Template documentation (required)
+└── [template files]       # Template files and directories
+</code></pre>
+<h2>Configuration File</h2>
 <h3>template.json</h3>
 <p>Template configuration file is in JSON format with the following fields:</p>
-<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-template-id&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Your Template Name&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;A brief description of your template&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Category Name&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;tag1&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;tag2&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;tag3&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new project_name --template your-template-id&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/repo&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://your-demo-url.com&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
-    <span class="hljs-string">&quot;Feature 1&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;Feature 2&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;Feature 3&quot;</span>
-  <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><h3>Field Description</h3>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;your-template-id&quot;,
+  &quot;name&quot;: &quot;Your Template Name&quot;,
+  &quot;description&quot;: &quot;A brief description of your template&quot;,
+  &quot;category&quot;: &quot;Category Name&quot;,
+  &quot;tags&quot;: [&quot;tag1&quot;, &quot;tag2&quot;, &quot;tag3&quot;],
+  &quot;command&quot;: &quot;jzero new project_name --template your-template-id&quot;,
+  &quot;repository&quot;: &quot;https://github.com/username/repo&quot;,
+  &quot;demo&quot;: &quot;https://your-demo-url.com&quot;,
+  &quot;features&quot;: [
+    &quot;Feature 1&quot;,
+    &quot;Feature 2&quot;,
+    &quot;Feature 3&quot;
+  ]
+}
+</code></pre>
+<h3>Field Description</h3>
 <table>
 <thead>
 <tr>
@@ -202,77 +206,85 @@
 </tbody></table>
 <h3>Multi-language Support</h3>
 <p>To support Chinese, create a <code>template.zh.json</code> file:</p>
-<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-template-id&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;模板中文名称&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;模板的中文描述&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;分类名称&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;标签1&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;标签2&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new project_name --template your-template-id&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/repo&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://your-demo-url.com&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
-    <span class="hljs-string">&quot;特性1&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;特性2&quot;</span>
-  <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><h2>Creating Templates</h2>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;your-template-id&quot;,
+  &quot;name&quot;: &quot;模板中文名称&quot;,
+  &quot;description&quot;: &quot;模板的中文描述&quot;,
+  &quot;category&quot;: &quot;分类名称&quot;,
+  &quot;tags&quot;: [&quot;标签1&quot;, &quot;标签2&quot;],
+  &quot;command&quot;: &quot;jzero new project_name --template your-template-id&quot;,
+  &quot;repository&quot;: &quot;https://github.com/username/repo&quot;,
+  &quot;demo&quot;: &quot;https://your-demo-url.com&quot;,
+  &quot;features&quot;: [
+    &quot;特性1&quot;,
+    &quot;特性2&quot;
+  ]
+}
+</code></pre>
+<h2>Creating Templates</h2>
 <h3>1. Create Template Directory</h3>
 <p>Create your template directory in <code>third_party/</code>:</p>
-<pre><code class="hljs language-bash"><span class="hljs-built_in">mkdir</span> third_party/your-template-id
-<span class="hljs-built_in">cd</span> third_party/your-template-id</code></pre><h3>2. Create Configuration File</h3>
+<pre><code class="language-bash">mkdir third_party/your-template-id
+cd third_party/your-template-id
+</code></pre>
+<h3>2. Create Configuration File</h3>
 <p>Create <code>template.json</code>:</p>
-<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;my-web-app&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;My Modern Web App&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;A full-stack web application with React and Node.js&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Web&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;react&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;nodejs&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;fullstack&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;typescript&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new myapp --template my-web-app&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/my-web-app-template&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://my-web-app-demo.example.com&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
-    <span class="hljs-string">&quot;React 18 with TypeScript&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;Node.js backend with Express&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;PostgreSQL database integration&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;JWT authentication&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;Docker support&quot;</span>
-  <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><h3>3. Create README.md</h3>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;my-web-app&quot;,
+  &quot;name&quot;: &quot;My Modern Web App&quot;,
+  &quot;description&quot;: &quot;A full-stack web application with React and Node.js&quot;,
+  &quot;category&quot;: &quot;Web&quot;,
+  &quot;tags&quot;: [&quot;react&quot;, &quot;nodejs&quot;, &quot;fullstack&quot;, &quot;typescript&quot;],
+  &quot;command&quot;: &quot;jzero new myapp --template my-web-app&quot;,
+  &quot;repository&quot;: &quot;https://github.com/username/my-web-app-template&quot;,
+  &quot;demo&quot;: &quot;https://my-web-app-demo.example.com&quot;,
+  &quot;features&quot;: [
+    &quot;React 18 with TypeScript&quot;,
+    &quot;Node.js backend with Express&quot;,
+    &quot;PostgreSQL database integration&quot;,
+    &quot;JWT authentication&quot;,
+    &quot;Docker support&quot;
+  ]
+}
+</code></pre>
+<h3>3. Create README.md</h3>
 <p>Create detailed README.md in the template directory:</p>
-<pre><code class="hljs language-markdown"><span class="hljs-section"># My Modern Web App</span>
+<pre><code class="language-markdown"># My Modern Web App
 
 A full-featured full-stack web application template.
 
-<span class="hljs-section">## Features</span>
+## Features
 
-<span class="hljs-bullet">-</span> React 18 + TypeScript
-<span class="hljs-bullet">-</span> Node.js + Express backend
-<span class="hljs-bullet">-</span> PostgreSQL database
-<span class="hljs-bullet">-</span> JWT authentication
-<span class="hljs-bullet">-</span> Docker deployment support
+- React 18 + TypeScript
+- Node.js + Express backend
+- PostgreSQL database
+- JWT authentication
+- Docker deployment support
 
-<span class="hljs-section">## Quick Start</span>
+## Quick Start
 
-\<span class="hljs-code">`\`</span>\`bash
+\`\`\`bash
 jzero new myapp --template my-web-app
 cd myapp
 npm install
 npm run dev
-\<span class="hljs-code">`\`</span>\`
+\`\`\`
 
-<span class="hljs-section">## Project Structure</span>
+## Project Structure
 
-\<span class="hljs-code">`\`</span>\`
+\`\`\`
 myapp/
 ├── frontend/          # React frontend
 ├── backend/           # Node.js backend
 ├── database/          # Database scripts
 └── docker-compose.yml # Docker configuration
-\<span class="hljs-code">`\`</span>\`
+\`\`\`
 
-<span class="hljs-section">## License</span>
+## License
 
-MIT License</code></pre><h2>Best Practices</h2>
+MIT License
+</code></pre>
+<h2>Best Practices</h2>
 <h3>1. Template Naming</h3>
 <ul>
 <li>Use meaningful names that clearly express the template purpose</li>

@@ -192,58 +192,86 @@
         <section class="template-guide-section">
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>API Vercel Template</h1>
-<p>An API template optimized for Vercel serverless deployment.</p>
-<h2>Features</h2>
-<ul>
-<li><strong>RESTful API Structure</strong>: Clean and organized API design</li>
-<li><strong>Vercel Serverless Deployment</strong>: Optimized for Vercel&#39;s serverless functions</li>
-<li><strong>Built-in Middleware</strong>: Common middleware included out of the box</li>
-<li><strong>Example Endpoints</strong>: Ready-to-use example API endpoints</li>
-</ul>
-<h2>Getting Started</h2>
-<pre><code class="hljs language-bash">jzero new simpleapi-vercel --branch api-vercel
-<span class="hljs-built_in">cd</span> simpleapi-vercel</code></pre><h2>Project Structure</h2>
-<pre><code class="hljs language-plaintext">.
-├── api<span class="hljs-symbol">/</span>              <span class="hljs-comment"># API endpoints</span>
-│   ├── handlers<span class="hljs-symbol">/</span>     <span class="hljs-comment"># Request handlers</span>
-│   ├── logic<span class="hljs-symbol">/</span>        <span class="hljs-comment"># Business logic</span>
-│   └── middleware<span class="hljs-symbol">/</span>   <span class="hljs-comment"># Middleware functions</span>
-├── internal<span class="hljs-symbol">/</span>         <span class="hljs-comment"># Internal packages</span>
-├── go.mod            <span class="hljs-comment"># Go module file</span>
-└── vercel.json       <span class="hljs-comment"># Vercel configuration</span></code></pre><h2>Usage Examples</h2>
-<h3>Create a New Endpoint</h3>
-<pre><code class="hljs language-go"><span class="hljs-comment">// api/hello/hello.go</span>
-<span class="hljs-keyword">package</span> hello
+            # API Vercel Template
 
-<span class="hljs-keyword">import</span> (
-    <span class="hljs-string">&quot;net/http&quot;</span>
+An API template optimized for Vercel serverless deployment.
+
+## Features
+
+- **RESTful API Structure**: Clean and organized API design
+- **Vercel Serverless Deployment**: Optimized for Vercel's serverless functions
+- **Built-in Middleware**: Common middleware included out of the box
+- **Example Endpoints**: Ready-to-use example API endpoints
+
+## Getting Started
+
+```bash
+jzero new simpleapi-vercel --branch api-vercel
+cd simpleapi-vercel
+```
+
+## Project Structure
+
+```
+.
+├── api/              # API endpoints
+│   ├── handlers/     # Request handlers
+│   ├── logic/        # Business logic
+│   └── middleware/   # Middleware functions
+├── internal/         # Internal packages
+├── go.mod            # Go module file
+└── vercel.json       # Vercel configuration
+```
+
+## Usage Examples
+
+### Create a New Endpoint
+
+```go
+// api/hello/hello.go
+package hello
+
+import (
+    "net/http"
     
-    <span class="hljs-string">&quot;github.com/zeromicro/go-zero/rest/httpx&quot;</span>
+    "github.com/zeromicro/go-zero/rest/httpx"
 )
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Handler</span><span class="hljs-params">(w http.ResponseWriter, r *http.Request)</span></span> {
-    httpx.OkJson(w, <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>{
-        <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Hello from Vercel!&quot;</span>,
+func Handler(w http.ResponseWriter, r *http.Request) {
+    httpx.OkJson(w, map[string]string{
+        "message": "Hello from Vercel!",
     })
-}</code></pre><h3>Deploy to Vercel</h3>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># Install Vercel CLI</span>
+}
+```
+
+### Deploy to Vercel
+
+```bash
+# Install Vercel CLI
 npm i -g vercel
 
-<span class="hljs-comment"># Deploy</span>
-vercel</code></pre><h2>Configuration</h2>
-<h3>vercel.json</h3>
-<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">&quot;functions&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-    <span class="hljs-attr">&quot;api/**/*.go&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
-      <span class="hljs-attr">&quot;runtime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;go1.x&quot;</span>
-    <span class="hljs-punctuation">}</span>
-  <span class="hljs-punctuation">}</span>
-<span class="hljs-punctuation">}</span></code></pre><h2>Learn More</h2>
-<ul>
-<li><a href="https://vercel.com/docs">Vercel Documentation</a></li>
-<li><a href="https://go-zero.dev/">Go-Zero Documentation</a></li>
-</ul>
+# Deploy
+vercel
+```
+
+## Configuration
+
+### vercel.json
+
+```json
+{
+  "functions": {
+    "api/**/*.go": {
+      "runtime": "go1.x"
+    }
+  }
+}
+```
+
+## Learn More
+
+- [Vercel Documentation](https://vercel.com/docs)
+- [Go-Zero Documentation](https://go-zero.dev/)
 
           </div>
         </section>

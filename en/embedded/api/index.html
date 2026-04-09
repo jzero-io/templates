@@ -208,43 +208,67 @@
         <section class="template-guide-section">
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>API Service Template</h1>
-<p>Build RESTful API services with automatic Swagger documentation generation.</p>
-<h2>Features</h2>
-<ul>
-<li>Auto-generated Swagger UI accessible at <code>/swagger</code></li>
-<li>RESTful API structure with best practices</li>
-<li>Request/response model validation</li>
-<li>Optional Redis caching support</li>
-<li>Database ORM integration</li>
-</ul>
-<h2>Creating a New Project</h2>
-<pre><code class="hljs language-bash">jzero new my-api --frame api
-<span class="hljs-built_in">cd</span> my-api
-jzero run</code></pre><p>After starting the service, visit <a href="http://localhost:8001/swagger">http://localhost:8001/swagger</a> to view the interactive API documentation.</p>
-<h2>Optional Features</h2>
-<p>You can enable additional features when creating the project:</p>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># Enable model validation</span>
+            # API Service Template
+
+Build RESTful API services with automatic Swagger documentation generation.
+
+## Features
+
+- Auto-generated Swagger UI accessible at `/swagger`
+- RESTful API structure with best practices
+- Request/response model validation
+- Optional Redis caching support
+- Database ORM integration
+
+## Creating a New Project
+
+```bash
+jzero new my-api --frame api
+cd my-api
+jzero run
+```
+
+After starting the service, visit http://localhost:8001/swagger to view the interactive API documentation.
+
+## Optional Features
+
+You can enable additional features when creating the project:
+
+```bash
+# Enable model validation
 jzero new my-api --frame api --feature=model
 
-<span class="hljs-comment"># Enable Redis caching</span>
+# Enable Redis caching
 jzero new my-api --frame api --feature=redis
 
-<span class="hljs-comment"># Enable both model and Redis</span>
+# Enable both model and Redis
 jzero new my-api --frame api --feature=model+redis
 
-<span class="hljs-comment"># Enable cache</span>
-jzero new my-api --frame api --feature=cache</code></pre><h2>Project Structure</h2>
-<pre><code class="hljs language-plaintext">my-api<span class="hljs-symbol">/</span>
-├── api<span class="hljs-symbol">/</span>           <span class="hljs-comment"># API handlers</span>
-├── model<span class="hljs-symbol">/</span>         <span class="hljs-comment"># Data models (if enabled)</span>
-├── internal<span class="hljs-symbol">/</span>      <span class="hljs-comment"># Internal packages</span>
-└── main.go        <span class="hljs-comment"># Application entry point</span></code></pre><h2>Development</h2>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># Run the development server</span>
+# Enable cache
+jzero new my-api --frame api --feature=cache
+```
+
+## Project Structure
+
+```
+my-api/
+├── api/           # API handlers
+├── model/         # Data models (if enabled)
+├── internal/      # Internal packages
+└── main.go        # Application entry point
+```
+
+## Development
+
+```bash
+# Run the development server
 jzero run
 
-<span class="hljs-comment"># Build for production</span>
-jzero build</code></pre><p>The Swagger documentation will automatically update based on your API definitions.</p>
+# Build for production
+jzero build
+```
+
+The Swagger documentation will automatically update based on your API definitions.
 
           </div>
         </section>

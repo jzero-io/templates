@@ -208,66 +208,95 @@
         <section class="template-guide-section">
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>RPC Service Template</h1>
-<p>Build high-performance microservices using gRPC protocol with type-safe interfaces.</p>
-<h2>Features</h2>
-<ul>
-<li>Native gRPC protocol support</li>
-<li>High-performance RPC with binary serialization</li>
-<li>Service mesh ready architecture</li>
-<li>Type-safe interfaces with Protocol Buffers</li>
-<li>Efficient data transmission</li>
-</ul>
-<h2>Creating a New Project</h2>
-<pre><code class="hljs language-bash">jzero new my-rpc --frame rpc
-<span class="hljs-built_in">cd</span> my-rpc
-jzero run</code></pre><p>Your RPC service will start on the configured port (default: 50051).</p>
-<h2>Protocol Buffers</h2>
-<p>Define your service interface in <code>.proto</code> files:</p>
-<pre><code class="hljs language-protobuf">syntax = <span class="hljs-string">&quot;proto3&quot;</span>;
+            # RPC Service Template
 
-<span class="hljs-keyword">package</span> service;
-<span class="hljs-keyword">option</span> go_package = <span class="hljs-string">&quot;./service&quot;</span>;
+Build high-performance microservices using gRPC protocol with type-safe interfaces.
 
-<span class="hljs-keyword">service </span><span class="hljs-title class_">Greeter</span> {
-  <span class="hljs-function"><span class="hljs-keyword">rpc</span> SayHello (HelloRequest) <span class="hljs-keyword">returns</span> (HelloReply) </span>{}
+## Features
+
+- Native gRPC protocol support
+- High-performance RPC with binary serialization
+- Service mesh ready architecture
+- Type-safe interfaces with Protocol Buffers
+- Efficient data transmission
+
+## Creating a New Project
+
+```bash
+jzero new my-rpc --frame rpc
+cd my-rpc
+jzero run
+```
+
+Your RPC service will start on the configured port (default: 50051).
+
+## Protocol Buffers
+
+Define your service interface in `.proto` files:
+
+```protobuf
+syntax = "proto3";
+
+package service;
+option go_package = "./service";
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
 }
 
-<span class="hljs-keyword">message </span><span class="hljs-title class_">HelloRequest</span> {
-  <span class="hljs-type">string</span> name = <span class="hljs-number">1</span>;
+message HelloRequest {
+  string name = 1;
 }
 
-<span class="hljs-keyword">message </span><span class="hljs-title class_">HelloReply</span> {
-  <span class="hljs-type">string</span> message = <span class="hljs-number">2</span>;
-}</code></pre><h2>Project Structure</h2>
-<pre><code class="hljs language-plaintext">my-rpc<span class="hljs-symbol">/</span>
-├── proto<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Protocol Buffer definitions</span>
-├── internal<span class="hljs-symbol">/</span>       <span class="hljs-comment"># Internal implementation</span>
-├── service<span class="hljs-symbol">/</span>        <span class="hljs-comment"># Generated gRPC code</span>
-└── main.go         <span class="hljs-comment"># Application entry point</span></code></pre><h2>Development</h2>
-<pre><code class="hljs language-bash"><span class="hljs-comment"># Run the service</span>
+message HelloReply {
+  string message = 2;
+}
+```
+
+## Project Structure
+
+```
+my-rpc/
+├── proto/          # Protocol Buffer definitions
+├── internal/       # Internal implementation
+├── service/        # Generated gRPC code
+└── main.go         # Application entry point
+```
+
+## Development
+
+```bash
+# Run the service
 jzero run
 
-<span class="hljs-comment"># Generate gRPC code from proto files</span>
+# Generate gRPC code from proto files
 jzero proto
 
-<span class="hljs-comment"># Build for production</span>
-jzero build</code></pre><h2>Client Example</h2>
-<p>Create a client to connect to your RPC service:</p>
-<pre><code class="hljs language-go">conn, err := grpc.Dial(<span class="hljs-string">&quot;localhost:50051&quot;</span>, grpc.WithTransportCredentials(insecure.NewCredentials()))
-<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+# Build for production
+jzero build
+```
+
+## Client Example
+
+Create a client to connect to your RPC service:
+
+```go
+conn, err := grpc.Dial("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+if err != nil {
     log.Fatal(err)
 }
-<span class="hljs-keyword">defer</span> conn.Close()
+defer conn.Close()
 
 client := pb.NewGreeterClient(conn)
-resp, err := client.SayHello(ctx, &amp;pb.HelloRequest{Name: <span class="hljs-string">&quot;World&quot;</span>})</code></pre><h2>Benefits of gRPC</h2>
-<ul>
-<li><strong>Performance</strong>: Binary serialization is faster than JSON</li>
-<li><strong>Type Safety</strong>: Compile-time type checking</li>
-<li><strong>Code Generation</strong>: Client and server code generated from proto files</li>
-<li><strong>Interoperability</strong>: Works across multiple programming languages</li>
-</ul>
+resp, err := client.SayHello(ctx, &pb.HelloRequest{Name: "World"})
+```
+
+## Benefits of gRPC
+
+- **Performance**: Binary serialization is faster than JSON
+- **Type Safety**: Compile-time type checking
+- **Code Generation**: Client and server code generated from proto files
+- **Interoperability**: Works across multiple programming languages
 
           </div>
         </section>

@@ -200,169 +200,240 @@
         <section class="template-guide-section">
           <h2>Getting Started Guide</h2>
           <div class="guide-content">
-            <h1>VuePress Hope Docs Template</h1>
-<p>A modern documentation site template powered by VuePress with the beautiful Hope theme.</p>
-<h2>Features</h2>
-<ul>
-<li><strong>VuePress Hope Theme</strong>: Feature-rich theme with excellent user experience</li>
-<li><strong>Markdown Support</strong>: Write documentation using extended Markdown syntax</li>
-<li><strong>Blog Functionality</strong>: Built-in blog system with categories and tags</li>
-<li><strong>Full-text Search</strong>: Client-side search with Chinese support</li>
-<li><strong>Responsive Design</strong>: Mobile-friendly experience out of the box</li>
-<li><strong>Dark Mode</strong>: Automatic dark mode support</li>
-<li><strong>Navigation</strong>: Auto-generated sidebar and navbar from file structure</li>
-</ul>
-<h2>Getting Started</h2>
-<pre><code class="hljs language-bash">jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs
-<span class="hljs-built_in">cd</span> simple-vuepress-hope-docs
+            # VuePress Hope Docs Template
+
+A modern documentation site template powered by VuePress with the beautiful Hope theme.
+
+## Features
+
+- **VuePress Hope Theme**: Feature-rich theme with excellent user experience
+- **Markdown Support**: Write documentation using extended Markdown syntax
+- **Blog Functionality**: Built-in blog system with categories and tags
+- **Full-text Search**: Client-side search with Chinese support
+- **Responsive Design**: Mobile-friendly experience out of the box
+- **Dark Mode**: Automatic dark mode support
+- **Navigation**: Auto-generated sidebar and navbar from file structure
+
+## Getting Started
+
+```bash
+jzero new simple-vuepress-hope-docs --branch vuepress-hope-docs
+cd simple-vuepress-hope-docs
 npm install
-npm run dev</code></pre><p>Visit <code>http://localhost:8080</code> to view your documentation site.</p>
-<h2>Project Structure</h2>
-<pre><code class="hljs language-plaintext">.
-├── docs<span class="hljs-symbol">/</span>
-│   ├── README.md           <span class="hljs-comment"># Homepage</span>
-│   ├── .vuepress<span class="hljs-symbol">/</span>          <span class="hljs-comment"># VuePress configuration</span>
-│   │   ├── config.js       <span class="hljs-comment"># Main configuration</span>
-│   │   └── theme<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Custom theme</span>
-│   ├── guide<span class="hljs-symbol">/</span>              <span class="hljs-comment"># Documentation</span>
+npm run dev
+```
+
+Visit `http://localhost:8080` to view your documentation site.
+
+## Project Structure
+
+```
+.
+├── docs/
+│   ├── README.md           # Homepage
+│   ├── .vuepress/          # VuePress configuration
+│   │   ├── config.js       # Main configuration
+│   │   └── theme/          # Custom theme
+│   ├── guide/              # Documentation
 │   │   ├── README.md
 │   │   ├── getting-started.md
 │   │   └── configuration.md
-│   └── blog<span class="hljs-symbol">/</span>               <span class="hljs-comment"># Blog posts</span>
+│   └── blog/               # Blog posts
 │       ├── README.md
-│       └── <span class="hljs-number">2024</span><span class="hljs-symbol">/</span>
+│       └── 2024/
 │           └── example-post.md
 ├── package.json
-└── README.md</code></pre><h2>Configuration</h2>
-<h3>Basic Setup (<code>docs/.vuepress/config.js</code>)</h3>
-<pre><code class="hljs language-javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
-  <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;My Documentation&quot;</span>,
-  <span class="hljs-attr">description</span>: <span class="hljs-string">&quot;Documentation built with VuePress&quot;</span>,
+└── README.md
+```
 
-  <span class="hljs-attr">theme</span>: <span class="hljs-string">&quot;hope&quot;</span>,
+## Configuration
 
-  <span class="hljs-attr">themeConfig</span>: {
-    <span class="hljs-attr">logo</span>: <span class="hljs-string">&quot;/logo.png&quot;</span>,
+### Basic Setup (`docs/.vuepress/config.js`)
 
-    <span class="hljs-attr">navbar</span>: [
+```javascript
+module.exports = {
+  title: "My Documentation",
+  description: "Documentation built with VuePress",
+
+  theme: "hope",
+
+  themeConfig: {
+    logo: "/logo.png",
+
+    navbar: [
       {
-        <span class="hljs-attr">text</span>: <span class="hljs-string">&quot;Guide&quot;</span>,
-        <span class="hljs-attr">link</span>: <span class="hljs-string">&quot;/guide/&quot;</span>,
+        text: "Guide",
+        link: "/guide/",
       },
       {
-        <span class="hljs-attr">text</span>: <span class="hljs-string">&quot;Blog&quot;</span>,
-        <span class="hljs-attr">link</span>: <span class="hljs-string">&quot;/blog/&quot;</span>,
+        text: "Blog",
+        link: "/blog/",
       },
     ],
 
-    <span class="hljs-attr">sidebar</span>: {
-      <span class="hljs-string">&quot;/guide/&quot;</span>: [
+    sidebar: {
+      "/guide/": [
         {
-          <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Getting Started&quot;</span>,
-          <span class="hljs-attr">collapsable</span>: <span class="hljs-literal">false</span>,
-          <span class="hljs-attr">children</span>: [
-            <span class="hljs-string">&quot;getting-started&quot;</span>,
-            <span class="hljs-string">&quot;configuration&quot;</span>,
+          title: "Getting Started",
+          collapsable: false,
+          children: [
+            "getting-started",
+            "configuration",
           ],
         },
       ],
     },
   },
-};</code></pre><h2>Writing Content</h2>
-<h3>Documentation Pages</h3>
-<p>Create Markdown files in <code>docs/guide/</code>:</p>
-<pre><code class="hljs language-markdown"><span class="hljs-section"># Page Title</span>
+};
+```
+
+## Writing Content
+
+### Documentation Pages
+
+Create Markdown files in `docs/guide/`:
+
+```markdown
+# Page Title
 
 Content goes here...
 
-<span class="hljs-section">## Code Blocks</span>
+## Code Blocks
 
-<span class="hljs-code">```javascript
-console.log(&quot;Hello, VuePress!&quot;);</span></code></pre><pre><code class="hljs language-plaintext">
-<span class="hljs-comment">### Blog Posts</span>
+```javascript
+console.log("Hello, VuePress!");
+```
+```
 
-<span class="hljs-string">Add</span> <span class="hljs-string">blog</span> <span class="hljs-string">posts</span> <span class="hljs-string">in</span> <span class="hljs-string">`docs/blog/`:</span>
+### Blog Posts
 
-<span class="hljs-string">```markdown</span>
-<span class="hljs-meta">---</span>
-<span class="hljs-attr">title:</span> <span class="hljs-string">My</span> <span class="hljs-string">First</span> <span class="hljs-string">Post</span>
-<span class="hljs-attr">date:</span> <span class="hljs-number">2024-01-15</span>
-<span class="hljs-attr">categories:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">Tutorial</span>
-<span class="hljs-attr">tags:</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">VuePress</span>
-  <span class="hljs-bullet">-</span> <span class="hljs-string">Documentation</span>
-<span class="hljs-meta">---
-</span>
-<span class="hljs-comment"># My First Blog Post</span>
+Add blog posts in `docs/blog/`:
 
-<span class="hljs-string">Content</span> <span class="hljs-string">goes</span> <span class="hljs-string">here...</span></code></pre><h2>Build and Deployment</h2>
-<h3>Local Build</h3>
-<pre><code class="hljs language-bash">npm run build</code></pre><p>Output will be in the <code>docs/.vuepress/dist/</code> directory</p>
-<h3>Deployment Options</h3>
-<h4>Vercel</h4>
-<pre><code class="hljs language-bash">npm install -g vercel
-vercel --prod</code></pre><h4>GitHub Pages</h4>
-<ol>
-<li>Set base URL in <code>config.js</code>:</li>
-</ol>
-<pre><code class="hljs language-javascript"><span class="hljs-attr">base</span>: <span class="hljs-string">&quot;/your-repo/&quot;</span>,</code></pre><ol start="2">
-<li>Deploy workflow in <code>.github/workflows/deploy.yml</code></li>
-</ol>
-<h4>Netlify</h4>
-<p>Create <code>netlify.toml</code>:</p>
-<pre><code class="hljs language-toml"><span class="hljs-section">[build]</span>
-  <span class="hljs-attr">command</span> = <span class="hljs-string">&quot;npm run build&quot;</span>
-  <span class="hljs-attr">publish</span> = <span class="hljs-string">&quot;docs/.vuepress/dist&quot;</span>
+```markdown
+---
+title: My First Post
+date: 2024-01-15
+categories:
+  - Tutorial
+tags:
+  - VuePress
+  - Documentation
+---
 
-<span class="hljs-section">[[redirects]]</span>
-  <span class="hljs-attr">from</span> = <span class="hljs-string">&quot;/*&quot;</span>
-  <span class="hljs-attr">to</span> = <span class="hljs-string">&quot;/index.html&quot;</span>
-  <span class="hljs-attr">status</span> = <span class="hljs-number">200</span></code></pre><h2>Customization</h2>
-<h3>Styles</h3>
-<p>Create custom styles in <code>docs/.vuepress/styles/</code>:</p>
-<pre><code class="hljs language-css"><span class="hljs-comment">/* index.styl */</span>
-<span class="hljs-selector-class">.hero</span> {
-  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">135deg</span>, <span class="hljs-number">#667eea</span> <span class="hljs-number">0%</span>, <span class="hljs-number">#764ba2</span> <span class="hljs-number">100%</span>);
-}</code></pre><h3>Components</h3>
-<p>Add Vue components in <code>docs/.vuepress/components/</code>:</p>
-<pre><code class="hljs language-vue"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-  </span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;my-component&quot;</span>&gt;</span>
-    </span><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">slot</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span></span><span class="language-xml">
-  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><span class="language-xml">
-<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span>
+# My First Blog Post
 
-<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> </span></span><span class="language-xquery">{
- <span class="hljs-built_in"> name</span>: <span class="hljs-string">&quot;MyComponent&quot;</span>,
-}</span><span class="language-xml">;
-<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></code></pre><p>Use in Markdown:</p>
-<pre><code class="hljs language-markdown"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MyComponent</span>&gt;</span></span>
+Content goes here...
+```
+
+## Build and Deployment
+
+### Local Build
+
+```bash
+npm run build
+```
+
+Output will be in the `docs/.vuepress/dist/` directory
+
+### Deployment Options
+
+#### Vercel
+
+```bash
+npm install -g vercel
+vercel --prod
+```
+
+#### GitHub Pages
+
+1. Set base URL in `config.js`:
+```javascript
+base: "/your-repo/",
+```
+
+2. Deploy workflow in `.github/workflows/deploy.yml`
+
+#### Netlify
+
+Create `netlify.toml`:
+```toml
+[build]
+  command = "npm run build"
+  publish = "docs/.vuepress/dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+```
+
+## Customization
+
+### Styles
+
+Create custom styles in `docs/.vuepress/styles/`:
+
+```css
+/* index.styl */
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+```
+
+### Components
+
+Add Vue components in `docs/.vuepress/components/`:
+
+```vue
+<template>
+  <div class="my-component">
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "MyComponent",
+};
+</script>
+```
+
+Use in Markdown:
+```markdown
+<MyComponent>
   Custom content goes here
-<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">MyComponent</span>&gt;</span></span></code></pre><h2>Plugins</h2>
-<h3>Common Plugins</h3>
-<pre><code class="hljs language-javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
-  <span class="hljs-attr">plugins</span>: [
-    <span class="hljs-string">&quot;@vuepress/plugin-search&quot;</span>,
-    <span class="hljs-string">&quot;@vuepress/plugin-medium-zoom&quot;</span>,
-    <span class="hljs-string">&quot;vuepress-plugin-reading-time&quot;</span>,
-    <span class="hljs-string">&quot;vuepress-plugin-comment&quot;</span>,
+</MyComponent>
+```
+
+## Plugins
+
+### Common Plugins
+
+```javascript
+module.exports = {
+  plugins: [
+    "@vuepress/plugin-search",
+    "@vuepress/plugin-medium-zoom",
+    "vuepress-plugin-reading-time",
+    "vuepress-plugin-comment",
   ],
-};</code></pre><h2>Best Practices</h2>
-<ol>
-<li><strong>Organize Content</strong>: Group related documentation into folders</li>
-<li><strong>Use Frontmatter</strong>: Add metadata to all pages</li>
-<li><strong>Optimize Images</strong>: Compress images before adding</li>
-<li><strong>Internal Links</strong>: Use relative paths for internal links</li>
-<li><strong>SEO</strong>: Add appropriate meta tags and descriptions</li>
-<li><strong>Accessibility</strong>: Ensure good contrast and semantic HTML</li>
-</ol>
-<h2>Learn More</h2>
-<ul>
-<li><a href="https://vuepress.vuejs.org/">VuePress Official Documentation</a></li>
-<li><a href="https://theme-hope.vuejs.press/">VuePress Hope Theme</a></li>
-<li><a href="https://www.markdownguide.org/">Markdown Guide</a></li>
-</ul>
+};
+```
+
+## Best Practices
+
+1. **Organize Content**: Group related documentation into folders
+2. **Use Frontmatter**: Add metadata to all pages
+3. **Optimize Images**: Compress images before adding
+4. **Internal Links**: Use relative paths for internal links
+5. **SEO**: Add appropriate meta tags and descriptions
+6. **Accessibility**: Ensure good contrast and semantic HTML
+
+## Learn More
+
+- [VuePress Official Documentation](https://vuepress.vuejs.org/)
+- [VuePress Hope Theme](https://theme-hope.vuejs.press/)
+- [Markdown Guide](https://www.markdownguide.org/)
 
           </div>
         </section>
