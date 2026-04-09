@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const { glob } = require('glob');
+const marked = require('marked');
+const hljs = require('highlight.js');
 
 /**
  * Template Loader
@@ -10,6 +12,29 @@ class TemplateLoader {
   constructor(templatesDir) {
     this.templatesDir = templatesDir;
     this.categories = ['embedded', 'external', 'third_party'];
+
+    // Configure marked with highlight.js for marked v12+
+    const renderer = new marked.Renderer();
+    const originalCodeRenderer = renderer.code.bind(renderer);
+
+    renderer.code = function(code, language) {
+      if (language && hljs.getLanguage(language)) {
+        try {
+          const highlighted = hljs.highlight(code, { language: language }).value;
+          return `<pre><code class="hljs language-${language}">${highlighted}</code></pre>`;
+        } catch (err) {
+          console.error('Highlight error:', err);
+        }
+      }
+      const highlighted = hljs.highlightAuto(code).value;
+      return `<pre><code class="hljs">${highlighted}</code></pre>`;
+    };
+
+    marked.setOptions({
+      renderer: renderer,
+      breaks: true,
+      gfm: true
+    });
   }
 
   /**
@@ -80,8 +105,8 @@ class TemplateLoader {
     let guideHtml = '';
     if (fs.existsSync(guidePath)) {
       const guideContent = fs.readFileSync(guidePath, 'utf-8');
-      // Parse markdown to HTML (you can use a markdown library here)
-      guideHtml = guideContent; // For now, just store the raw content
+      // Parse markdown to HTML
+      guideHtml = marked.parse(guideContent);
     }
 
     // Extract template metadata
