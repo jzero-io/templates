@@ -356,7 +356,7 @@ body {
   font-size: 13px;
   border: none;
   border-left: 1px solid var(--border-color);
-  background: transparent;
+  background-color: var(--background-secondary);
   color: var(--text-color);
   cursor: pointer;
   appearance: none;
@@ -1772,6 +1772,10 @@ body {
   .search-input {
     padding: 14px 40px 14px 16px;
     font-size: 15px;
+  }
+
+  .category-select {
+    background-color: var(--background-secondary);
   }
 
   /* Filters */
