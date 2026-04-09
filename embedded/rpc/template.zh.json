@@ -1,16 +1,19 @@
 {
   "id": "rpc",
   "name": "RPC 服务",
-  "description": "使用 gRPC 构建高性能微服务",
+  "description": "基于 Protocol Buffers 的高性能 gRPC 微服务框架",
   "category": "RPC",
-  "tags": ["rpc", "grpc", "微服务", "后端"],
+  "tags": ["rpc", "grpc", "微服务", "后端", "proto", "validation"],
   "command": "jzero new your_project --frame rpc",
   "repository": "https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/rpc",
   "features": [
-    "支持 gRPC 协议",
-    "高性能 RPC 调用",
-    "服务网格就绪",
+    "Protocol Buffers 定义服务接口",
+    "gRPC 高性能二进制协议",
+    "字段验证（buf.validate）",
+    "多 proto 文件支持",
+    "中间件配置支持",
     "类型安全接口",
-    "二进制序列化"
+    "自动生成 zrpc 客户端",
+    "服务网格就绪"
   ]
 }

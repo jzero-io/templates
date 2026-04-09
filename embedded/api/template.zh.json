@@ -1,14 +1,19 @@
 {
   "id": "api",
   "name": "API 服务",
-  "description": "jzero api 服务",
+  "description": "基于 API 描述语言的轻量级、高性能 RESTful API 服务框架",
   "category": "API",
-  "tags": ["api", "rest", "swagger", "后端"],
+  "tags": ["api", "rest", "swagger", "后端", "validation"],
   "command": "jzero new your_project --frame api",
   "repository": "https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/api",
   "features": [
+    "API 描述语言定义服务接口",
     "自动生成 Swagger UI 文档",
-    "RESTful API 结构",
+    "RESTful API 标准结构",
+    "字段验证（go-playground/validator）",
+    "go_package 选项组织类型",
+    "compact_handler 合并处理器",
+    "中间件配置支持",
     "数据模型验证",
     "支持 Redis 缓存",
     "数据库 ORM 集成"

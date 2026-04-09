@@ -1,89 +1,111 @@
-# RPC Service Template
+# RPC Service Template Guide
 
-Build high-performance microservices using gRPC protocol with type-safe interfaces.
+## Overview
 
-## Features
+The RPC service template provides a high-performance microservice framework based on Protocol Buffers. Define service interfaces through Proto description language with automatic code generation and type-safe communication.
 
-- Native gRPC protocol support
-- High-performance RPC with binary serialization
-- Service mesh ready architecture
-- Type-safe interfaces with Protocol Buffers
-- Efficient data transmission
+## Core Features
 
-## Creating a New Project
+### 1. Proto Description Language
 
-```bash
-jzero new my-rpc --frame rpc
-cd my-rpc
-jzero run
-```
-
-Your RPC service will start on the configured port (default: 50051).
-
-## Protocol Buffers
-
-Define your service interface in `.proto` files:
+Define service interfaces using Protocol Buffers:
 
 ```protobuf
 syntax = "proto3";
 
-package service;
-option go_package = "./service";
+package user;
+option go_package = "./user";
 
-service Greeter {
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+service UserService {
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
 }
 
-message HelloRequest {
-  string name = 1;
+message CreateUserRequest {
+    string name = 1;
+    string email = 2;
 }
 
-message HelloReply {
-  string message = 2;
+message CreateUserResponse {
+    int64 id = 1;
+    string name = 2;
 }
+```
+
+### 2. Field Validation
+
+Use `buf.validate` for field validation:
+
+```protobuf
+import "validate/validate.proto";
+
+message CreateUserRequest {
+    string name = 1 [(validate.rules).string.min_len = 1];
+    string email = 2 [(validate.rules).string.email = true];
+}
+```
+
+### 3. Middleware Support
+
+Support configuring middleware in services for authentication, logging, rate limiting, etc.
+
+## Common Commands
+
+### Add Proto Files
+
+Add proto files in the desc/proto folder:
+
+```bash
+# Service is Test
+jzero add proto test
+```
+
+### Generate Code
+
+```bash
+# Generate service code
+jzero gen
+
+# Generate based on changed files
+jzero gen --git-change
+
+# Generate by specifying description directory or file
+jzero gen --desc desc/
+jzero gen --desc desc/proto/user.proto
+```
+
+### Generate Client
+
+```bash
+# Generate zrpc client
+jzero gen zrpcclient
 ```
 
 ## Project Structure
 
 ```
-my-rpc/
-├── proto/          # Protocol Buffer definitions
-├── internal/       # Internal implementation
-├── service/        # Generated gRPC code
-└── main.go         # Application entry point
+.
+├── desc/                   # Description files
+│   └── proto/             # Proto description files
+│       └── user.proto     # User service Proto definition
+├── internal/
+│   ├── logic/            # Business logic
+│   ├── server/           # gRPC server
+│   ├── svc/              # Service context
+│   └── middleware/       # Middleware
+└── cmd/
+    └── server.go         # Service entry point
 ```
 
-## Development
+## Development Workflow
 
-```bash
-# Run the service
-jzero run
+1. **Add Proto File**: Run `jzero add proto test` to create proto file in desc/proto/ directory
+2. **Generate Code**: Run `jzero gen` to generate code
+3. **Implement Logic**: Implement business logic in `internal/logic/`
+4. **Generate Client**: Run `jzero gen zrpcclient` to generate client
 
-# Generate gRPC code from proto files
-jzero proto
+## Related Resources
 
-# Build for production
-jzero build
-```
-
-## Client Example
-
-Create a client to connect to your RPC service:
-
-```go
-conn, err := grpc.Dial("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
-if err != nil {
-    log.Fatal(err)
-}
-defer conn.Close()
-
-client := pb.NewGreeterClient(conn)
-resp, err := client.SayHello(ctx, &pb.HelloRequest{Name: "World"})
-```
-
-## Benefits of gRPC
-
-- **Performance**: Binary serialization is faster than JSON
-- **Type Safety**: Compile-time type checking
-- **Code Generation**: Client and server code generated from proto files
-- **Interoperability**: Works across multiple programming languages
+- [Proto Guide](https://docs.jzero.io/guide/proto.html)
+- [Add Command](https://docs.jzero.io/getting-started/add.html)
+- [Gen Command](https://docs.jzero.io/getting-started/gen.html)
+- [Client Generation](https://docs.jzero.io/getting-started/genclient.html)

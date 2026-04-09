@@ -1,16 +1,21 @@
 {
   "id": "api",
   "name": "API Service",
-  "description": "Build RESTful API services with automatic Swagger documentation",
+  "description": "Lightweight, high-performance RESTful API service framework based on API description language",
   "category": "API",
-  "tags": ["api", "rest", "swagger", "backend"],
+  "tags": ["api", "rest", "swagger", "backend", "validation"],
   "command": "jzero new your_project --frame api",
   "repository": "https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/api",
   "features": [
-    "Auto-generated Swagger UI at /swagger",
-    "RESTful API structure",
-    "Model validation",
-    "Redis caching support",
+    "API description language for service interfaces",
+    "Auto-generated Swagger UI documentation",
+    "RESTful API standard architecture",
+    "Field validation with go-playground/validator",
+    "go_package option for type organization",
+    "compact_handler for handler merging",
+    "Middleware configuration support",
+    "Data model validation",
+    "Redis cache support",
     "Database ORM integration"
   ]
 }

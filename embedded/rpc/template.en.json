@@ -1,16 +1,19 @@
 {
   "id": "rpc",
   "name": "RPC Service",
-  "description": "Build high-performance microservices with gRPC",
+  "description": "High-performance gRPC microservice framework based on Protocol Buffers",
   "category": "RPC",
-  "tags": ["rpc", "grpc", "microservices", "backend"],
+  "tags": ["rpc", "grpc", "microservices", "backend", "proto", "validation"],
   "command": "jzero new your_project --frame rpc",
   "repository": "https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/rpc",
   "features": [
-    "gRPC protocol support",
-    "High performance RPC",
-    "Service mesh ready",
+    "Protocol Buffers for service interfaces",
+    "gRPC high-performance binary protocol",
+    "Field validation with buf.validate",
+    "Multiple proto files support",
+    "Middleware configuration support",
     "Type-safe interfaces",
-    "Binary serialization"
+    "Auto-generated zrpc clients",
+    "Service mesh ready"
   ]
 }
