@@ -10,40 +10,29 @@
       </a>
     </div>
 
-    <!-- Search -->
+    <!-- Search & Filter -->
     <div class="search-container">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="<%= i18n.hero?.searchPlaceholder %>"
-        class="search-input"
-        autocomplete="off"
-      >
-      <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<!-- Filters -->
-<section class="filters">
-  <div class="container">
-    <div class="filter-groups">
-      <!-- Category Filter -->
-      <div class="filter-group">
-        <label><%= i18n.filters?.category %></label>
-        <select id="categoryFilter" class="filter-select">
+      <div class="search-wrapper">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="<%= i18n.hero?.searchPlaceholder %>"
+          class="search-input"
+          autocomplete="off"
+        >
+        <select id="categoryFilter" class="category-select">
           <option value=""><%= i18n.filters?.allCategories %></option>
           <% categories.forEach(cat => { %>
             <option value="<%= cat %>"><%= cat %></option>
           <% }) %>
         </select>
       </div>
-    </div>
-
-    <div class="results-count">
-      <span id="resultsCount"><%= templates.length %></span> <%= i18n.filters?.resultsCount %>
+      <div class="results-count">
+        <span id="resultsCount"><%= templates.length %></span> <%= i18n.filters?.resultsCount %>
+      </div>
     </div>
   </div>
 </section>
@@ -74,14 +63,23 @@
             <div class="contribution-content">
               <h3><%= i18n.contribution?.title %></h3>
               <p><%= i18n.contribution?.description %></p>
-              <a href="<%= baseUrl || '' %>/contribute/index.html" class="btn btn-contribution">
-                <%= i18n.contribution?.button %>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                  <polyline points="15 3 21 3 21 9"/>
-                  <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-              </a>
+              <div class="contribution-actions">
+                <a href="<%= baseUrl || '' %>/submit/index.html" class="btn btn-contribution btn-submit">
+                  <%= i18n.submit?.navButton %>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14"/>
+                    <path d="M5 12h14"/>
+                  </svg>
+                </a>
+                <a href="<%= baseUrl || '' %>/contribute/index.html" class="btn btn-contribution btn-guide">
+                  <%= i18n.nav?.contribute %>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         <% } %>
@@ -140,11 +138,3 @@
     </div>
   </section>
 <% } %>
-
-<a href="<%= baseUrl || '' %>/submit/index.html" class="floating-submit-button" aria-label="<%= i18n.submit?.floatingButton %>">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M12 5v14"/>
-    <path d="M5 12h14"/>
-  </svg>
-  <span><%= i18n.submit?.floatingButton %></span>
-</a>
