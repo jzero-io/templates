@@ -27,27 +27,54 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeMobileMenu() {
   const mobileToggle = document.getElementById('mobileMenuToggle');
   const mainNav = document.getElementById('mainNav');
+  const overlay = document.getElementById('mobileMenuOverlay');
 
   if (mobileToggle && mainNav) {
     mobileToggle.addEventListener('click', function() {
       mobileToggle.classList.toggle('active');
       mainNav.classList.toggle('active');
+
+      // Toggle overlay
+      if (overlay) {
+        overlay.classList.toggle('show');
+      }
+
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
     });
+
+    // Close menu when clicking overlay
+    if (overlay) {
+      overlay.addEventListener('click', function() {
+        mobileToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+      });
+    }
 
     // Close menu when clicking outside
     document.addEventListener('click', function(event) {
-      if (!mobileToggle.contains(event.target) && !mainNav.contains(event.target)) {
+      if (!mobileToggle.contains(event.target) && !mainNav.contains(event.target) && (!overlay || !overlay.contains(event.target))) {
         mobileToggle.classList.remove('active');
         mainNav.classList.remove('active');
+        if (overlay) {
+          overlay.classList.remove('show');
+        }
+        document.body.style.overflow = '';
       }
     });
 
     // Close menu when clicking on nav links
-    const navLinks = mainNav.querySelectorAll('.nav-link, .nav-github');
+    const navLinks = mainNav.querySelectorAll('.nav-github, .lang-option');
     navLinks.forEach(link => {
       link.addEventListener('click', function() {
         mobileToggle.classList.remove('active');
         mainNav.classList.remove('active');
+        if (overlay) {
+          overlay.classList.remove('show');
+        }
+        document.body.style.overflow = '';
       });
     });
   }
