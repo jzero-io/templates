@@ -4,6 +4,12 @@
     <h1><%= siteTitle %></h1>
     <p class="hero-description"><%= siteDescription %></p>
 
+    <div class="hero-cta">
+      <a href="<%= baseUrl || '' %>/submit/index.html" class="btn btn-hero-submit">
+        <%= i18n.submit?.heroButton %>
+      </a>
+    </div>
+
     <!-- Search -->
     <div class="search-container">
       <input
@@ -134,3 +140,11 @@
     </div>
   </section>
 <% } %>
+
+<a href="<%= baseUrl || '' %>/submit/index.html" class="floating-submit-button" aria-label="<%= i18n.submit?.floatingButton %>">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M12 5v14"/>
+    <path d="M5 12h14"/>
+  </svg>
+  <span><%= i18n.submit?.floatingButton %></span>
+</a>

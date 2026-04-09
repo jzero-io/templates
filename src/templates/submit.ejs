@@ -1,0 +1,51 @@
+<!-- Template Submission Page -->
+<section class="submit-page">
+  <div class="container">
+    <div class="submit-hero">
+      <span class="submit-eyebrow"><%= i18n.submit?.eyebrow %></span>
+      <h1><%= i18n.submit?.pageTitle %></h1>
+      <p class="submit-subtitle"><%= i18n.submit?.pageSubtitle %></p>
+
+      <div class="submit-actions">
+        <a href="<%= issueUrl %>" target="_blank" rel="noopener" class="btn btn-primary">
+          <%= i18n.submit?.cta?.primary %>
+        </a>
+        <a href="<%= baseUrl || '' %>/contribute/index.html" class="btn btn-secondary">
+          <%= i18n.submit?.cta?.secondary %>
+        </a>
+      </div>
+    </div>
+
+    <div class="submit-grid">
+      <article class="submit-card">
+        <h2><%= i18n.submit?.sections?.prepare?.title %></h2>
+        <p><%= i18n.submit?.sections?.prepare?.description %></p>
+        <ul class="submit-list">
+          <% (i18n.submit?.sections?.prepare?.items || []).forEach(item => { %>
+            <li><%= item %></li>
+          <% }) %>
+        </ul>
+      </article>
+
+      <article class="submit-card">
+        <h2><%= i18n.submit?.sections?.review?.title %></h2>
+        <p><%= i18n.submit?.sections?.review?.description %></p>
+        <ol class="submit-steps">
+          <% (i18n.submit?.sections?.review?.items || []).forEach(item => { %>
+            <li><%= item %></li>
+          <% }) %>
+        </ol>
+      </article>
+    </div>
+
+    <section class="submit-card submit-note">
+      <h2><%= i18n.submit?.tips?.title %></h2>
+      <p><%= i18n.submit?.tips?.description %></p>
+      <div class="submit-note-actions">
+        <a href="<%= issueUrl %>" target="_blank" rel="noopener" class="btn btn-primary">
+          <%= i18n.submit?.tips?.button %>
+        </a>
+      </div>
+    </section>
+  </div>
+</section>
