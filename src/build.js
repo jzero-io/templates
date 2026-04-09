@@ -79,6 +79,10 @@ class SiteBuilder {
       console.log(`📄 Building contribute page (${lang})...`);
       await this.buildContributePage(lang, baseUrl);
 
+      // Build template submission page for this language
+      console.log(`📄 Building submit page (${lang})...`);
+      await this.buildSubmitPage(lang, baseUrl);
+
       console.log(`\n✅ ${lang} build complete!\n`);
     }
 
@@ -253,6 +257,57 @@ class SiteBuilder {
     this.ensureDir(path.dirname(outputPath));
     fs.writeFileSync(outputPath, html);
     console.log(`   ✓ ${baseUrl ? lang + '/' : ''}contribute/index.html`);
+  }
+
+  /**
+   * Build the template submission page
+   */
+  async buildSubmitPage(lang, baseUrl) {
+    const layoutTemplate = fs.readFileSync(
+      path.join(this.templatesDir, 'layout.ejs'),
+      'utf-8'
+    );
+    const submitTemplate = fs.readFileSync(
+      path.join(this.templatesDir, 'submit.ejs'),
+      'utf-8'
+    );
+
+    const i18n = this.getI18n(lang);
+    const issueUrl = new URL('https://github.com/jzero-io/templates/issues/new');
+    issueUrl.searchParams.set('template', 'template-submission.yml');
+
+    const body = ejs.render(submitTemplate, {
+      siteTitle: i18n.siteTitle || this.config.title,
+      siteDescription: i18n.siteDescription || this.config.description,
+      i18n,
+      currentLang: lang,
+      supportedLangs: this.supportedLangs,
+      baseUrl,
+      issueUrl: issueUrl.toString()
+    });
+
+    const html = ejs.render(layoutTemplate, {
+      title: i18n.submit?.pageTitle || (lang === 'zh' ? '模板申报' : 'Template Submission'),
+      siteTitle: i18n.siteTitle || this.config.title,
+      siteDescription: i18n.siteDescription || this.config.description,
+      description: i18n.submit?.pageSubtitle || '',
+      body,
+      currentPage: 'submit',
+      i18n,
+      currentLang: lang,
+      supportedLangs: this.supportedLangs,
+      baseUrl,
+      lang,
+      defaultLang: this.defaultLang
+    });
+
+    const outputPath = baseUrl
+      ? path.join(this.outputDir, lang, 'submit', 'index.html')
+      : path.join(this.outputDir, 'submit', 'index.html');
+
+    this.ensureDir(path.dirname(outputPath));
+    fs.writeFileSync(outputPath, html);
+    console.log(`   ✓ ${baseUrl ? lang + '/' : ''}submit/index.html`);
   }
 
   /**

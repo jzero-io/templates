@@ -5,6 +5,8 @@
     "language": "English",
     "languageCode": "en",
     "nav": {
+      "home": "Home",
+      "contribute": "Guide",
       "templates": "Templates",
       "docs": "Docs",
       "github": "GitHub",
@@ -43,6 +45,45 @@
     "noResults": {
       "title": "No templates found",
       "description": "Try adjusting your search or filters"
+    },
+    "submit": {
+      "navButton": "Submit Template",
+      "heroButton": "List Your Template",
+      "floatingButton": "Submit Template",
+      "eyebrow": "Community Listing",
+      "pageTitle": "Submit a Template",
+      "pageSubtitle": "Use the GitHub Issue form to submit your template listing. Share the repository, screenshots, usage command, and a short description so maintainers can review it quickly.",
+      "cta": {
+        "primary": "Open GitHub Issue Form",
+        "secondary": "View Contribution Guide"
+      },
+      "sections": {
+        "prepare": {
+          "title": "Prepare Before You Submit",
+          "description": "The issue form is meant for template creators who want maintainers to help review and list a template in the marketplace.",
+          "items": [
+            "Template name, repository URL, and a short project description",
+            "Applicable category, tags, and the command used to create the project",
+            "Optional online demo, screenshots, or documentation links",
+            "Notes about maturity, maintenance status, and supported language versions"
+          ]
+        },
+        "review": {
+          "title": "What Happens Next",
+          "description": "After the issue is submitted, maintainers can review the information directly in GitHub and follow up in the same thread.",
+          "items": [
+            "Maintainers confirm the template is complete and accessible",
+            "They may ask for missing metadata, docs, or demo details",
+            "Once approved, the template can be added to the public listing",
+            "Follow-up updates can continue in the same GitHub issue"
+          ]
+        }
+      },
+      "tips": {
+        "title": "Prefer GitHub-native Submission",
+        "description": "The static page only acts as a launcher. The actual submission happens in GitHub Issue forms so the review process stays transparent and traceable.",
+        "button": "Submit on GitHub"
+      }
     },
     "contribution": {
       "title": "Contribute Your Template",
@@ -137,6 +178,8 @@
     "language": "中文",
     "languageCode": "zh",
     "nav": {
+      "home": "首页",
+      "contribute": "制作指南",
       "templates": "模板",
       "docs": "文档",
       "github": "GitHub",
@@ -173,6 +216,45 @@
     "noResults": {
       "title": "未找到模板",
       "description": "尝试调整搜索或筛选条件"
+    },
+    "submit": {
+      "navButton": "申报模板",
+      "heroButton": "我要上架模板",
+      "floatingButton": "申报模板",
+      "eyebrow": "社区模板申报",
+      "pageTitle": "模板申报",
+      "pageSubtitle": "通过 GitHub Issue 表单提交模板上架申请。填写模板仓库、使用命令、功能简介和演示信息，方便维护者快速审核并收录。",
+      "cta": {
+        "primary": "打开 GitHub 申报表单",
+        "secondary": "查看制作指南"
+      },
+      "sections": {
+        "prepare": {
+          "title": "提交前请准备",
+          "description": "这个页面只负责引导，真正的申报会在 GitHub Issue 表单里完成，建议你先准备好以下信息。",
+          "items": [
+            "模板名称、仓库地址，以及一句话介绍",
+            "模板分类、标签、初始化命令和适用场景",
+            "可选的在线演示、截图、文档链接",
+            "维护状态、依赖版本、已知限制等补充说明"
+          ]
+        },
+        "review": {
+          "title": "提交后会发生什么",
+          "description": "Issue 创建后，维护者会直接在 GitHub 中跟进审核流程，沟通记录也会完整保留。",
+          "items": [
+            "先确认模板仓库、说明文档和命令是否可用",
+            "如有缺失信息，会在 Issue 中继续补充沟通",
+            "审核通过后，再安排收录到模板市场",
+            "后续更新也可以继续在同一个 Issue 中追踪"
+          ]
+        }
+      },
+      "tips": {
+        "title": "使用 GitHub 原生表单提交",
+        "description": "当前站点是静态站点，页面只提供入口。实际申报采用 GitHub Issue Form，便于流程公开、可追踪、可协作。",
+        "button": "前往 GitHub 提交"
+      }
     },
     "contribution": {
       "title": "贡献您的模板",

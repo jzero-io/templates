@@ -1,0 +1,115 @@
+name: Template submission
+description: Submit a community template for review and listing in the Jzero Template Market.
+title: "[Template Submission]: "
+labels:
+  - template-submission
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting a template.
+        Please fill in the key details so maintainers can review and list it efficiently.
+
+        感谢提交模板，请尽量补充完整信息，方便维护者快速审核与收录。
+
+  - type: input
+    id: template_name
+    attributes:
+      label: Template name / 模板名称
+      placeholder: awesome-api-starter
+    validations:
+      required: true
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repository URL / 仓库地址
+      placeholder: https://github.com/your-org/your-template
+    validations:
+      required: true
+
+  - type: dropdown
+    id: template_type
+    attributes:
+      label: Template type / 模板类型
+      options:
+        - third_party
+        - external
+        - embedded
+    validations:
+      required: true
+
+  - type: input
+    id: category
+    attributes:
+      label: Category / 分类
+      placeholder: API, Web, CLI, Docs, Mobile...
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags / 标签
+      description: Comma-separated keywords
+      placeholder: api, go, rest, starter
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Short description / 简介
+      placeholder: Describe the template and who it is for.
+    validations:
+      required: true
+
+  - type: textarea
+    id: command
+    attributes:
+      label: Init command / 初始化命令
+      render: shell
+      placeholder: jzero new your-app --remote https://github.com/your-org/your-template.git --branch main
+    validations:
+      required: true
+
+  - type: input
+    id: demo
+    attributes:
+      label: Demo URL / 演示地址
+      placeholder: https://your-demo.example.com
+    validations:
+      required: false
+
+  - type: textarea
+    id: highlights
+    attributes:
+      label: Key features / 核心特性
+      description: One point per line
+      placeholder: |
+        - Built-in auth
+        - Deploy-ready CI
+        - Example pages
+    validations:
+      required: true
+
+  - type: textarea
+    id: docs
+    attributes:
+      label: Docs, screenshots, and extra context / 文档、截图及补充说明
+      description: Add links or notes that help reviewers verify the template quickly.
+      placeholder: README links, screenshots, supported runtime versions, maintenance notes...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist / 提交检查
+      options:
+        - label: I have verified the repository is public and accessible. / 我已确认仓库公开可访问。
+          required: true
+        - label: I have provided setup instructions or a usable init command. / 我已提供初始化命令或可用的使用说明。
+          required: true
+        - label: I understand maintainers may request more details before listing. / 我理解维护者可能会要求补充信息后再收录。
+          required: true
