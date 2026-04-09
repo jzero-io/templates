@@ -108,268 +108,425 @@
 
     <div class="contribute-content">
       <div class="markdown-content">
-        <h1>Third-party Template Guide</h1>
-<p>Welcome to contribute third-party templates to the Jzero Template Market! This guide will help you create and publish your own templates.</p>
-<h2>What are Third-party Templates?</h2>
-<p>Third-party templates are project templates created and maintained by community developers to help other developers quickly start specific types of projects.</p>
-<h2>Template Structure</h2>
-<p>Each third-party template should contain the following files:</p>
-<pre><code class="hljs">your-<span class="hljs-keyword">template</span>/
-├── <span class="hljs-keyword">template</span>.json          <span class="hljs-comment"># Template config file (required)</span>
-├── <span class="hljs-keyword">template</span>.zh.json       <span class="hljs-comment"># Chinese config file (optional, for i18n)</span>
-├── <span class="hljs-type">README</span>.md              <span class="hljs-comment"># Template documentation (required)</span>
-└── [<span class="hljs-keyword">template</span> files]       <span class="hljs-comment"># Template files and directories</span></code></pre><h2>Configuration File</h2>
-<h3>template.json</h3>
-<p>Template configuration file is in JSON format with the following fields:</p>
+        <h1>How to Create Templates and Integrate into Template Market</h1>
+<p>This guide will help you create your own jzero templates and integrate them into the template market website for showcase.</p>
+<h2>jzero Template System Overview</h2>
+<p>jzero supports two types of templates:</p>
+<h3>1. Official Built-in Templates (embedded)</h3>
+<p>Templates maintained by jzero official team, located in <code>cmd/jzero/.template/frame/</code> directory of the jzero main repository.</p>
+<ul>
+<li><strong>API Service Template</strong>: RESTful API framework based on API description language</li>
+<li><strong>RPC Service Template</strong>: gRPC microservice framework based on Protocol Buffers</li>
+<li><strong>API Gateway Template</strong>: API gateway service template</li>
+<li><strong>CLI Template</strong>: Command-line tool template</li>
+</ul>
+<p>Usage:</p>
+<pre><code class="hljs language-bash">jzero new your_project --frame api
+jzero new your_project --frame rpc
+jzero new your_project --frame gateway</code></pre><h3>2. Remote Repository Templates (remote)</h3>
+<p>Templates hosted in remote Git repositories, accessible by specifying repository and branch.</p>
+<p>Usage:</p>
+<pre><code class="hljs language-bash">jzero new your_project --remote https://github.com/jzero-io/templates.git --branch api-vercel</code></pre><h2>Template Market Website Architecture</h2>
+<p>The template market website (templates repository) is a static site generator that showcases jzero templates.</p>
+<h3>Website Structure</h3>
+<pre><code class="hljs">templates<span class="hljs-symbol">/</span>
+├── embedded<span class="hljs-symbol">/</span>              <span class="hljs-comment"># Built-in template showcase</span>
+│   ├── api<span class="hljs-symbol">/</span>
+│   │   ├── template.zh.json
+│   │   ├── template.en.json
+│   │   ├── guide.zh.md
+│   │   └── guide.en.md
+│   ├── rpc<span class="hljs-symbol">/</span>
+│   └── gateway<span class="hljs-symbol">/</span>
+├── external<span class="hljs-symbol">/</span>              <span class="hljs-comment"># External template showcase</span>
+│   ├── api-vercel<span class="hljs-symbol">/</span>
+│   ├── cli<span class="hljs-symbol">/</span>
+│   └── vuepress-hope-docs<span class="hljs-symbol">/</span>
+├── third_party<span class="hljs-symbol">/</span>          <span class="hljs-comment"># Third-party templates (TBD)</span>
+├── src<span class="hljs-symbol">/</span>                  <span class="hljs-comment"># Website build scripts</span>
+│   ├── build.js
+│   ├── template-loader.js
+│   └── templates<span class="hljs-symbol">/</span>        <span class="hljs-comment"># EJS templates</span>
+└── dist<span class="hljs-symbol">/</span>                <span class="hljs-comment"># Generated static website</span></code></pre><h3>How It Works</h3>
+<ol>
+<li><p><strong>template-loader.js</strong>: Automatically discovers and loads template configurations</p>
+<ul>
+<li>Scans <code>embedded/</code>, <code>external/</code>, <code>third_party/</code> directories</li>
+<li>Finds <code>template.{lang}.json</code> and <code>guide.{lang}.md</code> files</li>
+<li>Parses Markdown and converts to HTML</li>
+</ul>
+</li>
+<li><p><strong>build.js</strong>: Generates static website</p>
+<ul>
+<li>Generates separate pages for each language version</li>
+<li>Builds index pages, detail pages, contribution pages</li>
+<li>Copies static assets</li>
+</ul>
+</li>
+<li><p><strong>Multi-language Support</strong></p>
+<ul>
+<li>Default language: <code>zh</code></li>
+<li>Supported languages: <code>zh</code>, <code>en</code></li>
+<li>URL structure: <code>/</code> (default), <code>/en/</code> (English)</li>
+</ul>
+</li>
+</ol>
+<h2>How to Create jzero Templates</h2>
+<h3>Method 1: Create Built-in Template (requires modifying jzero main repository)</h3>
+<p>If you want to create a built-in template (similar to <code>api</code>, <code>rpc</code>, <code>gateway</code>):</p>
+<ol>
+<li><strong>Create template in jzero repository</strong></li>
+</ol>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Clone jzero repository</span>
+git <span class="hljs-built_in">clone</span> https://github.com/jzero-io/jzero.git
+<span class="hljs-built_in">cd</span> jzero
+
+<span class="hljs-comment"># Create template directory</span>
+<span class="hljs-built_in">mkdir</span> -p cmd/jzero/.template/frame/your-template</code></pre><ol start="2">
+<li><strong>Create template files</strong></li>
+</ol>
+<p>Template files support Go template syntax with these variables:</p>
+<pre><code class="hljs language-go">{{ .Module }}     <span class="hljs-comment">// Go module name</span>
+{{ .APP }}        <span class="hljs-comment">// Application name</span></code></pre><p>Example template file:</p>
+<pre><code class="hljs language-go"><span class="hljs-comment">// cmd/jzero/.template/frame/your-template/main.go.tpl</span>
+<span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> (
+    <span class="hljs-string">&quot;fmt&quot;</span>
+    <span class="hljs-string">&quot;{{ .Module }}/internal/config&quot;</span>
+    <span class="hljs-string">&quot;{{ .Module }}/internal/handler&quot;</span>
+    <span class="hljs-string">&quot;{{ .Module }}/internal/svc&quot;</span>
+    
+    <span class="hljs-string">&quot;github.com/zeromicro/go-zero/core/conf&quot;</span>
+    <span class="hljs-string">&quot;github.com/zeromicro/go-zero/rest&quot;</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-keyword">var</span> c config.Config
+    conf.MustLoad(<span class="hljs-string">&quot;etc/{{ .APP }}.yaml&quot;</span>, &amp;c)
+    
+    server := rest.MustNewServer(c.RestConf)
+    svr := svc.NewServiceContext(c)
+    
+    handler.RegisterHandlers(server, svc)
+    
+    fmt.Printf(<span class="hljs-string">&quot;Starting {{ .APP }} at %s...\n&quot;</span>, c.RestConf.Address)
+    server.Start()
+}</code></pre><ol start="3">
+<li><strong>Test template</strong></li>
+</ol>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Create project using template</span>
+jzero new test-your-template --frame your-template
+
+<span class="hljs-comment"># Enter project and run</span>
+<span class="hljs-built_in">cd</span> test-your-template
+go mod tidy
+go run main.go</code></pre><h3>Method 3: Convert Existing Project to Template</h3>
+<p>If you already have a developed project, you can use the <code>jzero template build</code> command to convert it to a template:</p>
+<ol>
+<li><strong>Navigate to your project directory</strong></li>
+</ol>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">cd</span> your-existing-project</code></pre><ol start="2">
+<li><strong>Convert project to template</strong></li>
+</ol>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Convert current project to a template named myapi</span>
+jzero template build --name myapi</code></pre><p>This will create the <code>myapi</code> template in the <code>$HOME/.jzero/templates/</code> directory.</p>
+<ol start="3">
+<li><strong>Use the converted template to create new projects</strong></li>
+</ol>
+<pre><code class="hljs language-bash">jzero new my-new-project --template myapi</code></pre><h3>Method 2: Create Remote Repository Template (Recommended)</h3>
+<p>Remote repository templates are more flexible and maintained in your own repository.</p>
+<ol>
+<li><strong>Create template repository</strong></li>
+</ol>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># Create new repository</span>
+<span class="hljs-built_in">mkdir</span> my-jzero-template
+<span class="hljs-built_in">cd</span> my-jzero-template
+git init</code></pre><ol start="2">
+<li><strong>Create template file structure</strong></li>
+</ol>
+<pre><code class="hljs">my-jzero-template<span class="hljs-symbol">/</span>
+├── app<span class="hljs-symbol">/</span>                  <span class="hljs-comment"># Template files</span>
+│   ├── main.go.tpl
+│   ├── config.go.tpl
+│   └── ...
+├── desc<span class="hljs-symbol">/</span>                <span class="hljs-comment"># Descriptor files (optional)</span>
+│   └── api<span class="hljs-symbol">/</span>
+│       └── user.api
+└── README.md            <span class="hljs-comment"># Template documentation</span></code></pre><ol start="3">
+<li><strong>Push to GitHub</strong></li>
+</ol>
+<pre><code class="hljs language-bash">git add .
+git commit -m <span class="hljs-string">&quot;Initial template&quot;</span>
+git remote add origin https://github.com/yourusername/my-jzero-template.git
+git push -u origin main</code></pre><ol start="4">
+<li><strong>Use template</strong></li>
+</ol>
+<pre><code class="hljs language-bash">jzero new myproject --remote https://github.com/yourusername/my-jzero-template.git</code></pre><h2>How to Integrate Templates into Template Market Website</h2>
+<h3>Integrate Built-in Template</h3>
+<p>If your template is already a built-in template in the jzero main repository:</p>
+<ol>
+<li><strong>Create template showcase page in templates repository</strong></li>
+</ol>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">cd</span> templates
+<span class="hljs-built_in">mkdir</span> -p embedded/your-template</code></pre><ol start="2">
+<li><strong>Create configuration file <code>template.zh.json</code></strong></li>
+</ol>
 <pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-template-id&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-template&quot;</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Your Template Name&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;A brief description of your template&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Category Name&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;tag1&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;tag2&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;tag3&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new project_name --template your-template-id&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/repo&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://your-demo-url.com&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Brief description of your template&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;API&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;api&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;rest&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;go&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new your_project --frame your-template&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/your-template&quot;</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
     <span class="hljs-string">&quot;Feature 1&quot;</span><span class="hljs-punctuation">,</span>
     <span class="hljs-string">&quot;Feature 2&quot;</span><span class="hljs-punctuation">,</span>
     <span class="hljs-string">&quot;Feature 3&quot;</span>
   <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><h3>Field Description</h3>
+<span class="hljs-punctuation">}</span></code></pre><ol start="3">
+<li><strong>Create English configuration <code>template.en.json</code></strong></li>
+</ol>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-template&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Your Template Name&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Brief description of your template&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;API&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;api&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;rest&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;go&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new your_project --frame your-template&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/jzero-io/jzero/tree/main/cmd/jzero/.template/frame/your-template&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-string">&quot;Feature 1&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;Feature 2&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-string">&quot;Feature 3&quot;</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre><ol start="4">
+<li><strong>Create usage guide <code>guide.zh.md</code></strong></li>
+</ol>
+<pre><code class="hljs language-markdown"><span class="hljs-section"># Your Template Guide</span>
+
+<span class="hljs-section">## Overview</span>
+
+Template overview description...
+
+<span class="hljs-section">## Quick Start</span>
+
+\<span class="hljs-code">`\`</span>\`bash
+jzero new your<span class="hljs-emphasis">_project --frame your-template
+cd your_</span>project
+\<span class="hljs-code">`\`</span>\`
+
+<span class="hljs-section">## Project Structure</span>
+
+\<span class="hljs-code">`\`</span>\`
+.
+├── main.go
+├── config.go
+└── ...
+\<span class="hljs-code">`\`</span>\`
+
+<span class="hljs-section">## Related Resources</span>
+
+<span class="hljs-bullet">-</span> [<span class="hljs-string">jzero Documentation</span>](<span class="hljs-link">https://docs.jzero.io</span>)</code></pre><ol start="5">
+<li><p><strong>Create English guide <code>guide.en.md</code></strong></p>
+</li>
+<li><p><strong>Build and preview</strong></p>
+</li>
+</ol>
+<pre><code class="hljs language-bash">npm run build
+npx serve dist</code></pre><ol start="7">
+<li><strong>Submit PR</strong></li>
+</ol>
+<p>Submit your changes to the templates repository as a Pull Request.</p>
+<h3>Integrate Remote Repository Template</h3>
+<p>If your template is hosted in a remote repository:</p>
+<ol>
+<li><strong>Create template showcase page in templates repository</strong></li>
+</ol>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">cd</span> templates
+<span class="hljs-built_in">mkdir</span> -p external/your-template</code></pre><ol start="2">
+<li><strong>Create configuration file</strong> (same as above)</li>
+</ol>
+<p>Note that the <code>command</code> field should use <code>--remote</code> and <code>--branch</code>:</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new your_project --remote https://github.com/yourusername/my-jzero-template.git --branch main&quot;</span>
+<span class="hljs-punctuation">}</span></code></pre><ol start="3">
+<li><p><strong>Create usage guide</strong> (same as above)</p>
+</li>
+<li><p><strong>Build and submit PR</strong></p>
+</li>
+</ol>
+<h2>Configuration File Details</h2>
+<h3>Required Fields</h3>
 <table>
 <thead>
 <tr>
 <th>Field</th>
 <th>Type</th>
-<th>Required</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><code>id</code></td>
 <td>string</td>
-<td>✅</td>
-<td>Template unique identifier, lowercase letters, numbers, and hyphens only</td>
+<td>Template unique identifier (lowercase letters, numbers, hyphens)</td>
 </tr>
 <tr>
 <td><code>name</code></td>
 <td>string</td>
-<td>✅</td>
 <td>Template name</td>
 </tr>
 <tr>
 <td><code>description</code></td>
 <td>string</td>
-<td>✅</td>
-<td>Brief template description (recommended 50-150 characters)</td>
+<td>Brief template description (50-150 characters)</td>
 </tr>
 <tr>
 <td><code>category</code></td>
 <td>string</td>
-<td>✅</td>
-<td>Template category (e.g., Web, API, CLI, Tools)</td>
+<td>Template category (API, RPC, CLI, Web, Tools, etc.)</td>
 </tr>
 <tr>
 <td><code>tags</code></td>
 <td>array</td>
-<td>✅</td>
-<td>Template tag array for search and categorization</td>
+<td>Tag array for search and categorization</td>
 </tr>
 <tr>
 <td><code>command</code></td>
 <td>string</td>
-<td>✅</td>
-<td>Command to use the template</td>
+<td>Complete command to use the template</td>
 </tr>
+</tbody></table>
+<h3>Optional Fields</h3>
+<table>
+<thead>
 <tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
 <td><code>repository</code></td>
 <td>string</td>
-<td>❌</td>
-<td>Template repository URL</td>
+<td>Template source code repository URL</td>
 </tr>
 <tr>
 <td><code>demo</code></td>
 <td>string</td>
-<td>❌</td>
 <td>Online demo URL</td>
 </tr>
 <tr>
 <td><code>features</code></td>
 <td>array</td>
-<td>❌</td>
-<td>Template feature list</td>
+<td>List of template features</td>
 </tr>
 </tbody></table>
-<h3>Multi-language Support</h3>
-<p>To support Chinese, create a <code>template.zh.json</code> file:</p>
-<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;your-template-id&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;模板中文名称&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;模板的中文描述&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;分类名称&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;标签1&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;标签2&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new project_name --template your-template-id&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/repo&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://your-demo-url.com&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
-    <span class="hljs-string">&quot;特性1&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;特性2&quot;</span>
-  <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><h2>Creating Templates</h2>
-<h3>1. Create Template Directory</h3>
-<p>Create your template directory in <code>third_party/</code>:</p>
-<pre><code class="hljs language-bash"><span class="hljs-built_in">mkdir</span> third_party/your-template-id
-<span class="hljs-built_in">cd</span> third_party/your-template-id</code></pre><h3>2. Create Configuration File</h3>
-<p>Create <code>template.json</code>:</p>
-<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
-  <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;my-web-app&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;My Modern Web App&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;A full-stack web application with React and Node.js&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;category&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Web&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;tags&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;react&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;nodejs&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;fullstack&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;typescript&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;jzero new myapp --template my-web-app&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/username/my-web-app-template&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;demo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://my-web-app-demo.example.com&quot;</span><span class="hljs-punctuation">,</span>
-  <span class="hljs-attr">&quot;features&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
-    <span class="hljs-string">&quot;React 18 with TypeScript&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;Node.js backend with Express&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;PostgreSQL database integration&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;JWT authentication&quot;</span><span class="hljs-punctuation">,</span>
-    <span class="hljs-string">&quot;Docker support&quot;</span>
-  <span class="hljs-punctuation">]</span>
-<span class="hljs-punctuation">}</span></code></pre><h3>3. Create README.md</h3>
-<p>Create detailed README.md in the template directory:</p>
-<pre><code class="hljs language-markdown"><span class="hljs-section"># My Modern Web App</span>
+<h3>Category Suggestions</h3>
+<ul>
+<li><p><strong>embedded/</strong>: jzero official built-in templates</p>
+<ul>
+<li><code>API</code>: API service templates</li>
+<li><code>RPC</code>: RPC service templates</li>
+<li><code>Gateway</code>: Gateway templates</li>
+<li><code>CLI</code>: Command-line tool templates</li>
+</ul>
+</li>
+<li><p><strong>external/</strong>: Officially maintained remote templates</p>
+<ul>
+<li><code>Serverless</code>: Serverless-related</li>
+<li><code>Docs</code>: Documentation sites</li>
+<li><code>Tools</code>: Development tools</li>
+</ul>
+</li>
+</ul>
+<h2>Development Workflow</h2>
+<h3>Local Development</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 1. Clone templates repository</span>
+git <span class="hljs-built_in">clone</span> https://github.com/jzero-io/templates.git
+<span class="hljs-built_in">cd</span> templates
 
-A full-featured full-stack web application template.
-
-<span class="hljs-section">## Features</span>
-
-<span class="hljs-bullet">-</span> React 18 + TypeScript
-<span class="hljs-bullet">-</span> Node.js + Express backend
-<span class="hljs-bullet">-</span> PostgreSQL database
-<span class="hljs-bullet">-</span> JWT authentication
-<span class="hljs-bullet">-</span> Docker deployment support
-
-<span class="hljs-section">## Quick Start</span>
-
-\<span class="hljs-code">`\`</span>\`bash
-jzero new myapp --template my-web-app
-cd myapp
+<span class="hljs-comment"># 2. Install dependencies</span>
 npm install
-npm run dev
-\<span class="hljs-code">`\`</span>\`
 
-<span class="hljs-section">## Project Structure</span>
+<span class="hljs-comment"># 3. Create your template directory</span>
+<span class="hljs-built_in">mkdir</span> -p external/your-template
 
-\<span class="hljs-code">`\`</span>\`
-myapp/
-├── frontend/          # React frontend
-├── backend/           # Node.js backend
-├── database/          # Database scripts
-└── docker-compose.yml # Docker configuration
-\<span class="hljs-code">`\`</span>\`
+<span class="hljs-comment"># 4. Create configuration and guide files</span>
+<span class="hljs-comment"># template.zh.json, template.en.json</span>
+<span class="hljs-comment"># guide.zh.md, guide.en.md</span>
 
-<span class="hljs-section">## License</span>
+<span class="hljs-comment"># 5. Build and preview locally</span>
+npm run build
+npx serve dist
 
-MIT License</code></pre><h2>Best Practices</h2>
+<span class="hljs-comment"># 6. Visit http://localhost:3000 to preview</span></code></pre><h3>Development Mode</h3>
+<pre><code class="hljs language-bash">npm run dev</code></pre><p>Development mode automatically watches for file changes and rebuilds, while also starting the preview server.</p>
+<h3>Submission Process</h3>
+<ol>
+<li><strong>Fork templates repository</strong></li>
+<li><strong>Create branch</strong>: <code>git checkout -b add-your-template</code></li>
+<li><strong>Add template files</strong></li>
+<li><strong>Test build</strong>: <code>npm run build</code></li>
+<li><strong>Commit changes</strong>: <code>git add . &amp;&amp; git commit -m &quot;Add: Your Template&quot;</code></li>
+<li><strong>Push to fork</strong>: <code>git push origin add-your-template</code></li>
+<li><strong>Create Pull Request</strong></li>
+</ol>
+<h2>Best Practices</h2>
 <h3>1. Template Naming</h3>
 <ul>
-<li>Use meaningful names that clearly express the template purpose</li>
-<li>Avoid overly generic names (like <code>app</code> or <code>template</code>)</li>
-<li>Recommended format: <code>&lt;purpose&gt;-&lt;techstack&gt;-&lt;features&gt;</code> (e.g., <code>blog-vue3-ts</code>)</li>
+<li>Use meaningful, descriptive names</li>
+<li>Avoid overly generic names</li>
+<li>Recommended format: <code>&lt;purpose&gt;-&lt;tech-stack&gt;</code> (e.g., <code>api-vercel</code>, <code>cli-basic</code>)</li>
 </ul>
-<h3>2. Category Selection</h3>
-<p>Common categories:</p>
+<h3>2. Documentation</h3>
 <ul>
-<li><strong>Web</strong>: Web applications, websites</li>
-<li><strong>API</strong>: API services, microservices</li>
-<li><strong>CLI</strong>: Command-line tools</li>
-<li><strong>Mobile</strong>: Mobile applications</li>
-<li><strong>Desktop</strong>: Desktop applications</li>
-<li><strong>Library</strong>: Libraries/frameworks</li>
-<li><strong>Tools</strong>: Development tools</li>
-<li><strong>Docs</strong>: Documentation sites</li>
+<li>Provide clear usage guides</li>
+<li>Include complete example code</li>
+<li>Explain template use cases</li>
+<li>Add related resource links</li>
 </ul>
-<h3>3. Tags Usage</h3>
+<h3>3. Code Quality</h3>
 <ul>
-<li>Add 3-8 relevant tags</li>
-<li>Include main tech stack (e.g., react, vue, nodejs)</li>
-<li>Include frameworks or libraries (e.g., express, fastify)</li>
-<li>Include project type (e.g., fullstack, microservice)</li>
+<li>Ensure template code runs correctly</li>
+<li>Follow Go code conventions</li>
+<li>Add necessary comments</li>
+<li>Include error handling</li>
 </ul>
-<h3>4. Documentation</h3>
-<p>README.md should include:</p>
+<h3>4. Multi-language Support</h3>
 <ul>
-<li>Project introduction</li>
-<li>Features</li>
-<li>Quick start guide</li>
-<li>Project structure</li>
-<li>Configuration guide</li>
-<li>Deployment guide</li>
+<li>Provide both Chinese and English configurations</li>
+<li>Ensure accurate content in both languages</li>
+<li>Use consistent technical terminology</li>
 </ul>
-<h3>5. Version Management</h3>
+<h3>5. Maintenance</h3>
 <ul>
-<li>Use semantic versioning</li>
-<li>Maintain CHANGELOG.md</li>
+<li>Fix discovered issues promptly</li>
 <li>Update dependencies to stable versions</li>
+<li>Respond to user feedback</li>
+<li>Maintain template compatibility with jzero versions</li>
 </ul>
-<h2>Submission</h2>
-<h3>1. Prepare for Submission</h3>
-<p>Ensure your template includes:</p>
+<h2>Example References</h2>
+<h3>Built-in Template Examples</h3>
 <ul>
-<li>✅ Complete <code>template.json</code> configuration</li>
-<li>✅ Detailed <code>README.md</code> documentation</li>
-<li>✅ Runnable template code</li>
-<li>✅ Repository URL (if available)</li>
+<li><a href="https://github.com/jzero-io/templates/tree/main/embedded/api">API Service Template</a></li>
+<li><a href="https://github.com/jzero-io/templates/tree/main/embedded/rpc">RPC Service Template</a></li>
+<li><a href="https://github.com/jzero-io/templates/tree/main/external/cli">CLI Template</a></li>
 </ul>
-<h3>2. Create Pull Request</h3>
-<ol>
-<li>Fork this repository</li>
-<li>Create your template in <code>third_party/</code> directory</li>
-<li>Create Pull Request</li>
-<li>Wait for review</li>
-</ol>
-<h3>3. Review Criteria</h3>
+<h3>Remote Template Examples</h3>
 <ul>
-<li>Configuration file format is correct</li>
-<li>Documentation is complete and clear</li>
-<li>Code runs correctly</li>
-<li>Follows community guidelines</li>
+<li><a href="https://github.com/jzero-io/templates/tree/main/external/api-vercel">API Vercel Template</a></li>
+<li><a href="https://github.com/jzero-io/templates/tree/main/external/vuepress-hope-docs">VuePress Hope Docs Template</a></li>
 </ul>
-<h2>Template Maintenance</h2>
-<p>As a template author, you should:</p>
-<ul>
-<li>Fix bugs in templates promptly</li>
-<li>Update dependencies to stable versions</li>
-<li>Respond to user questions and feedback</li>
-<li>Keep templates compatible with Jzero</li>
-</ul>
-<h2>Example Templates</h2>
-<p>You can refer to existing third-party templates:</p>
-<ul>
-<li><a href="https://github.com/example/template1">Example 1</a></li>
-<li><a href="https://github.com/example/template2">Example 2</a></li>
-</ul>
-<h2>FAQ</h2>
-<h3>Q: Can templates include commercial content?</h3>
-<p>A: Yes, but must clearly state the license in README.</p>
-<h3>Q: Can I submit paid templates?</h3>
-<p>A: Yes, but must mark them as paid templates in the description.</p>
-<h3>Q: How do I update submitted templates?</h3>
-<p>A: Create a new Pull Request with &quot;Update: [template name]&quot; in the title.</p>
-<h3>Q: What if my template is rejected?</h3>
-<p>A: Review the feedback, make changes, and resubmit.</p>
 <h2>Get Help</h2>
 <ul>
-<li>📖 <a href="https://jzero.io/docs">Jzero Documentation</a></li>
+<li>📖 <a href="https://docs.jzero.io">jzero Documentation</a></li>
 <li>💬 <a href="https://github.com/jzero-io/templates/discussions">GitHub Discussions</a></li>
 <li>🐛 <a href="https://github.com/jzero-io/templates/issues">Issue Tracker</a></li>
 </ul>
-<h2>License</h2>
-<p>Third-party templates submitted to the Jzero Template Market are licensed under MIT License unless otherwise specified.</p>
 <hr>
-<p>Thank you for contributing to the Jzero community! 🎉</p>
+<p>Thank you for contributing to the jzero community! 🎉</p>
 
       </div>
 
