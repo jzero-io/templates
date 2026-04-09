@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit a Template - Jzero Template Market</title>
+  <meta name="description" content="Use the GitHub Issue form to submit your template listing. Share the repository, screenshots, usage command, and a short description so maintainers can review it quickly.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/en/" class="logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Jzero Template Market</span>
+        </a>
+
+        <nav class="nav">
+          <a href="/en/" class="nav-link ">
+            <span>Home</span>
+          </a>
+          <a href="/en/submit/index.html" class="nav-link nav-submit active">
+            <span>Submit Template</span>
+          </a>
+          <a href="/en/contribute/index.html" class="nav-link ">
+            <span>Guide</span>
+          </a>
+
+          <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener" class="nav-github">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            GitHub
+          </a>
+
+          
+            <div class="lang-switcher">
+              <button
+                class="lang-button"
+                onclick="toggleLangMenu(event)"
+                title="Switch Language"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10z"/>
+                </svg>
+                <span id="currentLangName">English</span>
+                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+
+              <div class="lang-dropdown" id="langDropdown">
+                
+                  
+                  
+                  
+                    
+                    
+                  
+                  <a
+                    href="/submit/"
+                    class="lang-option "
+                  >
+                    中文
+                  </a>
+                
+                  
+                  
+                  
+                    
+                    
+                  
+                  <a
+                    href="/en/submit/"
+                    class="lang-option active"
+                  >
+                    English
+                  </a>
+                
+              </div>
+            </div>
+          
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Template Submission Page -->
+<section class="submit-page">
+  <div class="container">
+    <div class="submit-hero">
+      <span class="submit-eyebrow">Community Listing</span>
+      <h1>Submit a Template</h1>
+      <p class="submit-subtitle">Use the GitHub Issue form to submit your template listing. Share the repository, screenshots, usage command, and a short description so maintainers can review it quickly.</p>
+
+      <div class="submit-actions">
+        <a href="https://github.com/jzero-io/templates/issues/new?template=template-submission.yml" target="_blank" rel="noopener" class="btn btn-primary">
+          Open GitHub Issue Form
+        </a>
+        <a href="/en/contribute/index.html" class="btn btn-secondary">
+          View Contribution Guide
+        </a>
+      </div>
+    </div>
+
+    <div class="submit-grid">
+      <article class="submit-card">
+        <h2>Prepare Before You Submit</h2>
+        <p>The issue form is meant for template creators who want maintainers to help review and list a template in the marketplace.</p>
+        <ul class="submit-list">
+          
+            <li>Template name, repository URL, and a short project description</li>
+          
+            <li>Applicable category, tags, and the command used to create the project</li>
+          
+            <li>Optional online demo, screenshots, or documentation links</li>
+          
+            <li>Notes about maturity, maintenance status, and supported language versions</li>
+          
+        </ul>
+      </article>
+
+      <article class="submit-card">
+        <h2>What Happens Next</h2>
+        <p>After the issue is submitted, maintainers can review the information directly in GitHub and follow up in the same thread.</p>
+        <ol class="submit-steps">
+          
+            <li>Maintainers confirm the template is complete and accessible</li>
+          
+            <li>They may ask for missing metadata, docs, or demo details</li>
+          
+            <li>Once approved, the template can be added to the public listing</li>
+          
+            <li>Follow-up updates can continue in the same GitHub issue</li>
+          
+        </ol>
+      </article>
+    </div>
+
+    <section class="submit-card submit-note">
+      <h2>Prefer GitHub-native Submission</h2>
+      <p>The static page only acts as a launcher. The actual submission happens in GitHub Issue forms so the review process stays transparent and traceable.</p>
+      <div class="submit-note-actions">
+        <a href="https://github.com/jzero-io/templates/issues/new?template=template-submission.yml" target="_blank" rel="noopener" class="btn btn-primary">
+          Submit on GitHub
+        </a>
+      </div>
+    </section>
+  </div>
+</section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 jzero-io</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/main.js"></script>
+  <script>
+  function toggleLangMenu(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.classList.toggle('show');
+
+    // Close dropdown when clicking outside
+    setTimeout(() => {
+      document.addEventListener('click', closeLangMenu);
+    }, 10);
+  }
+
+  function closeLangMenu(event) {
+    const dropdown = document.getElementById('langDropdown');
+    const button = document.querySelector('.lang-button');
+    if (!dropdown || !button) return;
+
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      dropdown.classList.remove('show');
+      document.removeEventListener('click', closeLangMenu);
+    }
+  }
+  </script>
+</body>
+</html>

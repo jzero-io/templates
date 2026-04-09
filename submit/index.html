@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模板申报 - Jzero 模板市场</title>
+  <meta name="description" content="通过 GitHub Issue 表单提交模板上架申请。填写模板仓库、使用命令、功能简介和演示信息，方便维护者快速审核并收录。">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/" class="logo">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Jzero 模板市场</span>
+        </a>
+
+        <nav class="nav">
+          <a href="/" class="nav-link ">
+            <span>首页</span>
+          </a>
+          <a href="/submit/index.html" class="nav-link nav-submit active">
+            <span>申报模板</span>
+          </a>
+          <a href="/contribute/index.html" class="nav-link ">
+            <span>制作指南</span>
+          </a>
+
+          <a href="https://github.com/jzero-io/templates" target="_blank" rel="noopener" class="nav-github">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            GitHub
+          </a>
+
+          
+            <div class="lang-switcher">
+              <button
+                class="lang-button"
+                onclick="toggleLangMenu(event)"
+                title="切换语言"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M2 12h20"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4 10z"/>
+                </svg>
+                <span id="currentLangName">中文</span>
+                <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+
+              <div class="lang-dropdown" id="langDropdown">
+                
+                  
+                  
+                  
+                    
+                    
+                  
+                  <a
+                    href="/submit/"
+                    class="lang-option active"
+                  >
+                    中文
+                  </a>
+                
+                  
+                  
+                  
+                    
+                    
+                  
+                  <a
+                    href="/en/submit/"
+                    class="lang-option "
+                  >
+                    English
+                  </a>
+                
+              </div>
+            </div>
+          
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <!-- Template Submission Page -->
+<section class="submit-page">
+  <div class="container">
+    <div class="submit-hero">
+      <span class="submit-eyebrow">社区模板申报</span>
+      <h1>模板申报</h1>
+      <p class="submit-subtitle">通过 GitHub Issue 表单提交模板上架申请。填写模板仓库、使用命令、功能简介和演示信息，方便维护者快速审核并收录。</p>
+
+      <div class="submit-actions">
+        <a href="https://github.com/jzero-io/templates/issues/new?template=template-submission.yml" target="_blank" rel="noopener" class="btn btn-primary">
+          打开 GitHub 申报表单
+        </a>
+        <a href="/contribute/index.html" class="btn btn-secondary">
+          查看制作指南
+        </a>
+      </div>
+    </div>
+
+    <div class="submit-grid">
+      <article class="submit-card">
+        <h2>提交前请准备</h2>
+        <p>这个页面只负责引导，真正的申报会在 GitHub Issue 表单里完成，建议你先准备好以下信息。</p>
+        <ul class="submit-list">
+          
+            <li>模板名称、仓库地址，以及一句话介绍</li>
+          
+            <li>模板分类、标签、初始化命令和适用场景</li>
+          
+            <li>可选的在线演示、截图、文档链接</li>
+          
+            <li>维护状态、依赖版本、已知限制等补充说明</li>
+          
+        </ul>
+      </article>
+
+      <article class="submit-card">
+        <h2>提交后会发生什么</h2>
+        <p>Issue 创建后，维护者会直接在 GitHub 中跟进审核流程，沟通记录也会完整保留。</p>
+        <ol class="submit-steps">
+          
+            <li>先确认模板仓库、说明文档和命令是否可用</li>
+          
+            <li>如有缺失信息，会在 Issue 中继续补充沟通</li>
+          
+            <li>审核通过后，再安排收录到模板市场</li>
+          
+            <li>后续更新也可以继续在同一个 Issue 中追踪</li>
+          
+        </ol>
+      </article>
+    </div>
+
+    <section class="submit-card submit-note">
+      <h2>使用 GitHub 原生表单提交</h2>
+      <p>当前站点是静态站点，页面只提供入口。实际申报采用 GitHub Issue Form，便于流程公开、可追踪、可协作。</p>
+      <div class="submit-note-actions">
+        <a href="https://github.com/jzero-io/templates/issues/new?template=template-submission.yml" target="_blank" rel="noopener" class="btn btn-primary">
+          前往 GitHub 提交
+        </a>
+      </div>
+    </section>
+  </div>
+</section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 jzero-io</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/main.js"></script>
+  <script>
+  function toggleLangMenu(event) {
+    event.preventDefault();
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.classList.toggle('show');
+
+    // Close dropdown when clicking outside
+    setTimeout(() => {
+      document.addEventListener('click', closeLangMenu);
+    }, 10);
+  }
+
+  function closeLangMenu(event) {
+    const dropdown = document.getElementById('langDropdown');
+    const button = document.querySelector('.lang-button');
+    if (!dropdown || !button) return;
+
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      dropdown.classList.remove('show');
+      document.removeEventListener('click', closeLangMenu);
+    }
+  }
+  </script>
+</body>
+</html>
