@@ -147,13 +147,13 @@ func init() {
 	rootCmd.PersistentFlags().IntP("debug-sleep-time", "", 0, "debug sleep time")
 	rootCmd.Flags().BoolP("version", "v", false, "show version")
 
-	rootCmd.AddCommand(versioncmd.GetCommand())
+	rootCmd.AddCommand(versioncmd.Cmd)
 }
 
 // InitConfig reads in config file and ENV variables if set.
 func InitConfig() {
 	if len(os.Args) >= 2 {
-		if os.Args[1] == versioncmd.GetCommand().Use {
+		if os.Args[1] == versioncmd.Cmd.Use {
 			return
 		}
 	}

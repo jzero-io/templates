@@ -21,8 +21,8 @@ var (
 	Date    string
 )
 
-// versionCmd represents the version command
-var versionCmd = &cobra.Command{
+// Cmd represents the version command
+var Cmd = &cobra.Command{
 	Use:   "version",
 	Short: `Print {{.APP}} version`,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -53,8 +53,4 @@ func GetVersion() {
 	}
 
 	fmt.Print(versionBuffer.String())
-}
-
-func GetCommand() *cobra.Command {
-	return versionCmd
 }
